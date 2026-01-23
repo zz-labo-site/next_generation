@@ -427,6 +427,11 @@
         }
 
         /* --- 12. Utilities --- */
+        .upload-ui { pointer-events: auto; margin-top: 10px; text-align: right; opacity: 0.5; transition: opacity 0.3s; }
+        .upload-ui:hover { opacity: 1; }
+        .upload-btn { background: transparent; border: 1px solid var(--acid-yellow); color: var(--acid-yellow); font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 5px 10px; cursor: pointer; text-transform: uppercase; transition: all 0.3s; display: inline-block; }
+        .upload-btn:hover { background: var(--acid-yellow); color: #000; }
+        #fileInput { display: none; }
         .glitch-transition { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #EBBF00; z-index: 9000; display: none; mix-blend-mode: exclusion; }
         .danger-flash { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,0,0,0.4) 0%, rgba(255,0,0,0.8) 100%); z-index: 5000; opacity: 0; pointer-events: none; mix-blend-mode: overlay; transition: opacity 0.1s; }
         .danger-flash.active { animation: red-strobe 0.12s infinite; }
@@ -453,13 +458,18 @@
     <div class="cursor-inner"></div>
     <div class="glitch-transition" id="transition-overlay"></div>
 
+    <div class="loader">
+        <div class="loader-text">ZZ LABO</div>
+        <div class="counter">00</div>
+    </div>
+
     <!-- HUD -->
     <div class="hud-overlay">
-        <!-- Changed to Center Alignment -->
+        <!-- Center Alignment -->
         <div class="hud-row" style="justify-content: center;">
             <div class="meta-data" style="text-align: center;">
-                ID: ZETTAI-001<br>
-                <strong>SYSTEM: ONLINE</strong>
+                <strong>SYSTEM: ONLINE</strong><br>
+                ACCESS: <span id="access-count">000000</span>
             </div>
         </div>
         
@@ -506,6 +516,7 @@
                 <button class="close-btn" onclick="closeVideo()">CLOSE MONITOR</button>
                 <a id="fallback-link" href="#" target="_blank" class="fallback-btn">WATCH ON YOUTUBE</a>
             </div>
+            <!-- Removed Error Hint -->
             <div id="article-content-target"></div>
         </div>
     </div>
@@ -770,6 +781,7 @@
         let isTicking = false;
         let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
         let outX = mouseX, outY = mouseY;
+        // Rotation variable for electricity
         let rotation = 0;
 
         // PC Mouse
@@ -784,41 +796,70 @@
             if (!isTicking) { window.requestAnimationFrame(() => { updateVisuals(); isTicking = false; }); isTicking = true; }
         }, { passive: true });
 
+        // Spark creation logic
         function createSpark(x, y, speed) {
             const spark = document.createElement('div');
             spark.className = 'spark';
             document.body.appendChild(spark);
+            
             const angle = Math.random() * Math.PI * 2;
             const velocity = Math.random() * speed * 0.5 + 2; 
             const life = Math.random() * 300 + 200; 
-            spark.style.left = x + 'px'; spark.style.top = y + 'px';
+
+            spark.style.left = x + 'px';
+            spark.style.top = y + 'px';
+            
             const animation = spark.animate([
                 { transform: `translate(0, 0) scale(1)`, opacity: 1 },
                 { transform: `translate(${Math.cos(angle) * velocity * 10}px, ${Math.sin(angle) * velocity * 10}px) scale(0)`, opacity: 0 }
-            ], { duration: life, easing: 'cubic-bezier(0, .9, .57, 1)' });
+            ], {
+                duration: life,
+                easing: 'cubic-bezier(0, .9, .57, 1)'
+            });
+
             animation.onfinish = () => spark.remove();
         }
 
         function animateCursor() {
-            if (!cursorOuter || !cursorInner) { requestAnimationFrame(animateCursor); return; }
+            // Check existence of cursor elements
+            if (!cursorOuter || !cursorInner) {
+                requestAnimationFrame(animateCursor);
+                return;
+            }
+
+            // Speed Calculation
             const speed = Math.hypot(mouseX - outX, mouseY - outY);
+            
             if (speed > 2) {
                 cursorOuter.classList.add('moving');
-                rotation += speed * 0.5; 
-                if (speed > 5 && Math.random() < 0.3) { createSpark(outX, outY, speed); }
+                // Speed-based rotation
+                rotation += speed * 0.5; // Multiply speed for rotation effect
+                
+                // Trigger sparks randomly when moving fast
+                if (speed > 5 && Math.random() < 0.3) {
+                    createSpark(outX, outY, speed);
+                }
             } else {
                 cursorOuter.classList.remove('moving');
-                rotation += 2; 
+                rotation += 2; // Idle rotation
             }
-            outX += (mouseX - outX) * 0.25; outY += (mouseY - outY) * 0.25;
+
+            // Follow Logic with increased responsiveness (0.15 -> 0.25)
+            outX += (mouseX - outX) * 0.25; 
+            outY += (mouseY - outY) * 0.25;
+            
+            // Apply Transform
             cursorOuter.style.transform = `translate(${outX}px, ${outY}px) translate(-50%, -50%) rotate(${rotation}deg)`;
             cursorInner.style.transform = `translate(${outX}px, ${outY}px) translate(-50%, -50%)`;
+            
             requestAnimationFrame(animateCursor);
         }
         animateCursor();
 
         function updateVisuals() {
+            // Check for existence of elements before accessing classList
             const entrance = document.getElementById('entrance-layer');
+
             if (!isHovering) {
                 const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
                 const dx = (mouseX - cx) / cx, dy = (mouseY - cy) / cy;
@@ -835,7 +876,7 @@
         }
 
         const logoContainer = document.getElementById('main-logo-container');
-        if (logoContainer) {
+        if (logoContainer) { // Check existence
             logoContainer.addEventListener('mouseenter', () => {
                 isHovering = true;
                 if(cursorOuter) cursorOuter.classList.add('warning');
@@ -891,6 +932,37 @@
             requestAnimationFrame(drawWaves);
         }
         drawWaves();
+
+        // Remove Loader on init (since it was removed from UI but code might be good to have just in case, but let's hide it immediately)
+        setTimeout(() => { 
+            const l = document.querySelector('.loader');
+            if(l) l.classList.add('hidden'); 
+        }, 100);
+
+        /* --- Access Counter --- */
+        const countEl = document.getElementById('access-count');
+        const namespace = 'zz-labo-site-v1';
+        const key = 'visits';
+
+        async function updateCounter() {
+            try {
+                // CountAPI (無料・登録不要のカウンタAPI)
+                // hitエンドポイントはカウントアップして値を返す
+                const res = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+                const data = await res.json();
+                
+                // ゼロ埋めして表示 (例: 00123)
+                if (countEl) countEl.innerText = data.value.toString().padStart(6, '0');
+            } catch (e) {
+                console.warn('Counter API failed, using local fallback.');
+                // APIが失敗した場合のフォールバック（ローカルストレージで擬似カウント）
+                let localCount = localStorage.getItem('local_access_count') || '1024';
+                localCount = parseInt(localCount) + 1;
+                localStorage.setItem('local_access_count', localCount);
+                if (countEl) countEl.innerText = localCount.toString().padStart(6, '0');
+            }
+        }
+        updateCounter();
 
     </script>
 </body>
