@@ -4,8 +4,27 @@
     <meta charset="UTF-8">
     <!-- Viewport設定 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ZETTAI ZETSUMEI LABO | ARCHIVES</title>
     
+    <!-- --- SEO & Meta Settings (Added) --- -->
+    <title>絶体絶命ラボ | ZETTAI ZETSUMEI LABO</title>
+    <meta name="description" content="日常に潜む『最悪のシナリオ』から生存するための科学的ライフハックを研究・発信。硫酸、睡眠薬、エレベーター落下など、絶体絶命の危機を回避する知識をアーカイブした極秘データベース。">
+    <meta name="keywords" content="絶体絶命ラボ, サバイバル, 防犯, ライフハック, 科学, シミュレーション, YouTube">
+    
+    <!-- OGP (Open Graph Protocol) for SNS -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="絶体絶命ラボ | ZETTAI ZETSUMEI LABO">
+    <meta property="og:description" content="『最悪のシナリオ』を科学で攻略せよ。生存確率を上げるための生きた知識をアーカイブ。">
+    <meta property="og:url" content="https://zz-labo-site.github.io/zz-labo-site/">
+    <meta property="og:image" content="https://zz-labo-site.github.io/zz-labo-site/logo.png">
+    <meta property="og:site_name" content="絶体絶命ラボ">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="絶体絶命ラボ | ZETTAI ZETSUMEI LABO">
+    <meta name="twitter:description" content="日常の危機から生存せよ。科学的根拠に基づいたサバイバル術。">
+    <meta name="twitter:image" content="https://zz-labo-site.github.io/zz-labo-site/logo.png">
+    <!-- ----------------------------------- -->
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -286,37 +305,61 @@
         @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         /* --- 10. Custom Cursor --- */
+        /* Outer Circle (Base) - Always Visible */
         .cursor-outer {
             position: fixed; width: 60px; height: 60px;
+            /* ベースの円を表示（常時見えるように調整） */
             border: 1px solid rgba(255, 255, 255, 0.8); 
             border-radius: 50%; pointer-events: none; z-index: 1000;
             transform: translate(-50%, -50%);
+            /* transformをtransitionから除外 */
             transition: width 0.3s, height 0.3s, background 0.3s, border 0.2s;
+            /* 合成モードを通常に戻して視認性確保 */
             mix-blend-mode: normal;
-            box-shadow: 0 0 10px rgba(255,255,255,0.2);
+            box-shadow: 0 0 10px rgba(255,255,255,0.2); /* 常時微発光 */
         }
+
+        /* Electric Ring Effect - White */
         .cursor-outer::before {
             content: ''; position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px;
             border: 2px solid rgba(255, 255, 255, 0.4);
-            border-radius: 50%; transition: all 0.1s; opacity: 0.5;
+            border-radius: 50%; 
+            transition: all 0.1s;
+            opacity: 0.5;
         }
-        .cursor-outer.moving { border-color: #fff; box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+
+        /* Moving State: Electricity (Dashed, White, Glow) */
+        .cursor-outer.moving {
+            border-color: #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        
         .cursor-outer.moving::before {
             border: 2px dashed #ffffff;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), inset 0 0 5px rgba(255, 255, 255, 0.5);
-            opacity: 1; filter: blur(1px); animation: spin-electric 0.4s linear infinite;
+            box-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.8), 
+                inset 0 0 5px rgba(255, 255, 255, 0.5);
+            opacity: 1;
+            filter: blur(1px); 
+            animation: spin-electric 0.4s linear infinite;
         }
         @keyframes spin-electric {
             0% { transform: rotate(0deg) scale(1); }
             50% { transform: rotate(180deg) scale(1.1); }
             100% { transform: rotate(360deg) scale(1); }
         }
+
+        /* Warning State */
         .cursor-outer.warning {
-            width: 120px; height: 120px; background: var(--danger-red); mix-blend-mode: overlay;
-            border: 2px solid var(--danger-red); box-shadow: 0 0 20px var(--danger-red);
+            width: 120px; height: 120px;
+            background: var(--danger-red);
+            mix-blend-mode: overlay;
+            border: 2px solid var(--danger-red);
+            box-shadow: 0 0 20px var(--danger-red);
         }
         .cursor-outer.warning::before { display: none; }
 
+        /* Inner Dot */
         .cursor-inner {
             position: fixed; width: 6px; height: 6px;
             background: var(--acid-yellow); border-radius: 50%;
@@ -327,13 +370,18 @@
         }
         .cursor-inner.warning { background: var(--danger-red); transform: translate(-50%, -50%) scale(0.5); }
 
+        /* Spark Particle */
         .spark {
             position: fixed; width: 3px; height: 3px;
-            background: #fff; border-radius: 50%; pointer-events: none; z-index: 1002;
+            background: #fff; border-radius: 50%;
+            pointer-events: none; z-index: 1002;
             box-shadow: 0 0 5px #fff;
         }
 
-        @media (pointer: coarse) { .cursor-outer, .cursor-inner { display: none !important; } }
+        /* タッチデバイス（指操作）の時だけ消す（PCでは常に表示） */
+        @media (pointer: coarse) {
+            .cursor-outer, .cursor-inner { display: none !important; }
+        }
 
         /* --- 11. Nav Dock --- */
         .nav-dock { position: fixed; right: 2rem; top: 50%; transform: translateY(-50%); z-index: 900; display: flex; flex-direction: column; gap: 1.5rem; pointer-events: auto; }
@@ -346,7 +394,7 @@
         }
         @media (max-width: 768px) { .nav-btn { width: 38px; height: 38px; } .nav-btn svg { width: 18px; height: 18px; } }
         .nav-btn.square { border-radius: 4px; border-color: var(--acid-yellow); color: var(--acid-yellow); }
-        .nav-btn.square svg path { fill: var(--acid-yellow); }
+        .nav-btn.square svg path { fill: var(--acid-yellow); } /* アイコン色指定 */
         .nav-btn:hover { border-color: var(--acid-yellow); background: var(--acid-yellow); color: #000; box-shadow: 0 0 15px rgba(235, 191, 0, 0.5); transform: scale(1.1); }
         .nav-btn:hover svg path { fill: #000; }
         .nav-btn svg { width: 20px; height: 20px; fill: currentColor; }
@@ -388,10 +436,9 @@
     <div class="cursor-inner"></div>
     <div class="glitch-transition" id="transition-overlay"></div>
 
-    <!-- Removed Loader Completely -->
-
     <!-- HUD -->
     <div class="hud-overlay">
+        <!-- Changed to Center Alignment -->
         <div class="hud-row" style="justify-content: center;">
             <div class="meta-data" style="text-align: center;">
                 <strong>SYSTEM: ONLINE</strong><br>
@@ -401,7 +448,6 @@
         
         <div class="hud-row" style="align-items: flex-end;">
             <div class="meta-data" id="status-text">PROTOCOL: SURVIVAL<br>STATUS: WAITING FOR INPUT</div>
-            <!-- Removed Preview UI Completely -->
         </div>
         <div class="scroll-indicator" id="scroll-hint">INITIALIZE PROTOCOL</div>
     </div>
@@ -423,6 +469,7 @@
             <div class="background-type">SURVIVAL / HAZARD / CHAOS / SURVIVAL / HAZARD / SURVIVAL / HAZARD / CHAOS / SURVIVAL / HAZARD</div>
             <div class="logo-container" id="main-logo-container" onclick="enterArchives()">
                 <img id="preview-logo" src="logo.png" alt="ZZ LOGO" class="logo-img">
+                <!-- Fallback when logo not found -->
                 <div id="placeholder" class="logo-placeholder-circle"><span>ZZ</span><div>LOGO.PNG NOT FOUND<br>PLEASE PLACE FILE</div></div>
             </div>
             <div class="hero-title-wrapper"><h1 class="hero-title">ZETTAI<br><span class="highlight">ZETSUMEI</span><br>LABORATORY</h1></div>
@@ -443,7 +490,6 @@
                 <button class="close-btn" onclick="closeVideo()">CLOSE MONITOR</button>
                 <a id="fallback-link" href="#" target="_blank" class="fallback-btn">WATCH ON YOUTUBE</a>
             </div>
-            <!-- Removed Error Hint -->
             <div id="article-content-target"></div>
         </div>
     </div>
@@ -683,9 +729,11 @@
         }
 
         /* EFFECTS */
+        /* Preview Image Loading (Auto-check local logo.png) */
         const previewLogo = document.getElementById('preview-logo');
         const placeholder = document.getElementById('placeholder');
-        if (previewLogo) {
+        // Simple error handling for logo
+        if(previewLogo) {
             previewLogo.onerror = function() { 
                 this.style.display = 'none'; 
                 if(placeholder) placeholder.style.display = 'flex'; 
@@ -708,7 +756,6 @@
         let isTicking = false;
         let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
         let outX = mouseX, outY = mouseY;
-        // Rotation variable for electricity
         let rotation = 0;
 
         // PC Mouse
@@ -723,70 +770,41 @@
             if (!isTicking) { window.requestAnimationFrame(() => { updateVisuals(); isTicking = false; }); isTicking = true; }
         }, { passive: true });
 
-        // Spark creation logic
         function createSpark(x, y, speed) {
             const spark = document.createElement('div');
             spark.className = 'spark';
             document.body.appendChild(spark);
-            
             const angle = Math.random() * Math.PI * 2;
             const velocity = Math.random() * speed * 0.5 + 2; 
             const life = Math.random() * 300 + 200; 
-
-            spark.style.left = x + 'px';
-            spark.style.top = y + 'px';
-            
+            spark.style.left = x + 'px'; spark.style.top = y + 'px';
             const animation = spark.animate([
                 { transform: `translate(0, 0) scale(1)`, opacity: 1 },
                 { transform: `translate(${Math.cos(angle) * velocity * 10}px, ${Math.sin(angle) * velocity * 10}px) scale(0)`, opacity: 0 }
-            ], {
-                duration: life,
-                easing: 'cubic-bezier(0, .9, .57, 1)'
-            });
-
+            ], { duration: life, easing: 'cubic-bezier(0, .9, .57, 1)' });
             animation.onfinish = () => spark.remove();
         }
 
         function animateCursor() {
-            // Check existence of cursor elements
-            if (!cursorOuter || !cursorInner) {
-                requestAnimationFrame(animateCursor);
-                return;
-            }
-
-            // Speed Calculation
+            if (!cursorOuter || !cursorInner) { requestAnimationFrame(animateCursor); return; }
             const speed = Math.hypot(mouseX - outX, mouseY - outY);
-            
             if (speed > 2) {
                 cursorOuter.classList.add('moving');
-                // Speed-based rotation
-                rotation += speed * 0.5; // Multiply speed for rotation effect
-                
-                // Trigger sparks randomly when moving fast
-                if (speed > 5 && Math.random() < 0.3) {
-                    createSpark(outX, outY, speed);
-                }
+                rotation += speed * 0.5; 
+                if (speed > 5 && Math.random() < 0.3) { createSpark(outX, outY, speed); }
             } else {
                 cursorOuter.classList.remove('moving');
-                rotation += 2; // Idle rotation
+                rotation += 2; 
             }
-
-            // Follow Logic with increased responsiveness (0.15 -> 0.25)
-            outX += (mouseX - outX) * 0.25; 
-            outY += (mouseY - outY) * 0.25;
-            
-            // Apply Transform
+            outX += (mouseX - outX) * 0.25; outY += (mouseY - outY) * 0.25;
             cursorOuter.style.transform = `translate(${outX}px, ${outY}px) translate(-50%, -50%) rotate(${rotation}deg)`;
             cursorInner.style.transform = `translate(${outX}px, ${outY}px) translate(-50%, -50%)`;
-            
             requestAnimationFrame(animateCursor);
         }
         animateCursor();
 
         function updateVisuals() {
-            // Check for existence of elements before accessing classList
             const entrance = document.getElementById('entrance-layer');
-
             if (!isHovering) {
                 const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
                 const dx = (mouseX - cx) / cx, dy = (mouseY - cy) / cy;
@@ -803,7 +821,7 @@
         }
 
         const logoContainer = document.getElementById('main-logo-container');
-        if (logoContainer) { // Check existence
+        if (logoContainer) {
             logoContainer.addEventListener('mouseenter', () => {
                 isHovering = true;
                 if(cursorOuter) cursorOuter.classList.add('warning');
