@@ -2,21 +2,33 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <!-- Viewport設定: スマホでの表示倍率を制御 -->
+    <!-- Viewport設定 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ZETTAI ZETSUMEI LABO | ARCHIVES</title>
     
-    <!-- --- SEO & Meta Settings --- -->
+    <!-- --- SEO & Meta Settings (Enhanced) --- -->
+    <title>絶体絶命ラボ | ZETTAI ZETSUMEI LABO</title>
     <meta name="description" content="日常に潜む『最悪のシナリオ』から生存するための科学的ライフハックを研究・発信。硫酸、睡眠薬、エレベーター落下など、絶体絶命の危機を回避する知識をアーカイブした極秘データベース。">
-    <meta name="keywords" content="絶体絶命ラボ, サバイバル, 防犯, ライフハック, 科学, シミュレーション, YouTube">
+    <meta name="keywords" content="絶体絶命ラボ, サバイバル, 防犯, ライフハック, 科学, シミュレーション, YouTube, 危機管理">
+    <meta name="author" content="絶体絶命ラボ">
     
-    <!-- OGP (Open Graph Protocol) for SNS -->
+    <!-- Crawlers Instructions -->
+    <meta name="robots" content="index, follow">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://zz-labo-site.github.io/zz-labo-site/">
+
+    <!-- Favicon & Icons -->
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="logo.png">
+    
+    <!-- OGP (Open Graph Protocol) -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="絶体絶命ラボ | ZETTAI ZETSUMEI LABO">
     <meta property="og:description" content="『最悪のシナリオ』を科学で攻略せよ。生存確率を上げるための生きた知識をアーカイブ。">
     <meta property="og:url" content="https://zz-labo-site.github.io/zz-labo-site/">
     <meta property="og:image" content="https://zz-labo-site.github.io/zz-labo-site/logo.png">
     <meta property="og:site_name" content="絶体絶命ラボ">
+    <meta property="og:locale" content="ja_JP">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
@@ -24,7 +36,7 @@
     <meta name="twitter:description" content="日常の危機から生存せよ。科学的根拠に基づいたサバイバル術。">
     <meta name="twitter:image" content="https://zz-labo-site.github.io/zz-labo-site/logo.png">
 
-    <!-- Structured Data (JSON-LD) for SEO -->
+    <!-- Basic Structured Data (WebSite) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -62,10 +74,9 @@
             --text-white: #f0f0f0;
         }
 
-        /* --- 1. Base Setup --- */
+        /* --- Base Setup --- */
         *, *::before, *::after {
             box-sizing: border-box;
-            /* スマホでのタップハイライトを無効化 */
             -webkit-tap-highlight-color: transparent; 
         }
 
@@ -78,26 +89,21 @@
             color: var(--text-white);
             font-family: 'Inter', sans-serif;
             overflow: hidden;
-            /* スマホでのスクロールバウンス防止 */
             overscroll-behavior: none;
         }
 
-        /* PCのみカーソルを消す（スマホではネイティブカーソルなし） */
         @media (pointer: fine) {
             *, *::before, *::after {
                 cursor: none !important; 
             }
         }
 
-        /* --- 2. Background Graphics & Atmosphere --- */
-        
-        /* Canvas for Vital Waves */
+        /* --- Background Graphics --- */
         #bg-canvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 1; opacity: 0.3; pointer-events: none;
         }
 
-        /* Toxic Fog Animation */
         .toxic-fog {
             position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
             background-image: radial-gradient(circle at 50% 50%, rgba(235, 191, 0, 0.05), transparent 60%),
@@ -110,7 +116,6 @@
             100% { transform: translate(-10%, -5%) scale(1.1); }
         }
 
-        /* Existing Noise */
         .noise-overlay {
             position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
             background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.4"/%3E%3C/svg%3E');
@@ -124,7 +129,7 @@
             90% { transform: translate(-10%, 10%); }
         }
 
-        /* --- 3. Layers & Transitions --- */
+        /* --- Layers --- */
         .layer {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
@@ -141,7 +146,7 @@
         #blog-layer::-webkit-scrollbar, #about-layer::-webkit-scrollbar { display: none; }
         #blog-layer.active, #about-layer.active { opacity: 1; transform: scale(1); z-index: 20; pointer-events: auto; }
 
-        /* --- 4. Typography & Layout --- */
+        /* --- Typography --- */
         .hero-title {
             font-family: 'Anton', sans-serif; font-size: 12vw;
             text-transform: uppercase; line-height: 0.85; margin: 0;
@@ -173,7 +178,6 @@
             100% { transform: translate(-50%, -50%) translateY(-20%); }
         }
 
-        /* --- Warning Stripe Design for "ZETSUMEI" --- */
         .highlight {
             color: transparent;
             background-image: repeating-linear-gradient(-45deg, var(--acid-yellow), var(--acid-yellow) 10px, #000 10px, #000 20px);
@@ -182,7 +186,7 @@
             filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
         }
 
-        /* --- 5. Logo --- */
+        /* --- Logo --- */
         .logo-container {
             position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%); width: 30vw; height: 30vw;
@@ -213,29 +217,15 @@
             font-size: 3rem; color: var(--acid-yellow); font-family: 'Anton', sans-serif; margin-bottom: 10px;
         }
 
-        /* --- 6. Blog & Video (Layout Fixed) --- */
+        /* --- Blog Index --- */
         .blog-section {
-            /* Fix: Changed to min-height to allow content to expand without overlap */
-            min-height: 100vh; 
-            width: 100%; 
-            display: flex; 
-            flex-direction: column;
-            justify-content: center; 
-            align-items: flex-start; 
-            /* Fix: Increased padding for better spacing */
-            padding: 15vh 5vw; 
-            border-bottom: 1px solid rgba(255,255,255,0.1); 
-            position: relative; 
-            box-sizing: border-box;
+            min-height: 100vh; width: 100%; display: flex; flex-direction: column;
+            justify-content: center; align-items: flex-start; padding: 15vh 5vw;
+            border-bottom: 1px solid rgba(255,255,255,0.1); position: relative; box-sizing: border-box;
         }
-        
         @media (max-width: 768px) {
-            .blog-section { 
-                /* Fix: More padding for mobile */
-                padding: 15vh 5vw 15vh; 
-            }
+            .blog-section { padding: 15vh 5vw 15vh; }
         }
-
         .blog-number {
             font-family: 'JetBrains Mono', monospace; color: var(--acid-yellow);
             font-size: 1.2rem; margin-bottom: 1rem; display: block;
@@ -244,9 +234,12 @@
             font-family: 'Noto Sans JP', 'Anton', sans-serif; font-weight: 900;
             font-size: 8vw; line-height: 1.1; text-transform: uppercase;
             color: transparent; -webkit-text-stroke: 1px #fff;
-            transition: color 0.3s; cursor: pointer; word-break: keep-all; max-width: 90%;
+            transition: color 0.3s; cursor: pointer; 
+            word-wrap: break-word; overflow-wrap: break-word; max-width: 90%;
         }
-        @media (max-width: 768px) { .blog-title { font-size: 12vw; } }
+        @media (max-width: 768px) { 
+            .blog-title { font-size: clamp(2rem, 9vw, 4rem); } 
+        }
         .blog-title.loading {
             font-size: 4vw; color: rgba(255, 255, 255, 0.2); -webkit-text-stroke: 0;
             animation: blink-text 1s infinite;
@@ -258,52 +251,29 @@
             font-size: 1rem; color: rgba(255,255,255,0.7); max-width: 700px; line-height: 1.6;
         }
 
-        /* --- Share Buttons (Updated Layout) --- */
+        /* --- Share Buttons --- */
         .share-area {
-            /* Fix: Increased margin to prevent overlap */
-            margin-top: 2.5rem; 
-            margin-bottom: 2rem;
-            display: flex;
-            gap: 15px;
-            pointer-events: auto; 
-            flex-wrap: wrap; 
+            margin-top: 2.5rem; margin-bottom: 2rem; display: flex; gap: 15px;
+            pointer-events: auto; flex-wrap: wrap; 
         }
         .share-btn {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--text-white);
-            border: 1px solid rgba(255,255,255,0.3);
-            padding: 8px 16px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+            color: var(--text-white); border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 16px; text-decoration: none; display: inline-flex;
+            align-items: center; gap: 8px; transition: all 0.3s; cursor: pointer;
         }
-        .share-btn:hover {
-            background: var(--acid-yellow);
-            color: #000;
-            border-color: var(--acid-yellow);
-        }
+        .share-btn:hover { background: var(--acid-yellow); color: #000; border-color: var(--acid-yellow); }
         .share-btn svg { width: 14px; height: 14px; fill: currentColor; }
 
         /* --- Play Simulation Button Effect --- */
         .play-simulation-btn {
-            color: var(--acid-yellow);
-            cursor: pointer;
-            transition: color 0.2s;
-            display: inline-block;
-            font-weight: bold;
-            font-family: 'JetBrains Mono', monospace;
+            color: var(--acid-yellow); cursor: pointer; transition: color 0.2s;
+            display: inline-block; font-weight: bold; font-family: 'JetBrains Mono', monospace;
         }
-
         .play-simulation-btn:hover {
-            color: var(--danger-red);
-            animation: alert-blink 0.1s infinite alternate; /* 高速点滅 */
+            color: var(--danger-red); animation: alert-blink 0.1s infinite alternate;
             text-shadow: 0 0 5px var(--danger-red);
         }
-
         @keyframes alert-blink {
             0% { opacity: 1; text-shadow: 0 0 10px var(--danger-red); }
             100% { opacity: 0.4; text-shadow: 0 0 2px var(--danger-red); }
@@ -311,24 +281,16 @@
 
         /* --- Subscribe Link Animation --- */
         .subscribe-link {
-            color: var(--acid-yellow);
-            text-decoration: underline;
-            transition: all 0.3s ease;
-            display: inline-block;
+            color: var(--acid-yellow); text-decoration: underline;
+            transition: all 0.3s ease; display: inline-block;
         }
-
         .subscribe-link:hover {
-            font-weight: 900; 
-            animation: slow-blink 1.5s infinite ease-in-out; 
+            font-weight: 900; animation: slow-blink 1.5s infinite ease-in-out; 
             text-shadow: 0 0 8px var(--acid-yellow);
         }
+        @keyframes slow-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-        @keyframes slow-blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* Video Layer (Updated for Size) */
+        /* --- Video Layer --- */
         #video-layer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.98); z-index: 100; display: none;
@@ -338,20 +300,13 @@
         #video-layer.active { display: block; opacity: 1; }
         
         .article-container {
-            width: 100%;
-            /* PC: 幅を広げて動画を大きく見せる */
-            max-width: 1400px; 
-            margin: 0 auto;
-            padding: 100px 5vw 150px; 
-            display: flex; flex-direction: column; gap: 20px;
+            width: 100%; max-width: 1400px; margin: 0 auto;
+            padding: 100px 5vw 150px; display: flex; flex-direction: column; gap: 20px;
         }
-        /* Mobile Padding Adjustment: 動画を画面幅いっぱいに */
         @media (max-width: 768px) { 
             .article-container { padding: 80px 0 150px; } 
             .video-wrapper { border-left: none; border-right: none; }
-            .article-header, .article-body, .player-controls {
-                padding-left: 5vw; padding-right: 5vw;
-            }
+            .article-header, .article-body, .player-controls { padding-left: 5vw; padding-right: 5vw; }
         }
         
         .video-wrapper {
@@ -405,43 +360,27 @@
         @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         /* --- 10. Custom Cursor --- */
-        /* Outer Circle (Base) - Always Visible */
         .cursor-outer {
             position: fixed; width: 60px; height: 60px;
-            /* ベースの円を表示（常時見えるように調整） */
             border: 1px solid rgba(255, 255, 255, 0.8); 
             border-radius: 50%; pointer-events: none; z-index: 1000;
             transform: translate(-50%, -50%);
-            /* transformをtransitionから除外 */
             transition: width 0.3s, height 0.3s, background 0.3s, border 0.2s;
-            /* 合成モードを通常に戻して視認性確保 */
             mix-blend-mode: normal;
-            box-shadow: 0 0 10px rgba(255,255,255,0.2); /* 常時微発光 */
+            box-shadow: 0 0 10px rgba(255,255,255,0.2); 
         }
 
-        /* Electric Ring Effect - White */
         .cursor-outer::before {
             content: ''; position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px;
             border: 2px solid rgba(255, 255, 255, 0.4);
-            border-radius: 50%; 
-            transition: all 0.1s;
-            opacity: 0.5;
+            border-radius: 50%; transition: all 0.1s; opacity: 0.5;
         }
 
-        /* Moving State: Electricity (Dashed, White, Glow) */
-        .cursor-outer.moving {
-            border-color: #fff;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-        
+        .cursor-outer.moving { border-color: #fff; box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
         .cursor-outer.moving::before {
             border: 2px dashed #ffffff;
-            box-shadow: 
-                0 0 10px rgba(255, 255, 255, 0.8), 
-                inset 0 0 5px rgba(255, 255, 255, 0.5);
-            opacity: 1;
-            filter: blur(1px); 
-            animation: spin-electric 0.4s linear infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), inset 0 0 5px rgba(255, 255, 255, 0.5);
+            opacity: 1; filter: blur(1px); animation: spin-electric 0.4s linear infinite;
         }
         @keyframes spin-electric {
             0% { transform: rotate(0deg) scale(1); }
@@ -449,17 +388,12 @@
             100% { transform: rotate(360deg) scale(1); }
         }
 
-        /* Warning State */
         .cursor-outer.warning {
-            width: 120px; height: 120px;
-            background: var(--danger-red);
-            mix-blend-mode: overlay;
-            border: 2px solid var(--danger-red);
-            box-shadow: 0 0 20px var(--danger-red);
+            width: 120px; height: 120px; background: var(--danger-red); mix-blend-mode: overlay;
+            border: 2px solid var(--danger-red); box-shadow: 0 0 20px var(--danger-red);
         }
         .cursor-outer.warning::before { display: none; }
 
-        /* Inner Dot */
         .cursor-inner {
             position: fixed; width: 6px; height: 6px;
             background: var(--acid-yellow); border-radius: 50%;
@@ -470,17 +404,13 @@
         }
         .cursor-inner.warning { background: var(--danger-red); transform: translate(-50%, -50%) scale(0.5); }
 
-        /* Spark Particle */
         .spark {
             position: fixed; width: 3px; height: 3px;
             background: #fff; border-radius: 50%; pointer-events: none; z-index: 1002;
             box-shadow: 0 0 5px #fff;
         }
 
-        /* タッチデバイス（指操作）の時だけ消す（PCでは常に表示） */
-        @media (pointer: coarse) {
-            .cursor-outer, .cursor-inner { display: none !important; }
-        }
+        @media (pointer: coarse) { .cursor-outer, .cursor-inner { display: none !important; } }
 
         /* --- 11. Nav Dock --- */
         .nav-dock { position: fixed; right: 2rem; top: 50%; transform: translateY(-50%); z-index: 900; display: flex; flex-direction: column; gap: 1.5rem; pointer-events: auto; }
@@ -493,7 +423,7 @@
         }
         @media (max-width: 768px) { .nav-btn { width: 38px; height: 38px; } .nav-btn svg { width: 18px; height: 18px; } }
         .nav-btn.square { border-radius: 4px; border-color: var(--acid-yellow); color: var(--acid-yellow); }
-        .nav-btn.square svg path { fill: var(--acid-yellow); } /* アイコン色指定 */
+        .nav-btn.square svg path { fill: var(--acid-yellow); }
         .nav-btn:hover { border-color: var(--acid-yellow); background: var(--acid-yellow); color: #000; box-shadow: 0 0 15px rgba(235, 191, 0, 0.5); transform: scale(1.1); }
         .nav-btn:hover svg path { fill: #000; }
         .nav-btn svg { width: 20px; height: 20px; fill: currentColor; }
@@ -509,11 +439,6 @@
         }
 
         /* --- 12. Utilities --- */
-        .upload-ui { pointer-events: auto; margin-top: 10px; text-align: right; opacity: 0.5; transition: opacity 0.3s; }
-        .upload-ui:hover { opacity: 1; }
-        .upload-btn { background: transparent; border: 1px solid var(--acid-yellow); color: var(--acid-yellow); font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 5px 10px; cursor: pointer; text-transform: uppercase; transition: all 0.3s; display: inline-block; }
-        .upload-btn:hover { background: var(--acid-yellow); color: #000; }
-        #fileInput { display: none; }
         .glitch-transition { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #EBBF00; z-index: 9000; display: none; mix-blend-mode: exclusion; }
         .danger-flash { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,0,0,0.4) 0%, rgba(255,0,0,0.8) 100%); z-index: 5000; opacity: 0; pointer-events: none; mix-blend-mode: overlay; transition: opacity 0.1s; }
         .danger-flash.active { animation: red-strobe 0.12s infinite; }
@@ -562,9 +487,9 @@
         <div class="nav-btn square" onclick="goBack()" data-tooltip="BACK"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
         <div class="nav-btn square" onclick="showAbout()" data-tooltip="ABOUT LAB"><svg viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg></div>
         <div class="nav-separator"></div>
-        <a href="https://www.youtube.com/@%E7%B5%B6%E4%BD%93%E7%B5%B6%E5%91%BD%E3%83%A9%E3%83%9C" target="_blank" class="nav-btn" data-tooltip="YOUTUBE"><svg viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg></a>
-        <a href="https://x.com/ZZLAB48210" target="_blank" class="nav-btn" data-tooltip="X / TWITTER"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-        <a href="https://www.instagram.com/zz_lab2026/" target="_blank" class="nav-btn" data-tooltip="INSTAGRAM"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://www.youtube.com/@%E7%B5%B6%E4%BD%93%E7%B5%B6%E5%91%BD%E3%83%A9%E3%83%9C" target="_blank" class="nav-btn" data-tooltip="YOUTUBE" aria-label="YouTube Channel"><svg viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg></a>
+        <a href="https://x.com/ZZLAB48210" target="_blank" class="nav-btn" data-tooltip="X / TWITTER" aria-label="X (Twitter) Profile"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.instagram.com/zz_lab2026/" target="_blank" class="nav-btn" data-tooltip="INSTAGRAM" aria-label="Instagram Profile"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
     </div>
 
     <!-- ENTRANCE -->
@@ -707,7 +632,7 @@
                             </a>
                              <a href="https://www.instagram.com/" target="_blank" class="share-btn">
                                 <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                                REPORT TO INSTAGRAM
+                               REPORT TO INSTAGRAM
                             </a>
                         </div>
 
@@ -753,13 +678,13 @@
                         
                         <!-- Share Buttons on List (New) -->
                         <div class="share-area" style="flex-wrap: wrap;">
-                            <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank" class="share-btn">
+                            <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank" class="share-btn" aria-label="Share on X">
                                 <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> REPORT TO X
                             </a>
-                            <a href="https://line.me/R/msg/text/?${shareText}%0A${shareUrl}" target="_blank" class="share-btn">
+                            <a href="https://line.me/R/msg/text/?${shareText}%0A${shareUrl}" target="_blank" class="share-btn" aria-label="Share on LINE">
                                 REPORT TO LINE
                             </a>
-                            <a href="https://www.instagram.com/" target="_blank" class="share-btn">
+                            <a href="https://www.instagram.com/" target="_blank" class="share-btn" aria-label="Share on Instagram">
                                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                                REPORT TO INSTAGRAM
                             </a>
