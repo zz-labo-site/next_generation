@@ -1,453 +1,516 @@
-import React, { useState, useEffect } from 'react';
-import { Play, X, ChevronDown, Monitor, Share2, Youtube, Info, ExternalLink } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>次世代への手紙 - 不滅の魂</title>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Babel (JSX変換用) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Lato:wght@300;400;700&family=Shippori+Mincho:wght@400;500;700&family=Zen+Old+Mincho:wght@400;700;900&display=swap" rel="stylesheet">
 
-const App = () => {
-  const [activeVideo, setActiveVideo] = useState(null);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [loaded, setLoaded] = useState(false);
-  const [showAbout, setShowAbout] = useState(false);
-
-  // チャンネルの動画データ
-  const videos = [
-    {
-      id: 0,
-      title: "ロックの女王・浜田麻里ヒット曲TOP5！",
-      duration: "01:00",
-      views: "1.9K",
-      thumbnail: "https://img.youtube.com/vi/PYfwgOOoc1Y/maxresdefault.jpg",
-      desc: "浜田麻里のシングル売上ランキングTOP5。伝説の歌声がここに。1位は売上40万枚超えの名曲。",
-      youtubeId: "PYfwgOOoc1Y"
-    },
-    {
-      id: 1,
-      title: "The Midnight Sonata",
-      duration: "04:32",
-      views: "1.2M",
-      thumbnail: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop",
-      desc: "静寂に包まれた都市の夜景と、響き渡るピアノの旋律。",
-      youtubeId: null
-    },
-    {
-      id: 2,
-      title: "Obsidian Flow",
-      duration: "03:15",
-      views: "890K",
-      thumbnail: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
-      desc: "流体のような黒い光沢が織りなす、視覚的なASMR体験。",
-      youtubeId: null
-    },
-    {
-      id: 3,
-      title: "Urban Solitude",
-      duration: "05:45",
-      views: "2.1M",
-      thumbnail: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop",
-      desc: "コンクリートジャングルの中で見つける、一瞬の安らぎ。",
-      youtubeId: null
-    },
-    {
-      id: 4,
-      title: "Velvet Horizon",
-      duration: "02:50",
-      views: "560K",
-      thumbnail: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop",
-      desc: "地平線に沈む太陽と、ベルベットのような空のグラデーション。",
-      youtubeId: null
-    },
-    {
-      id: 5,
-      title: "Chrome & Glass",
-      duration: "06:10",
-      views: "1.5M",
-      thumbnail: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2166&auto=format&fit=crop",
-      desc: "現代建築の美学。光と影のコントラスト。",
-      youtubeId: null
-    },
-    {
-      id: 6,
-      title: "Silent Drift",
-      duration: "03:55",
-      views: "3.2M",
-      thumbnail: "https://images.unsplash.com/photo-1493238792000-8113da705763?q=80&w=2070&auto=format&fit=crop",
-      desc: "何もしない贅沢。ただ流れる雲を見つめる時間。",
-      youtubeId: null
-    }
-  ];
-
-  useEffect(() => {
-    setLoaded(true);
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (activeVideo || showAbout) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [activeVideo, showAbout]);
-
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-white/20 selection:text-white overflow-x-hidden">
-      {/* Google Fonts Import: 日本語フォント（Shippori Mincho, Zen Old Mincho）を追加 */}
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Lato:wght@300;400;700&family=Shippori+Mincho:wght@400;500;700&family=Zen+Old+Mincho:wght@400;700;900&display=swap');
-        
+    <style>
         .font-cinzel { font-family: 'Cinzel', serif; }
         .font-lato { font-family: 'Lato', sans-serif; }
         .font-mincho { font-family: 'Shippori Mincho', serif; }
         .font-zen { font-family: 'Zen Old Mincho', serif; }
         
         .piano-black-gloss {
-          background: linear-gradient(180deg, rgba(20,20,20,1) 0%, rgba(5,5,5,1) 100%);
-          position: relative;
+            background: linear-gradient(180deg, rgba(20,20,20,1) 0%, rgba(5,5,5,1) 100%);
+            position: relative;
         }
         .piano-black-gloss::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-          opacity: 0.5;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            opacity: 0.5;
         }
         
         .reflection {
-          transform: scaleY(-1);
-          mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%);
-          -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
-          opacity: 0.3;
-          pointer-events: none;
-          filter: blur(2px);
+            transform: scaleY(-1);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+            opacity: 0.3;
+            pointer-events: none;
+            filter: blur(2px);
         }
 
         .text-glow {
-          text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
         }
         
-        .gold-accent {
-          color: #cfb991;
-          background: linear-gradient(to bottom, #e6d2aa, #cfb991);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+        /* アニメーション用 */
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        .gold-border {
-          border-color: rgba(207, 185, 145, 0.3);
+        .animate-in {
+            animation: fade-in 0.3s ease-out forwards;
         }
-      `}</style>
+        
+        /* スクロールバーのカスタマイズ */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+    </style>
+</head>
+<body class="bg-[#050505] text-white overflow-x-hidden">
+    <div id="root"></div>
 
-      {/* Navigation */}
-      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'bg-black/90 backdrop-blur-md py-4 border-b border-white/5 shadow-lg' : 'bg-transparent py-6'}`}>
-        <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className="flex items-center gap-4 cursor-pointer" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
-            {/* Logo Placeholder - Replace src with actual logo path */}
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-white/10 rounded-full blur opacity-0 group-hover:opacity-50 transition duration-1000"></div>
-              {/* NOTE: ここに公式ロゴ画像（公式ロゴ.png）を指定してください */}
-              <img 
-                src="/api/placeholder/400/320" 
-                alt="不滅の魂 ロゴ" 
-                className="h-10 w-auto object-contain relative z-10 opacity-90 hover:opacity-100 transition-opacity"
-              />
-            </div>
-            <div className="hidden md:block">
-              <span className="block text-xs text-gray-400 font-cinzel tracking-[0.2em] leading-none mb-1">LETTERS TO THE NEXT GENERATION</span>
-              <span className="block text-sm text-white font-zen font-bold tracking-widest leading-none">次世代への手紙</span>
-            </div>
-          </div>
-          <div className="flex space-x-8 font-lato text-xs tracking-[0.2em] uppercase text-gray-400">
-            <button onClick={() => scrollToSection('archives')} className="hover:text-white hover:scale-105 transition-all duration-300">Archives</button>
-            <button onClick={() => setShowAbout(true)} className="hover:text-white hover:scale-105 transition-all duration-300 flex items-center gap-1"><Info className="w-3 h-3"/> About</button>
-          </div>
-        </div>
-      </nav>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
 
-      {/* Hero Section */}
-      <header className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-black">
-             <div className="absolute inset-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center scale-105 animate-pulse-slow"></div>
-             <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/90 to-transparent"></div>
-             <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-transparent to-[#050505]"></div>
-        </div>
+        // --- Icons (Lucide Reactの代わり) ---
+        const Play = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        );
+        const X = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        );
+        const ChevronDown = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="6 9 12 15 18 9"></polyline></svg>
+        );
+        const Monitor = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        );
+        const Share2 = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+        );
+        const Youtube = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+        );
+        const Info = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        );
+        const ExternalLink = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        );
 
-        <div className={`relative z-10 text-center flex flex-col items-center justify-center h-full transition-all duration-1000 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          
-          <div className="mb-8 relative">
-            <div className="absolute -inset-10 bg-gradient-to-r from-transparent via-white/5 to-transparent blur-xl opacity-30"></div>
-            {/* メインロゴの表示エリア */}
-            <img 
-              src="/api/placeholder/600/400" 
-              alt="不滅の魂" 
-              className="w-64 md:w-96 h-auto object-contain drop-shadow-[0_0_25px_rgba(255,255,255,0.15)] mb-6"
-            />
-          </div>
+        // --- Main App Component ---
+        const App = () => {
+            const [activeVideo, setActiveVideo] = useState(null);
+            const [isScrolled, setIsScrolled] = useState(false);
+            const [loaded, setLoaded] = useState(false);
+            const [showAbout, setShowAbout] = useState(false);
 
-          <h1 className="font-zen text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 mb-4 tracking-wider text-glow">
-            次世代への手紙
-          </h1>
-          <p className="font-mincho text-xl md:text-2xl text-[#cfb991] tracking-[0.5em] font-medium mb-12">
-            ー 不滅の魂 ー
-          </p>
+            // チャンネルの動画データ
+            const videos = [
+                {
+                    id: 0,
+                    title: "ロックの女王・浜田麻里ヒット曲TOP5！",
+                    duration: "01:00",
+                    views: "1.9K",
+                    thumbnail: "https://img.youtube.com/vi/PYfwgOOoc1Y/maxresdefault.jpg",
+                    desc: "浜田麻里のシングル売上ランキングTOP5。伝説の歌声がここに。1位は売上40万枚超えの名曲。",
+                    youtubeId: "PYfwgOOoc1Y"
+                },
+                {
+                    id: 1,
+                    title: "The Midnight Sonata",
+                    duration: "04:32",
+                    views: "1.2M",
+                    thumbnail: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop",
+                    desc: "静寂に包まれた都市の夜景と、響き渡るピアノの旋律。",
+                    youtubeId: null
+                },
+                {
+                    id: 2,
+                    title: "Obsidian Flow",
+                    duration: "03:15",
+                    views: "890K",
+                    thumbnail: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
+                    desc: "流体のような黒い光沢が織りなす、視覚的なASMR体験。",
+                    youtubeId: null
+                },
+                {
+                    id: 3,
+                    title: "Urban Solitude",
+                    duration: "05:45",
+                    views: "2.1M",
+                    thumbnail: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop",
+                    desc: "コンクリートジャングルの中で見つける、一瞬の安らぎ。",
+                    youtubeId: null
+                },
+                {
+                    id: 4,
+                    title: "Velvet Horizon",
+                    duration: "02:50",
+                    views: "560K",
+                    thumbnail: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop",
+                    desc: "地平線に沈む太陽と、ベルベットのような空のグラデーション。",
+                    youtubeId: null
+                },
+                {
+                    id: 5,
+                    title: "Chrome & Glass",
+                    duration: "06:10",
+                    views: "1.5M",
+                    thumbnail: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2166&auto=format&fit=crop",
+                    desc: "現代建築の美学。光と影のコントラスト。",
+                    youtubeId: null
+                },
+                {
+                    id: 6,
+                    title: "Silent Drift",
+                    duration: "03:55",
+                    views: "3.2M",
+                    thumbnail: "https://images.unsplash.com/photo-1493238792000-8113da705763?q=80&w=2070&auto=format&fit=crop",
+                    desc: "何もしない贅沢。ただ流れる雲を見つめる時間。",
+                    youtubeId: null
+                }
+            ];
 
-          <button 
-            onClick={() => scrollToSection('archives')}
-            className="group relative px-10 py-4 bg-transparent border border-[#cfb991]/30 overflow-hidden transition-all duration-500 hover:border-[#cfb991]/80 hover:shadow-[0_0_30px_rgba(207,185,145,0.15)]"
-          >
-            <span className="relative z-10 font-lato tracking-[0.3em] text-xs uppercase text-gray-300 group-hover:text-[#cfb991] transition-colors">Enter Archives</span>
-            <div className="absolute inset-0 bg-[#cfb991]/5 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 ease-out"></div>
-          </button>
-        </div>
+            useEffect(() => {
+                setLoaded(true);
+                const handleScroll = () => {
+                    setIsScrolled(window.scrollY > 50);
+                };
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
 
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-30">
-          <ChevronDown className="w-6 h-6 text-white" />
-        </div>
-      </header>
+            useEffect(() => {
+                if (activeVideo || showAbout) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            }, [activeVideo, showAbout]);
 
-      {/* Main Content: Video Index */}
-      <main id="archives" className="relative z-10 container mx-auto px-4 py-24 min-h-screen">
-        <div className="flex flex-col items-center mb-24">
-          <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-[#cfb991]/50 to-transparent mb-6"></div>
-          <h3 className="font-cinzel text-3xl tracking-[0.3em] text-gray-200">ARCHIVES</h3>
-          <p className="mt-4 font-mincho text-gray-500 tracking-widest text-sm">不滅の旋律・記録保管所</p>
-        </div>
+            const scrollToSection = (id) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            };
 
-        {/* Video Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-24">
-          {videos.map((video, index) => (
-            <div 
-              key={video.id} 
-              className="group relative cursor-pointer perspective-1000"
-              onClick={() => setActiveVideo(video)}
-            >
-              {/* Card Container */}
-              <div className="relative rounded-sm overflow-hidden bg-[#080808] shadow-2xl transition-all duration-700 group-hover:-translate-y-3 group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] ring-1 ring-white/5 group-hover:ring-[#cfb991]/30">
-                {/* Thumbnail */}
-                <div className="relative aspect-video overflow-hidden">
-                  <img 
-                    src={video.thumbnail} 
-                    alt={video.title} 
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100 saturate-50 group-hover:saturate-100"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80"></div>
-                  
-                  {/* Play Button */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-90 group-hover:scale-100">
-                    <div className="w-14 h-14 rounded-full border border-[#cfb991]/50 backdrop-blur-sm flex items-center justify-center bg-black/40 hover:bg-[#cfb991]/20 transition-colors">
-                      <Play className="w-5 h-5 text-[#cfb991] fill-[#cfb991]" />
-                    </div>
-                  </div>
-                  
-                  <div className="absolute bottom-3 right-3 px-2 py-0.5 bg-black/80 border border-white/10 text-[10px] font-lato tracking-widest text-gray-400">
-                    {video.duration}
-                  </div>
+            return (
+                <div className="min-h-screen font-sans selection:bg-white/20 selection:text-white">
+                    {/* Navigation */}
+                    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'bg-black/90 backdrop-blur-md py-4 border-b border-white/5 shadow-lg' : 'bg-transparent py-6'}`}>
+                        <div className="container mx-auto px-6 flex justify-between items-center">
+                            <div className="flex items-center gap-4 cursor-pointer" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+                                {/* Logo Placeholder */}
+                                <div className="relative group">
+                                    <div className="absolute -inset-1 bg-white/10 rounded-full blur opacity-0 group-hover:opacity-50 transition duration-1000"></div>
+                                    {/* NOTE: ここに公式ロゴ画像（公式ロゴ.png）を指定してください */}
+                                    <img 
+                                        src="https://placehold.co/400x320/000000/FFFFFF/png?text=LOGO" 
+                                        alt="不滅の魂 ロゴ" 
+                                        className="h-10 w-auto object-contain relative z-10 opacity-90 hover:opacity-100 transition-opacity"
+                                    />
+                                </div>
+                                <div className="hidden md:block">
+                                    <span className="block text-xs text-gray-400 font-cinzel tracking-[0.2em] leading-none mb-1">LETTERS TO THE NEXT GENERATION</span>
+                                    <span className="block text-sm text-white font-zen font-bold tracking-widest leading-none">次世代への手紙</span>
+                                </div>
+                            </div>
+                            <div className="flex space-x-8 font-lato text-xs tracking-[0.2em] uppercase text-gray-400">
+                                <button onClick={() => scrollToSection('archives')} className="hover:text-white hover:scale-105 transition-all duration-300">Archives</button>
+                                <button onClick={() => setShowAbout(true)} className="hover:text-white hover:scale-105 transition-all duration-300 flex items-center gap-1"><Info className="w-3 h-3"/> About</button>
+                            </div>
+                        </div>
+                    </nav>
+
+                    {/* Hero Section */}
+                    <header className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+                        <div className="absolute inset-0 bg-black">
+                             <div className="absolute inset-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center scale-105 animate-pulse-slow"></div>
+                             <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/90 to-transparent"></div>
+                             <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-transparent to-[#050505]"></div>
+                        </div>
+
+                        <div className={`relative z-10 text-center flex flex-col items-center justify-center h-full transition-all duration-1000 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                          
+                          <div className="mb-8 relative">
+                            <div className="absolute -inset-10 bg-gradient-to-r from-transparent via-white/5 to-transparent blur-xl opacity-30"></div>
+                            {/* メインロゴの表示エリア */}
+                            {/* NOTE: ここに公式ロゴ画像（公式ロゴ.png）を指定してください */}
+                            <img 
+                              src="https://placehold.co/600x400/000000/FFFFFF/png?text=Main+Logo" 
+                              alt="不滅の魂" 
+                              className="w-64 md:w-96 h-auto object-contain drop-shadow-[0_0_25px_rgba(255,255,255,0.15)] mb-6"
+                            />
+                          </div>
+
+                          <h1 className="font-zen text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 mb-4 tracking-wider text-glow">
+                            次世代への手紙
+                          </h1>
+                          <p className="font-mincho text-xl md:text-2xl text-[#cfb991] tracking-[0.5em] font-medium mb-12">
+                            ー 不滅の魂 ー
+                          </p>
+
+                          <button 
+                            onClick={() => scrollToSection('archives')}
+                            className="group relative px-10 py-4 bg-transparent border border-[#cfb991]/30 overflow-hidden transition-all duration-500 hover:border-[#cfb991]/80 hover:shadow-[0_0_30px_rgba(207,185,145,0.15)]"
+                          >
+                            <span className="relative z-10 font-lato tracking-[0.3em] text-xs uppercase text-gray-300 group-hover:text-[#cfb991] transition-colors">Enter Archives</span>
+                            <div className="absolute inset-0 bg-[#cfb991]/5 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 ease-out"></div>
+                          </button>
+                        </div>
+
+                        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-30">
+                          <ChevronDown className="w-6 h-6 text-white" />
+                        </div>
+                    </header>
+
+                    {/* Main Content: Video Index */}
+                    <main id="archives" className="relative z-10 container mx-auto px-4 py-24 min-h-screen">
+                        <div className="flex flex-col items-center mb-24">
+                            <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-[#cfb991]/50 to-transparent mb-6"></div>
+                            <h3 className="font-cinzel text-3xl tracking-[0.3em] text-gray-200">ARCHIVES</h3>
+                            <p className="mt-4 font-mincho text-gray-500 tracking-widest text-sm">不滅の旋律・記録保管所</p>
+                        </div>
+
+                        {/* Video Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-24">
+                            {videos.map((video, index) => (
+                                <div 
+                                    key={video.id} 
+                                    className="group relative cursor-pointer perspective-1000"
+                                    onClick={() => setActiveVideo(video)}
+                                >
+                                    {/* Card Container */}
+                                    <div className="relative rounded-sm overflow-hidden bg-[#080808] shadow-2xl transition-all duration-700 group-hover:-translate-y-3 group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] ring-1 ring-white/5 group-hover:ring-[#cfb991]/30">
+                                        {/* Thumbnail */}
+                                        <div className="relative aspect-video overflow-hidden">
+                                            <img 
+                                                src={video.thumbnail} 
+                                                alt={video.title} 
+                                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100 saturate-50 group-hover:saturate-100"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80"></div>
+                                            
+                                            {/* Play Button */}
+                                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-90 group-hover:scale-100">
+                                                <div className="w-14 h-14 rounded-full border border-[#cfb991]/50 backdrop-blur-sm flex items-center justify-center bg-black/40 hover:bg-[#cfb991]/20 transition-colors">
+                                                    <Play className="w-5 h-5 text-[#cfb991] fill-[#cfb991]" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div className="absolute bottom-3 right-3 px-2 py-0.5 bg-black/80 border border-white/10 text-[10px] font-lato tracking-widest text-gray-400">
+                                                {video.duration}
+                                            </div>
+                                        </div>
+
+                                        {/* Metadata */}
+                                        <div className="p-6 piano-black-gloss border-t border-white/5 group-hover:border-[#cfb991]/20 transition-colors">
+                                            <h4 className="font-zen text-lg text-gray-200 mb-3 group-hover:text-white transition-colors line-clamp-1 leading-relaxed">
+                                                {video.title}
+                                            </h4>
+                                            <p className="font-mincho text-xs text-gray-500 line-clamp-2 mb-6 leading-loose">
+                                                {video.desc}
+                                            </p>
+                                            <div className="flex justify-between items-center">
+                                                <span className="text-[10px] font-lato uppercase tracking-wider text-gray-600 flex items-center gap-1">
+                                                    <Monitor className="w-3 h-3" /> {video.views}
+                                                </span>
+                                                <span className="text-[10px] font-lato uppercase tracking-[0.2em] text-[#cfb991]/60 group-hover:text-[#cfb991] transition-colors flex items-center gap-2">
+                                                    Playback <div className="w-4 h-[1px] bg-[#cfb991]"></div>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Reflection */}
+                                    <div className="absolute -bottom-[30px] left-0 right-0 h-full overflow-hidden reflection opacity-0 group-hover:opacity-15 transition-opacity duration-700 ease-out">
+                                         <div className="w-full h-full bg-[#0a0a0a]">
+                                            <img src={video.thumbnail} className="w-full h-full object-cover opacity-50 grayscale" />
+                                         </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </main>
+
+                    {/* About Modal / Section */}
+                    {showAbout && (
+                        <div className="fixed inset-0 z-[100] bg-[#050505]/98 backdrop-blur-md overflow-y-auto animate-in fade-in duration-500">
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#cfb991] to-transparent"></div>
+                            
+                            <button 
+                                onClick={() => setShowAbout(false)}
+                                className="fixed top-6 right-6 z-[110] text-gray-500 hover:text-[#cfb991] transition-colors p-2 group"
+                            >
+                                <span className="block text-[10px] font-lato tracking-widest mb-1 opacity-0 group-hover:opacity-100 transition-opacity">CLOSE</span>
+                                <X className="w-8 h-8" />
+                            </button>
+
+                            <div className="container mx-auto px-4 py-20 min-h-screen flex flex-col items-center justify-center relative">
+                                <div className="absolute inset-0 opacity-5 pointer-events-none" style={{backgroundImage: 'radial-gradient(circle at center, #333 1px, transparent 1px)', backgroundSize: '30px 30px'}}></div>
+
+                                <div className="max-w-3xl w-full text-center relative z-10">
+                                    <div className="mb-12">
+                                         {/* NOTE: ここに公式ロゴ画像（公式ロゴ.png）を指定してください */}
+                                         <img 
+                                            src="https://placehold.co/150x150/000000/FFFFFF/png?text=Logo" 
+                                            alt="不滅の魂 ロゴマーク" 
+                                            className="w-24 h-24 mx-auto mb-8 opacity-80"
+                                         />
+                                         <h2 className="font-zen text-3xl md:text-5xl font-bold text-white mb-6">次世代への手紙<br/><span className="text-2xl md:text-3xl mt-4 block font-normal text-gray-400">・リターンズ・</span></h2>
+                                         <p className="font-mincho text-xl md:text-2xl text-[#cfb991] italic mb-16">「不滅の音楽を、もう一度、新しい形で。」</p>
+                                    </div>
+
+                                    <div className="font-mincho text-gray-300 leading-10 text-justify tracking-wide space-y-10 text-sm md:text-base">
+                                        <p>
+                                            当番組は、昭和・平成の邦楽シーンを彩った名曲たちを、オリコンの公式記録に基づいたランキング形式で紐解く音楽アーカイブチャンネルです。
+                                        </p>
+
+                                        <div className="py-8 border-y border-white/5">
+                                            <h4 className="font-zen text-lg text-center mb-6 text-gray-200">📜 再始動にあたって</h4>
+                                            <p className="mb-6">
+                                                かつて、私はこの場所で5万人以上のチャンネル登録者さんと共に、音楽を語り合う時間を過ごしていました。 しかし1年以上前、自らの不器用な手違いにより、その大切なチャンネルを一瞬にして消し去ってしまいました。
+                                            </p>
+                                            <p>
+                                                応援してくださっていた皆様への申し訳なさと、あまりのショックから、しばらくYouTube活動をお休みしていましたが、今、ようやく前を向く決心がつきました。 かつてお届けした動画も、今の視点で丁寧にリメイクし、新しい息吹を吹き込みながら少しずつ公開していきます。
+                                            </p>
+                                        </div>
+
+                                        <div className="py-8 border-b border-white/5">
+                                            <h4 className="font-zen text-lg text-center mb-6 text-gray-200">🎤 番組のスタンス</h4>
+                                            <p>
+                                                私たちは、売上枚数という数字だけで音楽の良し悪しを決めたいわけではありません。ランキングはあくまで、あの時代にどれだけ多くの人の手にその歌が渡ったかを示す「時代の地図」だと考えています。
+                                            </p>
+                                            <p className="mt-6">
+                                                順位そのものを楽しむエンターテインメントとして。そして、その数字の向こう側にある「当時の空気感」や「作り手の執念」を次世代へ語り継ぐ場として、この番組を再構築していきます。
+                                            </p>
+                                        </div>
+
+                                        <div className="grid md:grid-cols-2 gap-12 py-4">
+                                            <div className="bg-white/5 p-8 rounded-sm border border-white/5 text-center">
+                                                <h5 className="font-zen text-[#cfb991] mb-4 text-lg border-b border-[#cfb991]/30 pb-2 inline-block">50代以上の皆様へ</h5>
+                                                <p>イントロ一つで当時の記憶が鮮明に蘇る、良質な時間を。</p>
+                                            </div>
+                                            <div className="bg-white/5 p-8 rounded-sm border border-white/5 text-center">
+                                                <h5 className="font-zen text-[#cfb991] mb-4 text-lg border-b border-[#cfb991]/30 pb-2 inline-block">20〜30代の皆様へ</h5>
+                                                <p>今のJ-POPの源流にある、本物の音楽の発見を。</p>
+                                            </div>
+                                        </div>
+
+                                        <p className="text-center text-lg">
+                                            止まっていた時計を、再び動かします。<br/>
+                                            また皆様と、不滅の名曲について語り合える場所を育てていければ幸いです。
+                                        </p>
+                                    </div>
+
+                                    <div className="mt-20 pt-12 border-t border-white/10 text-center">
+                                        <p className="font-zen text-xl text-white mb-8">🔴 チャンネル登録で応援をお願いします</p>
+                                        <p className="font-mincho text-gray-400 mb-8 text-sm">再始動したばかりのこのチャンネルを、ぜひ一緒に育ててください。<br/>以下のリンクから簡単に登録いただけます。</p>
+                                        
+                                        <a 
+                                            href="https://www.youtube.com/@次世代への手紙?sub_confirmation=1" 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-3 px-10 py-4 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-widest rounded-sm transition-all shadow-[0_0_20px_rgba(204,0,0,0.3)] hover:shadow-[0_0_40px_rgba(204,0,0,0.5)] transform hover:-translate-y-1"
+                                        >
+                                            <Youtube className="w-6 h-6" />
+                                            チャンネル登録はこちら
+                                        </a>
+
+                                        <div className="mt-16 text-right font-zen text-sm text-gray-500">
+                                            【不滅の魂 制作委員会】
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Video Modal Overlay */}
+                    {activeVideo && (
+                        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 animate-in fade-in duration-300">
+                            <button 
+                                onClick={() => setActiveVideo(null)}
+                                className="absolute top-4 right-4 md:top-8 md:right-8 text-gray-400 hover:text-white transition-colors p-2 border border-transparent hover:border-white/20 rounded-full z-[110]"
+                            >
+                                <X className="w-8 h-8" />
+                            </button>
+                            
+                            <div className="w-full max-w-5xl">
+                                <div className="relative aspect-video w-full bg-black shadow-[0_0_50px_rgba(207,185,145,0.1)] border border-white/10 rounded-sm overflow-hidden">
+                                     {activeVideo.youtubeId ? (
+                                         <iframe 
+                                            className="w-full h-full"
+                                            src={`https://www.youtube.com/embed/${activeVideo.youtubeId}?autoplay=1&rel=0`}
+                                            title={activeVideo.title}
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                         ></iframe>
+                                     ) : (
+                                         <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900">
+                                            <Play className="w-20 h-20 text-white/10 mb-4" />
+                                            <p className="font-lato text-gray-500 text-sm tracking-widest uppercase">Video Embed Area</p>
+                                         </div>
+                                     )}
+                                </div>
+                                
+                                <div className="mt-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-l-2 border-[#cfb991] pl-6">
+                                    <div>
+                                        <h2 className="font-zen text-2xl md:text-3xl text-white mb-2">{activeVideo.title}</h2>
+                                        <p className="font-mincho text-gray-400 text-sm leading-relaxed max-w-2xl">{activeVideo.desc}</p>
+                                    </div>
+                                    <a 
+                                        href={activeVideo.youtubeId ? `https://www.youtube.com/watch?v=${activeVideo.youtubeId}` : "#"} 
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="flex items-center gap-2 px-6 py-2 border border-white/20 hover:bg-white/5 transition-colors text-xs font-lato tracking-widest text-gray-300 uppercase"
+                                    >
+                                        Open in YouTube <ExternalLink className="w-3 h-3" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Footer */}
+                    <footer className="mt-32 border-t border-white/5 bg-[#020202] py-16 relative overflow-hidden">
+                        <div className="container mx-auto px-6 flex flex-col items-center justify-center">
+                            <div className="mb-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                                 {/* Footer Logo */}
+                                 {/* NOTE: ここに公式ロゴ画像（公式ロゴ.png）を指定してください */}
+                                 <img src="https://placehold.co/100x100/000000/FFFFFF/png?text=Logo" alt="Footer Logo" className="h-16 w-auto" />
+                            </div>
+                            
+                            <div className="flex space-x-8 mb-10">
+                                 <a href="#" className="text-gray-600 hover:text-[#cfb991] transition-colors"><Youtube className="w-5 h-5"/></a>
+                                 <a href="#" className="text-gray-600 hover:text-[#cfb991] transition-colors"><Share2 className="w-5 h-5"/></a>
+                            </div>
+                            
+                            <p className="text-[10px] font-lato text-gray-700 tracking-[0.2em] uppercase">
+                                &copy; 2026 次世代への手紙 / 不滅の魂 制作委員会
+                            </p>
+                        </div>
+                    </footer>
                 </div>
+            );
+        };
 
-                {/* Metadata */}
-                <div className="p-6 piano-black-gloss border-t border-white/5 group-hover:border-[#cfb991]/20 transition-colors">
-                  <h4 className="font-zen text-lg text-gray-200 mb-3 group-hover:text-white transition-colors line-clamp-1 leading-relaxed">
-                    {video.title}
-                  </h4>
-                  <p className="font-mincho text-xs text-gray-500 line-clamp-2 mb-6 leading-loose">
-                    {video.desc}
-                  </p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-[10px] font-lato uppercase tracking-wider text-gray-600 flex items-center gap-1">
-                      <Monitor className="w-3 h-3" /> {video.views}
-                    </span>
-                    <span className="text-[10px] font-lato uppercase tracking-[0.2em] text-[#cfb991]/60 group-hover:text-[#cfb991] transition-colors flex items-center gap-2">
-                      Playback <div className="w-4 h-[1px] bg-[#cfb991]"></div>
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Reflection */}
-              <div className="absolute -bottom-[30px] left-0 right-0 h-full overflow-hidden reflection opacity-0 group-hover:opacity-15 transition-opacity duration-700 ease-out">
-                 <div className="w-full h-full bg-[#0a0a0a]">
-                    <img src={video.thumbnail} className="w-full h-full object-cover opacity-50 grayscale" />
-                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
-
-      {/* About Modal / Section */}
-      {showAbout && (
-        <div className="fixed inset-0 z-[100] bg-[#050505]/98 backdrop-blur-md overflow-y-auto animate-in fade-in duration-500">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#cfb991] to-transparent"></div>
-          
-          <button 
-            onClick={() => setShowAbout(false)}
-            className="fixed top-6 right-6 z-[110] text-gray-500 hover:text-[#cfb991] transition-colors p-2 group"
-          >
-            <span className="block text-[10px] font-lato tracking-widest mb-1 opacity-0 group-hover:opacity-100 transition-opacity">CLOSE</span>
-            <X className="w-8 h-8" />
-          </button>
-
-          <div className="container mx-auto px-4 py-20 min-h-screen flex flex-col items-center justify-center relative">
-            {/* Background Texture */}
-            <div className="absolute inset-0 opacity-5 pointer-events-none" style={{backgroundImage: 'radial-gradient(circle at center, #333 1px, transparent 1px)', backgroundSize: '30px 30px'}}></div>
-
-            <div className="max-w-3xl w-full text-center relative z-10">
-              <div className="mb-12">
-                 <img 
-                  src="/api/placeholder/150/150" 
-                  alt="不滅の魂 ロゴマーク" 
-                  className="w-24 h-24 mx-auto mb-8 opacity-80"
-                 />
-                 <h2 className="font-zen text-3xl md:text-5xl font-bold text-white mb-6">次世代への手紙<br/><span className="text-2xl md:text-3xl mt-4 block font-normal text-gray-400">・リターンズ・</span></h2>
-                 <p className="font-mincho text-xl md:text-2xl text-[#cfb991] italic mb-16">「不滅の音楽を、もう一度、新しい形で。」</p>
-              </div>
-
-              <div className="font-mincho text-gray-300 leading-10 text-justify tracking-wide space-y-10 text-sm md:text-base">
-                <p>
-                  当番組は、昭和・平成の邦楽シーンを彩った名曲たちを、オリコンの公式記録に基づいたランキング形式で紐解く音楽アーカイブチャンネルです。
-                </p>
-
-                {/* 新セクション: 再始動にあたって */}
-                <div className="py-8 border-y border-white/5">
-                  <h4 className="font-zen text-lg text-center mb-6 text-gray-200">📜 再始動にあたって</h4>
-                  <p className="mb-6">
-                    かつて、私はこの場所で5万人以上のチャンネル登録者さんと共に、音楽を語り合う時間を過ごしていました。 しかし1年以上前、自らの不器用な手違いにより、その大切なチャンネルを一瞬にして消し去ってしまいました。
-                  </p>
-                  <p>
-                    応援してくださっていた皆様への申し訳なさと、あまりのショックから、しばらくYouTube活動をお休みしていましたが、今、ようやく前を向く決心がつきました。 かつてお届けした動画も、今の視点で丁寧にリメイクし、新しい息吹を吹き込みながら少しずつ公開していきます。
-                  </p>
-                </div>
-
-                {/* 既存セクション: 番組のスタンス */}
-                <div className="py-8 border-b border-white/5">
-                  <h4 className="font-zen text-lg text-center mb-6 text-gray-200">🎤 番組のスタンス</h4>
-                  <p>
-                    私たちは、売上枚数という数字だけで音楽の良し悪しを決めたいわけではありません。ランキングはあくまで、あの時代にどれだけ多くの人の手にその歌が渡ったかを示す「時代の地図」だと考えています。
-                  </p>
-                  <p className="mt-6">
-                    順位そのものを楽しむエンターテインメントとして。そして、その数字の向こう側にある「当時の空気感」や「作り手の執念」を次世代へ語り継ぐ場として、この番組を再構築していきます。
-                  </p>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-12 py-4">
-                  <div className="bg-white/5 p-8 rounded-sm border border-white/5 text-center">
-                    <h5 className="font-zen text-[#cfb991] mb-4 text-lg border-b border-[#cfb991]/30 pb-2 inline-block">50代以上の皆様へ</h5>
-                    <p>イントロ一つで当時の記憶が鮮明に蘇る、良質な時間を。</p>
-                  </div>
-                  <div className="bg-white/5 p-8 rounded-sm border border-white/5 text-center">
-                    <h5 className="font-zen text-[#cfb991] mb-4 text-lg border-b border-[#cfb991]/30 pb-2 inline-block">20〜30代の皆様へ</h5>
-                    <p>今のJ-POPの源流にある、本物の音楽の発見を。</p>
-                  </div>
-                </div>
-
-                <p className="text-center text-lg">
-                  止まっていた時計を、再び動かします。<br/>
-                  また皆様と、不滅の名曲について語り合える場所を育てていければ幸いです。
-                </p>
-              </div>
-
-              <div className="mt-20 pt-12 border-t border-white/10 text-center">
-                <p className="font-zen text-xl text-white mb-8">🔴 チャンネル登録で応援をお願いします</p>
-                <p className="font-mincho text-gray-400 mb-8 text-sm">再始動したばかりのこのチャンネルを、ぜひ一緒に育ててください。<br/>以下のリンクから簡単に登録いただけます。</p>
-                
-                <a 
-                  href="https://www.youtube.com/@次世代への手紙?sub_confirmation=1" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-10 py-4 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-widest rounded-sm transition-all shadow-[0_0_20px_rgba(204,0,0,0.3)] hover:shadow-[0_0_40px_rgba(204,0,0,0.5)] transform hover:-translate-y-1"
-                >
-                  <Youtube className="w-6 h-6" />
-                  チャンネル登録はこちら
-                </a>
-
-                <div className="mt-16 text-right font-zen text-sm text-gray-500">
-                  【不滅の魂 制作委員会】
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Video Modal Overlay */}
-      {activeVideo && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 animate-in fade-in duration-300">
-          <button 
-            onClick={() => setActiveVideo(null)}
-            className="absolute top-4 right-4 md:top-8 md:right-8 text-gray-400 hover:text-white transition-colors p-2 border border-transparent hover:border-white/20 rounded-full z-[110]"
-          >
-            <X className="w-8 h-8" />
-          </button>
-          
-          <div className="w-full max-w-5xl">
-            <div className="relative aspect-video w-full bg-black shadow-[0_0_50px_rgba(207,185,145,0.1)] border border-white/10 rounded-sm overflow-hidden">
-               {activeVideo.youtubeId ? (
-                 <iframe 
-                   className="w-full h-full"
-                   src={`https://www.youtube.com/embed/${activeVideo.youtubeId}?autoplay=1&rel=0`}
-                   title={activeVideo.title}
-                   frameBorder="0"
-                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                   allowFullScreen
-                 ></iframe>
-               ) : (
-                 <>
-                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900">
-                      <Play className="w-20 h-20 text-white/10 mb-4" />
-                      <p className="font-lato text-gray-500 text-sm tracking-widest uppercase">Video Embed Area</p>
-                   </div>
-                 </>
-               )}
-            </div>
-            
-            <div className="mt-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-l-2 border-[#cfb991] pl-6">
-              <div>
-                <h2 className="font-zen text-2xl md:text-3xl text-white mb-2">{activeVideo.title}</h2>
-                <p className="font-mincho text-gray-400 text-sm leading-relaxed max-w-2xl">{activeVideo.desc}</p>
-              </div>
-              <a 
-                href={activeVideo.youtubeId ? `https://www.youtube.com/watch?v=${activeVideo.youtubeId}` : "#"} 
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 px-6 py-2 border border-white/20 hover:bg-white/5 transition-colors text-xs font-lato tracking-widest text-gray-300 uppercase"
-              >
-                Open in YouTube <ExternalLink className="w-3 h-3" />
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Footer */}
-      <footer className="mt-32 border-t border-white/5 bg-[#020202] py-16 relative overflow-hidden">
-        <div className="container mx-auto px-6 flex flex-col items-center justify-center">
-          <div className="mb-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-             {/* Footer Logo */}
-             <img src="/api/placeholder/100/100" alt="Footer Logo" className="h-16 w-auto" />
-          </div>
-          
-          <div className="flex space-x-8 mb-10">
-             <a href="#" className="text-gray-600 hover:text-[#cfb991] transition-colors"><Youtube className="w-5 h-5"/></a>
-             <a href="#" className="text-gray-600 hover:text-[#cfb991] transition-colors"><Share2 className="w-5 h-5"/></a>
-          </div>
-          
-          <p className="text-[10px] font-lato text-gray-700 tracking-[0.2em] uppercase">
-            &copy; 2026 次世代への手紙 / 不滅の魂 制作委員会
-          </p>
-        </div>
-      </footer>
-    </div>
-  );
-};
-
-export default App;
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
