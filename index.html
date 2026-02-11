@@ -6,10 +6,10 @@
     
     <!-- SEO Meta Tags -->
     <title>次世代への手紙 - 不滅の魂 | 昭和・平成の名曲アーカイブ</title>
-    <meta name="description" content="昭和・平成の邦楽シーンを彩った不滅の名曲たちを、オリコン公式記録に基づいたランキング形式で紐解く音楽アーカイブ「次世代への手紙」。ロックの女王・浜田麻里をはじめ、時代を超えて愛される音楽の魅力を再発見。YouTubeチャンネル登録で応援をお願いします。">
+    <meta name="description" content="昭和・平成の邦楽シーンを彩った不滅の名曲たちを,オリコン公式記録に基づいたランキング形式で紐解く音楽アーカイブ「次世代への手紙」。ロックの女王・浜田麻里,伝説のバンド・ゴダイゴをはじめ,時代を超えて愛される音楽の魅力を再発見。YouTubeチャンネル登録で応援をお願いします。">
     <meta name="keywords" content="次世代への手紙, 不滅の魂, 浜田麻里, ゴダイゴ, 昭和歌謡, 平成J-POP, 音楽ランキング, YouTube, 80年代アイドル, バンドブーム">
     
-    <!-- OGP (Open Graph Protocol) - SNSシェア時の表示設定 -->
+    <!-- OGP (Open Graph Protocol) -->
     <meta property="og:title" content="次世代への手紙 - 不滅の魂 | 昭和・平成の名曲アーカイブ">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zz-labo-site.github.io/next_generation/">
@@ -30,7 +30,7 @@
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     
-    <!-- Babel (JSX変換用) -->
+    <!-- Babel -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
     <!-- Tailwind CSS -->
@@ -73,7 +73,6 @@
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
         }
         
-        /* アニメーション用 */
         @keyframes fade-in {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -82,7 +81,6 @@
             animation: fade-in 0.3s ease-out forwards;
         }
         
-        /* スクロールバーのカスタマイズ */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -104,11 +102,11 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // --- Icons (Lucide Reactの代わり) ---
+        // --- Icons ---
         const Play = ({ className }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
         );
-        const X = ({ className }) => (
+        const XIcon = ({ className }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         );
         const ChevronDown = ({ className }) => (
@@ -120,7 +118,7 @@
         const Share2 = ({ className }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
         );
-        const Youtube = ({ className }) => (
+        const YoutubeIcon = ({ className }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
         );
         const Info = ({ className }) => (
@@ -132,7 +130,6 @@
         const Instagram = ({ className }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
         );
-        // Twitter X (SVG)
         const TwitterX = ({ className }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className={className}>
                 <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
@@ -147,11 +144,36 @@
             const [loaded, setLoaded] = useState(false);
             const [showAbout, setShowAbout] = useState(false);
 
+            // URLをボタンに変換して表示するヘルパー関数
+            const renderDescription = (text) => {
+                if (!text) return null;
+                const urlRegex = /(https?:\/\/[^\s]+)/g;
+                
+                return text.split(urlRegex).map((part, index) => {
+                    if (part.match(urlRegex)) {
+                        return (
+                            <div key={index} className="my-4 block">
+                                <a 
+                                    href={part} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="inline-flex items-center gap-3 px-6 py-3 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-widest rounded-sm transition-all shadow-[0_0_15px_rgba(204,0,0,0.2)] hover:shadow-[0_0_25px_rgba(204,0,0,0.4)] transform hover:-translate-y-0.5"
+                                >
+                                    <YoutubeIcon className="w-5 h-5" />
+                                    チャンネル登録はこちら
+                                </a>
+                            </div>
+                        );
+                    }
+                    return part;
+                });
+            };
+
             // チャンネルの動画データ
             const videos = [
                 {
                     id: 0,
-                    title: "ロックの女王・浜田麻里ヒット曲TOP5！",
+                    title: "ロックの女王・浜田麻里ヒット曲TOP5！1位は売上40万枚超え",
                     duration: "01:00",
                     views: "1.9K",
                     thumbnail: "https://img.youtube.com/vi/PYfwgOOoc1Y/maxresdefault.jpg",
@@ -179,8 +201,8 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                 {
                     id: 1,
                     title: "伝説のバンド・ゴダイゴのヒット曲TOP5！1位は売上88万枚超えのあの名曲",
-                    duration: "Coming Soon",
-                    views: "-",
+                    duration: "01:00",
+                    views: "New",
                     thumbnail: "https://img.youtube.com/vi/dz-Bugi8q5I/maxresdefault.jpg",
                     desc: `1970年代後半から80年代にかけて、日本の音楽シーンを席巻した伝説の多国籍バンド、ゴダイゴ。
 キャッチーなメロディと圧倒的な演奏力で時代を彩った彼らの、シングル売上TOP5をランキング形式でご紹介します。
@@ -201,7 +223,7 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
 
 皆さんの心に残るゴダイゴの名曲はどれですか？ 🎸
 西遊記や銀河鉄道999の思い出など、ぜひYouTubeのコメント欄で語り合いましょう！`,
-                    youtubeId: null // 未公開のためnullに設定
+                    youtubeId: "dz-Bugi8q5I"
                 },
                 {
                     id: 2,
@@ -254,7 +276,6 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'bg-black/90 backdrop-blur-md py-4 border-b border-white/5 shadow-lg' : 'bg-transparent py-6'}`}>
                         <div className="container mx-auto px-6 flex justify-between items-center">
                             <div className="flex items-center gap-4 cursor-pointer" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
-                                {/* Logo Placeholder */}
                                 <div className="relative group">
                                     <div className="absolute -inset-1 bg-white/10 rounded-full blur opacity-0 group-hover:opacity-50 transition duration-1000"></div>
                                     <img 
@@ -287,7 +308,6 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                           
                           <div className="mb-8 relative">
                             <div className="absolute -inset-10 bg-gradient-to-r from-transparent via-white/5 to-transparent blur-xl opacity-30"></div>
-                            {/* メインロゴの表示エリア */}
                             <img 
                               src="./公式ロゴ.png" 
                               alt="不滅の魂" 
@@ -343,7 +363,6 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80"></div>
                                             
-                                            {/* Play Button - Only show if clickable */}
                                             {video.youtubeId && (
                                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-90 group-hover:scale-100">
                                                     <div className="w-14 h-14 rounded-full border border-[#cfb991]/50 backdrop-blur-sm flex items-center justify-center bg-black/40 hover:bg-[#cfb991]/20 transition-colors">
@@ -376,7 +395,6 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                                         </div>
                                     </div>
 
-                                    {/* Reflection - Only show hover effect if clickable */}
                                     <div className={`absolute -bottom-[30px] left-0 right-0 h-full overflow-hidden reflection transition-opacity duration-700 ease-out ${video.youtubeId ? 'opacity-0 group-hover:opacity-15' : 'opacity-0'}`}>
                                          <div className="w-full h-full bg-[#0a0a0a]">
                                             <img src={video.thumbnail} className="w-full h-full object-cover opacity-50 grayscale" />
@@ -387,7 +405,7 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                         </div>
                     </main>
 
-                    {/* About Modal / Section */}
+                    {/* About Modal */}
                     {showAbout && (
                         <div className="fixed inset-0 z-[100] bg-[#050505]/98 backdrop-blur-md overflow-y-auto animate-in fade-in duration-500">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#cfb991] to-transparent"></div>
@@ -397,7 +415,7 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                                 className="fixed top-6 right-6 z-[110] text-gray-500 hover:text-[#cfb991] transition-colors p-2 group"
                             >
                                 <span className="block text-[10px] font-lato tracking-widest mb-1 opacity-0 group-hover:opacity-100 transition-opacity">CLOSE</span>
-                                <X className="w-8 h-8" />
+                                <XIcon className="w-8 h-8" />
                             </button>
 
                             <div className="container mx-auto px-4 py-20 min-h-screen flex flex-col items-center justify-center relative">
@@ -411,7 +429,7 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                                             className="w-24 h-24 mx-auto mb-8 opacity-80"
                                          />
                                          <h2 className="font-zen text-3xl md:text-5xl font-bold text-white mb-6">次世代への手紙<br/><span className="text-2xl md:text-3xl mt-4 block font-normal text-gray-400">・リターンズ・</span></h2>
-                                         <p className="font-mincho text-xl md:text-2xl text-[#cfb991] italic mb-16">「不滅の音楽を、もう一度、新しい形で。」</p>
+                                         <p className="font-mincho text-xl md:text-2xl text-[#cfb991] italic mb-16">「不滅の音楽を、もう一度,新しい形で。」</p>
                                     </div>
 
                                     <div className="font-mincho text-gray-300 leading-10 text-justify tracking-wide space-y-10 text-sm md:text-base">
@@ -419,23 +437,23 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                                             当番組は、昭和・平成の邦楽シーンを彩った名曲たちを、オリコンの公式記録に基づいたランキング形式で紐解く音楽アーカイブチャンネルです。
                                         </p>
 
-                                        <div className="py-8 border-y border-white/5">
-                                            <h4 className="font-zen text-lg text-center mb-6 text-gray-200">📜 再始動にあたって</h4>
+                                        <div className="py-8 border-y border-white/5 text-left md:text-center">
+                                            <h4 className="font-zen text-lg text-center mb-6 text-gray-200 font-bold">📜 再始動にあたって</h4>
                                             <p className="mb-6">
-                                                かつて、私はこの場所で5万人以上のチャンネル登録者さんと共に、音楽を語り合う時間を過ごしていました。 しかし1年以上前、自らの不器用な手違いにより、その大切なチャンネルを一瞬にして消し去ってしまいました。
+                                                かつて,私はこの場所で5万人以上のチャンネル登録者さんと共に、音楽を語り合う時間を過ごしていました。 しかし1年以上前,自らの不器用な手違いにより,その大切なチャンネルを一瞬にして消し去ってしまいました。
                                             </p>
                                             <p>
-                                                応援してくださっていた皆様への申し訳なさと、あまりのショックから、しばらくYouTube活動をお休みしていましたが、今、ようやく前を向く決心がつきました。 かつてお届けした動画も、今の視点で丁寧にリメイクし、新しい息吹を吹き込みながら少しずつ公開していきます。
+                                                応援してくださっていた皆様への申し訳なさと、あまりのショックから、しばらくYouTube活動をお休みしていましたが、今,ようやく前を向く決心がつきました。 かつてお届けした動画も、今の視点で丁寧にリメイクし、新しい息吹を吹き込みながら少しずつ公開していきます。
                                             </p>
                                         </div>
 
-                                        <div className="py-8 border-b border-white/5">
-                                            <h4 className="font-zen text-lg text-center mb-6 text-gray-200">🎤 番組のスタンス</h4>
+                                        <div className="py-8 border-b border-white/5 text-left md:text-center">
+                                            <h4 className="font-zen text-lg text-center mb-6 text-gray-200 font-bold">🎤 番組のスタンス</h4>
                                             <p>
-                                                私たちは、売上枚数という数字だけで音楽の良し悪しを決めたいわけではありません。ランキングはあくまで、あの時代にどれだけ多くの人の手にその歌が渡ったかを示す「時代の地図」だと考えています。
+                                                私たちは、売上枚数という数字だけで音楽の良し悪しを決めたいわけではありません。ランキングはあくまで,あの時代にどれだけ多くの人の手にその歌が渡ったかを示す「時代の地図」だと考えています。
                                             </p>
                                             <p className="mt-6">
-                                                順位そのものを楽しむエンターテインメントとして。そして、その数字の向こう側にある「当時の空気感」や「作り手の執念」を次世代へ語り継ぐ場として、この番組を再構築していきます。
+                                                順位そのものを楽しむエンターテインメントとして。そして,その数字の向こう側にある「当時の空気感」や「作り手の執念」を次世代へ語り継ぐ場として、この番組を再構築していきます。
                                             </p>
                                         </div>
 
@@ -466,7 +484,7 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                                             rel="noopener noreferrer"
                                             className="inline-flex items-center gap-3 px-10 py-4 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-widest rounded-sm transition-all shadow-[0_0_20px_rgba(204,0,0,0.3)] hover:shadow-[0_0_40px_rgba(204,0,0,0.5)] transform hover:-translate-y-1"
                                         >
-                                            <Youtube className="w-6 h-6" />
+                                            <YoutubeIcon className="w-6 h-6" />
                                             チャンネル登録はこちら
                                         </a>
 
@@ -479,20 +497,18 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                         </div>
                     )}
 
-                    {/* Video Modal Overlay - Updated for scrolling */}
+                    {/* Video Modal Overlay */}
                     {activeVideo && (
                         <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl overflow-y-auto animate-in fade-in duration-300">
                             <div className="min-h-full w-full flex items-center justify-center p-4 md:p-8">
-                                {/* Fixed Close Button */}
                                 <button 
                                     onClick={() => setActiveVideo(null)}
                                     className="fixed top-4 right-4 z-[120] text-gray-400 hover:text-white transition-colors p-2 bg-black/50 rounded-full border border-white/10"
                                 >
-                                    <X className="w-8 h-8" />
+                                    <XIcon className="w-8 h-8" />
                                 </button>
                                 
                                 <div className="w-full max-w-5xl relative mt-12 md:mt-0">
-                                    {/* Video Part */}
                                     <div className="relative aspect-video w-full bg-black shadow-[0_0_50px_rgba(207,185,145,0.1)] border border-white/10 rounded-sm overflow-hidden mb-8">
                                          {activeVideo.youtubeId ? (
                                              <iframe 
@@ -511,13 +527,13 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                                          )}
                                     </div>
                                     
-                                    {/* Desc Part */}
                                     <div className="flex flex-col md:flex-row justify-between items-start gap-8 border-l-2 border-[#cfb991] pl-6 pb-20">
                                         <div className="flex-1">
                                             <h2 className="font-zen text-2xl md:text-3xl text-white mb-6 leading-tight">{activeVideo.title}</h2>
-                                            <p className="font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap">{activeVideo.desc}</p>
+                                            <div className="font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap">
+                                                {renderDescription(activeVideo.desc)}
+                                            </div>
                                             
-                                            {/* ランキング詳細の展開ボタン */}
                                             {activeVideo.rankingDetails && (
                                                 <div className="mt-8">
                                                     {!showDetails ? (
@@ -530,9 +546,9 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                                                     ) : (
                                                         <div className="animate-in fade-in">
                                                             <div className="h-px w-full bg-white/10 my-6"></div>
-                                                            <p className="font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap">
-                                                                {activeVideo.rankingDetails}
-                                                            </p>
+                                                            <div className="font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap">
+                                                                {renderDescription(activeVideo.rankingDetails)}
+                                                            </div>
                                                             <button 
                                                                 onClick={() => setShowDetails(false)}
                                                                 className="mt-6 text-gray-500 text-xs font-lato tracking-widest hover:text-white transition-colors"
@@ -562,12 +578,11 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                     <footer className="mt-32 border-t border-white/5 bg-[#020202] py-16 relative overflow-hidden">
                         <div className="container mx-auto px-6 flex flex-col items-center justify-center">
                             <div className="mb-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                                 {/* Footer Logo */}
                                  <img src="./公式ロゴ.png" alt="Footer Logo" className="h-16 w-auto" />
                             </div>
                             
                             <div className="flex space-x-8 mb-10 items-center">
-                                 <a href="https://www.youtube.com/channel/UCpZrfGf1zO3u3v2kul2UqIA" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#cfb991] transition-colors"><Youtube className="w-5 h-5"/></a>
+                                 <a href="https://www.youtube.com/channel/UCpZrfGf1zO3u3v2kul2UqIA" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#cfb991] transition-colors"><YoutubeIcon className="w-5 h-5"/></a>
                                  <a href="https://x.com/ZZLAB48210" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#cfb991] transition-colors group">
                                     <TwitterX className="w-5 h-5"/>
                                  </a>
