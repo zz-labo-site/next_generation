@@ -112,6 +112,7 @@
         // --- Main App Component ---
         const App = () => {
             const [activeVideo, setActiveVideo] = useState(null);
+            const [showDetails, setShowDetails] = useState(false); // 詳細表示用のステート
             const [isScrolled, setIsScrolled] = useState(false);
             const [loaded, setLoaded] = useState(false);
             const [showAbout, setShowAbout] = useState(false);
@@ -124,7 +125,26 @@
                     duration: "01:00",
                     views: "1.9K",
                     thumbnail: "https://img.youtube.com/vi/PYfwgOOoc1Y/maxresdefault.jpg",
-                    desc: "浜田麻里のシングル売上ランキングTOP5。伝説の歌声がここに。1位は売上40万枚超えの名曲。",
+                    desc: `「ロックの女王」と称され、日本を代表する女性ロックシンガーである浜田麻里。
+その圧倒的な歌唱力とハイトーンボイスで時代を彩ったシングル売上TOP5をランキング形式でご紹介します。
+最高位1位、売上40万枚を超えたあの伝説のヒット曲も登場します。
+
+当時の熱狂を伝える貴重な歌唱映像とともに、珠玉のメロディをお楽しみください。
+
+▼チャンネル登録で応援よろしくお願いします！
+https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
+                    // 隠したい詳細部分を別のプロパティに分離
+                    rankingDetails: `【ランキング詳細】
+・第1位：Return to Myself（1989/04/19発売）最高位1位 / 売上40.7万枚
+・第2位：Cry For The Moon／Anti-Heroine（1993/01/27発売）最高位6位 / 売上34.1万枚
+・第3位：Heart and Soul（1988/09/07発売）最高位7位 / 売上15.3万枚
+・第4位：Hey Mr.Broken Heart（1996/01/24発売）最高位13位 / 売上10.3万枚
+・第5位：Heaven Knows（1990/07/11発売）最高位9位 / 売上10.3万枚
+
+---
+
+皆さんの心に残る浜田麻里さんの名曲はどれですか？ 🎸
+ぜひ、YouTubeのコメント欄で思い出を語り合いましょう！`,
                     youtubeId: "PYfwgOOoc1Y"
                 },
                 {
@@ -194,6 +214,7 @@
 
             useEffect(() => {
                 if (activeVideo || showAbout) {
+                    setShowDetails(false); // モーダルを開くたびに詳細は閉じた状態にする
                     document.body.style.overflow = 'hidden';
                 } else {
                     document.body.style.overflow = 'auto';
@@ -436,48 +457,80 @@
                         </div>
                     )}
 
-                    {/* Video Modal Overlay */}
+                    {/* Video Modal Overlay - Updated for scrolling */}
                     {activeVideo && (
-                        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 animate-in fade-in duration-300">
-                            <button 
-                                onClick={() => setActiveVideo(null)}
-                                className="absolute top-4 right-4 md:top-8 md:right-8 text-gray-400 hover:text-white transition-colors p-2 border border-transparent hover:border-white/20 rounded-full z-[110]"
-                            >
-                                <X className="w-8 h-8" />
-                            </button>
-                            
-                            <div className="w-full max-w-5xl">
-                                <div className="relative aspect-video w-full bg-black shadow-[0_0_50px_rgba(207,185,145,0.1)] border border-white/10 rounded-sm overflow-hidden">
-                                     {activeVideo.youtubeId ? (
-                                         <iframe 
-                                            className="w-full h-full"
-                                            src={`https://www.youtube.com/embed/${activeVideo.youtubeId}?autoplay=1&rel=0`}
-                                            title={activeVideo.title}
-                                            frameBorder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen
-                                         ></iframe>
-                                     ) : (
-                                         <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900">
-                                            <Play className="w-20 h-20 text-white/10 mb-4" />
-                                            <p className="font-lato text-gray-500 text-sm tracking-widest uppercase">Video Embed Area</p>
-                                         </div>
-                                     )}
-                                </div>
+                        <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl overflow-y-auto animate-in fade-in duration-300">
+                            <div className="min-h-full w-full flex items-center justify-center p-4 md:p-8">
+                                {/* Fixed Close Button */}
+                                <button 
+                                    onClick={() => setActiveVideo(null)}
+                                    className="fixed top-4 right-4 z-[120] text-gray-400 hover:text-white transition-colors p-2 bg-black/50 rounded-full border border-white/10"
+                                >
+                                    <X className="w-8 h-8" />
+                                </button>
                                 
-                                <div className="mt-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-l-2 border-[#cfb991] pl-6">
-                                    <div>
-                                        <h2 className="font-zen text-2xl md:text-3xl text-white mb-2">{activeVideo.title}</h2>
-                                        <p className="font-mincho text-gray-400 text-sm leading-relaxed max-w-2xl">{activeVideo.desc}</p>
+                                <div className="w-full max-w-5xl relative mt-12 md:mt-0">
+                                    {/* Video Part */}
+                                    <div className="relative aspect-video w-full bg-black shadow-[0_0_50px_rgba(207,185,145,0.1)] border border-white/10 rounded-sm overflow-hidden mb-8">
+                                         {activeVideo.youtubeId ? (
+                                             <iframe 
+                                                className="w-full h-full"
+                                                src={`https://www.youtube.com/embed/${activeVideo.youtubeId}?autoplay=1&rel=0`}
+                                                title={activeVideo.title}
+                                                frameBorder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowFullScreen
+                                             ></iframe>
+                                         ) : (
+                                             <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900">
+                                                <Play className="w-20 h-20 text-white/10 mb-4" />
+                                                <p className="font-lato text-gray-500 text-sm tracking-widest uppercase">Video Embed Area</p>
+                                             </div>
+                                         )}
                                     </div>
-                                    <a 
-                                        href={activeVideo.youtubeId ? `https://www.youtube.com/watch?v=${activeVideo.youtubeId}` : "#"} 
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="flex items-center gap-2 px-6 py-2 border border-white/20 hover:bg-white/5 transition-colors text-xs font-lato tracking-widest text-gray-300 uppercase"
-                                    >
-                                        Open in YouTube <ExternalLink className="w-3 h-3" />
-                                    </a>
+                                    
+                                    {/* Desc Part */}
+                                    <div className="flex flex-col md:flex-row justify-between items-start gap-8 border-l-2 border-[#cfb991] pl-6 pb-20">
+                                        <div className="flex-1">
+                                            <h2 className="font-zen text-2xl md:text-3xl text-white mb-6 leading-tight">{activeVideo.title}</h2>
+                                            <p className="font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap">{activeVideo.desc}</p>
+                                            
+                                            {/* ランキング詳細の展開ボタン */}
+                                            {activeVideo.rankingDetails && (
+                                                <div className="mt-8">
+                                                    {!showDetails ? (
+                                                        <button 
+                                                            onClick={() => setShowDetails(true)}
+                                                            className="text-[#cfb991] text-sm font-lato tracking-widest hover:text-white transition-colors border-b border-[#cfb991] pb-1"
+                                                        >
+                                                            ▼ ランキングの詳細はこちら！
+                                                        </button>
+                                                    ) : (
+                                                        <div className="animate-in fade-in">
+                                                            <div className="h-px w-full bg-white/10 my-6"></div>
+                                                            <p className="font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap">
+                                                                {activeVideo.rankingDetails}
+                                                            </p>
+                                                            <button 
+                                                                onClick={() => setShowDetails(false)}
+                                                                className="mt-6 text-gray-500 text-xs font-lato tracking-widest hover:text-white transition-colors"
+                                                            >
+                                                                ▲ 閉じる
+                                                            </button>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
+                                        <a 
+                                            href={activeVideo.youtubeId ? `https://www.youtube.com/watch?v=${activeVideo.youtubeId}` : "#"} 
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="flex items-center gap-2 px-6 py-2 border border-white/20 hover:bg-white/5 transition-colors text-xs font-lato tracking-widest text-gray-300 uppercase shrink-0"
+                                        >
+                                            Open in YouTube <ExternalLink className="w-3 h-3" />
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
