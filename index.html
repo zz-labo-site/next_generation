@@ -1,1019 +1,453 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <!-- Viewport設定 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <!-- --- SEO & Meta Settings (Enhanced) --- -->
-    <title>絶体絶命ラボ | ZETTAI ZETSUMEI LABO</title>
-    <meta name="description" content="日常に潜む『最悪のシナリオ』から生存するための科学的ライフハックを研究・発信。硫酸、睡眠薬、エレベーター落下など、絶体絶命の危機を回避する知識をアーカイブした極秘データベース。">
-    <meta name="keywords" content="絶体絶命ラボ, サバイバル, 防犯, ライフハック, 科学, シミュレーション, YouTube, 危機管理">
-    <meta name="author" content="絶体絶命ラボ">
-    
-    <!-- Crawlers Instructions -->
-    <meta name="robots" content="index, follow">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://zz-labo-site.github.io/zz-labo-site/">
+import React, { useState, useEffect } from 'react';
+import { Play, X, ChevronDown, Monitor, Share2, Youtube, Info, ExternalLink } from 'lucide-react';
 
-    <!-- Favicon & Icons -->
-    <link rel="icon" href="logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="logo.png">
-    
-    <!-- OGP (Open Graph Protocol) -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="絶体絶命ラボ | ZETTAI ZETSUMEI LABO">
-    <meta property="og:description" content="『最悪のシナリオ』を科学で攻略せよ。生存確率を上げるための生きた知識をアーカイブ。">
-    <meta property="og:url" content="https://zz-labo-site.github.io/zz-labo-site/">
-    <meta property="og:image" content="https://zz-labo-site.github.io/zz-labo-site/logo.png">
-    <meta property="og:site_name" content="絶体絶命ラボ">
-    <meta property="og:locale" content="ja_JP">
+const App = () => {
+  const [activeVideo, setActiveVideo] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="絶体絶命ラボ | ZETTAI ZETSUMEI LABO">
-    <meta name="twitter:description" content="日常の危機から生存せよ。科学的根拠に基づいたサバイバル術。">
-    <meta name="twitter:image" content="https://zz-labo-site.github.io/zz-labo-site/logo.png">
-
-    <!-- Basic Structured Data (WebSite) -->
-    <script type="application/ld+json">
+  // チャンネルの動画データ
+  const videos = [
     {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "絶体絶命ラボ",
-      "url": "https://zz-labo-site.github.io/zz-labo-site/",
-      "description": "日常の最悪のシナリオから生存するための科学的ライフハック。",
-      "publisher": {
-        "@type": "Organization",
-        "name": "絶体絶命ラボ",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://zz-labo-site.github.io/zz-labo-site/logo.png"
-        }
-      },
-      "sameAs": [
-        "https://www.youtube.com/@絶体絶命ラボ",
-        "https://x.com/ZZLAB48210",
-        "https://www.instagram.com/zz_lab2026/"
-      ]
+      id: 0,
+      title: "ロックの女王・浜田麻里ヒット曲TOP5！",
+      duration: "01:00",
+      views: "1.9K",
+      thumbnail: "https://img.youtube.com/vi/PYfwgOOoc1Y/maxresdefault.jpg",
+      desc: "浜田麻里のシングル売上ランキングTOP5。伝説の歌声がここに。1位は売上40万枚超えの名曲。",
+      youtubeId: "PYfwgOOoc1Y"
+    },
+    {
+      id: 1,
+      title: "The Midnight Sonata",
+      duration: "04:32",
+      views: "1.2M",
+      thumbnail: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop",
+      desc: "静寂に包まれた都市の夜景と、響き渡るピアノの旋律。",
+      youtubeId: null
+    },
+    {
+      id: 2,
+      title: "Obsidian Flow",
+      duration: "03:15",
+      views: "890K",
+      thumbnail: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
+      desc: "流体のような黒い光沢が織りなす、視覚的なASMR体験。",
+      youtubeId: null
+    },
+    {
+      id: 3,
+      title: "Urban Solitude",
+      duration: "05:45",
+      views: "2.1M",
+      thumbnail: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop",
+      desc: "コンクリートジャングルの中で見つける、一瞬の安らぎ。",
+      youtubeId: null
+    },
+    {
+      id: 4,
+      title: "Velvet Horizon",
+      duration: "02:50",
+      views: "560K",
+      thumbnail: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop",
+      desc: "地平線に沈む太陽と、ベルベットのような空のグラデーション。",
+      youtubeId: null
+    },
+    {
+      id: 5,
+      title: "Chrome & Glass",
+      duration: "06:10",
+      views: "1.5M",
+      thumbnail: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2166&auto=format&fit=crop",
+      desc: "現代建築の美学。光と影のコントラスト。",
+      youtubeId: null
+    },
+    {
+      id: 6,
+      title: "Silent Drift",
+      duration: "03:55",
+      views: "3.2M",
+      thumbnail: "https://images.unsplash.com/photo-1493238792000-8113da705763?q=80&w=2070&auto=format&fit=crop",
+      desc: "何もしない贅沢。ただ流れる雲を見つめる時間。",
+      youtubeId: null
     }
-    </script>
-    
-    <!-- High-End Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;900&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --acid-yellow: #EBBF00;
-            --danger-red: #FF0000;
-            --deep-black: #050505;
-            --void-black: #000000;
-            --text-white: #f0f0f0;
-        }
+  ];
 
-        /* --- Base Setup --- */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent; 
-        }
+  useEffect(() => {
+    setLoaded(true);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: var(--deep-black);
-            color: var(--text-white);
-            font-family: 'Inter', sans-serif;
-            overflow: hidden;
-            overscroll-behavior: none;
-        }
+  useEffect(() => {
+    if (activeVideo || showAbout) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [activeVideo, showAbout]);
 
-        @media (pointer: fine) {
-            *, *::before, *::after {
-                cursor: none !important; 
-            }
-        }
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
-        /* --- Background Graphics --- */
-        #bg-canvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1; opacity: 0.3; pointer-events: none;
-        }
-
-        .toxic-fog {
-            position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
-            background-image: radial-gradient(circle at 50% 50%, rgba(235, 191, 0, 0.05), transparent 60%),
-                              radial-gradient(circle at 80% 20%, rgba(50, 50, 50, 0.1), transparent 40%);
-            z-index: 2; pointer-events: none;
-            animation: fog-move 20s infinite linear alternate; filter: blur(50px);
-        }
-        @keyframes fog-move {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(-10%, -5%) scale(1.1); }
-        }
-
-        .noise-overlay {
-            position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.4"/%3E%3C/svg%3E');
-            opacity: 0.07; pointer-events: none; z-index: 999;
-            animation: grain 8s steps(10) infinite;
-        }
-        @keyframes grain {
-            0%, 100% { transform: translate(0, 0); }
-            10% { transform: translate(-5%, -10%); }
-            50% { transform: translate(-15%, 10%); }
-            90% { transform: translate(-10%, 10%); }
-        }
-
-        /* --- Layers --- */
-        .layer {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
-        }
-        #entrance-layer { z-index: 10; }
-        #entrance-layer.exit { transform: scale(1.5); opacity: 0; pointer-events: none; }
-
-        #blog-layer, #about-layer {
-            z-index: 5; opacity: 0; transform: scale(0.95);
-            overflow-y: scroll; scroll-behavior: smooth;
-            scrollbar-width: none; -ms-overflow-style: none; pointer-events: none;
-            -webkit-overflow-scrolling: touch; 
-        }
-        #blog-layer::-webkit-scrollbar, #about-layer::-webkit-scrollbar { display: none; }
-        #blog-layer.active, #about-layer.active { opacity: 1; transform: scale(1); z-index: 20; pointer-events: auto; }
-
-        /* --- Typography --- */
-        .hero-title {
-            font-family: 'Anton', sans-serif; font-size: 12vw;
-            text-transform: uppercase; line-height: 0.85; margin: 0;
-            color: transparent; -webkit-text-stroke: 2px var(--text-white);
-            position: relative; transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            pointer-events: none;
-        }
-        .background-type {
-            position: absolute; font-family: 'Anton', sans-serif; font-size: 25vw;
-            line-height: 0.8; color: rgba(255, 255, 255, 0.03);
-            white-space: nowrap; text-transform: uppercase; z-index: 3;
-            pointer-events: none; user-select: none;
-            left: 50%; top: 50%; transform: translate(-50%, -50%);
-            mix-blend-mode: exclusion; animation: scroll-text 60s linear infinite;
-        }
-        @keyframes scroll-text {
-            0% { transform: translate(-50%, -50%) translateX(0); }
-            100% { transform: translate(-50%, -50%) translateX(-20%); }
-        }
-        @media (max-width: 768px) {
-            .hero-title { font-size: 15vw; -webkit-text-stroke: 1px var(--text-white); }
-            .background-type { 
-                font-size: 40vw; writing-mode: vertical-rl;
-                animation: scroll-text-mobile 60s linear infinite;
-            } 
-        }
-        @keyframes scroll-text-mobile {
-            0% { transform: translate(-50%, -50%) translateY(0); }
-            100% { transform: translate(-50%, -50%) translateY(-20%); }
-        }
-
-        .highlight {
-            color: transparent;
-            background-image: repeating-linear-gradient(-45deg, var(--acid-yellow), var(--acid-yellow) 10px, #000 10px, #000 20px);
-            -webkit-background-clip: text; background-clip: text;
-            -webkit-text-stroke: 2px #fff; display: inline-block;
-            filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
-        }
-
-        /* --- Logo --- */
-        .logo-container {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%); width: 30vw; height: 30vw;
-            max-width: 400px; max-height: 400px; min-width: 250px; min-height: 250px; 
-            z-index: 20; display: flex; justify-content: center; align-items: center;
-            transition: transform 0.1s; cursor: pointer;
-        }
-        .logo-container::before {
-            content: ''; position: absolute; top: 50%; left: 50%;
-            width: 100%; height: 100%; transform: translate(-50%, -50%);
-            border-radius: 50%; box-shadow: 0 0 60px rgba(235, 191, 0, 0.2);
-            z-index: -1; animation: pulse-glow 3s infinite ease-in-out;
-            pointer-events: none; transition: box-shadow 0.2s, background 0.2s;
-        }
-        @keyframes pulse-glow {
-            0%, 100% { width: 100%; height: 100%; opacity: 0.5; }
-            50% { width: 130%; height: 130%; opacity: 0.1; }
-        }
-        .logo-img { width: 100%; height: 100%; object-fit: contain; filter: url(#liquid); transition: filter 0.3s; }
-        .logo-placeholder-circle {
-            width: 100%; height: 100%; border: 2px dashed rgba(235, 191, 0, 0.3);
-            border-radius: 50%; display: none; justify-content: center; align-items: center;
-            flex-direction: column; color: rgba(235, 191, 0, 0.5);
-            font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px;
-            animation: pulse-border 2s infinite; text-align: center;
-        }
-        .logo-placeholder-circle span {
-            font-size: 3rem; color: var(--acid-yellow); font-family: 'Anton', sans-serif; margin-bottom: 10px;
-        }
-
-        /* --- Blog Index --- */
-        .blog-section {
-            min-height: 100vh; width: 100%; display: flex; flex-direction: column;
-            justify-content: center; align-items: flex-start; padding: 15vh 5vw;
-            border-bottom: 1px solid rgba(255,255,255,0.1); position: relative; box-sizing: border-box;
-        }
-        @media (max-width: 768px) {
-            .blog-section { padding: 15vh 5vw 15vh; }
-        }
-        .blog-number {
-            font-family: 'JetBrains Mono', monospace; color: var(--acid-yellow);
-            font-size: 1.2rem; margin-bottom: 1rem; display: block;
-        }
-        .blog-title {
-            font-family: 'Noto Sans JP', 'Anton', sans-serif; font-weight: 900;
-            /* サイズを調整して改行崩れを防ぐ */
-            font-size: clamp(2rem, 6vw, 5rem); 
-            line-height: 1.3; 
-            text-transform: uppercase;
-            color: transparent; -webkit-text-stroke: 1px #fff;
-            transition: color 0.3s; cursor: pointer; 
-            /* 日本語の改行制御 */
-            word-break: keep-all; 
-            overflow-wrap: normal;
-            max-width: 90%;
-        }
-        @media (max-width: 768px) { 
-            .blog-title { 
-                font-size: clamp(1.8rem, 7vw, 3.5rem); 
-                /* スマホでは単語途中改行を許容しないとはみ出す場合があるので調整 */
-                word-break: break-word;
-                overflow-wrap: break-word;
-            } 
-        }
-        .blog-title.loading {
-            font-size: 4vw; color: rgba(255, 255, 255, 0.2); -webkit-text-stroke: 0;
-            animation: blink-text 1s infinite;
-        }
-        @keyframes blink-text { 0%{opacity:0.5} 100%{opacity:1} }
-        .blog-title:not(.loading):hover { color: var(--acid-yellow); -webkit-text-stroke: 0; }
-        .blog-meta {
-            margin-top: 2rem; font-family: 'JetBrains Mono', 'Noto Sans JP', monospace;
-            font-size: 1rem; color: rgba(255,255,255,0.7); max-width: 700px; line-height: 1.6;
-        }
-
-        /* --- Share Buttons --- */
-        .share-area {
-            margin-top: 2.5rem; margin-bottom: 2rem; display: flex; gap: 15px;
-            pointer-events: auto; flex-wrap: wrap; 
-        }
-        .share-btn {
-            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
-            color: var(--text-white); border: 1px solid rgba(255,255,255,0.3);
-            padding: 8px 16px; text-decoration: none; display: inline-flex;
-            align-items: center; gap: 8px; transition: all 0.3s; cursor: pointer;
-        }
-        .share-btn:hover { background: var(--acid-yellow); color: #000; border-color: var(--acid-yellow); }
-        .share-btn svg { width: 14px; height: 14px; fill: currentColor; }
-
-        /* --- Play Simulation Button Effect --- */
-        .play-simulation-btn {
-            color: var(--acid-yellow); cursor: pointer; transition: color 0.2s;
-            display: inline-block; font-weight: bold; font-family: 'JetBrains Mono', monospace;
-        }
-        .play-simulation-btn:hover {
-            color: var(--danger-red); animation: alert-blink 0.1s infinite alternate;
-            text-shadow: 0 0 5px var(--danger-red);
-        }
-        @keyframes alert-blink {
-            0% { opacity: 1; text-shadow: 0 0 10px var(--danger-red); }
-            100% { opacity: 0.4; text-shadow: 0 0 2px var(--danger-red); }
-        }
-
-        /* --- Subscribe Link Animation --- */
-        .subscribe-link {
-            color: var(--acid-yellow); text-decoration: underline;
-            transition: all 0.3s ease; display: inline-block;
-        }
-        .subscribe-link:hover {
-            font-weight: 900; animation: slow-blink 1.5s infinite ease-in-out; 
-            text-shadow: 0 0 8px var(--acid-yellow);
-        }
-        @keyframes slow-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-
-        /* --- Video Layer --- */
-        #video-layer {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.98); z-index: 100; display: none;
-            overflow-y: auto; opacity: 0; transition: opacity 0.5s;
-            -webkit-overflow-scrolling: touch;
-        }
-        #video-layer.active { display: block; opacity: 1; }
+  return (
+    <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-white/20 selection:text-white overflow-x-hidden">
+      {/* Google Fonts Import: 日本語フォント（Shippori Mincho, Zen Old Mincho）を追加 */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Lato:wght@300;400;700&family=Shippori+Mincho:wght@400;500;700&family=Zen+Old+Mincho:wght@400;700;900&display=swap');
         
-        .article-container {
-            width: 100%; max-width: 1400px; margin: 0 auto;
-            padding: 100px 5vw 150px; display: flex; flex-direction: column; gap: 20px;
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .font-lato { font-family: 'Lato', sans-serif; }
+        .font-mincho { font-family: 'Shippori Mincho', serif; }
+        .font-zen { font-family: 'Zen Old Mincho', serif; }
+        
+        .piano-black-gloss {
+          background: linear-gradient(180deg, rgba(20,20,20,1) 0%, rgba(5,5,5,1) 100%);
+          position: relative;
         }
-        @media (max-width: 768px) { 
-            .article-container { padding: 80px 0 150px; } 
-            .video-wrapper { border-left: none; border-right: none; }
-            .article-header, .article-body, .player-controls { padding-left: 5vw; padding-right: 5vw; }
+        .piano-black-gloss::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+          opacity: 0.5;
         }
         
-        .video-wrapper {
-            width: 100%; aspect-ratio: 16/9; border: 1px solid var(--acid-yellow);
-            box-shadow: 0 0 30px rgba(235, 191, 0, 0.1); background: #000; position: relative;
-        }
-        .video-wrapper iframe { width: 100%; height: 100%; border: none; }
-        .player-controls {
-            margin-top: 10px; margin-bottom: 40px; display: flex; gap: 20px;
-            align-items: center; justify-content: center; flex-wrap: wrap;
-        }
-        .close-btn, .fallback-btn {
-            font-family: 'Anton', sans-serif; font-size: 1.2rem;
-            color: var(--text-white); cursor: pointer; text-transform: uppercase;
-            border: 1px solid rgba(255,255,255,0.3); padding: 15px 40px;
-            transition: all 0.3s; text-decoration: none; background: transparent;
-            display: inline-block; white-space: nowrap;
-        }
-        @media (max-width: 768px) {
-            .close-btn, .fallback-btn { padding: 12px 25px; font-size: 1rem; flex: 1 1 40%; text-align: center; }
-        }
-        .close-btn:hover { background: var(--text-white); color: #000; }
-        .fallback-btn { color: var(--acid-yellow); border-color: var(--acid-yellow); }
-        .fallback-btn:hover { background: var(--acid-yellow); color: #000; }
-        
-        /* Article Styles */
-        .article-header { border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 20px; margin-bottom: 20px; }
-        .article-id { font-family: 'JetBrains Mono', monospace; color: var(--acid-yellow); font-size: 0.9rem; display: block; margin-bottom: 10px; }
-        .article-title { font-family: 'Noto Sans JP', sans-serif; font-weight: 900; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.2; color: #fff; margin: 0; }
-        .article-body { font-family: 'Noto Sans JP', sans-serif; font-size: 1rem; line-height: 2; color: rgba(255,255,255,0.9); }
-        .article-body h3 { font-family: 'JetBrains Mono', 'Noto Sans JP', sans-serif; color: var(--acid-yellow); font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem; border-left: 4px solid var(--acid-yellow); padding-left: 15px; }
-        .article-body h4 { font-family: 'Noto Sans JP', sans-serif; color: #fff; font-size: 1.2rem; margin-top: 2rem; margin-bottom: 0.5rem; font-weight: bold; }
-        .article-body p { margin-bottom: 1.5rem; }
-
-        /* --- 8. About --- */
-        #about-layer .blog-section { height: auto; min-height: 100vh; padding-top: 15vh; padding-bottom: 10vh; }
-        .about-content { max-width: 800px; margin-top: 2rem; font-family: 'Noto Sans JP', sans-serif; line-height: 2; color: rgba(255,255,255,0.8); }
-        .about-list { list-style: none; padding: 0; margin: 2rem 0; }
-        .about-list li { margin-bottom: 1rem; padding-left: 1.5rem; position: relative; }
-        .about-list li::before { content: '>'; position: absolute; left: 0; color: var(--acid-yellow); font-weight: bold; }
-        .policy-box { border: 1px solid rgba(255, 255, 255, 0.2); padding: 1.5rem; margin-top: 3rem; font-size: 0.85rem; background: rgba(255, 255, 255, 0.05); }
-
-        /* --- 9. HUD --- */
-        .hud-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 50; pointer-events: none; padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; }
-        @media (max-width: 768px) { .hud-overlay { padding: 1.5rem; } }
-        .hud-row { display: flex; justify-content: space-between; align-items: flex-start; }
-        .meta-data { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(255, 255, 255, 0.6); line-height: 1.5; text-transform: uppercase; }
-        @media (max-width: 768px) { .meta-data { font-size: 10px; } }
-        .meta-data strong { color: var(--acid-yellow); }
-        .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--acid-yellow); letter-spacing: 2px; animation: blink 2s infinite; }
-        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-        /* --- 10. Custom Cursor --- */
-        /* Outer Circle (Base) - Always Visible */
-        .cursor-outer {
-            position: fixed; width: 60px; height: 60px;
-            border: 1px solid rgba(255, 255, 255, 0.8); 
-            border-radius: 50%; pointer-events: none; z-index: 1000;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background 0.3s, border 0.2s;
-            mix-blend-mode: normal;
-            box-shadow: 0 0 10px rgba(255,255,255,0.2); 
+        .reflection {
+          transform: scaleY(-1);
+          mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%);
+          -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+          opacity: 0.3;
+          pointer-events: none;
+          filter: blur(2px);
         }
 
-        /* Electric Ring Effect - White */
-        .cursor-outer::before {
-            content: ''; position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px;
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            border-radius: 50%; 
-            transition: all 0.1s;
-            opacity: 0.5;
-        }
-
-        /* Moving State: Electricity (Dashed, White, Glow) */
-        .cursor-outer.moving {
-            border-color: #fff;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        .text-glow {
+          text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
         }
         
-        .cursor-outer.moving::before {
-            border: 2px dashed #ffffff;
-            box-shadow: 
-                0 0 10px rgba(255, 255, 255, 0.8), 
-                inset 0 0 5px rgba(255, 255, 255, 0.5);
-            opacity: 1;
-            filter: blur(1px); 
-            animation: spin-electric 0.4s linear infinite;
+        .gold-accent {
+          color: #cfb991;
+          background: linear-gradient(to bottom, #e6d2aa, #cfb991);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
         }
-        @keyframes spin-electric {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.1); }
-            100% { transform: rotate(360deg) scale(1); }
+        .gold-border {
+          border-color: rgba(207, 185, 145, 0.3);
         }
+      `}</style>
 
-        /* Warning State */
-        .cursor-outer.warning {
-            width: 120px; height: 120px;
-            background: var(--danger-red);
-            mix-blend-mode: overlay;
-            border: 2px solid var(--danger-red);
-            box-shadow: 0 0 20px var(--danger-red);
-        }
-        .cursor-outer.warning::before { display: none; }
-
-        /* Inner Dot */
-        .cursor-inner {
-            position: fixed; width: 6px; height: 6px;
-            background: var(--acid-yellow); border-radius: 50%;
-            pointer-events: none; z-index: 1001;
-            transform: translate(-50%, -50%);
-            transition: background-color 0.2s;
-            mix-blend-mode: normal;
-        }
-        .cursor-inner.warning { background: var(--danger-red); transform: translate(-50%, -50%) scale(0.5); }
-
-        /* Spark Particle */
-        .spark {
-            position: fixed; width: 3px; height: 3px;
-            background: #fff; border-radius: 50%; pointer-events: none; z-index: 1002;
-            box-shadow: 0 0 5px #fff;
-        }
-
-        /* タッチデバイス（指操作）の時だけ消す（PCでは常に表示） */
-        @media (pointer: coarse) {
-            .cursor-outer, .cursor-inner { display: none !important; }
-        }
-
-        /* --- 11. Nav Dock --- */
-        .nav-dock { position: fixed; right: 2rem; top: 50%; transform: translateY(-50%); z-index: 900; display: flex; flex-direction: column; gap: 1.5rem; pointer-events: auto; }
-        @media (max-width: 768px) { .nav-dock { right: 1rem; gap: 1rem; } }
-        .nav-btn {
-            width: 44px; height: 44px; border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            color: var(--text-white); background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(4px);
-            transition: all 0.3s ease; cursor: pointer; text-decoration: none;
-        }
-        @media (max-width: 768px) { .nav-btn { width: 38px; height: 38px; } .nav-btn svg { width: 18px; height: 18px; } }
-        .nav-btn.square { border-radius: 4px; border-color: var(--acid-yellow); color: var(--acid-yellow); }
-        .nav-btn.square svg path { fill: var(--acid-yellow); }
-        .nav-btn:hover { border-color: var(--acid-yellow); background: var(--acid-yellow); color: #000; box-shadow: 0 0 15px rgba(235, 191, 0, 0.5); transform: scale(1.1); }
-        .nav-btn:hover svg path { fill: #000; }
-        .nav-btn svg { width: 20px; height: 20px; fill: currentColor; }
-        .nav-separator { width: 1px; height: 20px; background: rgba(255,255,255,0.2); margin: 0 auto; }
-        @media (min-width: 1025px) {
-            .nav-btn::after {
-                content: attr(data-tooltip); position: absolute; right: 55px;
-                background: var(--acid-yellow); color: #000; padding: 2px 6px;
-                font-family: 'JetBrains Mono', monospace; font-size: 10px;
-                opacity: 0; pointer-events: none; transition: opacity 0.3s; white-space: nowrap;
-            }
-            .nav-btn:hover::after { opacity: 1; }
-        }
-
-        /* --- 12. Utilities --- */
-        .glitch-transition { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #EBBF00; z-index: 9000; display: none; mix-blend-mode: exclusion; }
-        .danger-flash { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,0,0,0.4) 0%, rgba(255,0,0,0.8) 100%); z-index: 5000; opacity: 0; pointer-events: none; mix-blend-mode: overlay; transition: opacity 0.1s; }
-        .danger-flash.active { animation: red-strobe 0.12s infinite; }
-        @keyframes red-strobe { 0% { opacity: 0; } 50% { opacity: 0.8; } 100% { opacity: 0; } }
-
-    </style>
-</head>
-<body>
-
-    <canvas id="bg-canvas"></canvas>
-    <svg style="display: none;">
-        <defs>
-            <filter id="liquid">
-                <feTurbulence type="fractalNoise" baseFrequency="0.01 0.005" numOctaves="2" result="warp" />
-                <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warp" />
-            </filter>
-        </defs>
-    </svg>
-
-    <div class="toxic-fog"></div>
-    <div class="noise-overlay"></div>
-    <div class="danger-flash" id="danger-overlay"></div>
-    <div class="cursor-outer"></div>
-    <div class="cursor-inner"></div>
-    <div class="glitch-transition" id="transition-overlay"></div>
-
-    <!-- HUD -->
-    <div class="hud-overlay">
-        <!-- Center Alignment -->
-        <div class="hud-row" style="justify-content: center;">
-            <div class="meta-data" style="text-align: center;">
-                <strong>SYSTEM: ONLINE</strong><br>
-                ACCESS: <span id="access-count">000000</span>
+      {/* Navigation */}
+      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'bg-black/90 backdrop-blur-md py-4 border-b border-white/5 shadow-lg' : 'bg-transparent py-6'}`}>
+        <div className="container mx-auto px-6 flex justify-between items-center">
+          <div className="flex items-center gap-4 cursor-pointer" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+            {/* Logo Placeholder - Replace src with actual logo path */}
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-white/10 rounded-full blur opacity-0 group-hover:opacity-50 transition duration-1000"></div>
+              {/* NOTE: ここに公式ロゴ画像（公式ロゴ.png）を指定してください */}
+              <img 
+                src="/api/placeholder/400/320" 
+                alt="不滅の魂 ロゴ" 
+                className="h-10 w-auto object-contain relative z-10 opacity-90 hover:opacity-100 transition-opacity"
+              />
             </div>
-        </div>
-        
-        <div class="hud-row" style="align-items: flex-end;">
-            <div class="meta-data" id="status-text">PROTOCOL: SURVIVAL<br>STATUS: WAITING FOR INPUT</div>
-        </div>
-        <div class="scroll-indicator" id="scroll-hint">INITIALIZE PROTOCOL</div>
-    </div>
-
-    <!-- NAV -->
-    <div class="nav-dock">
-        <div class="nav-btn square" onclick="resetSite()" data-tooltip="TOP / RESET"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>
-        <div class="nav-btn square" onclick="goBack()" data-tooltip="BACK"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
-        <div class="nav-btn square" onclick="showAbout()" data-tooltip="ABOUT LAB"><svg viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg></div>
-        <div class="nav-separator"></div>
-        <a href="https://www.youtube.com/@%E7%B5%B6%E4%BD%93%E7%B5%B6%E5%91%BD%E3%83%A9%E3%83%9C" target="_blank" class="nav-btn" data-tooltip="YOUTUBE"><svg viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg></a>
-        <a href="https://x.com/ZZLAB48210" target="_blank" class="nav-btn" data-tooltip="X / TWITTER"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-        <a href="https://www.instagram.com/zz_lab2026/" target="_blank" class="nav-btn" data-tooltip="INSTAGRAM"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-    </div>
-
-    <!-- ENTRANCE -->
-    <div id="entrance-layer" class="layer">
-        <div class="distortion-container">
-            <div class="background-type">SURVIVAL / HAZARD / CHAOS / SURVIVAL / HAZARD / SURVIVAL / HAZARD / CHAOS / SURVIVAL / HAZARD</div>
-            <div class="logo-container" id="main-logo-container" onclick="enterArchives()">
-                <img id="preview-logo" src="logo.png" alt="ZZ LOGO" class="logo-img">
-                <div id="placeholder" class="logo-placeholder-circle"><span>ZZ</span><div>LOGO.PNG NOT FOUND<br>PLEASE PLACE FILE</div></div>
+            <div className="hidden md:block">
+              <span className="block text-xs text-gray-400 font-cinzel tracking-[0.2em] leading-none mb-1">LETTERS TO THE NEXT GENERATION</span>
+              <span className="block text-sm text-white font-zen font-bold tracking-widest leading-none">次世代への手紙</span>
             </div>
-            <div class="hero-title-wrapper"><h1 class="hero-title">ZETTAI<br><span class="highlight">ZETSUMEI</span><br>LABORATORY</h1></div>
+          </div>
+          <div className="flex space-x-8 font-lato text-xs tracking-[0.2em] uppercase text-gray-400">
+            <button onClick={() => scrollToSection('archives')} className="hover:text-white hover:scale-105 transition-all duration-300">Archives</button>
+            <button onClick={() => setShowAbout(true)} className="hover:text-white hover:scale-105 transition-all duration-300 flex items-center gap-1"><Info className="w-3 h-3"/> About</button>
+          </div>
         </div>
-    </div>
+      </nav>
 
-    <!-- BLOG -->
-    <div id="blog-layer" class="layer">
-        <div id="archive-container"></div>
-        <section class="blog-section" style="height: 50vh; justify-content: center; align-items: center; border-bottom: none;">
-             <p><a href="https://www.youtube.com/@絶体絶命ラボ?sub_confirmation=1" target="_blank" class="subscribe-link" style="font-size: 1.2rem;">研究員募集（クリックでYouTubeチャンネル登録ページへ移動）</a></p>
-        </section>
-        <section class="blog-section" style="height: 20vh; justify-content: flex-end; padding-top:0;"><div class="meta-data">END OF ARCHIVES<br>© 2026 ZETTAI ZETSUMEI LABO</div></section>
-    </div>
-
-    <!-- VIDEO/ARTICLE -->
-    <div id="video-layer">
-        <div class="article-container">
-            <div class="video-wrapper"><div id="youtube-embed-target"></div></div>
-            <div class="player-controls">
-                <button class="close-btn" onclick="closeVideo()">CLOSE MONITOR</button>
-                <a id="fallback-link" href="#" target="_blank" class="fallback-btn">WATCH ON YOUTUBE</a>
-            </div>
-            <div id="article-content-target"></div>
+      {/* Hero Section */}
+      <header className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-black">
+             <div className="absolute inset-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center scale-105 animate-pulse-slow"></div>
+             <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/90 to-transparent"></div>
+             <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-transparent to-[#050505]"></div>
         </div>
-    </div>
 
-    <!-- ABOUT -->
-    <div id="about-layer" class="layer">
-        <section class="blog-section">
-            <h2 class="blog-title" style="font-size: 6vw;">ABOUT THE LAB</h2>
-            <div class="about-content">
-                <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 2rem;">💀「絶体絶命ラボ」へようこそ。</p>
-                <p>このチャンネルでは、日常ではあまり意識することのない「最悪のシナリオ」をシミュレーションし、科学的根拠に基づいた「生存確率を上げるためのライフハック」を研究・発信しています📈</p>
-                <h3 style="color:var(--acid-yellow); font-family:'Anton'; font-size:2rem; margin-top:3rem;">RESEARCH THEMES</h3>
-                <ul class="about-list">
-                    <li><strong>🆘 危機回避シミュレーション</strong><br>『もしも、エレベーターが落下したら！？』など、身近な恐怖への対処法。</li>
-                    <li><strong>🧠 生存の科学</strong><br>なぜその行動がNGなのか？🙅‍♂️ 人体や物理の仕組みから解説📚</li>
-                    <li><strong>⏱️ 60秒サバイバル</strong><br>いざという時、瞬時に思い出せる知識をショート動画で凝縮⚡</li>
-                </ul>
-                <div class="policy-box">
-                    <strong style="color:var(--acid-yellow)">⚠️ POLICY</strong><br>
-                    当チャンネルは、過度な恐怖やトラウマを与えることを目的としていません🚫<br>
-                    YouTubeのコミュニティガイドラインを遵守し、あくまで「危機管理能力の向上」🛡️と「学術的な情報提供」🎓を目的とした教育エンターテインメントです。
+        <div className={`relative z-10 text-center flex flex-col items-center justify-center h-full transition-all duration-1000 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          
+          <div className="mb-8 relative">
+            <div className="absolute -inset-10 bg-gradient-to-r from-transparent via-white/5 to-transparent blur-xl opacity-30"></div>
+            {/* メインロゴの表示エリア */}
+            <img 
+              src="/api/placeholder/600/400" 
+              alt="不滅の魂" 
+              className="w-64 md:w-96 h-auto object-contain drop-shadow-[0_0_25px_rgba(255,255,255,0.15)] mb-6"
+            />
+          </div>
+
+          <h1 className="font-zen text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 mb-4 tracking-wider text-glow">
+            次世代への手紙
+          </h1>
+          <p className="font-mincho text-xl md:text-2xl text-[#cfb991] tracking-[0.5em] font-medium mb-12">
+            ー 不滅の魂 ー
+          </p>
+
+          <button 
+            onClick={() => scrollToSection('archives')}
+            className="group relative px-10 py-4 bg-transparent border border-[#cfb991]/30 overflow-hidden transition-all duration-500 hover:border-[#cfb991]/80 hover:shadow-[0_0_30px_rgba(207,185,145,0.15)]"
+          >
+            <span className="relative z-10 font-lato tracking-[0.3em] text-xs uppercase text-gray-300 group-hover:text-[#cfb991] transition-colors">Enter Archives</span>
+            <div className="absolute inset-0 bg-[#cfb991]/5 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 ease-out"></div>
+          </button>
+        </div>
+
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-30">
+          <ChevronDown className="w-6 h-6 text-white" />
+        </div>
+      </header>
+
+      {/* Main Content: Video Index */}
+      <main id="archives" className="relative z-10 container mx-auto px-4 py-24 min-h-screen">
+        <div className="flex flex-col items-center mb-24">
+          <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-[#cfb991]/50 to-transparent mb-6"></div>
+          <h3 className="font-cinzel text-3xl tracking-[0.3em] text-gray-200">ARCHIVES</h3>
+          <p className="mt-4 font-mincho text-gray-500 tracking-widest text-sm">不滅の旋律・記録保管所</p>
+        </div>
+
+        {/* Video Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-24">
+          {videos.map((video, index) => (
+            <div 
+              key={video.id} 
+              className="group relative cursor-pointer perspective-1000"
+              onClick={() => setActiveVideo(video)}
+            >
+              {/* Card Container */}
+              <div className="relative rounded-sm overflow-hidden bg-[#080808] shadow-2xl transition-all duration-700 group-hover:-translate-y-3 group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] ring-1 ring-white/5 group-hover:ring-[#cfb991]/30">
+                {/* Thumbnail */}
+                <div className="relative aspect-video overflow-hidden">
+                  <img 
+                    src={video.thumbnail} 
+                    alt={video.title} 
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100 saturate-50 group-hover:saturate-100"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80"></div>
+                  
+                  {/* Play Button */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-90 group-hover:scale-100">
+                    <div className="w-14 h-14 rounded-full border border-[#cfb991]/50 backdrop-blur-sm flex items-center justify-center bg-black/40 hover:bg-[#cfb991]/20 transition-colors">
+                      <Play className="w-5 h-5 text-[#cfb991] fill-[#cfb991]" />
+                    </div>
+                  </div>
+                  
+                  <div className="absolute bottom-3 right-3 px-2 py-0.5 bg-black/80 border border-white/10 text-[10px] font-lato tracking-widest text-gray-400">
+                    {video.duration}
+                  </div>
                 </div>
+
+                {/* Metadata */}
+                <div className="p-6 piano-black-gloss border-t border-white/5 group-hover:border-[#cfb991]/20 transition-colors">
+                  <h4 className="font-zen text-lg text-gray-200 mb-3 group-hover:text-white transition-colors line-clamp-1 leading-relaxed">
+                    {video.title}
+                  </h4>
+                  <p className="font-mincho text-xs text-gray-500 line-clamp-2 mb-6 leading-loose">
+                    {video.desc}
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] font-lato uppercase tracking-wider text-gray-600 flex items-center gap-1">
+                      <Monitor className="w-3 h-3" /> {video.views}
+                    </span>
+                    <span className="text-[10px] font-lato uppercase tracking-[0.2em] text-[#cfb991]/60 group-hover:text-[#cfb991] transition-colors flex items-center gap-2">
+                      Playback <div className="w-4 h-[1px] bg-[#cfb991]"></div>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Reflection */}
+              <div className="absolute -bottom-[30px] left-0 right-0 h-full overflow-hidden reflection opacity-0 group-hover:opacity-15 transition-opacity duration-700 ease-out">
+                 <div className="w-full h-full bg-[#0a0a0a]">
+                    <img src={video.thumbnail} className="w-full h-full object-cover opacity-50 grayscale" />
+                 </div>
+              </div>
             </div>
-        </section>
+          ))}
+        </div>
+      </main>
+
+      {/* About Modal / Section */}
+      {showAbout && (
+        <div className="fixed inset-0 z-[100] bg-[#050505]/98 backdrop-blur-md overflow-y-auto animate-in fade-in duration-500">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#cfb991] to-transparent"></div>
+          
+          <button 
+            onClick={() => setShowAbout(false)}
+            className="fixed top-6 right-6 z-[110] text-gray-500 hover:text-[#cfb991] transition-colors p-2 group"
+          >
+            <span className="block text-[10px] font-lato tracking-widest mb-1 opacity-0 group-hover:opacity-100 transition-opacity">CLOSE</span>
+            <X className="w-8 h-8" />
+          </button>
+
+          <div className="container mx-auto px-4 py-20 min-h-screen flex flex-col items-center justify-center relative">
+            {/* Background Texture */}
+            <div className="absolute inset-0 opacity-5 pointer-events-none" style={{backgroundImage: 'radial-gradient(circle at center, #333 1px, transparent 1px)', backgroundSize: '30px 30px'}}></div>
+
+            <div className="max-w-3xl w-full text-center relative z-10">
+              <div className="mb-12">
+                 <img 
+                  src="/api/placeholder/150/150" 
+                  alt="不滅の魂 ロゴマーク" 
+                  className="w-24 h-24 mx-auto mb-8 opacity-80"
+                 />
+                 <h2 className="font-zen text-3xl md:text-5xl font-bold text-white mb-6">次世代への手紙<br/><span className="text-2xl md:text-3xl mt-4 block font-normal text-gray-400">・リターンズ・</span></h2>
+                 <p className="font-mincho text-xl md:text-2xl text-[#cfb991] italic mb-16">「不滅の音楽を、もう一度、新しい形で。」</p>
+              </div>
+
+              <div className="font-mincho text-gray-300 leading-10 text-justify tracking-wide space-y-10 text-sm md:text-base">
+                <p>
+                  当番組は、昭和・平成の邦楽シーンを彩った名曲たちを、オリコンの公式記録に基づいたランキング形式で紐解く音楽アーカイブチャンネルです。
+                </p>
+
+                {/* 新セクション: 再始動にあたって */}
+                <div className="py-8 border-y border-white/5">
+                  <h4 className="font-zen text-lg text-center mb-6 text-gray-200">📜 再始動にあたって</h4>
+                  <p className="mb-6">
+                    かつて、私はこの場所で5万人以上のチャンネル登録者さんと共に、音楽を語り合う時間を過ごしていました。 しかし1年以上前、自らの不器用な手違いにより、その大切なチャンネルを一瞬にして消し去ってしまいました。
+                  </p>
+                  <p>
+                    応援してくださっていた皆様への申し訳なさと、あまりのショックから、しばらくYouTube活動をお休みしていましたが、今、ようやく前を向く決心がつきました。 かつてお届けした動画も、今の視点で丁寧にリメイクし、新しい息吹を吹き込みながら少しずつ公開していきます。
+                  </p>
+                </div>
+
+                {/* 既存セクション: 番組のスタンス */}
+                <div className="py-8 border-b border-white/5">
+                  <h4 className="font-zen text-lg text-center mb-6 text-gray-200">🎤 番組のスタンス</h4>
+                  <p>
+                    私たちは、売上枚数という数字だけで音楽の良し悪しを決めたいわけではありません。ランキングはあくまで、あの時代にどれだけ多くの人の手にその歌が渡ったかを示す「時代の地図」だと考えています。
+                  </p>
+                  <p className="mt-6">
+                    順位そのものを楽しむエンターテインメントとして。そして、その数字の向こう側にある「当時の空気感」や「作り手の執念」を次世代へ語り継ぐ場として、この番組を再構築していきます。
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-12 py-4">
+                  <div className="bg-white/5 p-8 rounded-sm border border-white/5 text-center">
+                    <h5 className="font-zen text-[#cfb991] mb-4 text-lg border-b border-[#cfb991]/30 pb-2 inline-block">50代以上の皆様へ</h5>
+                    <p>イントロ一つで当時の記憶が鮮明に蘇る、良質な時間を。</p>
+                  </div>
+                  <div className="bg-white/5 p-8 rounded-sm border border-white/5 text-center">
+                    <h5 className="font-zen text-[#cfb991] mb-4 text-lg border-b border-[#cfb991]/30 pb-2 inline-block">20〜30代の皆様へ</h5>
+                    <p>今のJ-POPの源流にある、本物の音楽の発見を。</p>
+                  </div>
+                </div>
+
+                <p className="text-center text-lg">
+                  止まっていた時計を、再び動かします。<br/>
+                  また皆様と、不滅の名曲について語り合える場所を育てていければ幸いです。
+                </p>
+              </div>
+
+              <div className="mt-20 pt-12 border-t border-white/10 text-center">
+                <p className="font-zen text-xl text-white mb-8">🔴 チャンネル登録で応援をお願いします</p>
+                <p className="font-mincho text-gray-400 mb-8 text-sm">再始動したばかりのこのチャンネルを、ぜひ一緒に育ててください。<br/>以下のリンクから簡単に登録いただけます。</p>
+                
+                <a 
+                  href="https://www.youtube.com/@次世代への手紙?sub_confirmation=1" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-10 py-4 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-widest rounded-sm transition-all shadow-[0_0_20px_rgba(204,0,0,0.3)] hover:shadow-[0_0_40px_rgba(204,0,0,0.5)] transform hover:-translate-y-1"
+                >
+                  <Youtube className="w-6 h-6" />
+                  チャンネル登録はこちら
+                </a>
+
+                <div className="mt-16 text-right font-zen text-sm text-gray-500">
+                  【不滅の魂 制作委員会】
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Video Modal Overlay */}
+      {activeVideo && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 animate-in fade-in duration-300">
+          <button 
+            onClick={() => setActiveVideo(null)}
+            className="absolute top-4 right-4 md:top-8 md:right-8 text-gray-400 hover:text-white transition-colors p-2 border border-transparent hover:border-white/20 rounded-full z-[110]"
+          >
+            <X className="w-8 h-8" />
+          </button>
+          
+          <div className="w-full max-w-5xl">
+            <div className="relative aspect-video w-full bg-black shadow-[0_0_50px_rgba(207,185,145,0.1)] border border-white/10 rounded-sm overflow-hidden">
+               {activeVideo.youtubeId ? (
+                 <iframe 
+                   className="w-full h-full"
+                   src={`https://www.youtube.com/embed/${activeVideo.youtubeId}?autoplay=1&rel=0`}
+                   title={activeVideo.title}
+                   frameBorder="0"
+                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                   allowFullScreen
+                 ></iframe>
+               ) : (
+                 <>
+                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900">
+                      <Play className="w-20 h-20 text-white/10 mb-4" />
+                      <p className="font-lato text-gray-500 text-sm tracking-widest uppercase">Video Embed Area</p>
+                   </div>
+                 </>
+               )}
+            </div>
+            
+            <div className="mt-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-l-2 border-[#cfb991] pl-6">
+              <div>
+                <h2 className="font-zen text-2xl md:text-3xl text-white mb-2">{activeVideo.title}</h2>
+                <p className="font-mincho text-gray-400 text-sm leading-relaxed max-w-2xl">{activeVideo.desc}</p>
+              </div>
+              <a 
+                href={activeVideo.youtubeId ? `https://www.youtube.com/watch?v=${activeVideo.youtubeId}` : "#"} 
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 px-6 py-2 border border-white/20 hover:bg-white/5 transition-colors text-xs font-lato tracking-widest text-gray-300 uppercase"
+              >
+                Open in YouTube <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Footer */}
+      <footer className="mt-32 border-t border-white/5 bg-[#020202] py-16 relative overflow-hidden">
+        <div className="container mx-auto px-6 flex flex-col items-center justify-center">
+          <div className="mb-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+             {/* Footer Logo */}
+             <img src="/api/placeholder/100/100" alt="Footer Logo" className="h-16 w-auto" />
+          </div>
+          
+          <div className="flex space-x-8 mb-10">
+             <a href="#" className="text-gray-600 hover:text-[#cfb991] transition-colors"><Youtube className="w-5 h-5"/></a>
+             <a href="#" className="text-gray-600 hover:text-[#cfb991] transition-colors"><Share2 className="w-5 h-5"/></a>
+          </div>
+          
+          <p className="text-[10px] font-lato text-gray-700 tracking-[0.2em] uppercase">
+            &copy; 2026 次世代への手紙 / 不滅の魂 制作委員会
+          </p>
+        </div>
+      </footer>
     </div>
+  );
+};
 
-    <script>
-        /* DATA */
-        const archives = [
-            {
-                id: "01",
-                youtubeId: "gqx7CXlYAys", 
-                title: "【閲覧注意】硫酸を浴びたらどうなる？", 
-                description: "もしも、体に硫酸を浴びせられたら？その激痛の中で何を選択するかが、その後の生存の質を分ける唯一の境界線になる。",
-                dangerLevel: "CRITICAL",
-                articleHtml: `
-                    <div class="article-header">
-                        <span class="article-id">CASE_FILE #01</span>
-                        <h1 class="article-title">【閲覧注意】硫酸を浴びたらどうなる？</h1>
-                    </div>
-                    <div class="article-body">
-                        <p>もしも、体に硫酸を浴びせられたら？ ただパニックになり、その場に立ち尽くすことは、酸が再生不可能な深部まで到達するのを許すことと同義です。</p>
-                        <p>硫酸の真の恐ろしさは「脱水作用」にあります。一瞬で水分を奪い、タンパク質を真っ黒な炭に変えてしまう。 その激痛の中で何を選択するかが、<strong>「一生残る傷跡をどれだけ最小限に食い止められるか」</strong>という、その後の生存の質を分ける唯一の境界線になります。</p>
-                        
-                        <h3>1. 【即時対応】被害拡大を食い止める物理的洗浄</h3>
-                        <p>唯一の正解は、大量の流水で20分以上、ひたすら洗い流すことです。 「拭き取る」「重曹で中和する」といった中途半端な知識は、急激な化学反応による熱傷を招き、事態をさらに悪化させる「最大の罠」になります。</p>
-
-                        <h3>2. 【事後対応】不可逆なダメージを最小化する</h3>
-                        <p>硫酸による化学熱傷は、放置すれば秒単位で深部へと進行し続けます。 たとえ傷跡が残ることは避けられなくても、どれだけ早く流水に辿り着けるか。 あなたのその瞬間の執念が、未来の自分に残せる皮膚の面積を決定づけます。</p>
-                        
-                        <p>知っているだけで、自分や大切な人を守るための「盾」になる知識があります。 絶体絶命のシナリオを生き抜くために、あなたも「研究員」として参加しませんか？</p>
-
-                        <p><a href="https://www.youtube.com/@絶体絶命ラボ?sub_confirmation=1" target="_blank" class="subscribe-link">研究員募集（クリックでYouTubeチャンネル登録ページへ移動）</a></p>
-
-                        <h4>⚠️ 相談・通報窓口</h4>
-                        <p>
-                        緊急時の通報（警察） 電話番号：110<br>
-                        救急車の要請（消防・救急） 電話番号：119<br>
-                        警察庁：性犯罪・事件被害相談電話 電話番号：#8103（ハートさん）<br>
-                        ※硫酸攻撃を含む、悪質な犯罪被害全般の相談窓口です。
-                        </p>
-                    </div>
-                `
-            },
-            {
-                id: "02",
-                youtubeId: "IgWqcxIMxJ4", 
-                // タイトル改行位置を修正
-                title: "盛られた。<br>完全に意識が消えるまで<br>の数分間にすべきこと",
-                description: "もしも、飲み物に薬を盛られたら？「空白の数分間」に何を選択するかが、あなたの未来を守る唯一の境界線になる。",
-                dangerLevel: "HIGH",
-                articleHtml: `
-                    <div class="article-header">
-                        <span class="article-id">CASE_FILE #02</span>
-                        <h1 class="article-title">盛られた。<br>完全に意識が消えるまで<br>の数分間にすべきこと</h1>
-                    </div>
-                    <div class="article-body">
-                        <p>もしも、飲み物に薬を盛られたら？ パニックになり、ただ意識を失うのを待つだけでは、自分を守ることはできません。</p>
-                        <p>薬が脳に回りきれば、思考も身体もあなたの自由にはなりません。 その「空白の数分間」に何を選択するかが、あなたの未来を守る唯一の境界線になるのです。</p>
-                        
-                        <h3>1. 【今を生き延びる】物理的な安全確保</h3>
-                        <p>犯人の狙いは、あなたの「孤立」です。 周囲を欺く「介抱」という名の移動は、逃げ場のない「密室」への招待状に他なりません。 意識があるうちに、近くの店員やガードマンなど「第三者」に物理的にすがりつき、助けを求めてください。</p>
-                        
-                        <h3>2. 【未来を守る】言い逃れを許さない証拠の確保</h3>
-                        <p>もし声が出せなくなっても、まだできることがあります。 意識を失う直前、自分の服に飲み物をこぼしてください。 そのシミが、後で犯人を追い詰める決定的な「証拠」を身体に刻むことになります。 これは、未来のあなたを守るための執念の逆転劇です。</p>
-                        
-                        <p><a href="https://www.youtube.com/@絶体絶命ラボ?sub_confirmation=1" target="_blank" class="subscribe-link">研究員募集（クリックでYouTubeチャンネル登録ページへ移動）</a></p>
-
-                        <h4>⚠️ 相談・通報窓口</h4>
-                        <p>
-                        性犯罪・性暴力被害者のためのワンストップ支援センター<br>電話番号：#8891（はやくワンストップ）<br>
-                        性犯罪被害相談電話<br>電話番号：#8103（ハートさん）
-                        </p>
-                    </div>
-                `
-            },
-            {
-                id: "03",
-                youtubeId: "", 
-                title: "新作動画準備中<br>楽しみにお待ちください",
-                description: "COMING SOON...",
-                dangerLevel: "---", 
-                articleHtml: ""
-            }
-        ];
-
-        /* LOGIC */
-        function renderArchives() {
-            const container = document.getElementById('archive-container');
-            let html = '';
-            archives.forEach(item => {
-                const targetTitle = item.title.replace(/<br>/g, ' ');
-                const isReady = item.youtubeId !== ""; 
-                
-                const clickAttr = isReady ? `onclick="openVideo('${item.id}')"` : "";
-                const styleAttr = isReady ? "" : "pointer-events: none; opacity: 0.6;";
-                
-                // シェアリンク用URL生成
-                const shareUrl = encodeURIComponent("https://zz-labo-site.github.io/zz-labo-site/");
-                const shareText = encodeURIComponent(targetTitle + " - 絶体絶命ラボ");
-
-                html += `
-                <section class="blog-section">
-                    <span class="blog-number">CASE_FILE #${item.id}</span>
-                    <h2 class="blog-title" style="${styleAttr}" ${clickAttr}>${item.title}</h2>
-                    <div class="blog-meta">
-                        TARGET: ${targetTitle}<br>STATUS: ${item.description}<br><br>
-                        
-                        <!-- Share Buttons on List (New) -->
-                        <div class="share-area" style="flex-wrap: wrap;">
-                            <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank" class="share-btn" aria-label="Share on X">
-                                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> REPORT TO X
-                            </a>
-                            <a href="https://line.me/R/msg/text/?${shareText}%0A${shareUrl}" target="_blank" class="share-btn" aria-label="Share on LINE">
-                                REPORT TO LINE
-                            </a>
-                            <a href="https://www.instagram.com/" target="_blank" class="share-btn" aria-label="Share on Instagram">
-                               <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                               REPORT TO INSTAGRAM
-                            </a>
-                        </div>
-                    </div>
-                </section>`;
-            });
-            container.innerHTML = html;
-        }
-        renderArchives();
-
-        let navHistory = []; 
-        function getCurrentLayer() {
-            if (document.getElementById('blog-layer').classList.contains('active')) return 'blog';
-            if (document.getElementById('about-layer').classList.contains('active')) return 'about';
-            if (!document.getElementById('entrance-layer').classList.contains('exit')) return 'entrance';
-            return 'entrance';
-        }
-
-        function restoreLayer(layerName) {
-            const entrance = document.getElementById('entrance-layer');
-            const blog = document.getElementById('blog-layer');
-            const about = document.getElementById('about-layer');
-            const status = document.getElementById('status-text');
-            const hint = document.getElementById('scroll-hint');
-
-            blog.classList.remove('active');
-            about.classList.remove('active');
-
-            if (layerName === 'entrance') {
-                entrance.classList.remove('exit');
-                status.innerHTML = "PROTOCOL: SURVIVAL<br>STATUS: WAITING FOR INPUT";
-                hint.innerText = "INITIALIZE PROTOCOL";
-                document.body.style.overflowY = 'hidden';
-            } else {
-                if (!entrance.classList.contains('exit')) entrance.classList.add('exit');
-                document.body.style.overflowY = 'auto';
-                document.body.style.cursor = 'auto';
-                if (layerName === 'blog') {
-                    blog.classList.add('active');
-                    status.innerHTML = "PROTOCOL: ARCHIVES<br>ACCESS: GRANTED";
-                    hint.innerText = "SCROLL TO EXPLORE";
-                } else if (layerName === 'about') {
-                    about.classList.add('active');
-                    status.innerHTML = "PROTOCOL: INFO<br>ACCESS: GRANTED";
-                    hint.innerText = "READ LAB DATA";
-                }
-            }
-        }
-        
-        function resetSite() {
-            closeVideo();
-            navHistory = []; 
-            restoreLayer('entrance');
-        }
-
-        function showAbout() {
-            closeVideo();
-            const current = getCurrentLayer();
-            if (current !== 'about') navHistory.push(current);
-            restoreLayer('about');
-        }
-
-        function goBack() {
-            if (document.getElementById('video-layer').classList.contains('active')) {
-                closeVideo(); return;
-            }
-            if (navHistory.length > 0) {
-                restoreLayer(navHistory.pop());
-            } else {
-                if (getCurrentLayer() !== 'entrance') resetSite();
-            }
-        }
-
-        function enterArchives() {
-            const entrance = document.getElementById('entrance-layer');
-            const overlay = document.getElementById('transition-overlay');
-            const dangerOverlay = document.getElementById('danger-overlay');
-            if(dangerOverlay) dangerOverlay.classList.remove('active');
-            navHistory.push('entrance');
-            overlay.style.display = 'block';
-            let flashes = 0;
-            const glitchInt = setInterval(() => {
-                overlay.style.opacity = Math.random();
-                flashes++;
-                if (flashes > 10) { clearInterval(glitchInt); overlay.style.display = 'none'; }
-            }, 50);
-            entrance.classList.add('exit');
-            document.getElementById('about-layer').classList.remove('active');
-            setTimeout(() => {
-                document.getElementById('blog-layer').classList.add('active');
-                document.getElementById('status-text').innerHTML = "PROTOCOL: ARCHIVES<br>ACCESS: GRANTED";
-                document.getElementById('scroll-hint').innerText = "SCROLL TO EXPLORE";
-                document.body.style.overflowY = 'auto'; 
-                document.body.style.cursor = 'auto'; 
-            }, 800);
-        }
-
-        function openVideo(archiveId) {
-            const layer = document.getElementById('video-layer');
-            const target = document.getElementById('youtube-embed-target');
-            const articleTarget = document.getElementById('article-content-target');
-            const fallback = document.getElementById('fallback-link');
-            const item = archives.find(a => a.id === archiveId);
-            if (!item) return;
-            target.innerHTML = `<iframe src="https://www.youtube.com/embed/${item.youtubeId}?autoplay=1&playsinline=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-            articleTarget.innerHTML = item.articleHtml ? item.articleHtml : `<div class="article-body"><p>DATA NOT FOUND...</p></div>`;
-            if(fallback) fallback.href = `https://www.youtube.com/watch?v=${item.youtubeId}`;
-            layer.classList.add('active');
-            layer.scrollTop = 0;
-            document.body.style.cursor = 'auto'; 
-        }
-
-        function closeVideo() {
-            const layer = document.getElementById('video-layer');
-            layer.classList.remove('active');
-            document.getElementById('youtube-embed-target').innerHTML = ''; 
-            document.body.style.cursor = 'none'; 
-        }
-
-        /* EFFECTS */
-        const previewLogo = document.getElementById('preview-logo');
-        const placeholder = document.getElementById('placeholder');
-        if (previewLogo) {
-            previewLogo.onerror = function() { 
-                this.style.display = 'none'; 
-                if(placeholder) placeholder.style.display = 'flex'; 
-            };
-            previewLogo.onload = function() { 
-                this.style.display = 'block'; 
-                if(placeholder) placeholder.style.display = 'none'; 
-            };
-        }
-
-        const cursorOuter = document.querySelector('.cursor-outer');
-        const cursorInner = document.querySelector('.cursor-inner');
-        const dangerOverlay = document.getElementById('danger-overlay');
-        const turbulence = document.querySelector('feTurbulence');
-        const displacement = document.querySelector('feDisplacementMap');
-        const logoCont = document.querySelector('.logo-container');
-        const title = document.querySelector('.hero-title');
-        const bgType = document.querySelector('.background-type');
-        let isHovering = false;
-        let isTicking = false;
-        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-        let outX = mouseX, outY = mouseY;
-        // Rotation variable for electricity
-        let rotation = 0;
-
-        // PC Mouse
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX; mouseY = e.clientY;
-            if (!isTicking) { window.requestAnimationFrame(() => { updateVisuals(); isTicking = false; }); isTicking = true; }
-        });
-        // Mobile Touch
-        document.addEventListener('touchmove', (e) => {
-            const t = e.touches[0];
-            mouseX = t.clientX; mouseY = t.clientY;
-            if (!isTicking) { window.requestAnimationFrame(() => { updateVisuals(); isTicking = false; }); isTicking = true; }
-        }, { passive: true });
-
-        // Spark creation logic
-        function createSpark(x, y, speed) {
-            const spark = document.createElement('div');
-            spark.className = 'spark';
-            document.body.appendChild(spark);
-            
-            const angle = Math.random() * Math.PI * 2;
-            const velocity = Math.random() * speed * 0.5 + 2; 
-            const life = Math.random() * 300 + 200; 
-
-            spark.style.left = x + 'px';
-            spark.style.top = y + 'px';
-            
-            const animation = spark.animate([
-                { transform: `translate(0, 0) scale(1)`, opacity: 1 },
-                { transform: `translate(${Math.cos(angle) * velocity * 10}px, ${Math.sin(angle) * velocity * 10}px) scale(0)`, opacity: 0 }
-            ], {
-                duration: life,
-                easing: 'cubic-bezier(0, .9, .57, 1)'
-            });
-
-            animation.onfinish = () => spark.remove();
-        }
-
-        function animateCursor() {
-            // Check existence of cursor elements
-            if (!cursorOuter || !cursorInner) {
-                requestAnimationFrame(animateCursor);
-                return;
-            }
-
-            // Speed Calculation
-            const speed = Math.hypot(mouseX - outX, mouseY - outY);
-            
-            if (speed > 2) {
-                cursorOuter.classList.add('moving');
-                // Speed-based rotation
-                rotation += speed * 0.5; // Multiply speed for rotation effect
-                
-                // Trigger sparks randomly when moving fast
-                if (speed > 5 && Math.random() < 0.3) {
-                    createSpark(outX, outY, speed);
-                }
-            } else {
-                cursorOuter.classList.remove('moving');
-                rotation += 2; // Idle rotation
-            }
-
-            // Follow Logic with increased responsiveness (0.15 -> 0.25)
-            outX += (mouseX - outX) * 0.25; 
-            outY += (mouseY - outY) * 0.25;
-            
-            // Apply Transform
-            cursorOuter.style.transform = `translate(${outX}px, ${outY}px) translate(-50%, -50%) rotate(${rotation}deg)`;
-            cursorInner.style.transform = `translate(${outX}px, ${outY}px) translate(-50%, -50%)`;
-            
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        function updateVisuals() {
-            // Check for existence of elements before accessing classList
-            const entrance = document.getElementById('entrance-layer');
-
-            if (!isHovering) {
-                const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-                const dx = (mouseX - cx) / cx, dy = (mouseY - cy) / cy;
-                const fx = 0.002 + Math.abs(dx) * 0.02, fy = 0.002 + Math.abs(dy) * 0.02;
-                turbulence.setAttribute('baseFrequency', `${fx} ${fy}`);
-                displacement.setAttribute('scale', 10 + (Math.abs(dx) * 20));
-            }
-            if (entrance && !entrance.classList.contains('exit')) {
-                const x = (window.innerWidth - mouseX * 2) / 100, y = (window.innerHeight - mouseY * 2) / 100;
-                logoCont.style.transform = `translate(calc(-50% + ${x * 2}px), calc(-50% + ${y * 2}px))`;
-                title.style.transform = `translateX(${x}px) translateY(${y}px)`;
-                bgType.style.transform = `translate(-50%, -50%) translate(${x * 5}px, ${y * 5}px)`; 
-            }
-        }
-
-        const logoContainer = document.getElementById('main-logo-container');
-        if (logoContainer) { // Check existence
-            logoContainer.addEventListener('mouseenter', () => {
-                isHovering = true;
-                if(cursorOuter) cursorOuter.classList.add('warning');
-                if(cursorInner) cursorInner.classList.add('warning');
-                if(dangerOverlay) dangerOverlay.classList.add('active'); 
-                displacement.setAttribute('scale', 0);
-            });
-            logoContainer.addEventListener('mouseleave', () => {
-                isHovering = false;
-                if(cursorOuter) cursorOuter.classList.remove('warning');
-                if(cursorInner) cursorInner.classList.remove('warning');
-                if(dangerOverlay) dangerOverlay.classList.remove('active'); 
-                displacement.setAttribute('scale', 10);
-            });
-        }
-
-        /* --- Canvas Wave Animation --- */
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let waves = [];
-
-        function resizeCanvas() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            waves = [];
-            for(let i = 0; i < 3; i++) {
-                waves.push({
-                    y: height * (0.3 + i * 0.2),
-                    length: 0.01 + i * 0.005,
-                    amplitude: 50 + i * 20,
-                    speed: 0.02 + i * 0.01,
-                    offset: Math.random() * 100
-                });
-            }
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        function drawWaves() {
-            ctx.clearRect(0, 0, width, height);
-            ctx.lineWidth = 1;
-            waves.forEach((wave, i) => {
-                ctx.beginPath();
-                ctx.strokeStyle = `rgba(235, 191, 0, ${0.1 - i * 0.02})`;
-                for(let x = 0; x < width; x += 10) {
-                    const y = wave.y + Math.sin(x * wave.length + wave.offset) * wave.amplitude * Math.sin(Date.now() * 0.001);
-                    ctx.lineTo(x, y);
-                }
-                ctx.stroke();
-                wave.offset += wave.speed;
-            });
-            requestAnimationFrame(drawWaves);
-        }
-        drawWaves();
-
-        /* --- Access Counter --- */
-        const countEl = document.getElementById('access-count');
-        const namespace = 'zz-labo-site-v1';
-        const key = 'visits';
-
-        async function updateCounter() {
-            try {
-                // CountAPI (無料・登録不要のカウンタAPI)
-                // hitエンドポイントはカウントアップして値を返す
-                const res = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
-                const data = await res.json();
-                
-                // ゼロ埋めして表示 (例: 00123)
-                if (countEl) countEl.innerText = data.value.toString().padStart(6, '0');
-            } catch (e) {
-                console.warn('Counter API failed, using local fallback.');
-                // APIが失敗した場合のフォールバック（ローカルストレージで擬似カウント）
-                let localCount = localStorage.getItem('local_access_count') || '1024';
-                localCount = parseInt(localCount) + 1;
-                localStorage.setItem('local_access_count', localCount);
-                if (countEl) countEl.innerText = localCount.toString().padStart(6, '0');
-            }
-        }
-        updateCounter();
-
-    </script>
-</body>
-</html>
+export default App;
