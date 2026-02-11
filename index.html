@@ -108,11 +108,21 @@
         const ExternalLink = ({ className }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
         );
+        const Instagram = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+        );
+        // Twitter X (SVG) - 高画質で色が変化するようにコード化
+        const TwitterX = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className={className}>
+                {/* 公式Xロゴのシェイプ */}
+                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+            </svg>
+        );
 
         // --- Main App Component ---
         const App = () => {
             const [activeVideo, setActiveVideo] = useState(null);
-            const [showDetails, setShowDetails] = useState(false); // 詳細表示用のステート
+            const [showDetails, setShowDetails] = useState(false);
             const [isScrolled, setIsScrolled] = useState(false);
             const [loaded, setLoaded] = useState(false);
             const [showAbout, setShowAbout] = useState(false);
@@ -133,7 +143,6 @@
 
 ▼チャンネル登録で応援よろしくお願いします！
 https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
-                    // 隠したい詳細部分を別のプロパティに分離
                     rankingDetails: `【ランキング詳細】
 ・第1位：Return to Myself（1989/04/19発売）最高位1位 / 売上40.7万枚
 ・第2位：Cry For The Moon／Anti-Heroine（1993/01/27発売）最高位6位 / 売上34.1万枚
@@ -149,21 +158,21 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                 },
                 {
                     id: 1,
-                    title: "The Midnight Sonata",
-                    duration: "04:32",
-                    views: "1.2M",
-                    thumbnail: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop",
-                    desc: "静寂に包まれた都市の夜景と、響き渡るピアノの旋律。",
-                    youtubeId: null
+                    title: "シングル売上TOP5（予告）",
+                    duration: "Coming Soon",
+                    views: "-",
+                    thumbnail: "./Gemini_Generated_Image_9xfk2r9xfk2r9xfk.jpg",
+                    desc: "時代を10年先取りした、無国籍J-POPの設計者！？",
+                    youtubeId: null // 動画がないためnull
                 },
                 {
                     id: 2,
-                    title: "Obsidian Flow",
-                    duration: "03:15",
-                    views: "890K",
-                    thumbnail: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
-                    desc: "流体のような黒い光沢が織りなす、視覚的なASMR体験。",
-                    youtubeId: null
+                    title: "シングル売上TOP5（予告）",
+                    duration: "Coming Soon",
+                    views: "-",
+                    thumbnail: "./Gemini_Generated_Image_9xfk2r9xfk2r9xfk.jpg",
+                    desc: "〇〇〇〇の魅力を知らない世代にぜひ、知って欲しい！！",
+                    youtubeId: null // 動画がないためnull
                 },
                 {
                     id: 3,
@@ -214,7 +223,7 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
 
             useEffect(() => {
                 if (activeVideo || showAbout) {
-                    setShowDetails(false); // モーダルを開くたびに詳細は閉じた状態にする
+                    setShowDetails(false);
                     document.body.style.overflow = 'hidden';
                 } else {
                     document.body.style.overflow = 'auto';
@@ -309,26 +318,28 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                             {videos.map((video, index) => (
                                 <div 
                                     key={video.id} 
-                                    className="group relative cursor-pointer perspective-1000"
-                                    onClick={() => setActiveVideo(video)}
+                                    className={`group relative perspective-1000 ${video.youtubeId ? 'cursor-pointer' : 'cursor-default'}`}
+                                    onClick={() => video.youtubeId && setActiveVideo(video)}
                                 >
                                     {/* Card Container */}
-                                    <div className="relative rounded-sm overflow-hidden bg-[#080808] shadow-2xl transition-all duration-700 group-hover:-translate-y-3 group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] ring-1 ring-white/5 group-hover:ring-[#cfb991]/30">
+                                    <div className={`relative rounded-sm overflow-hidden bg-[#080808] shadow-2xl transition-all duration-700 ring-1 ring-white/5 ${video.youtubeId ? 'group-hover:-translate-y-3 group-hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] group-hover:ring-[#cfb991]/30' : ''}`}>
                                         {/* Thumbnail */}
                                         <div className="relative aspect-video overflow-hidden">
                                             <img 
                                                 src={video.thumbnail} 
                                                 alt={video.title} 
-                                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100 saturate-50 group-hover:saturate-100"
+                                                className={`w-full h-full object-cover transition-transform duration-1000 ${video.youtubeId ? 'group-hover:scale-105 group-hover:opacity-100 group-hover:saturate-100' : ''} opacity-80 saturate-50`}
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80"></div>
                                             
-                                            {/* Play Button */}
-                                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-90 group-hover:scale-100">
-                                                <div className="w-14 h-14 rounded-full border border-[#cfb991]/50 backdrop-blur-sm flex items-center justify-center bg-black/40 hover:bg-[#cfb991]/20 transition-colors">
-                                                    <Play className="w-5 h-5 text-[#cfb991] fill-[#cfb991]" />
+                                            {/* Play Button - Only show if clickable */}
+                                            {video.youtubeId && (
+                                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-90 group-hover:scale-100">
+                                                    <div className="w-14 h-14 rounded-full border border-[#cfb991]/50 backdrop-blur-sm flex items-center justify-center bg-black/40 hover:bg-[#cfb991]/20 transition-colors">
+                                                        <Play className="w-5 h-5 text-[#cfb991] fill-[#cfb991]" />
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            )}
                                             
                                             <div className="absolute bottom-3 right-3 px-2 py-0.5 bg-black/80 border border-white/10 text-[10px] font-lato tracking-widest text-gray-400">
                                                 {video.duration}
@@ -336,8 +347,8 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                                         </div>
 
                                         {/* Metadata */}
-                                        <div className="p-6 piano-black-gloss border-t border-white/5 group-hover:border-[#cfb991]/20 transition-colors">
-                                            <h4 className="font-zen text-lg text-gray-200 mb-3 group-hover:text-white transition-colors line-clamp-1 leading-relaxed">
+                                        <div className={`p-6 piano-black-gloss border-t border-white/5 transition-colors ${video.youtubeId ? 'group-hover:border-[#cfb991]/20' : ''}`}>
+                                            <h4 className={`font-zen text-lg mb-3 transition-colors line-clamp-1 leading-relaxed ${video.youtubeId ? 'text-gray-200 group-hover:text-white' : 'text-gray-400'}`}>
                                                 {video.title}
                                             </h4>
                                             <p className="font-mincho text-xs text-gray-500 line-clamp-2 mb-6 leading-loose">
@@ -347,15 +358,15 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                                                 <span className="text-[10px] font-lato uppercase tracking-wider text-gray-600 flex items-center gap-1">
                                                     <Monitor className="w-3 h-3" /> {video.views}
                                                 </span>
-                                                <span className="text-[10px] font-lato uppercase tracking-[0.2em] text-[#cfb991]/60 group-hover:text-[#cfb991] transition-colors flex items-center gap-2">
-                                                    Playback <div className="w-4 h-[1px] bg-[#cfb991]"></div>
+                                                <span className={`text-[10px] font-lato uppercase tracking-[0.2em] transition-colors flex items-center gap-2 ${video.youtubeId ? 'text-[#cfb991]/60 group-hover:text-[#cfb991]' : 'text-gray-700'}`}>
+                                                    {video.youtubeId ? 'Playback' : 'Coming Soon'} <div className={`w-4 h-[1px] ${video.youtubeId ? 'bg-[#cfb991]' : 'bg-gray-700'}`}></div>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {/* Reflection */}
-                                    <div className="absolute -bottom-[30px] left-0 right-0 h-full overflow-hidden reflection opacity-0 group-hover:opacity-15 transition-opacity duration-700 ease-out">
+                                    {/* Reflection - Only show hover effect if clickable */}
+                                    <div className={`absolute -bottom-[30px] left-0 right-0 h-full overflow-hidden reflection transition-opacity duration-700 ease-out ${video.youtubeId ? 'opacity-0 group-hover:opacity-15' : 'opacity-0'}`}>
                                          <div className="w-full h-full bg-[#0a0a0a]">
                                             <img src={video.thumbnail} className="w-full h-full object-cover opacity-50 grayscale" />
                                          </div>
@@ -544,9 +555,12 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                                  <img src="./公式ロゴ.png" alt="Footer Logo" className="h-16 w-auto" />
                             </div>
                             
-                            <div className="flex space-x-8 mb-10">
-                                 <a href="#" className="text-gray-600 hover:text-[#cfb991] transition-colors"><Youtube className="w-5 h-5"/></a>
-                                 <a href="#" className="text-gray-600 hover:text-[#cfb991] transition-colors"><Share2 className="w-5 h-5"/></a>
+                            <div className="flex space-x-8 mb-10 items-center">
+                                 <a href="https://www.youtube.com/channel/UCpZrfGf1zO3u3v2kul2UqIA" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#cfb991] transition-colors"><Youtube className="w-5 h-5"/></a>
+                                 <a href="https://x.com/ZZLAB48210" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#cfb991] transition-colors group">
+                                    <TwitterX className="w-5 h-5"/>
+                                 </a>
+                                 <a href="https://www.instagram.com/immortalsoul_2026/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#cfb991] transition-colors"><Instagram className="w-5 h-5"/></a>
                             </div>
                             
                             <p className="text-[10px] font-lato text-gray-700 tracking-[0.2em] uppercase">
