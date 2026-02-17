@@ -19,7 +19,7 @@
     <meta property="og:site_name" content="次世代への手紙 - 不滅の魂">
     <meta property="og:locale" content="ja_JP">
 
-    <!-- JSON-LD -->
+    <!-- JSON-LD 構造化データ -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -90,7 +90,7 @@
         ::-webkit-scrollbar-track { background: #000; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
 
-        /* 3D Flip Styles */
+        /* 3D Flip Styles for Logo */
         .perspective-1000 { perspective: 1000px; }
         .transform-style-3d { transform-style: preserve-3d; }
         .backface-hidden { backface-visibility: hidden; }
@@ -222,6 +222,7 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
 ・第4位：Hey Mr.Broken Heart（1996/01/24発売）最高位13位 / 売上10.3万枚
 ・第5位：Heaven Knows（1990/07/11発売）最高位9位 / 売上10.3万枚
 ・第6位：Paradox（1991/10/10発売）最高位9位 / 売上8.6万枚
+https://embed.music.apple.com/jp/album/paradox/998452203?i=998453234&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=998453234&theme=auto
 ・第7位：Nostalgia（1990/12/16発売）最高位19位 / 売上8.5万枚
 https://embed.music.apple.com/jp/album/nostalgia/293909960?i=293909992&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=293909992&theme=auto
 ・第8位：Open Your Heart（1989/11/08発売）最高位4位 / 売上8.1万枚
@@ -298,6 +299,7 @@ https://embed.music.apple.com/jp/album/friend/1440895139?i=1440895686&itscg=3020
 第10位：じれったい（1987/04/21発売）最高位2位 / 売上12.3万枚
 第11位：あの頃へ（1992/12/02発売）最高位13位 / 売上10.4万枚
 第12位：真夜中すぎの恋（1984/04/16発売）最高位10位 / 売上9.7万枚
+https://embed.music.apple.com/jp/album/%E7%9C%9F%E5%A4%9C%E4%B8%AD%E3%81%99%E3%81%8E%E3%81%AE%E6%81%8B/1440895139?i=1440895356&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=1440895356&theme=auto
 第13位：いつも君のそばに（1991/11/06発売）最高位9位 / 売上9.1万枚
 第14位：juliet（1987/12/02発売）最高位7位 / 売上8.5万枚
 第15位：微笑みに乾杯（1988/08/25発売）最高位6位 / 売上8.4万枚
@@ -374,7 +376,8 @@ https://embed.music.apple.com/jp/album/1986%E5%B9%B4%E3%81%AE%E3%83%9E%E3%83%AA%
 ・第11位：好きと言いなさい（1985/07/20発売）最高位21位 / 売上6.2万枚
 ・第12位：悲しみSWING（1987/11/25発売）最高位3位 / 売上6.2万枚
 ・第13位：つばさ（1994/05/25発売）最高位62位 / 売上4.7万枚
-・第14位：CRAZY NIGHTS（1987/04/22発売）最高位10位 / 売上4.0万枚
+https://embed.music.apple.com/jp/album/%E3%81%A4%E3%81%B0%E3%81%95/1445116012?i=1445116017&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=1445116017&theme=auto
+・第14位 : CRAZY NIGHTS（1987/04/22発売）最高位10位 / 売上4.0万枚
 
 ---
 
@@ -418,7 +421,7 @@ https://embed.music.apple.com/jp/album/1986%E5%B9%B4%E3%81%AE%E3%83%9E%E3%83%AA%
 ---
 
 ⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
-皆さんの心に残るTHE ALFEE의 80年代の名曲は何ですか？ 🎸 ぜひコメント欄で思い出を語りましょう！`,
+皆さんの心に残るTHE ALFEEの80年代の名曲は何ですか？ 🎸 ぜひコメント欄で思い出を語りましょう！`,
                     youtubeId: null
                 },
                 {
@@ -449,7 +452,7 @@ https://zz-labo-site.github.io/next_generation/`,
 
 ---
 
-⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
+⚠️ 本動画内の売上データ及び順位は, 当時のオリコンチャートの記録を基に構成しています。
 皆さんの心に残る『マクロス』の思い出や, 初めてこの曲を聴いた時の衝撃はどこですか？ 🎸 文化を救ったあの歌声について, ぜひコメント欄で語り合いましょう！`,
                     youtubeId: null 
                 }
@@ -498,6 +501,7 @@ https://zz-labo-site.github.io/next_generation/`,
                         </div>
                         
                         <div className={`relative z-10 text-center transition-all duration-1000 transform ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                            {/* Logo Wrapper Area */}
                             <div className="mb-10 relative perspective-1000 cursor-pointer group mx-auto" onClick={() => setIsLogoFlipped(!isLogoFlipped)}>
                                 <div className={`relative w-72 md:w-[480px] h-48 md:h-64 transition-transform duration-700 transform-style-3d ${isLogoFlipped ? 'rotate-y-180' : ''}`}>
                                     {/* Front Side */}
@@ -569,7 +573,7 @@ https://zz-labo-site.github.io/next_generation/`,
 
                                 <img src="./公式ロゴ.png" className="w-32 mx-auto mb-12 opacity-90 drop-shadow-[0_0_15px_rgba(207,185,145,0.2)]" />
                                 
-                                <h2 className="font-zen text-3xl md:text-5xl font-bold mb-4 tracking-[0.2em] uppercase text-white text-glow text-center">
+                                <h2 className="font-zen text-3xl md:text-5xl font-bold mb-4 tracking-[0.2em] uppercase text-white text-glow text-center text-left">
                                     次世代への手紙<span className="text-xl md:text-2xl ml-4 font-normal text-gray-400 align-middle">・リターンズ・</span>
                                 </h2>
                                 <p className="font-mincho text-xl md:text-2xl text-[#cfb991] italic mb-16 tracking-widest leading-relaxed text-center">「不滅の音楽を、もう一度、新しい形で。」</p>
@@ -605,7 +609,7 @@ https://zz-labo-site.github.io/next_generation/`,
                                         </p>
                                     </section>
 
-                                    <div className="grid md:grid-cols-2 gap-8 pt-4">
+                                    <div className="grid md:grid-cols-2 gap-8 pt-4 text-left">
                                         <div className="bg-gradient-to-br from-white/10 to-transparent p-8 rounded-sm border border-white/5 group hover:border-[#cfb991]/30 transition-all text-center">
                                             <h4 className="font-zen text-[#cfb991] mb-4 text-lg border-b border-[#cfb991]/30 pb-2 inline-block font-bold">50代以上の皆様へ</h4>
                                             <p className="text-sm md:text-base opacity-90">イントロ一つで当時の記憶が鮮明に蘇る、良質な時間を。</p>
@@ -617,20 +621,20 @@ https://zz-labo-site.github.io/next_generation/`,
                                     </div>
 
                                     <div className="text-center space-y-4 pt-8">
-                                        <p className="text-lg md:text-xl font-medium text-white tracking-widest">止まっていた時計を、再び動かします。</p>
-                                        <p className="text-lg md:text-xl font-medium text-white tracking-widest">また皆様と、不滅の名曲について語り合える場所を育てていければ幸いです。</p>
-                                        <p className="text-sm md:text-base font-lato opacity-60 pt-4 text-center">2026年2月10日</p>
+                                        <p className="text-lg md:text-xl font-medium text-white tracking-widest text-center">止まっていた時計を、再び動かします。</p>
+                                        <p className="text-lg md:text-xl font-medium text-white tracking-widest text-center">また皆様と、不滅の名曲について語り合える場所を育てていければ幸いです。</p>
+                                        <p className="text-sm md:text-base font-lato opacity-60 pt-4 text-center text-center">2026年2月10日</p>
                                     </div>
                                 </div>
 
-                                <div className="mt-24 border-t border-white/10 pt-16 text-center">
+                                <div className="mt-24 border-t border-white/10 pt-16 text-center text-left">
                                     <h3 className="font-zen text-xl md:text-2xl text-white mb-8 font-bold tracking-widest text-center">🔴 チャンネル登録で応援をお願いします</h3>
                                     <p className="font-mincho text-gray-400 mb-10 text-base leading-loose max-w-2xl mx-auto text-center">
                                         再始動したばかりのこのチャンネルを、ぜひ一緒に育ててください。<br/>
                                         以下のリンクから簡単に登録いただけます。
                                     </p>
                                     
-                                    <div className="flex flex-col items-center gap-6">
+                                    <div className="flex flex-col items-center gap-6 text-left">
                                         <a 
                                             href="https://www.youtube.com/@次世代への手紙?sub_confirmation=1" 
                                             target="_blank" 
@@ -639,10 +643,10 @@ https://zz-labo-site.github.io/next_generation/`,
                                             <YoutubeIcon className="w-6 h-6" />
                                             【チャンネル登録はこちら】
                                         </a>
-                                        <p className="font-lato text-xs text-gray-500 tracking-widest opacity-50 uppercase font-bold">https://www.youtube.com/@次世代への手紙</p>
+                                        <p className="font-lato text-xs text-gray-500 tracking-widest opacity-50 uppercase font-bold text-left">https://www.youtube.com/@次世代への手紙</p>
                                     </div>
 
-                                    <div className="mt-20 text-right font-zen text-sm text-[#cfb991] tracking-[0.3em] font-medium italic opacity-80 border-r-2 border-[#cfb991] pr-4 inline-block float-right">
+                                    <div className="mt-20 text-right font-zen text-sm text-[#cfb991] tracking-[0.3em] font-medium italic opacity-80 border-r-2 border-[#cfb991] pr-4 inline-block float-right text-left">
                                         【不滅の魂 制作委員会】
                                     </div>
                                     <div className="clear-both"></div>
@@ -665,12 +669,12 @@ https://zz-labo-site.github.io/next_generation/`,
                                         <div className="font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap tracking-wide">{renderDescription(activeVideo.desc)}</div>
                                         
                                         {activeVideo.rankingDetails && (
-                                            <div className="mt-12">
+                                            <div className="mt-12 text-left">
                                                 {!showDetails ? (
                                                     <button onClick={() => setShowDetails(true)} className="text-[#cfb991] text-sm font-lato tracking-widest border-b border-[#cfb991] pb-1 hover:text-white transition-colors">▼ ランキングの詳細はこちら！</button>
                                                 ) : (
-                                                    <div className="animate-in pt-8 border-t border-white/10 mt-8 font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap tracking-wide">
-                                                        <div className="mb-10 text-justify whitespace-pre-wrap">{renderDescription(activeVideo.rankingDetails)}</div>
+                                                    <div className="animate-in pt-8 border-t border-white/10 mt-8 font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap tracking-wide text-left">
+                                                        <div className="mb-10 text-left whitespace-pre-wrap">{renderDescription(activeVideo.rankingDetails)}</div>
                                                         <button onClick={() => setShowDetails(false)} className="block mt-8 text-gray-500 text-[10px] tracking-widest hover:text-white uppercase transition-colors font-bold tracking-[0.2em]">▲ CLOSE DETAILS</button>
                                                     </div>
                                                 )}
@@ -689,7 +693,7 @@ https://zz-labo-site.github.io/next_generation/`,
                              <a href="https://x.com/ZZLAB48210" target="_blank" className="hover:text-[#cfb991] transition-colors group"><TwitterX className="w-6 h-6"/></a>
                              <a href="https://www.instagram.com/immortalsoul_2026/" target="_blank" className="hover:text-[#cfb991] transition-colors"><Instagram className="w-6 h-6"/></a>
                         </div>
-                        <p className="text-[10px] text-gray-700 tracking-[0.3em] uppercase font-lato">&copy; 2026 次世代への手紙 / 不滅の魂 制作委員会</p>
+                        <p className="text-[10px] text-gray-700 tracking-[0.3em] uppercase font-lato text-left">&copy; 2026 次世代への手紙 / 不滅の魂 制作委員会</p>
                     </footer>
                 </div>
             );
