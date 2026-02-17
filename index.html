@@ -141,6 +141,7 @@
             const [selectedCategory, setSelectedCategory] = useState('すべて');
             const [isLogoFlipped, setIsLogoFlipped] = useState(false);
 
+            // URLを適切に変換（YouTubeリンクのみ赤いボタンにする）
             const renderDescription = (text) => {
                 if (!text) return null;
                 const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -182,6 +183,7 @@
 
             const categories = ['すべて', 'シングル売上ランキング', '名曲フラッシュバック'];
 
+            // 1.浜田 2.ゴダイゴ 3.安全地帯 4.小比類巻 5.本田美奈子 6.THE ALFEE 7.飯島真理
             const videos = [
                 {
                     id: 1,
@@ -296,7 +298,7 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
 彼女の代名詞とも言えるアニメ『シティーハンター』や、ドラマ主題歌として大ヒットを記録したシングル売上TOP5をランキング形式でご紹介します。
 ドラマ『結婚物語』の主題歌としてチャートを賑わせた、あの珠玉の名曲も登場します。
 
-当時のパワフルなステージ映像とともに、色褪せないKohhyの歌声をお楽しみください。
+当時のパワフルなステージ映像とともに、色褪せないKohhy의 歌声をお楽しみください。
 
 ▼チャンネル登録で応援よろしくお願いします！ 
 https://www.youtube.com/@次世代への手紙`,
@@ -322,8 +324,8 @@ https://www.youtube.com/@次世代への手紙`,
                     id: 7,
                     category: 'シングル売上ランキング',
                     title: "本田美奈子ヒット曲TOP5！筒美京平×秋元康が仕掛けた「伝説の歌唱力」とは？【歴代シングル売上ランキング】",
-                    duration: "Coming Soon",
-                    views: "Wait",
+                    duration: "01:00",
+                    views: "New",
                     thumbnail: "https://img.youtube.com/vi/UdaNYm1TN-Y/maxresdefault.jpg",
                     desc: `「天使の歌声」と称され、アイドルからミュージカルへと唯一無二の軌跡を辿った不世出の歌姫、本田美奈子。
 その圧倒的な歌唱力と表現力で時代を彩ったシングル売上TOP5をランキング形式でご紹介します。
@@ -331,10 +333,7 @@ https://www.youtube.com/@次世代への手紙`,
 
 当時の熱狂を伝える貴重な歌唱映像とともに、珠玉のメロディをお楽しみください。
 
-▼チャンネル登録で応援よろしくお願いします！https://www.youtube.com/@次世代への手紙
-
-こちらのサイトでは、今後の公開予告や惜しくも圏外だった曲のランキング等を掲載しています。
-ぜひチェックしてください！`,
+▼チャンネル登録で応援よろしくお願いします！https://www.youtube.com/@次世代への手紙`,
                     rankingDetails: `【ランキング詳細】
 ・第1位：1986年のマリリン（1986/02/05発売）最高位3位 / 売上24.9万枚
 ・第2位：Oneway Generation（1987/02/04発売）最高位2位 / 売上20.4万枚
@@ -355,7 +354,7 @@ https://www.youtube.com/@次世代への手紙`,
 
 ⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
 皆さんの心に残る本田美奈子さんの名曲はどれですか？ 🎸 ぜひYouTubeのコメント欄で思い出を語り合いましょう！`,
-                    youtubeId: null
+                    youtubeId: "UdaNYm1TN-Y"
                 },
                 {
                     id: 5,
@@ -473,7 +472,7 @@ https://zz-labo-site.github.io/next_generation/`,
                         </div>
                         
                         <div className={`relative z-10 text-center transition-all duration-1000 transform ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                            {/* Logo Wrapper */}
+                            {/* Logo Wrapper Area */}
                             <div className="mb-10 relative perspective-1000 cursor-pointer group mx-auto" onClick={() => setIsLogoFlipped(!isLogoFlipped)}>
                                 <div className={`relative w-72 md:w-[480px] h-48 md:h-64 transition-transform duration-700 transform-style-3d ${isLogoFlipped ? 'rotate-y-180' : ''}`}>
                                     <div className="absolute inset-0 backface-hidden flex items-center justify-center">
