@@ -6,7 +6,7 @@
     
     <!-- SEO Meta Tags -->
     <title>【公式】次世代への手紙 - 不滅の魂 | 昭和・平成の名曲YouTubeアーカイブ</title>
-    <meta name="description" content="昭和・平成の邦楽シーンを彩った不滅の名曲をランキング形式で紹介するYouTubeチャンネル「次世代への手紙」公式サイト。THE ALFEE、小比類巻かほる、浜田麻里、ゴダイゴ、安全地帯、飯島真理、マクロスなど、時代を彩った音楽の魅力を再発見。">
+    <meta name="description" content="昭和・平成の邦楽シーンを彩った不滅の名曲をランキング形式で紹介するYouTubeチャンネル「次世代への手紙」公式サイト。本田美奈子、THE ALFEE、小比類巻かほる、浜田麻里、ゴダイゴ、安全地帯、飯島真理、マクロスなど。">
     <meta name="keywords" content="次世代への手紙, 不滅の魂, 本田美奈子, THE ALFEE, 小比類巻かほる, 浜田麻里, ゴダイゴ, 安全地帯, 飯島真理, マクロス, 昭和歌謡, 平成J-POP, 音楽ランキング, YouTube, 80年代アイドル, ヒット曲, 名曲フラッシュバック">
     <link rel="canonical" href="https://zz-labo-site.github.io/next_generation/">
     
@@ -19,7 +19,7 @@
     <meta property="og:site_name" content="次世代への手紙 - 不滅の魂">
     <meta property="og:locale" content="ja_JP">
 
-    <!-- JSON-LD 構造化データ -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -90,14 +90,14 @@
         ::-webkit-scrollbar-track { background: #000; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
 
-        /* 3D Flip Styles for Logo */
+        /* 3D Flip Styles */
         .perspective-1000 { perspective: 1000px; }
         .transform-style-3d { transform-style: preserve-3d; }
         .backface-hidden { backface-visibility: hidden; }
         .rotate-y-180 { transform: rotateY(180deg); }
     </style>
 </head>
-<body class="bg-[#050505] text-white overflow-x-hidden text-left">
+<body class="bg-[#050505] text-white overflow-x-hidden text-left font-mincho">
     <div id="root"></div>
 
     <script type="text/babel">
@@ -141,13 +141,32 @@
             const [selectedCategory, setSelectedCategory] = useState('すべて');
             const [isLogoFlipped, setIsLogoFlipped] = useState(false);
 
-            // URLを適切に変換（YouTubeリンクのみ赤いボタンにする）
+            // URLを適切に変換（YouTubeリンクは赤いボタン、Apple Musicは埋め込みプレーヤー）
             const renderDescription = (text) => {
                 if (!text) return null;
                 const urlRegex = /(https?:\/\/[^\s]+)/g;
                 
                 return text.split(urlRegex).map((part, index) => {
                     if (part.match(urlRegex)) {
+                        // Apple Music Embed Detection (プレーヤー埋め込み)
+                        if (part.includes('embed.music.apple.com')) {
+                            const cleanedUrl = part.replace(/&amp;/g, '&');
+                            return (
+                                <div key={index} className="my-6">
+                                    <iframe 
+                                        height="175" 
+                                        width="100%" 
+                                        title="メディアプレーヤー" 
+                                        src={cleanedUrl} 
+                                        id="embedPlayer" 
+                                        sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" 
+                                        allow="autoplay *; encrypted-media *; clipboard-write" 
+                                        style={{border: '0px', borderRadius: '12px', width: '100%', height: '175px', maxWidth: '660px'}}
+                                    ></iframe>
+                                </div>
+                            );
+                        }
+                        
                         const isYoutube = part.includes('youtube.com');
                         if (isYoutube) {
                             return (
@@ -170,7 +189,7 @@
                                     href={part} 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
-                                    className="text-[#cfb991] underline hover:text-white transition-colors"
+                                    className="text-[#cfb991] underline hover:text-white transition-colors break-all"
                                 >
                                     {part}
                                 </a>
@@ -204,6 +223,7 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
 ・第5位：Heaven Knows（1990/07/11発売）最高位9位 / 売上10.3万枚
 ・第6位：Paradox（1991/10/10発売）最高位9位 / 売上8.6万枚
 ・第7位：Nostalgia（1990/12/16発売）最高位19位 / 売上8.5万枚
+https://embed.music.apple.com/jp/album/nostalgia/293909960?i=293909992&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=293909992&theme=auto
 ・第8位：Open Your Heart（1989/11/08発売）最高位4位 / 売上8.1万枚
 ・第9位：Tele-Control（1992/02/05発売）最高位28位 / 売上5.7万枚
 ・第10位：Company（1993/07/28発売）最高位30位 / 売上3.6万枚
@@ -231,6 +251,7 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
 https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                     rankingDetails: `【ランキング詳細】
 ・第1位：ガンダーラ（1978/10/01発売）売上88.8万枚
+https://embed.music.apple.com/jp/album/%E3%82%AC%E3%83%B3%E3%83%80%E3%83%BC%E3%83%A9/477643015?i=477643021&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=477643021&theme=auto
 ・第2位：銀河鉄道999（1979/07/01発売）売上66.6万枚
 ・第3位：モンキー・マジック（1978/12/25発売）売上56.5万枚
 ・第4位：ビューティフル・ネーム（1979/04/01発売）売上53.8万枚
@@ -272,6 +293,7 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
 第6位：プルシアンブルーの肖像（1986/07/01発売）最高位2位 / 売上23.8万枚
 第7位：ひとりぼっちのエール（1993/02/10発売）最高位14位 / 売上23.0万枚
 第8位：Friend（1986/10/21発売）最高位3位 / 売上14.7万枚
+https://embed.music.apple.com/jp/album/friend/1440895139?i=1440895686&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=1440895686&theme=auto
 第9位：好きさ（1986/12/03発売）最高位4位 / 売上12.4万枚
 第10位：じれったい（1987/04/21発売）最高位2位 / 売上12.3万枚
 第11位：あの頃へ（1992/12/02発売）最高位13位 / 売上10.4万枚
@@ -336,6 +358,7 @@ https://www.youtube.com/@次世代への手紙`,
 ▼チャンネル登録で応援よろしくお願いします！https://www.youtube.com/@次世代への手紙`,
                     rankingDetails: `【ランキング詳細】
 ・第1位：1986年のマリリン（1986/02/05発売）最高位3位 / 売上24.9万枚
+https://embed.music.apple.com/jp/album/1986%E5%B9%B4%E3%81%AE%E3%83%9E%E3%83%AA%E3%83%AA%E3%83%B3/720488994?i=720489462&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=720489462&theme=auto
 ・第2位：Oneway Generation（1987/02/04発売）最高位2位 / 売上20.4万枚
 ・第3位：Temptation（誘惑）（1985/09/28発売）最高位10位 / 売上18.4万枚
 ・第4位：Sosotte（1986/05/01発売）最高位3位 / 売上17.4万枚
@@ -392,7 +415,7 @@ https://www.youtube.com/@次世代への手紙`,
 ---
 
 ⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
-皆さんの心に残るTHE ALFEEの80年代の名曲は何ですか？ 🎸 ぜひコメント欄で思い出を語り合いましょう！`,
+皆さんの心に残るTHE ALFEEの80年代の名曲は何ですか？ 🎸 ぜひコメント欄で思い出を語りましょう！`,
                     youtubeId: null
                 },
                 {
@@ -472,14 +495,11 @@ https://zz-labo-site.github.io/next_generation/`,
                         </div>
                         
                         <div className={`relative z-10 text-center transition-all duration-1000 transform ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                            {/* Logo Wrapper Area */}
                             <div className="mb-10 relative perspective-1000 cursor-pointer group mx-auto" onClick={() => setIsLogoFlipped(!isLogoFlipped)}>
                                 <div className={`relative w-72 md:w-[480px] h-48 md:h-64 transition-transform duration-700 transform-style-3d ${isLogoFlipped ? 'rotate-y-180' : ''}`}>
-                                    {/* Front Side */}
                                     <div className="absolute inset-0 backface-hidden flex items-center justify-center">
                                         <img src="./公式ロゴ.png" alt="New Logo" className="w-full h-auto drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]" />
                                     </div>
-                                    {/* Back Side */}
                                     <div className="absolute inset-0 backface-hidden rotate-y-180 flex items-center justify-center">
                                         <img src="./oldlogo.png" alt="Old Logo" className="w-full h-auto drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]" />
                                     </div>
@@ -488,10 +508,12 @@ https://zz-labo-site.github.io/next_generation/`,
                             </div>
                             
                             <h1 className="font-zen text-4xl md:text-6xl font-bold text-white mb-4 tracking-wider text-glow uppercase">次世代への手紙</h1>
-                            <p className="font-mincho text-xl md:text-2xl text-[#cfb991] tracking-[0.5em] mb-12">ー 不滅の魂 ー</p>
-                            <button onClick={() => document.getElementById('archives').scrollIntoView({behavior:'smooth'})} className="px-12 py-3 border border-[#cfb991]/30 hover:border-[#cfb991] text-[10px] tracking-[0.4em] uppercase text-gray-300 transition-all hover:bg-[#cfb991]/5">Enter Archives</button>
+                            <p className="font-mincho text-xl md:text-2xl text-[#cfb991] tracking-[0.5em] mb-12 text-center">ー 不滅の魂 ー</p>
+                            <div className="flex justify-center">
+                                <button onClick={() => document.getElementById('archives').scrollIntoView({behavior:'smooth'})} className="px-12 py-3 border border-[#cfb991]/30 hover:border-[#cfb991] text-[10px] tracking-[0.4em] uppercase text-gray-300 transition-all hover:bg-[#cfb991]/5">Enter Archives</button>
+                            </div>
                         </div>
-                        <div className="absolute bottom-10 animate-bounce opacity-30"><ChevronDown className="w-6 h-6" /></div>
+                        <div className="absolute bottom-10 animate-bounce opacity-30 w-full flex justify-center"><ChevronDown className="w-6 h-6" /></div>
                     </header>
 
                     {/* Archives Section */}
@@ -520,7 +542,7 @@ https://zz-labo-site.github.io/next_generation/`,
                                             <div className="absolute bottom-3 right-3 px-2 py-0.5 bg-black/80 text-[10px] text-gray-400 font-lato">{v.duration}</div>
                                         </div>
                                         <div className="p-6 piano-black-gloss">
-                                            <h3 className="font-zen text-base text-gray-200 mb-6 line-clamp-1 group-hover:text-white leading-relaxed">{v.title}</h3>
+                                            <h3 className="font-zen text-base text-gray-200 mb-6 line-clamp-1 group-hover:text-white leading-relaxed text-left">{v.title}</h3>
                                             <div className="flex justify-between items-center text-[10px] font-lato uppercase">
                                                 <span className="text-gray-500 flex items-center gap-1 font-bold"><Monitor className="w-3 h-3"/> {v.views}</span>
                                                 <span className={v.youtubeId ? 'text-[#cfb991] font-bold' : 'text-gray-700'}>{v.youtubeId ? 'PLAYBACK' : 'COMING SOON'}</span>
@@ -538,7 +560,6 @@ https://zz-labo-site.github.io/next_generation/`,
                         <div className="fixed inset-0 z-[100] bg-[#050505]/98 backdrop-blur-md overflow-y-auto animate-in">
                             <button onClick={() => setShowAbout(false)} className="fixed top-6 right-6 text-gray-500 hover:text-white transition-colors z-[110] p-2 focus:outline-none"><XIcon className="w-8 h-8"/></button>
                             <div className="container mx-auto px-4 py-24 text-center max-w-4xl relative">
-                                {/* Decorative elements for luxury feel */}
                                 <div className="absolute inset-0 opacity-5 pointer-events-none" style={{backgroundImage: 'radial-gradient(circle at center, #cfb991 1px, transparent 1px)', backgroundSize: '40px 40px'}}></div>
 
                                 <img src="./公式ロゴ.png" className="w-32 mx-auto mb-12 opacity-90 drop-shadow-[0_0_15px_rgba(207,185,145,0.2)]" />
@@ -598,8 +619,8 @@ https://zz-labo-site.github.io/next_generation/`,
                                 </div>
 
                                 <div className="mt-24 border-t border-white/10 pt-16 text-center">
-                                    <h3 className="font-zen text-xl md:text-2xl text-white mb-8 font-bold tracking-widest">🔴 チャンネル登録で応援をお願いします</h3>
-                                    <p className="font-mincho text-gray-400 mb-10 text-base leading-loose max-w-2xl mx-auto">
+                                    <h3 className="font-zen text-xl md:text-2xl text-white mb-8 font-bold tracking-widest text-center">🔴 チャンネル登録で応援をお願いします</h3>
+                                    <p className="font-mincho text-gray-400 mb-10 text-base leading-loose max-w-2xl mx-auto text-center">
                                         再始動したばかりのこのチャンネルを、ぜひ一緒に育ててください。<br/>
                                         以下のリンクから簡単に登録いただけます。
                                     </p>
@@ -608,7 +629,7 @@ https://zz-labo-site.github.io/next_generation/`,
                                         <a 
                                             href="https://www.youtube.com/@次世代への手紙?sub_confirmation=1" 
                                             target="_blank" 
-                                            className="inline-flex items-center gap-4 px-12 py-5 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-[0.3em] rounded-sm transition-all shadow-[0_0_20px_rgba(204,0,0,0.4)] transform hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(204,0,0,0.6)] uppercase text-sm"
+                                            className="inline-flex items-center gap-4 px-12 py-5 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-[0.3em] rounded-sm transition-all shadow-[0_0_30px_rgba(204,0,0,0.4)] transform hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(204,0,0,0.6)] uppercase text-sm"
                                         >
                                             <YoutubeIcon className="w-6 h-6" />
                                             【チャンネル登録はこちら】
