@@ -336,6 +336,9 @@ https://www.youtube.com/@次世代への手紙`,
 ・第9位：On The Loose（1988/01/01発売）最高位15位 / 売上3.8万枚
 ・第10位：トワイライト･アヴェニュー（1990/05/10発売）最高位24位 / 売上3.4万枚
 
+「あぶない刑事」挿入歌：Cops And Robbers
+https://embed.music.apple.com/jp/album/cops-and-robbers/1745087988?i=1745088008&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=1745088008&theme=auto
+
 ---
 
 ⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
@@ -415,7 +418,7 @@ https://embed.music.apple.com/jp/album/1986%E5%B9%B4%E3%81%AE%E3%83%9E%E3%83%AA%
 ---
 
 ⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
-皆さんの心に残るTHE ALFEEの80年代の名曲は何ですか？ 🎸 ぜひコメント欄で思い出を語りましょう！`,
+皆さんの心に残るTHE ALFEE의 80年代の名曲は何ですか？ 🎸 ぜひコメント欄で思い出を語りましょう！`,
                     youtubeId: null
                 },
                 {
@@ -427,11 +430,11 @@ https://embed.music.apple.com/jp/album/1986%E5%B9%B4%E3%81%AE%E3%83%9E%E3%83%AA%
                     thumbnail: "https://img.youtube.com/vi/IISKjvUoLEw/maxresdefault.jpg",
                     desc: `マクロス名曲！飯島真理『愛・おぼえて
 
-1984年、アニメ映画『超時空要塞マクロス 愛・おぼえていますか』の主題歌として誕生し、アニソンの歴史を塗り替えた不朽の名作。
+1984年, アニメ映画『超時空要塞マクロス 愛・おぼえていますか』の主題歌として誕生し, アニソンの歴史を塗り替えた不朽の名作。
 
 劇中のアイドル, リン・ミンメイの声優を務めた飯島真理さんの透明感あふれる歌声は, 当時の音楽チャートを席巻しました。オリコン週間ランキングで2度の最高7位を記録し、6週連続トップ10入りを果たすという, アニメソングとしては異例のロングセラーを記録。
 
-当時の熱狂を伝える貴重な歌唱映像とともに、時代を超えて愛される珠玉のメロディをお楽しみください。
+当時の熱狂を伝える貴重な歌唱映像とともに, 時代を超えて愛される珠玉のメロディをお楽しみください。
 
 ▼チャンネル登録で応援よろしくお願いします！ https://www.youtube.com/@次世代への手紙
 
@@ -447,7 +450,7 @@ https://zz-labo-site.github.io/next_generation/`,
 ---
 
 ⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
-皆さんの心に残る『マクロス』の思い出や, 初めてこの曲を聴いた時の衝撃はどこですか？ 🎸 文化を救ったあの歌声について、ぜひコメント欄で語り合いましょう！`,
+皆さんの心に残る『マクロス』の思い出や, 初めてこの曲を聴いた時の衝撃はどこですか？ 🎸 文化を救ったあの歌声について, ぜひコメント欄で語り合いましょう！`,
                     youtubeId: null 
                 }
             ];
@@ -497,9 +500,11 @@ https://zz-labo-site.github.io/next_generation/`,
                         <div className={`relative z-10 text-center transition-all duration-1000 transform ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                             <div className="mb-10 relative perspective-1000 cursor-pointer group mx-auto" onClick={() => setIsLogoFlipped(!isLogoFlipped)}>
                                 <div className={`relative w-72 md:w-[480px] h-48 md:h-64 transition-transform duration-700 transform-style-3d ${isLogoFlipped ? 'rotate-y-180' : ''}`}>
+                                    {/* Front Side */}
                                     <div className="absolute inset-0 backface-hidden flex items-center justify-center">
                                         <img src="./公式ロゴ.png" alt="New Logo" className="w-full h-auto drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]" />
                                     </div>
+                                    {/* Back Side */}
                                     <div className="absolute inset-0 backface-hidden rotate-y-180 flex items-center justify-center">
                                         <img src="./oldlogo.png" alt="Old Logo" className="w-full h-auto drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]" />
                                     </div>
@@ -527,7 +532,7 @@ https://zz-labo-site.github.io/next_generation/`,
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-24">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-24 transition-all">
                             {filteredVideos.map((v) => (
                                 <article key={v.id} className={`group relative animate-in ${v.youtubeId ? 'cursor-pointer' : 'cursor-default'}`} onClick={() => v.youtubeId && setActiveVideo(v)}>
                                     <div className={`rounded-sm overflow-hidden bg-[#080808] border border-white/5 transition-all duration-500 ${v.youtubeId ? 'group-hover:-translate-y-2 group-hover:border-[#cfb991]/30' : ''}`}>
@@ -579,10 +584,10 @@ https://zz-labo-site.github.io/next_generation/`,
                                             <span className="h-px w-8 bg-[#cfb991]/50"></span>
                                         </h3>
                                         <p className="mb-8 leading-relaxed">
-                                            かつて私はYouTubeで5万人以上のチャンネル登録者さんと共に、音楽を語り合う時間を過ごしていました。 ある日、自らの不器用な手違いにより、その大切なチャンネルを一瞬にして消し去ってしまいました。実質1年間という短い運営期間になってしまいました。
+                                            かつて私はYouTubeで5万人以上のチャンネル登録者さんと共に、音楽を語り合う時間を過ごしていました。 ある日, 自らの不器用な手違いにより, その大切なチャンネルを一瞬にして消し去ってしまいました。実質1年間という短い運営期間になってしまいました。
                                         </p>
                                         <p className="leading-relaxed">
-                                            応援してくださっていた皆様への申し訳なさと、あまりのショックから、しばらくYouTube活動をお休みしていましたが、今、ようやく前を向く決心がつきました。 かつてお届けした動画も、今の視点で丁寧にリメイクし、新しい息吹を吹き込みながら少しずつ公開していきます。
+                                            応援してくださっていた皆様への申し訳なさと、あまりのショックから、しばらくYouTube活動をお休みしていましたが、今, ようやく前を向く決心がつきました。 かつてお届けした動画も、今の視点で丁寧にリメイクし、新しい息吹を吹き込みながら少しずつ公開していきます。
                                         </p>
                                     </section>
 
@@ -593,10 +598,10 @@ https://zz-labo-site.github.io/next_generation/`,
                                             <span className="h-px w-8 bg-[#cfb991]/50"></span>
                                         </h3>
                                         <p className="mb-8 leading-relaxed">
-                                            私たちは、売上枚数という数字だけで音楽の良し悪しを決めたいわけではありません。 ランキングはあくまで、あの時代にどれだけ多くの人の手にその歌が渡ったかを示す「時代の地図」だと考えています。
+                                            私たちは、売上枚数という数字だけで音楽の良し悪しを決めたいわけではありません。 ランキングはあくまで, あの時代にどれだけ多くの人の手にその歌が渡ったかを示す「時代の地図」だと考えています。
                                         </p>
                                         <p className="leading-relaxed">
-                                            順位そのものを楽しむエンターテインメントとして。 そして、その数字の向こう側にある「当時の空気感」や「作り手の執念」を次世代へ語り継ぐ場として、この番組を再構築していきます。
+                                            順位そのものを楽しむエンターテインメントとして。 そして, その数字の向こう側にある「当時の空気感」や「作り手の執念」を次世代へ語り継ぐ場として、この番組を再構築していきます。
                                         </p>
                                     </section>
 
@@ -614,7 +619,7 @@ https://zz-labo-site.github.io/next_generation/`,
                                     <div className="text-center space-y-4 pt-8">
                                         <p className="text-lg md:text-xl font-medium text-white tracking-widest">止まっていた時計を、再び動かします。</p>
                                         <p className="text-lg md:text-xl font-medium text-white tracking-widest">また皆様と、不滅の名曲について語り合える場所を育てていければ幸いです。</p>
-                                        <p className="text-sm md:text-base font-lato opacity-60 pt-4">2026年2月10日</p>
+                                        <p className="text-sm md:text-base font-lato opacity-60 pt-4 text-center">2026年2月10日</p>
                                     </div>
                                 </div>
 
@@ -629,7 +634,7 @@ https://zz-labo-site.github.io/next_generation/`,
                                         <a 
                                             href="https://www.youtube.com/@次世代への手紙?sub_confirmation=1" 
                                             target="_blank" 
-                                            className="inline-flex items-center gap-4 px-12 py-5 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-[0.3em] rounded-sm transition-all shadow-[0_0_30px_rgba(204,0,0,0.4)] transform hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(204,0,0,0.6)] uppercase text-sm"
+                                            className="inline-flex items-center gap-4 px-12 py-5 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-[0.3em] rounded-sm transition-all shadow-[0_0_20px_rgba(204,0,0,0.4)] transform hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(204,0,0,0.6)] uppercase text-sm"
                                         >
                                             <YoutubeIcon className="w-6 h-6" />
                                             【チャンネル登録はこちら】
