@@ -7,7 +7,7 @@
     <!-- SEO Meta Tags -->
     <title>【公式】次世代への手紙 - 不滅の魂 | 昭和・平成の名曲YouTubeアーカイブ</title>
     <meta name="description" content="昭和・平成の邦楽シーンを彩った不滅の名曲をランキング形式で紹介するYouTubeチャンネル「次世代への手紙」公式サイト。THE ALFEE、小比類巻かほる、浜田麻里、ゴダイゴ、安全地帯、飯島真理、マクロスなど、時代を彩った音楽の魅力を再発見。">
-    <meta name="keywords" content="次世代への手紙, 不滅の魂, THE ALFEE, 小比類巻かほる, 浜田麻里, ゴダイゴ, 安全地帯, 飯島真理, マクロス, 昭和歌謡, 平成J-POP, 音楽ランキング, YouTube, 80年代アイドル, ヒット曲, 名曲フラッシュバック">
+    <meta name="keywords" content="次世代への手紙, 不滅の魂, 本田美奈子, THE ALFEE, 小比類巻かほる, 浜田麻里, ゴダイゴ, 安全地帯, 飯島真理, マクロス, 昭和歌謡, 平成J-POP, 音楽ランキング, YouTube, 80年代アイドル, ヒット曲, 名曲フラッシュバック">
     <link rel="canonical" href="https://zz-labo-site.github.io/next_generation/">
     
     <!-- OGP -->
@@ -141,7 +141,6 @@
             const [selectedCategory, setSelectedCategory] = useState('すべて');
             const [isLogoFlipped, setIsLogoFlipped] = useState(false);
 
-            // URLを適切に変換（YouTubeリンクのみ赤いボタンにする）
             const renderDescription = (text) => {
                 if (!text) return null;
                 const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -164,7 +163,6 @@
                                 </div>
                             );
                         } else {
-                            // YouTube以外のURLは通常のアンカータグとして表示
                             return (
                                 <a 
                                     key={index} 
@@ -184,20 +182,15 @@
 
             const categories = ['すべて', 'シングル売上ランキング', '名曲フラッシュバック'];
 
-            // 1.浜田 2.ゴダイゴ 3.安全地帯 4.小比類巻 5.THE ALFEE 6.飯島真理
             const videos = [
                 {
                     id: 1,
                     category: 'シングル売上ランキング',
                     title: "ロックの女王・浜田麻里ヒット曲TOP5！1位は売上40万枚超え",
                     duration: "01:00",
-                    views: "280K",
+                    views: "290K",
                     thumbnail: "https://img.youtube.com/vi/PYfwgOOoc1Y/maxresdefault.jpg",
-                    desc: `「ロックの女王」と称され、日本を代表する女性ロックシンガーである浜田麻里。
-その圧倒的な歌唱力とハイトーンボイスで時代を彩ったシングル売上TOP5をランキング形式でご紹介。
-最高位1位、売上40万枚を超えたあの伝説 of ヒット曲も登場します。
-
-当時の熱狂を伝える貴重な歌唱映像とともに、珠玉のメロディをお楽しみください。
+                    desc: `「ロックの女王」と称され、日本を代表する女性ロックシンガーである浜田麻里。 その圧倒的な歌唱力とハイトーンボイスで時代を彩ったシングル売上TOP5をランキング形式でご紹介。 最高位1位、売上40万枚を超えたあの伝説 of ヒット曲も登場します。 当時の熱狂を伝える貴重な歌唱映像とともに、珠玉のメロディをお楽しみください。
 
 ▼チャンネル登録で応援よろしくお願いします！
 https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
@@ -224,7 +217,7 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                     category: 'シングル売上ランキング',
                     title: "伝説のバンド・ゴダイゴのヒット曲TOP5！1位は売上88万枚超えのあの名曲",
                     duration: "01:00",
-                    views: "23K",
+                    views: "27K",
                     thumbnail: "https://img.youtube.com/vi/dz-Bugi8q5I/maxresdefault.jpg",
                     desc: `1970年代後半から80年代にかけて、日本の音楽シーンを席巻した伝説の多国籍バンド、ゴダイゴ。
 キャッチーなメロディと圧倒的な演奏力で時代を彩った彼らの、シングル売上TOP5をランキング形式でご紹介します。
@@ -257,7 +250,7 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                     category: 'シングル売上ランキング',
                     title: "都会的な色気と圧倒的歌唱力・安全地帯ヒット曲TOP5！1位は売上70万枚超え",
                     duration: "01:00",
-                    views: "37K",
+                    views: "46K",
                     thumbnail: "https://img.youtube.com/vi/rIyNAPfSM6w/maxresdefault.jpg",
                     desc: `都会的な色気と圧倒的歌唱力・安全地帯ヒット曲TOP5！1位は売上70万枚超え
 「ワインレッドの心」や「悲しみにさよなら」など、都会的で妖艶なメロディで80年代の音楽シーンを席巻したロックバンド、安全地帯。
@@ -288,7 +281,7 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
 ---
 
 ⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
-玉置さんの歌声に酔いしれたあの頃の思い出など、ぜひYouTubeのコメント欄で語りましょう！`,
+玉置さんの歌声に酔いしれたあの頃の思い出など、ぜひYouTubeのコメント欄で語り合いましょう！`,
                     youtubeId: "rIyNAPfSM6w"
                 },
                 {
@@ -296,7 +289,7 @@ https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
                     category: 'シングル売上ランキング',
                     title: "小比類巻かほるヒット曲TOP5！シティーハンターからドラマ主題歌まで【歴代売上ランキング】",
                     duration: "01:00",
-                    views: "19K",
+                    views: "28K",
                     thumbnail: "https://img.youtube.com/vi/-ey1E-ijzNQ/maxresdefault.jpg",
                     desc: `小比類巻かほるヒット曲TOP5！シティーハンターからドラマ主題歌まで【歴代売上ランキング】
 圧倒的な歌唱力と都会的なサウンドで、80年代後半から90年代の音楽シーンを鮮烈に彩った小比類巻かほる（Kohhy）。
@@ -324,6 +317,45 @@ https://www.youtube.com/@次世代への手紙`,
 ⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
 皆さんの心に残る名曲について、ぜひYouTubeのコメント欄で語り合いましょう！`,
                     youtubeId: "-ey1E-ijzNQ"
+                },
+                {
+                    id: 7,
+                    category: 'シングル売上ランキング',
+                    title: "本田美奈子ヒット曲TOP5！筒美京平×秋元康が仕掛けた「伝説の歌唱力」とは？【歴代シングル売上ランキング】",
+                    duration: "Coming Soon",
+                    views: "Wait",
+                    thumbnail: "https://img.youtube.com/vi/UdaNYm1TN-Y/maxresdefault.jpg",
+                    desc: `「天使の歌声」と称され、アイドルからミュージカルへと唯一無二の軌跡を辿った不世出の歌姫、本田美奈子。
+その圧倒的な歌唱力と表現力で時代を彩ったシングル売上TOP5をランキング形式でご紹介します。
+当時、社会現象を巻き起こしたあの伝説のヒット曲も登場します。
+
+当時の熱狂を伝える貴重な歌唱映像とともに、珠玉のメロディをお楽しみください。
+
+▼チャンネル登録で応援よろしくお願いします！https://www.youtube.com/@次世代への手紙
+
+こちらのサイトでは、今後の公開予告や惜しくも圏外だった曲のランキング等を掲載しています。
+ぜひチェックしてください！`,
+                    rankingDetails: `【ランキング詳細】
+・第1位：1986年のマリリン（1986/02/05発売）最高位3位 / 売上24.9万枚
+・第2位：Oneway Generation（1987/02/04発売）最高位2位 / 売上20.4万枚
+・第3位：Temptation（誘惑）（1985/09/28発売）最高位10位 / 売上18.4万枚
+・第4位：Sosotte（1986/05/01発売）最高位3位 / 売上17.4万枚
+・第5位：Help（1986/07/23発売）最高位2位 / 売上11.4万枚
+・第6位：ら･ら･ば･い～優しく抱かせて（1995/05/10発売）最高位19位 / 売上11.1万枚
+・第7位：the Cross-愛の十字架-（1986/09/03発売）最高位5位 / 売上11.0万枚
+・第8位：孤独なハリケーン（1987/09/09発売）最高位2位 / 売上7.9万枚
+・第9位：HEART BREAK（1987/06/22発売）最高位3位 / 売上7.8万枚
+・第10位：殺意のバカンス（1985/04/20発売）最高位21位 / 売上7.3万枚
+・第11位：好きと言いなさい（1985/07/20発売）最高位21位 / 売上6.2万枚
+・第12位：悲しみSWING（1987/11/25発売）最高位3位 / 売上6.2万枚
+・第13位：つばさ（1994/05/25発売）最高位62位 / 売上4.7万枚
+・第14位：CRAZY NIGHTS（1987/04/22発売）最高位10位 / 売上4.0万枚
+
+---
+
+⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
+皆さんの心に残る本田美奈子さんの名曲はどれですか？ 🎸 ぜひYouTubeのコメント欄で思い出を語り合いましょう！`,
+                    youtubeId: null
                 },
                 {
                     id: 5,
@@ -441,14 +473,12 @@ https://zz-labo-site.github.io/next_generation/`,
                         </div>
                         
                         <div className={`relative z-10 text-center transition-all duration-1000 transform ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                            {/* 3D Flip Logo Area */}
+                            {/* Logo Wrapper */}
                             <div className="mb-10 relative perspective-1000 cursor-pointer group mx-auto" onClick={() => setIsLogoFlipped(!isLogoFlipped)}>
                                 <div className={`relative w-72 md:w-[480px] h-48 md:h-64 transition-transform duration-700 transform-style-3d ${isLogoFlipped ? 'rotate-y-180' : ''}`}>
-                                    {/* Front Side */}
                                     <div className="absolute inset-0 backface-hidden flex items-center justify-center">
                                         <img src="./公式ロゴ.png" alt="New Logo" className="w-full h-auto drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]" />
                                     </div>
-                                    {/* Back Side */}
                                     <div className="absolute inset-0 backface-hidden rotate-y-180 flex items-center justify-center">
                                         <img src="./oldlogo.png" alt="Old Logo" className="w-full h-auto drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]" />
                                     </div>
@@ -466,7 +496,7 @@ https://zz-labo-site.github.io/next_generation/`,
                     {/* Archives Section */}
                     <main id="archives" className="container mx-auto px-4 py-24 min-h-[600px]">
                         <div className="flex flex-col items-center mb-16">
-                            <h2 className="font-cinzel text-3xl tracking-widest text-gray-200 uppercase">ARCHIVES</h2>
+                            <h2 className="font-cinzel text-3xl tracking-widest text-gray-200 uppercase text-center">Archives</h2>
                             <div className="flex flex-wrap justify-center gap-4 mt-12">
                                 {categories.map(cat => (
                                     <button key={cat} onClick={() => setSelectedCategory(cat)} className={`px-6 py-2 text-[10px] tracking-widest uppercase border rounded-full transition-all ${selectedCategory === cat ? 'bg-[#cfb991] text-black border-[#cfb991]' : 'border-white/10 text-gray-500 hover:text-white'}`}>{cat}</button>
@@ -508,7 +538,7 @@ https://zz-labo-site.github.io/next_generation/`,
                             <button onClick={() => setShowAbout(false)} className="fixed top-6 right-6 text-gray-500 hover:text-white transition-colors z-[110] p-2 focus:outline-none"><XIcon className="w-8 h-8"/></button>
                             <div className="container mx-auto px-4 py-24 text-center max-w-3xl">
                                 <img src="./公式ロゴ.png" className="w-24 mx-auto mb-10 opacity-80" />
-                                <h2 className="font-zen text-3xl font-bold mb-16 tracking-widest uppercase text-glow">次世代への手紙<br/><span className="text-lg font-normal text-gray-400 mt-4 block">・リターンズ・</span></h2>
+                                <h2 className="font-zen text-3xl font-bold mb-16 tracking-widest uppercase text-glow text-center">次世代への手紙<br/><span className="text-lg font-normal text-gray-400 mt-4 block">・リターンズ・</span></h2>
                                 <div className="font-mincho text-gray-300 leading-9 space-y-10 text-justify text-sm md:text-base tracking-wider">
                                     <p>当番組は、昭和・平成の邦楽シーンを彩った名曲たちを、オリコンの公式記録に基づいたランキング形式で紐解く音楽アーカイブチャンネルです。</p>
                                     <p>止まっていた時計を、再び動かします。また皆様と、不滅の名曲について語り合える場所を育てていければ幸いです。</p>
