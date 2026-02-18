@@ -8,7 +8,7 @@
     <!-- SEO Meta Tags -->
     <title>【公式】次世代への手紙 - 不滅の魂 | 昭和・平成の名曲・オリコンランキング アーカイブ</title>
     <meta name="description" content="昭和・平成の邦楽シーンを彩った不滅の名曲をオリコン記録に基づきランキング形式で紹介するYouTubeチャンネル「次世代への手紙」公式サイト。本田美奈子、THE ALFEE、浜田麻里、安全地帯などのヒット曲の軌跡を辿る。">
-    <meta name="keywords" content="次世代への手紙, 不滅の魂, 昭和歌謡, 平成J-POP, オリコンランキング, 音楽アーカイブ, 本田美奈子, THE ALFEE, 浜田麻里, 安全地帯, 小比類巻かほる, ゴダイゴ, 飯島真理, YouTube音楽番組">
+    <meta name="keywords" content="次世代への手紙, 不滅の魂, 昭和歌謡, 平成J-POP, オリコンランキング, 音楽アーカイブ, 本田美奈子, THE ALFEE, 浜田麻里, 安全地帯, 小比類巻かほる, ゴダイゴ, 飯島真理, SHOW-YA, YouTube音楽番組">
     <link rel="canonical" href="https://zz-labo-site.github.io/next_generation/">
     <meta name="author" content="不滅の魂 制作委員会">
     <meta name="theme-color" content="#050505">
@@ -110,23 +110,21 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, increment } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const firebaseConfig = JSON.parse(__firebase_config);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        window._firebase = { auth, db, appId, signInAnonymously, signInWithCustomToken, doc, setDoc, getDoc, increment };
+        window._firebase = { auth, db };
     </script>
 
     <script type="text/babel">
         const { useState, useEffect, useMemo } = React;
 
-        // --- Global Icons ---
+        // --- Global UI Components ---
         const Play = ({ className }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
         );
@@ -151,6 +149,7 @@
 
         // --- Static Data ---
         const categories = ['すべて', 'シングル売上ランキング', '名曲フラッシュバック'];
+        const COMMON_SUB_LINK = "https://www.youtube.com/channel/UCpZrfGf1zO3u3v2kul2UqIA?sub_confirmation=1";
 
         const videos = [
             {
@@ -163,12 +162,14 @@
                 thumbnail: "https://img.youtube.com/vi/PYfwgOOoc1Y/maxresdefault.jpg",
                 desc: `「ロックの女王」と称され、日本を代表する女性ロックシンガーである浜田麻里。
 
-その圧倒的な歌唱力とハイトーンボイスで時代を彩ったシングル売上TOP5をランキング形式でご紹介。
+その圧倒的な歌唱力とハイトーンボイスで時代を彩ったシングル売上TOP5をランキング形式でご紹介。 
 
-最高位1位、売上40万枚を超えたあの伝説 of ヒット曲も登場します。 当時の熱狂を伝える貴重な歌唱映像とともに、珠玉のメロディをお楽しみください。
+最高位1位、売上40万枚を超えたあの伝説 of ヒット曲も登場します。 
 
-▼チャンネル登録で応援よろしくお願いします！
-https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
+当時の熱狂を伝える貴重な歌唱映像とともに、珠玉のメロディをお楽しみください。
+
+▼チャンネル登録はこちら
+${COMMON_SUB_LINK}`,
                 rankingDetails: `【ランキング詳細】
 ・第1位：Return to Myself（1989/04/19発売）最高位1位 / 売上40.7万枚
 ・第2位：Cry For The Moon（1993/01/27発売）最高位6位 / 売上34.1万枚
@@ -200,12 +201,12 @@ https://embed.music.apple.com/jp/album/nostalgia/293909960?i=293909992&itscg=302
                 desc: `1970年代後半から80年代にかけて、日本の音楽シーンを席巻した伝説の多国籍バンド、ゴダイゴ。
 
 キャッチーなメロディと圧倒的な演奏力で時代を彩った彼らの、シングル売上TOP5をランキング形式でご紹介します。
-売上88万枚を超え、社会現象を巻き起こしたあの不朽の名作も登場。
 
+売上88万枚を超え、社会現象を巻き起こしたあの不朽の名作も登場。
 当時の熱狂を伝える貴重な歌唱映像とともに、珠玉のメロディをお楽しみください。
 
-▼チャンネル登録で応援よろしくお願いします！
-https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
+▼チャンネル登録はこちら
+${COMMON_SUB_LINK}`,
                 rankingDetails: `【ランキング詳細】
 ・第1位：ガンダーラ（1978/10/01発売）売上88.8万枚
 https://embed.music.apple.com/jp/album/%E3%82%AC%E3%83%B3%E3%83%80%E3%83%BC%E3%83%A9/477643015?i=477643021&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=477643021&theme=auto
@@ -242,8 +243,8 @@ https://embed.music.apple.com/jp/album/%E3%82%B5%E3%83%B3%E3%82%AD%E3%83%A5%E3%8
 
 当時の熱狂を伝える貴重な歌唱映像とともに、時代を超えて愛される珠玉のメロディをお楽しみください。
 
-▼チャンネル登録で応援よろしくお願いします！ 
-https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
+▼チャンネル登録はこちら
+${COMMON_SUB_LINK}`,
                 rankingDetails: `【ランキング詳細】
 第1位：ワインレッドの心（1983/11/25発売）最高位1位 / 売上71.4万枚
 第2位：悲しみにさよなら（1985/06/25発売）最高位1位 / 売上44.3万枚
@@ -273,18 +274,19 @@ https://embed.music.apple.com/jp/album/%E7%9C%9F%E5%A4%9C%E4%B8%AD%E3%81%99%E3%8
                 id: 4,
                 date: "2026.02.16",
                 category: 'シングル売上ランキング',
-                title: "小比類巻かほるヒット曲TOP5！シティーハンターからドラマ主題歌まで【歴代売上ランキング】",
+                title: "小比類巻かほるヒット曲TOP5！シティーハンターからドラマ主題歌まで",
                 duration: "01:00",
                 views: "28K",
                 thumbnail: "https://img.youtube.com/vi/-ey1E-ijzNQ/maxresdefault.jpg",
                 desc: `圧倒的な歌唱力と都会的なサウンドで、80年代後半から90年代の音楽シーンを鮮烈に彩った小比類巻かほる（Kohhy）。
-彼女の代名詞とも言えるアニメ『シティーハンター』や、ドラマ主題歌として大ヒットを記録したシングル売上TOP5をランキング形式でご紹介します。
-ドラマ『結婚物語』の主題歌としてチャートを賑わせた、あの珠玉の名曲も登場します。
 
+彼女の代名詞とも言えるアニメ『シティーハンター』や、ドラマ主題歌として大ヒットを記録したシングル売上TOP5をランキング形式でご紹介します。
+
+ドラマ『結婚物語』の主題歌としてチャートを賑わせた、あの珠玉の名曲も登場します。
 当時のパワフルなステージ映像とともに、色褪せないKohhyの歌声をお楽しみください。
 
-▼チャンネル登録で応援よろしくお願いします！ 
-https://www.youtube.com/@次世代への手紙`,
+▼チャンネル登録はこちら
+${COMMON_SUB_LINK}`,
                 rankingDetails: `【ランキング詳細】
 ・第1位：Hold On Me（1987/02/26発売）最高位9位 / 売上12.9万枚
 ・第2位：SUMMER FACTOR（1994/04/01発売）最高位14位 / 売上11.3万枚
@@ -294,7 +296,7 @@ https://www.youtube.com/@次世代への手紙`,
 ・第6位：DREAMER（1989/09/25発売）最高位9位 / 売上6.6万枚
 ・第7位：TONIGHT（1988/10/21発売）最高位16位 / 売上6.1万枚
 ・第8位：TIME GOES BY（1991/03/25発売）最高位29位 / 売上4.1万枚
-・第9位：On The Loose（1988/01/01発売）最高位15位 / 売上3.8万枚
+・第9位 : On The Loose（1988/01/01発売）最高位15位 / 売上3.8万枚
 ・第10位：トワイライト･アヴェニュー（1990/05/10発売）最高位24位 / 売上3.4万枚
 
 「あぶない刑事」挿入歌：Cops And Robbers
@@ -315,12 +317,14 @@ https://embed.music.apple.com/jp/album/cops-and-robbers/1745087988?i=1745088008&
                 views: "PLAYBACK",
                 thumbnail: "https://img.youtube.com/vi/UdaNYm1TN-Y/maxresdefault.jpg",
                 desc: `「天使の歌声」と称され、アイドルからミュージカルへと唯一無二の軌跡を辿った不世出の歌姫、本田美奈子。
-その圧倒的な歌唱力と表現力で時代を彩ったシングル売上TOP5をランキング形式でご紹介します。
-当時、社会現象を巻き起こしたあの伝説 of ヒット曲も登場します。
 
+その圧倒的な歌唱力と表現力で時代を彩ったシングル売上TOP5をランキング形式でご紹介します。
+
+当時、社会現象を巻き起こしたあの伝説 of ヒット曲も登場します。
 当時の熱狂を伝える貴重な歌唱映像とともに、珠玉のメロディをお楽しみください。
 
-▼チャンネル登録で応援よろしくお願いします！https://www.youtube.com/@次世代への手紙`,
+▼チャンネル登録はこちら
+${COMMON_SUB_LINK}`,
                 rankingDetails: `【ランキング詳細】
 ・第1位：1986年のマリリン（1986/02/05発売）最高位3位 / 売上24.9万枚
 https://embed.music.apple.com/jp/album/1986%E5%B9%B4%E3%81%AE%E3%83%9E%E3%83%AA%E3%83%AA%E3%83%B3/720488994?i=720489462&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=720489462&theme=auto
@@ -354,12 +358,14 @@ https://embed.music.apple.com/jp/album/%E3%81%A4%E3%81%B0%E3%81%95/1445116012?i=
                 views: "Wait",
                 thumbnail: "https://img.youtube.com/vi/ZwwvzmglJjw/maxresdefault.jpg",
                 desc: `日本を代表するロックバンドであり、美しい三声のハーモニーで知られるTHE ALFEE。
-彼らが黄金時代を築き上げた1980年代のシングル売上TOP5をランキング形式でご紹介します。
-売上50万枚を超えた伝説のヒット曲や、初のオリコン1位に輝いた名曲が登場します。
 
+彼らが黄金時代を築き上げた1980年代のシングル売上TOP5をランキング形式でご紹介します。
+
+売上50万枚を超えた伝説 of ヒット曲や、初のオリコン1位に輝いた名曲が登場します。
 当時の熱狂を伝える貴重な歌唱映像とともに、色褪せない珠玉のサウンドをお楽しみください。
 
-▼チャンネル登録で応援よろしくお願いします！https://www.youtube.com/@次世代への手紙`,
+▼チャンネル登録はこちら
+${COMMON_SUB_LINK}`,
                 rankingDetails: `【ランキング詳細】
 ※本ランキングは1980年代に発売されたシングル楽曲のみに限定して集計・構成しています。
 
@@ -384,6 +390,36 @@ https://embed.music.apple.com/jp/album/%E3%81%A4%E3%81%B0%E3%81%95/1445116012?i=
                 youtubeId: null
             },
             {
+                id: 8,
+                date: "2026.02.18",
+                category: 'シングル売上ランキング',
+                title: "SHOW-YAヒット曲TOP5！「限界LOVERS」から激動のロック魂を売上順で振り返る【歴代シングルランキング】",
+                duration: "01:00",
+                views: "New",
+                thumbnail: "https://img.youtube.com/vi/kUb_4HAeTK8/maxresdefault.jpg",
+                desc: `「ガールズロックの女王」と称され、日本のロックシーンに不滅の足跡を刻んだ伝説のバンド、SHOW-YA。
+
+その圧倒的な演奏力と寺田恵子のパワフルなハイトーンボイスで時代を席巻したシングル売上TOP5をランキング形式でご紹介します。
+
+今なお歌い継がれる、魂のロックアンセムも登場します。
+当時の熱狂を伝える貴重な歌唱映像とともに、珠玉のメロディをお楽しみください。
+
+▼チャンネル登録はこちら
+${COMMON_SUB_LINK}`,
+                rankingDetails: `【ランキング詳細】
+・第1位：限界LOVERS（1989/02/01発売）最高位13位 / 売上15.1万枚
+・第2位：私は嵐（1989/06/07発売）最高位12位 / 売上8.7万枚
+・第3位：叫び（1990/03/07発売）最高位12位 / 売上6.3万枚
+・第4位：ギャンブリング（1990/09/05発売）最高位15位 / 売上4.2万枚
+・第5位：水の中の逃亡者（1987/05/25発売）最高位39位 / 売上3.3万枚
+
+⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
+
+皆さんの心に残るSHOW-YAの名曲はどれですか？ 🎸
+ぜひYouTubeのコメント欄で思い出を語り合いましょう！`,
+                youtubeId: "kUb_4HAeTK8"
+            },
+            {
                 id: 6,
                 date: "Coming Soon",
                 category: '名曲フラッシュバック',
@@ -393,11 +429,12 @@ https://embed.music.apple.com/jp/album/%E3%81%A4%E3%81%B0%E3%81%95/1445116012?i=
                 thumbnail: "https://img.youtube.com/vi/IISKjvUoLEw/maxresdefault.jpg",
                 desc: `1984年, アニメ映画『超時空要塞マクロス 愛・おぼえていますか』の主題歌として誕生し, アニソンの歴史を塗り替えた不朽の名作。
 
-劇中のアイドル, リン・ミンメイの声優を務めた飯島真理さんの透明感あふれる歌声は, 当時の音楽チャートを席巻しました。オリコン週間ランキングで2度の最高7位を記録し、6週連続トップ10入りを果たすという, アニメソングとしては異例のロングセラーを記録。
+劇中のアイドル, リン・ミンメイの声優を務めた飯島真理さんの透明感あふれる歌声は, 当時の音楽チャートを席巻しました。
 
-当時の熱狂を伝える貴重な歌唱映像とともに, 時代を超えて愛される珠玉のメロディをお楽しみください。
+オリコン週間ランキングで2度の最高7位を記録し、6週連続トップ10入りを果たすという, アニメソングとしては異例のロングセラーを記録。当時の熱狂を伝える貴重な歌唱映像とともに, 時代を超えて愛される珠玉のメロディをお楽しみください。
 
-▼チャンネル登録で応援よろしくお願いします！ https://www.youtube.com/@次世代への手紙
+▼チャンネル登録はこちら
+${COMMON_SUB_LINK}
 
 🆕 公式ウェブサイトがオープンしました！ 
 https://zz-labo-site.github.io/next_generation/`,
@@ -416,7 +453,7 @@ https://zz-labo-site.github.io/next_generation/`,
             }
         ];
 
-        // --- Component ---
+        // --- Main App Implementation ---
         const App = () => {
             const [activeVideo, setActiveVideo] = useState(null);
             const [showDetails, setShowDetails] = useState(false);
@@ -438,7 +475,7 @@ https://zz-labo-site.github.io/next_generation/`,
                 return selectedCategory === 'すべて' ? videos : videos.filter(v => v.category === selectedCategory);
             }, [selectedCategory]);
 
-            // URL変換ロジック
+            // URL変換
             const renderDescription = (text) => {
                 if (!text) return null;
                 const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -461,9 +498,9 @@ https://zz-labo-site.github.io/next_generation/`,
                         if (isYoutube) {
                             return (
                                 <div key={index} className="my-4 block text-center md:text-left">
-                                    <a href={part} target="_blank" rel="noopener noreferrer" 
+                                    <a href={COMMON_SUB_LINK} target="_blank" rel="noopener noreferrer" 
                                        className="inline-flex items-center gap-3 px-6 py-3 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-widest rounded-sm transition-all shadow-[0_0_15px_rgba(204,0,0,0.2)] transform hover:-translate-y-0.5">
-                                        <YoutubeIcon className="w-5 h-5" /> チャンネル登録
+                                        <YoutubeIcon className="w-5 h-5" /> チャンネル登録はこちら
                                     </a>
                                 </div>
                             );
@@ -521,8 +558,8 @@ https://zz-labo-site.github.io/next_generation/`,
                                 </div>
                                 <div className="absolute -inset-10 bg-gradient-to-r from-transparent via-white/5 to-transparent blur-3xl opacity-30 pointer-events-none" aria-hidden="true"></div>
                             </div>
-                            <h1 className="font-zen text-4xl md:text-6xl font-bold text-white mb-4 tracking-wider text-glow uppercase">次世代への手紙</h1>
-                            <p className="font-mincho text-xl md:text-2xl text-[#cfb991] tracking-[0.5em] mb-12 text-center">ー 不滅の魂 ー</p>
+                            <h1 className="font-zen text-4xl md:text-6xl font-bold text-white mb-4 tracking-wider text-glow uppercase text-center">次世代への手紙</h1>
+                            <p className="font-mincho text-xl md:text-2xl text-[#cfb991] tracking-[0.5em] mb-12 text-center text-center">ー 不滅の魂 ー</p>
                             <div className="flex flex-col items-center">
                                 <button onClick={() => scrollToSection('archives')} className="px-16 py-4 border border-[#cfb991]/30 hover:border-[#cfb991] text-[10px] tracking-[0.6em] uppercase text-gray-300 transition-all hover:bg-[#cfb991]/5 shadow-[0_0_20px_rgba(204,0,0,0.05)]">Enter Archives</button>
                                 <section className="mt-20 w-full max-w-xl mx-auto px-6 animate-in" style={{animationDelay: '0.4s'}}>
@@ -534,7 +571,7 @@ https://zz-labo-site.github.io/next_generation/`,
                                     <div className="space-y-0 text-left">
                                         {transmissionLogs.map((log) => (
                                             <div key={log.id} className="log-line group py-4 flex items-center justify-between cursor-pointer" onClick={() => setActiveVideo(log)} role="button">
-                                                <div className="flex flex-col gap-1 text-left">
+                                                <div className="flex flex-col gap-1 text-left text-left">
                                                     <time className="font-lato text-[8px] tracking-widest text-[#cfb991]/50">{log.date}</time>
                                                     <span className="font-zen text-[13px] text-gray-300 group-hover:text-white transition-colors line-clamp-1">{log.title}</span>
                                                 </div>
@@ -552,14 +589,14 @@ https://zz-labo-site.github.io/next_generation/`,
                     {/* Archives Section */}
                     <main id="archives" className="container mx-auto px-4 py-32 min-h-[600px]">
                         <div className="flex flex-col items-center mb-20 text-center">
-                            <h2 className="font-cinzel text-3xl tracking-widest text-gray-200 uppercase text-center">Archives</h2>
-                            <nav className="flex flex-wrap justify-center gap-4 mt-12">
+                            <h2 className="font-cinzel text-3xl tracking-widest text-gray-200 uppercase text-center text-center">Archives</h2>
+                            <nav className="flex flex-wrap justify-center gap-4 mt-12 text-left">
                                 {categories.map(cat => (
                                     <button key={cat} onClick={() => setSelectedCategory(cat)} className={`px-6 py-2 text-[10px] tracking-widest uppercase border rounded-full transition-all ${selectedCategory === cat ? 'bg-[#cfb991] text-black border-[#cfb991]' : 'border-white/10 text-gray-500 hover:text-white'}`}>{cat}</button>
                                 ))}
                             </nav>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-24 transition-all">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-24 transition-all text-left">
                             {filteredVideos.map((v) => (
                                 <article key={v.id} className={`group relative animate-in ${v.youtubeId ? 'cursor-pointer' : 'cursor-default'}`} onClick={() => v.youtubeId && setActiveVideo(v)}>
                                     <div className={`rounded-sm overflow-hidden bg-[#080808] border border-white/5 transition-all duration-500 ${v.youtubeId ? 'group-hover:-translate-y-2 group-hover:border-[#cfb991]/30' : ''}`}>
@@ -570,13 +607,13 @@ https://zz-labo-site.github.io/next_generation/`,
                                                     <div className="w-14 h-14 rounded-full border border-[#cfb991] bg-black/40 backdrop-blur-sm flex items-center justify-center shadow-lg"><Play className="w-5 h-5 text-[#cfb991] fill-[#cfb991]" /></div>
                                                 </div>
                                             )}
-                                            <div className="absolute top-3 left-3 px-2 py-0.5 bg-[#cfb991]/20 backdrop-blur-md text-[8px] text-[#cfb991] tracking-widest rounded-sm uppercase">{v.category}</div>
-                                            <div className="absolute bottom-3 right-3 px-2 py-0.5 bg-black/80 text-[10px] text-gray-400 font-lato">{v.duration}</div>
+                                            <div className="absolute top-3 left-3 px-2 py-0.5 bg-[#cfb991]/20 backdrop-blur-md text-[8px] text-[#cfb991] tracking-widest rounded-sm uppercase text-left">{v.category}</div>
+                                            <div className="absolute bottom-3 right-3 px-2 py-0.5 bg-black/80 text-[10px] text-gray-400 font-lato text-left">{v.duration}</div>
                                         </div>
-                                        <div className="p-6 piano-black-gloss text-left">
+                                        <div className="p-6 piano-black-gloss text-left text-left">
                                             <h3 className="font-zen text-base text-gray-200 mb-6 line-clamp-1 group-hover:text-white leading-relaxed">{v.title}</h3>
                                             <div className="flex justify-between items-center text-[10px] font-lato uppercase">
-                                                <span className="text-gray-500 flex items-center gap-1 font-bold"><Monitor className="w-3 h-3 text-left"/> {v.views}</span>
+                                                <span className="text-gray-500 flex items-center gap-1 font-bold text-left"><Monitor className="w-3 h-3 text-left" /> {v.views}</span>
                                                 <span className={v.youtubeId ? 'text-[#cfb991] font-bold' : 'text-gray-700'}>{v.youtubeId ? 'PLAYBACK' : 'COMING SOON'}</span>
                                             </div>
                                         </div>
@@ -587,68 +624,67 @@ https://zz-labo-site.github.io/next_generation/`,
                         </div>
                     </main>
 
-                    {/* About Modal */}
                     {showAbout && (
-                        <div className="fixed inset-0 z-[100] bg-[#050505]/98 backdrop-blur-md overflow-y-auto animate-in text-left text-center" role="dialog">
+                        <div className="fixed inset-0 z-[100] bg-[#050505]/98 backdrop-blur-md overflow-y-auto animate-in text-left text-center text-center text-center" role="dialog">
                             <button onClick={() => setShowAbout(false)} className="fixed top-6 right-6 text-gray-500 hover:text-white transition-colors z-[110] p-2 focus:outline-none" aria-label="閉じる"><XIcon className="w-8 h-8"/></button>
                             <div className="container mx-auto px-4 py-24 text-center max-w-4xl relative">
                                 <div className="absolute inset-0 opacity-5 pointer-events-none" style={{backgroundImage: 'radial-gradient(circle at center, #cfb991 1px, transparent 1px)', backgroundSize: '40px 40px'}} aria-hidden="true"></div>
                                 <img src="./公式ロゴ.png" className="w-32 mx-auto mb-12 opacity-90 drop-shadow-[0_0_15px_rgba(207,185,145,0.2)]" alt="ロゴ" />
-                                <h2 className="font-zen text-3xl md:text-5xl font-bold mb-4 tracking-[0.2em] uppercase text-white text-glow text-center">次世代への手紙<span className="text-xl md:text-2xl ml-4 font-normal text-gray-400 align-middle text-left">・リターンズ・</span></h2>
-                                <p className="font-mincho text-xl md:text-2xl text-[#cfb991] italic mb-16 tracking-widest leading-relaxed text-center text-center">「不滅の音楽を、もう一度、新しい形で。」</p>
-                                <div className="font-mincho text-gray-300 leading-[2.2] space-y-12 text-justify text-base md:text-lg max-w-3xl mx-auto tracking-wide">
-                                    <p className="border-l-2 border-[#cfb991]/30 pl-6 italic text-left">当番組は、昭和・平成の邦楽シーンを彩った名曲たちを、オリコンの公式記録に基づいたランキング形式で紐解く音楽アーカイブチャンネルです。</p>
-                                    <section className="bg-white/5 p-8 md:p-12 rounded-sm border border-white/10 shadow-inner text-left">
-                                        <h3 className="font-zen text-xl md:text-2xl text-center mb-8 text-white font-bold tracking-widest flex items-center justify-center gap-3">📜 再始動にあたって</h3>
-                                        <p className="mb-8 leading-relaxed">かつて私はYouTubeで5万人以上のチャンネル登録者さんと共に、音楽を語り合う時間を過ごしていました。 ある日, 自らの不器用な手違いにより, その大切なチャンネルを一瞬にして消し去ってしまいました。実質1年間という短い運営期間になってしまいました。</p>
-                                        <p className="leading-relaxed text-left">応援してくださっていた皆様への申し訳なさと、あまりのショックから、しばらくYouTube活動をお休みしていましたが、今, ようやく前を向く決心がつきました。 かつてお届けした動画も、今の視点で丁寧にリメイクし、新しい息吹を吹き込みながら少しずつ公開していきます。</p>
+                                <h2 className="font-zen text-3xl md:text-5xl font-bold mb-4 tracking-[0.2em] uppercase text-white text-glow text-center text-center">次世代への手紙<span className="text-xl md:text-2xl ml-4 font-normal text-gray-400 align-middle text-left text-left text-left">・リターンズ・</span></h2>
+                                <p className="font-mincho text-xl md:text-2xl text-[#cfb991] italic mb-16 tracking-widest leading-relaxed text-center text-center text-center">「不滅の音楽を、もう一度、新しい形で。」</p>
+                                <div className="font-mincho text-gray-300 leading-[2.2] space-y-12 text-justify text-base md:text-lg max-w-3xl mx-auto tracking-wide text-justify text-justify">
+                                    <p className="border-l-2 border-[#cfb991]/30 pl-6 italic text-left text-left">当番組は、昭和・平成の邦楽シーンを彩った名曲たちを、オリコンの公式記録に基づいたランキング形式で紐解く音楽アーカイブチャンネルです。</p>
+                                    <section className="bg-white/5 p-8 md:p-12 rounded-sm border border-white/10 shadow-inner text-left text-left text-left">
+                                        <h3 className="font-zen text-xl md:text-2xl text-center mb-8 text-white font-bold tracking-widest flex items-center justify-center gap-3 text-center text-center">📜 再始動にあたって</h3>
+                                        <p className="mb-8 leading-relaxed text-justify">かつて私はYouTubeで5万人以上のチャンネル登録者さんと共に、音楽を語り合う時間を過ごしていました。 ある日, 自らの不器用な手違いにより, その大切なチャンネルを一瞬にして消し去ってしまいました。実質1年間という短い運営期間になってしまいました。</p>
+                                        <p className="leading-relaxed text-left text-left text-left">応援してくださっていた皆様への申し訳なさと、あまりのショックから、しばらくYouTube活動をお休みしていましたが、今, ようやく前を向く決心がつきました。 かつてお届けした動画も、今の視点で丁寧にリメイクし、新しい息吹を吹き込みながら少しずつ公開していきます。</p>
                                     </section>
-                                    <section className="py-8 text-left">
-                                        <h3 className="font-zen text-xl md:text-2xl text-center mb-8 text-white font-bold tracking-widest flex items-center justify-center gap-3 text-center">🎤 番組のスタンス</h3>
-                                        <p className="mb-8 leading-relaxed text-justify">私たちは、売上枚数という数字だけで音楽の良し悪しを決めたいわけではありません。 ランキングはあくまで, あの時代にどれだけ多くの人の手にその歌が渡ったかを示す「時代の地図」だと考えています。 順位そのものを楽しむエンターテインメントとして。 そして, その数字の向こう側にある「当時の空気感」や「作り手の執念」を次世代へ語り継ぐ場として、この番組を再構築していきます。</p>
+                                    <section className="py-8 text-left text-left text-left">
+                                        <h3 className="font-zen text-xl md:text-2xl text-center mb-8 text-white font-bold tracking-widest flex items-center justify-center gap-3 text-center text-center">🎤 番組のスタンス</h3>
+                                        <p className="mb-8 leading-relaxed text-justify text-left text-left">私たちは、売上枚数という数字だけで音楽の良し悪しを決めたいわけではありません。 ランキングはあくまで, あの時代にどれだけ多くの人の手にその歌が渡ったかを示す「時代の地図」だと考えています。 順位そのものを楽しむエンターテインメントとして。 そして, その数字の向こう側にある「当時の空気感」や「作り手の執念」を次世代へ語り継ぐ場として、この番組を再構築していきます。</p>
                                     </section>
-                                    <div className="grid md:grid-cols-2 gap-8 pt-4 text-left">
-                                        <div className="bg-gradient-to-br from-white/10 to-transparent p-8 rounded-sm border border-white/5 text-center"><h4 className="font-zen text-[#cfb991] mb-4 text-lg font-bold">50代以上の皆様へ</h4><p className="text-sm opacity-90">イントロ一つで当時の記憶が鮮明に蘇る、良質な時間を。</p></div>
-                                        <div className="bg-gradient-to-br from-white/10 to-transparent p-8 rounded-sm border border-white/5 text-center"><h4 className="font-zen text-[#cfb991] mb-4 text-lg font-bold">20〜30代の皆様へ</h4><p className="text-sm opacity-90 text-center">今のJ-POPの源流にある、本物の音楽の発見を。</p></div>
+                                    <div className="grid md:grid-cols-2 gap-8 pt-4 text-left text-left text-left">
+                                        <div className="bg-gradient-to-br from-white/10 to-transparent p-8 rounded-sm border border-white/5 text-center text-center text-center"><h4 className="font-zen text-[#cfb991] mb-4 text-lg font-bold text-center">50代以上の皆様へ</h4><p className="text-sm opacity-90 text-center">イントロ一つで当時の記憶が鮮明に蘇る、良質な時間を。</p></div>
+                                        <div className="bg-gradient-to-br from-white/10 to-transparent p-8 rounded-sm border border-white/5 text-center text-center text-center text-center"><h4 className="font-zen text-[#cfb991] mb-4 text-lg font-bold text-center">20〜30代の皆様へ</h4><p className="text-sm opacity-90 text-center text-center">今のJ-POPの源流にある、本物の音楽の発見を。</p></div>
                                     </div>
-                                    <div className="text-center space-y-4 pt-8 text-center">
-                                        <p className="text-lg md:text-xl font-medium text-white tracking-widest text-center">止まっていた時計を、再び動かします。</p>
-                                        <p className="text-lg md:text-xl font-medium text-white tracking-widest text-center text-center">また皆様と、不滅の名曲について語り合える場所を育てていければ幸いです。</p>
-                                        <p className="text-sm md:text-base font-lato opacity-60 pt-4 text-center">2026年2月10日</p>
+                                    <div className="text-center space-y-4 pt-8 text-center text-center">
+                                        <p className="text-lg md:text-xl font-medium text-white tracking-widest text-center text-center">止まっていた時計を、再び動かします。</p>
+                                        <p className="text-lg md:text-xl font-medium text-white tracking-widest text-center text-center text-center text-center">また皆様と、不滅の名曲について語り合える場所を育てていければ幸いです。</p>
+                                        <p className="text-sm md:text-base font-lato opacity-60 pt-4 text-center text-center text-center">2026年2月10日</p>
                                     </div>
                                 </div>
-                                <div className="mt-24 border-t border-white/10 pt-16 text-center">
-                                    <h3 className="font-zen text-xl md:text-2xl text-white mb-8 font-bold tracking-widest">🔴 チャンネル登録で応援をお願いします</h3>
-                                    <div className="flex flex-col items-center gap-6 text-center">
-                                        <a href="https://www.youtube.com/@次世代への手紙?sub_confirmation=1" target="_blank" className="inline-flex items-center gap-4 px-12 py-5 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-[0.3em] rounded-sm transition-all shadow-[0_0_20px_rgba(204,0,0,0.4)] transform hover:-translate-y-1 uppercase text-sm">【チャンネル登録はこちら】</a>
-                                        <p className="font-lato text-xs text-gray-500 tracking-widest opacity-50 uppercase font-bold text-center">https://www.youtube.com/@次世代への手紙</p>
+                                <div className="mt-24 border-t border-white/10 pt-16 text-center text-center text-center">
+                                    <h3 className="font-zen text-xl md:text-2xl text-white mb-8 font-bold tracking-widest text-center text-center">🔴 チャンネル登録はこちら</h3>
+                                    <div className="flex flex-col items-center gap-6 text-center text-center text-center text-center">
+                                        <a href={COMMON_SUB_LINK} target="_blank" className="inline-flex items-center gap-4 px-12 py-5 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-[0.3em] rounded-sm transition-all shadow-[0_0_20px_rgba(204,0,0,0.4)] transform hover:-translate-y-1 uppercase text-sm text-center text-center">チャンネル登録はこちら</a>
+                                        <p className="font-lato text-xs text-gray-500 tracking-widest opacity-50 font-bold text-center text-center text-center text-center text-center">https://www.youtube.com/@次世代への手紙</p>
                                     </div>
-                                    <div className="mt-20 text-right font-zen text-sm text-[#cfb991] tracking-[0.3em] font-medium italic opacity-80 border-r-2 border-[#cfb991] pr-4 inline-block float-right text-left text-right">【不滅の魂 制作委員会】</div>
+                                    <div className="mt-20 text-right font-zen text-sm text-[#cfb991] tracking-[0.3em] font-medium italic opacity-80 border-r-2 border-[#cfb991] pr-4 inline-block float-right text-left text-right text-right text-right">【不滅の魂 制作委員会】</div>
                                 </div>
                             </div>
                         </div>
                     )}
 
-                    {/* Video Player Modal */}
+                    {/* Video Player Modal with Functional Rank Expand/Collapse */}
                     {activeVideo && (
-                        <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl overflow-y-auto animate-in text-left text-left">
+                        <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl overflow-y-auto animate-in text-left text-left text-left text-left text-left text-left">
                             <div className="min-h-full flex items-center justify-center p-4 md:p-8">
                                 <button onClick={() => { setActiveVideo(null); setShowDetails(false); }} className="fixed top-6 right-6 text-gray-400 hover:text-white z-[110] transition-colors p-2 focus:outline-none" aria-label="閉じる"><XIcon className="w-8 h-8"/></button>
-                                <div className="w-full max-w-5xl text-left text-left">
-                                    <div className="aspect-video bg-black border border-white/10 rounded-sm overflow-hidden mb-10 shadow-[0_0_50px_rgba(207,185,145,0.15)] text-left">
+                                <div className="w-full max-w-5xl text-left text-left text-left text-left text-left text-left">
+                                    <div className="aspect-video bg-black border border-white/10 rounded-sm overflow-hidden mb-10 shadow-[0_0_50px_rgba(207,185,145,0.15)] text-left text-left text-left text-left text-left">
                                         <iframe className="w-full h-full text-left" src={`https://www.youtube.com/embed/${activeVideo.youtubeId}?autoplay=1&rel=0`} frameBorder="0" allowFullScreen title={activeVideo.title}></iframe>
                                     </div>
-                                    <div className="border-l-2 border-[#cfb991] pl-8 pb-20">
-                                        <h2 className="font-zen text-2xl md:text-3xl text-white mb-8 leading-tight tracking-wide text-left">{activeVideo.title}</h2>
-                                        <div className="font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap tracking-wide text-left">{renderDescription(activeVideo.desc)}</div>
+                                    <div className="border-l-2 border-[#cfb991] pl-8 pb-20 text-left text-left text-left text-left text-left text-left">
+                                        <h2 className="font-zen text-2xl md:text-3xl text-white mb-8 leading-tight tracking-wide text-left text-left text-left text-left">{activeVideo.title}</h2>
+                                        <div className="font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap tracking-wide text-left text-left text-left text-left text-left text-left">{renderDescription(activeVideo.desc)}</div>
                                         {activeVideo.rankingDetails && (
-                                            <div className="mt-12 text-left">
+                                            <div className="mt-12 text-left text-left text-left text-left">
                                                 {!showDetails ? (
-                                                    <button onClick={() => setShowDetails(true)} className="text-[#cfb991] text-sm font-lato tracking-widest border-b border-[#cfb991] pb-1 hover:text-white transition-colors text-left" aria-expanded="false">▼ ランキングの詳細はこちら！</button>
+                                                    <button onClick={() => setShowDetails(true)} className="text-[#cfb991] text-sm font-lato tracking-widest border-b border-[#cfb991] pb-1 hover:text-white transition-colors text-left text-left text-left text-left text-left text-left" aria-expanded="false">▼ ランキングの詳細はこちら！</button>
                                                 ) : (
-                                                    <div className="animate-in pt-8 border-t border-white/10 mt-8 font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap" aria-expanded="true">
-                                                        <div className="mb-10 text-left">{renderDescription(activeVideo.rankingDetails)}</div>
-                                                        <button onClick={() => setShowDetails(false)} className="block mt-8 text-gray-500 text-[10px] tracking-widest hover:text-white uppercase transition-colors font-bold tracking-[0.2em] text-left">▲ CLOSE DETAILS</button>
+                                                    <div className="animate-in pt-8 border-t border-white/10 mt-8 font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap text-left text-left text-left text-left text-left text-left text-left text-left" aria-expanded="true">
+                                                        <div className="mb-10 text-left text-left text-left text-left text-left text-left text-left text-left">{renderDescription(activeVideo.rankingDetails)}</div>
+                                                        <button onClick={() => setShowDetails(false)} className="block mt-8 text-gray-500 text-[10px] tracking-widest hover:text-white uppercase transition-colors font-bold tracking-[0.2em] text-left text-left text-left text-left text-left text-left text-left text-left text-left text-left">▲ CLOSE DETAILS</button>
                                                     </div>
                                                 )}
                                             </div>
@@ -659,17 +695,15 @@ https://zz-labo-site.github.io/next_generation/`,
                         </div>
                     )}
 
-                    <footer className="py-24 border-t border-white/5 flex flex-col items-center bg-[#020202] text-center" role="contentinfo">
-                        <img src="./公式ロゴ.png" alt="logo" className="h-10 opacity-20 mb-10 grayscale hover:grayscale-0 transition-all text-center" />
+                    <footer className="py-24 border-t border-white/5 flex flex-col items-center bg-[#020202] text-center text-center text-center text-center text-center text-center" role="contentinfo">
+                        <img src="./公式ロゴ.png" alt="logo" className="h-10 opacity-20 mb-10 grayscale hover:grayscale-0 transition-all text-center text-center text-center text-center text-center text-center" />
                         
-                        {/* Hit Counter Block Removed as per request */}
-                        
-                        <div className="flex space-x-10 mb-12 text-gray-600 text-center">
-                             <a href="https://www.youtube.com/@次世代への手紙" target="_blank" className="hover:text-[#cfb991] transition-colors" aria-label="YouTube"><YoutubeIcon className="w-6 h-6" /></a>
-                             <a href="https://x.com/ZZLAB48210" target="_blank" className="hover:text-[#cfb991] transition-colors group" aria-label="Twitter X"><TwitterX className="w-5 h-5 text-center"/></a>
-                             <a href="https://www.instagram.com/immortalsoul_2026/" target="_blank" className="hover:text-[#cfb991] transition-colors" aria-label="Instagram"><Instagram className="w-6 h-6 text-center" /></a>
+                        <div className="flex space-x-10 mb-12 text-gray-600 text-center text-center text-center text-center text-center text-center">
+                             <a href={COMMON_SUB_LINK} target="_blank" className="hover:text-[#cfb991] transition-colors" aria-label="YouTube"><YoutubeIcon className="w-6 h-6" /></a>
+                             <a href="https://x.com/ZZLAB48210" target="_blank" className="hover:text-[#cfb991] transition-colors group" aria-label="Twitter X"><TwitterX className="w-5 h-5 text-center text-center text-center text-center text-center"/></a>
+                             <a href="https://www.instagram.com/immortalsoul_2026/" target="_blank" className="hover:text-[#cfb991] transition-colors" aria-label="Instagram"><Instagram className="w-6 h-6 text-center text-center text-center text-center text-center" /></a>
                         </div>
-                        <p className="text-[10px] text-gray-700 tracking-[0.3em] uppercase font-lato text-center">&copy; 2026 次世代への手紙 / 不滅の魂 制作委員会</p>
+                        <p className="text-[10px] text-gray-700 tracking-[0.3em] uppercase font-lato text-center text-center text-center text-center text-center text-center text-center">&copy; 2026 次世代への手紙 / 不滅の魂 制作委員会</p>
                     </footer>
                 </div>
             );
