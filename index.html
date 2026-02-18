@@ -3,21 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <!-- SEO Meta Tags -->
-    <title>【公式】次世代への手紙 - 不滅の魂 | 昭和・平成の名曲YouTubeアーカイブ</title>
-    <meta name="description" content="昭和・平成の邦楽シーンを彩った不滅の名曲をランキング形式で紹介するYouTubeチャンネル「次世代への手紙」公式サイト。本田美奈子、THE ALFEE、小比類巻かほる、浜田麻里、ゴダイゴ、安全地帯、飯島真理、マクロスなど。">
-    <meta name="keywords" content="次世代への手紙, 不滅 of 魂, 本田美奈子, THE ALFEE, 小比類巻かほる, 浜田麻里, ゴダイゴ, 安全地帯, 飯島真理, マクロス, 昭和歌謡, 平成J-POP, 音楽ランキング, YouTube, 80年代アイドル, ヒット曲, 名曲フラッシュバック">
+    <title>【公式】次世代への手紙 - 不滅の魂 | 昭和・平成の名曲・オリコンランキング アーカイブ</title>
+    <meta name="description" content="昭和・平成の邦楽シーンを彩った不滅の名曲をオリコン記録に基づきランキング形式で紹介するYouTubeチャンネル「次世代への手紙」公式サイト。本田美奈子、THE ALFEE、浜田麻里、安全地帯などのヒット曲の軌跡を辿る。">
+    <meta name="keywords" content="次世代への手紙, 不滅の魂, 昭和歌謡, 平成J-POP, オリコンランキング, 音楽アーカイブ, 本田美奈子, THE ALFEE, 浜田麻里, 安全地帯, 小比類巻かほる, ゴダイゴ, 飯島真理, YouTube音楽番組">
     <link rel="canonical" href="https://zz-labo-site.github.io/next_generation/">
-    
+    <meta name="author" content="不滅の魂 制作委員会">
+    <meta name="theme-color" content="#050505">
+
     <!-- OGP -->
-    <meta property="og:title" content="【公式】次世代への手紙 - 不滅の魂 | 昭和・平成の名曲YouTubeアーカイブ">
+    <meta property="og:title" content="【公式】次世代への手紙 - 不滅の魂 | 昭和・平成の名曲アーカイブ">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zz-labo-site.github.io/next_generation/">
     <meta property="og:image" content="https://zz-labo-site.github.io/next_generation/公式ロゴ.png">
-    <meta property="og:description" content="不滅の音楽を、もう一度、新しい形で。昭和・平成の名曲をランキング形式で紹介するYouTubeチャンネルの公式サイト。最新のアーカイブ動画はこちら。">
+    <meta property="og:description" content="不滅の音楽を、もう一度、新しい形で。当時の熱狂と時代の地図を次世代へ語り継ぐ音楽アーカイブ。">
     <meta property="og:site_name" content="次世代への手紙 - 不滅の魂">
     <meta property="og:locale" content="ja_JP">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "次世代への手紙 - 不滅の魂",
+        "url": "https://zz-labo-site.github.io/next_generation/",
+        "publisher": { "@type": "Organization", "name": "不滅の魂 制作委員会" }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "名曲ランキングアーカイブ"
+      }
+    ]
+    </script>
 
     <!-- React & Libraries -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -37,13 +58,6 @@
             background: linear-gradient(180deg, rgba(20,20,20,1) 0%, rgba(5,5,5,1) 100%);
             position: relative;
         }
-        .piano-black-gloss::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            opacity: 0.5;
-        }
         
         .reflection {
             transform: scaleY(-1);
@@ -54,23 +68,18 @@
             filter: blur(2px);
         }
 
-        .text-glow {
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-        }
+        .text-glow { text-shadow: 0 0 20px rgba(255, 255, 255, 0.1); }
         
         @keyframes fade-in {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-in {
-            animation: fade-in 0.8s ease-out forwards;
-        }
+        .animate-in { animation: fade-in 0.8s ease-out forwards; }
         
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #000; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
 
-        /* 3D Flip Styles for Logo */
         .perspective-1000 { perspective: 1000px; }
         .transform-style-3d { transform-style: preserve-3d; }
         .backface-hidden { backface-visibility: hidden; }
@@ -99,10 +108,9 @@
 <body class="bg-[#050505] text-white overflow-x-hidden text-left font-mincho">
     <div id="root"></div>
 
-    <!-- Firebase SDK (Modular) via CDN -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, increment } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const firebaseConfig = JSON.parse(__firebase_config);
@@ -118,116 +126,50 @@
     <script type="text/babel">
         const { useState, useEffect, useMemo } = React;
 
-        // --- Icons ---
+        // --- Global Icons ---
         const Play = ({ className }) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
         );
         const XIcon = ({ className }) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         );
         const ChevronDown = ({ className }) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
         );
         const Monitor = ({ className }) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
         );
         const YoutubeIcon = ({ className }) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
         );
         const TwitterX = ({ className }) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className={className}>
-                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
         );
         const Instagram = ({ className }) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
         );
 
-        // --- Main App Component ---
-        const App = () => {
-            const [activeVideo, setActiveVideo] = useState(null);
-            const [showDetails, setShowDetails] = useState(false);
-            const [isScrolled, setIsScrolled] = useState(false);
-            const [loaded, setLoaded] = useState(false);
-            const [showAbout, setShowAbout] = useState(false);
-            const [selectedCategory, setSelectedCategory] = useState('すべて');
-            const [isLogoFlipped, setIsLogoFlipped] = useState(false);
-            const [visitorCount, setVisitorCount] = useState(null);
+        // --- Static Data ---
+        const categories = ['すべて', 'シングル売上ランキング', '名曲フラッシュバック'];
 
-            // URLを適切に変換
-            const renderDescription = (text) => {
-                if (!text) return null;
-                const urlRegex = /(https?:\/\/[^\s]+)/g;
-                
-                return text.split(urlRegex).map((part, index) => {
-                    if (part.match(urlRegex)) {
-                        if (part.includes('embed.music.apple.com')) {
-                            const cleanedUrl = part.replace(/&amp;/g, '&');
-                            return (
-                                <div key={index} className="my-6">
-                                    <iframe 
-                                        height="175" 
-                                        width="100%" 
-                                        title={`media-player-${index}`}
-                                        src={cleanedUrl} 
-                                        sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" 
-                                        allow="autoplay *; encrypted-media *; clipboard-write" 
-                                        style={{border: '0px', borderRadius: '12px', width: '100%', height: '175px', maxWidth: '660px'}}
-                                    ></iframe>
-                                </div>
-                            );
-                        }
-                        
-                        const isYoutube = part.includes('youtube.com');
-                        if (isYoutube) {
-                            return (
-                                <div key={index} className="my-4 block text-center md:text-left">
-                                    <a 
-                                        href={part} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer" 
-                                        className="inline-flex items-center gap-3 px-6 py-3 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-widest rounded-sm transition-all shadow-[0_0_15px_rgba(204,0,0,0.2)] transform hover:-translate-y-0.5"
-                                    >
-                                        <YoutubeIcon className="w-5 h-5" />
-                                        チャンネル登録はこちら
-                                    </a>
-                                </div>
-                            );
-                        } else {
-                            return (
-                                <a 
-                                    key={index} 
-                                    href={part} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    className="text-[#cfb991] underline hover:text-white transition-colors break-all"
-                                >
-                                    {part}
-                                </a>
-                            );
-                        }
-                    }
-                    return part;
-                });
-            };
+        const videos = [
+            {
+                id: 1,
+                date: "2026.02.10",
+                category: 'シングル売上ランキング',
+                title: "ロックの女王・浜田麻里ヒット曲TOP5！1位は売上40万枚超え",
+                duration: "01:00",
+                views: "290K",
+                thumbnail: "https://img.youtube.com/vi/PYfwgOOoc1Y/maxresdefault.jpg",
+                desc: `「ロックの女王」と称され、日本を代表する女性ロックシンガーである浜田麻里。
 
-            const categories = ['すべて', 'シングル売上ランキング', '名曲フラッシュバック'];
+その圧倒的な歌唱力とハイトーンボイスで時代を彩ったシングル売上TOP5をランキング形式でご紹介。
 
-            // 動画データ
-            const videos = [
-                {
-                    id: 1,
-                    date: "2026.02.10",
-                    category: 'シングル売上ランキング',
-                    title: "ロックの女王・浜田麻里ヒット曲TOP5！1位は売上40万枚超え",
-                    duration: "01:00",
-                    views: "290K",
-                    thumbnail: "https://img.youtube.com/vi/PYfwgOOoc1Y/maxresdefault.jpg",
-                    desc: `「ロックの女王」と称され、日本を代表する女性ロックシンガーである浜田麻里。 その圧倒的な歌唱力とハイトーンボイスで時代を彩ったシングル売上TOP5をランキング形式でご紹介。 最高位1位、売上40万枚を超えたあの伝説 of ヒット曲も登場します。 当時の熱狂を伝える貴重な歌唱映像とともに、珠玉のメロディをお楽しみください。
+最高位1位、売上40万枚を超えたあの伝説 of ヒット曲も登場します。 当時の熱狂を伝える貴重な歌唱映像とともに、珠玉のメロディをお楽しみください。
 
 ▼チャンネル登録で応援よろしくお願いします！
 https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
-                    rankingDetails: `【ランキング詳細】
+                rankingDetails: `【ランキング詳細】
 ・第1位：Return to Myself（1989/04/19発売）最高位1位 / 売上40.7万枚
 ・第2位：Cry For The Moon（1993/01/27発売）最高位6位 / 売上34.1万枚
 ・第3位：Heart and Soul（1988/09/07発売）最高位7位 / 売上15.3万枚
@@ -245,17 +187,18 @@ https://embed.music.apple.com/jp/album/nostalgia/293909960?i=293909992&itscg=302
 
 ⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
 皆さんの心に残る浜田麻里さんの名曲はどれですか？ 🎸 ぜひYouTubeのコメント欄で思い出を語り合いましょう！`,
-                    youtubeId: "PYfwgOOoc1Y"
-                },
-                {
-                    id: 2,
-                    date: "2026.02.12",
-                    category: 'シングル売上ランキング',
-                    title: "伝説のバンド・ゴダイゴのヒット曲TOP5！1位は売上88万枚超えのあの名曲",
-                    duration: "01:00",
-                    views: "27K",
-                    thumbnail: "https://img.youtube.com/vi/dz-Bugi8q5I/maxresdefault.jpg",
-                    desc: `1970年代後半から80年代にかけて、日本の音楽シーンを席巻した伝説の多国籍バンド、ゴダイゴ。
+                youtubeId: "PYfwgOOoc1Y"
+            },
+            {
+                id: 2,
+                date: "2026.02.12",
+                category: 'シングル売上ランキング',
+                title: "伝説のバンド・ゴダイゴのヒット曲TOP5！1位は売上88万枚超えのあの名曲",
+                duration: "01:00",
+                views: "27K",
+                thumbnail: "https://img.youtube.com/vi/dz-Bugi8q5I/maxresdefault.jpg",
+                desc: `1970年代後半から80年代にかけて、日本の音楽シーンを席巻した伝説の多国籍バンド、ゴダイゴ。
+
 キャッチーなメロディと圧倒的な演奏力で時代を彩った彼らの、シングル売上TOP5をランキング形式でご紹介します。
 売上88万枚を超え、社会現象を巻き起こしたあの不朽の名作も登場。
 
@@ -263,7 +206,7 @@ https://embed.music.apple.com/jp/album/nostalgia/293909960?i=293909992&itscg=302
 
 ▼チャンネル登録で応援よろしくお願いします！
 https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
-                    rankingDetails: `【ランキング詳細】
+                rankingDetails: `【ランキング詳細】
 ・第1位：ガンダーラ（1978/10/01発売）売上88.8万枚
 https://embed.music.apple.com/jp/album/%E3%82%AC%E3%83%B3%E3%83%80%E3%83%BC%E3%83%A9/477643015?i=477643021&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=477643021&theme=auto
 ・第2位：銀河鉄道999（1979/07/01発売）売上66.6万枚
@@ -283,18 +226,17 @@ https://embed.music.apple.com/jp/album/%E3%82%B5%E3%83%B3%E3%82%AD%E3%83%A5%E3%8
 
 ⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
 西遊記や銀河鉄道999の思い出など、ぜひYouTubeのコメント欄で語り合いましょう！`,
-                    youtubeId: "dz-Bugi8q5I"
-                },
-                {
-                    id: 3,
-                    date: "2026.02.14",
-                    category: 'シングル売上ランキング',
-                    title: "都会的な色気と圧倒的歌唱力・安全地帯ヒット曲TOP5！1位は売上70万枚超え",
-                    duration: "01:00",
-                    views: "46K",
-                    thumbnail: "https://img.youtube.com/vi/rIyNAPfSM6w/maxresdefault.jpg",
-                    desc: `都会的な色気と圧倒的歌唱力・安全地帯ヒット曲TOP5！1位は売上70万枚超え
-「ワインレッドの心」や「悲しみにさよなら」など、都会的で妖艶なメロディで80年代の音楽シーンを席巻したロックバンド、安全地帯。
+                youtubeId: "dz-Bugi8q5I"
+            },
+            {
+                id: 3,
+                date: "2026.02.14",
+                category: 'シングル売上ランキング',
+                title: "都会的な色気と圧倒的歌唱力・安全地帯ヒット曲TOP5！1位は売上70万枚超え",
+                duration: "01:00",
+                views: "46K",
+                thumbnail: "https://img.youtube.com/vi/rIyNAPfSM6w/maxresdefault.jpg",
+                desc: `「ワインレッドの心」や「悲しみにさよなら」など、都会的で妖艶なメロディで80年代の音楽シーンを席巻したロックバンド、安全地帯。
 
 玉置浩二さんの唯一無二の歌声と圧倒的な表現力で時代を彩った彼らの、シングル売上TOP5をランキング形式でご紹介します。 最高位1位、売上70万枚を超えたあの不朽の名作も登場。
 
@@ -302,7 +244,7 @@ https://embed.music.apple.com/jp/album/%E3%82%B5%E3%83%B3%E3%82%AD%E3%83%A5%E3%8
 
 ▼チャンネル登録で応援よろしくお願いします！ 
 https://www.youtube.com/@次世代への手紙?sub_confirmation=1`,
-                    rankingDetails: `【ランキング詳細】
+                rankingDetails: `【ランキング詳細】
 第1位：ワインレッドの心（1983/11/25発売）最高位1位 / 売上71.4万枚
 第2位：悲しみにさよなら（1985/06/25発売）最高位1位 / 売上44.3万枚
 第3位：恋の予感（1984/10/25発売）最高位3位 / 売上43.6万枚
@@ -325,18 +267,17 @@ https://embed.music.apple.com/jp/album/%E7%9C%9F%E5%A4%9C%E4%B8%AD%E3%81%99%E3%8
 
 ⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
 玉置さんの歌声に酔いしれたあの頃の思い出など、ぜひYouTubeのコメント欄で語り合いましょう！`,
-                    youtubeId: "rIyNAPfSM6w"
-                },
-                {
-                    id: 4,
-                    date: "2026.02.16",
-                    category: 'シングル売上ランキング',
-                    title: "小比類巻かほるヒット曲TOP5！シティーハンターからドラマ主題歌まで【歴代売上ランキング】",
-                    duration: "01:00",
-                    views: "28K",
-                    thumbnail: "https://img.youtube.com/vi/-ey1E-ijzNQ/maxresdefault.jpg",
-                    desc: `小比類巻かほるヒット曲TOP5！シティーハンターからドラマ主題歌まで【歴代売上ランキング】
-圧倒的な歌唱力と都会的なサウンドで、80年代後半から90年代の音楽シーンを鮮烈に彩った小比類巻かほる（Kohhy）。
+                youtubeId: "rIyNAPfSM6w"
+            },
+            {
+                id: 4,
+                date: "2026.02.16",
+                category: 'シングル売上ランキング',
+                title: "小比類巻かほるヒット曲TOP5！シティーハンターからドラマ主題歌まで【歴代売上ランキング】",
+                duration: "01:00",
+                views: "28K",
+                thumbnail: "https://img.youtube.com/vi/-ey1E-ijzNQ/maxresdefault.jpg",
+                desc: `圧倒的な歌唱力と都会的なサウンドで、80年代後半から90年代の音楽シーンを鮮烈に彩った小比類巻かほる（Kohhy）。
 彼女の代名詞とも言えるアニメ『シティーハンター』や、ドラマ主題歌として大ヒットを記録したシングル売上TOP5をランキング形式でご紹介します。
 ドラマ『結婚物語』の主題歌としてチャートを賑わせた、あの珠玉の名曲も登場します。
 
@@ -344,7 +285,7 @@ https://embed.music.apple.com/jp/album/%E7%9C%9F%E5%A4%9C%E4%B8%AD%E3%81%99%E3%8
 
 ▼チャンネル登録で応援よろしくお願いします！ 
 https://www.youtube.com/@次世代への手紙`,
-                    rankingDetails: `【ランキング詳細】
+                rankingDetails: `【ランキング詳細】
 ・第1位：Hold On Me（1987/02/26発売）最高位9位 / 売上12.9万枚
 ・第2位：SUMMER FACTOR（1994/04/01発売）最高位14位 / 売上11.3万枚
 ・第3位：City Hunter（1987/05/10発売）最高位8位 / 売上8.0万枚
@@ -363,21 +304,24 @@ https://embed.music.apple.com/jp/album/cops-and-robbers/1745087988?i=1745088008&
 
 ⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
 皆さんの心に残る名曲について、ぜひYouTubeのコメント欄で語り合いましょう！`,
-                    youtubeId: "-ey1E-ijzNQ"
-                },
-                {
-                    id: 7,
-                    date: "2026.02.18",
-                    category: 'シングル売上ランキング',
-                    title: "本田美奈子ヒット曲TOP5！筒美京平×秋元康が仕掛けた「伝説の歌唱力」とは？【歴代シングル売上ランキング】",
-                    duration: "01:00",
-                    views: "PLAYBACK",
-                    thumbnail: "https://img.youtube.com/vi/UdaNYm1TN-Y/maxresdefault.jpg",
-                    desc: `「天使の歌声」と称され、アイドルからミュージカルへと唯一無二の軌跡を辿った不世出の歌姫、本田美奈子。
+                youtubeId: "-ey1E-ijzNQ"
+            },
+            {
+                id: 7,
+                date: "2026.02.18",
+                category: 'シングル売上ランキング',
+                title: "本田美奈子ヒット曲TOP5！筒美京平×秋元康が仕掛けた「伝説の歌唱力」とは？",
+                duration: "01:00",
+                views: "PLAYBACK",
+                thumbnail: "https://img.youtube.com/vi/UdaNYm1TN-Y/maxresdefault.jpg",
+                desc: `「天使の歌声」と称され、アイドルからミュージカルへと唯一無二の軌跡を辿った不世出の歌姫、本田美奈子。
 その圧倒的な歌唱力と表現力で時代を彩ったシングル売上TOP5をランキング形式でご紹介します。
+当時、社会現象を巻き起こしたあの伝説 of ヒット曲も登場します。
+
+当時の熱狂を伝える貴重な歌唱映像とともに、珠玉のメロディをお楽しみください。
 
 ▼チャンネル登録で応援よろしくお願いします！https://www.youtube.com/@次世代への手紙`,
-                    rankingDetails: `【ランキング詳細】
+                rankingDetails: `【ランキング詳細】
 ・第1位：1986年のマリリン（1986/02/05発売）最高位3位 / 売上24.9万枚
 https://embed.music.apple.com/jp/album/1986%E5%B9%B4%E3%81%AE%E3%83%9E%E3%83%AA%E3%83%AA%E3%83%B3/720488994?i=720489462&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=720489462&theme=auto
 ・第2位：Oneway Generation（1987/02/04発売）最高位2位 / 売上20.4万枚
@@ -399,221 +343,245 @@ https://embed.music.apple.com/jp/album/%E3%81%A4%E3%81%B0%E3%81%95/1445116012?i=
 
 ⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
 皆さんの心に残る本田美奈子さんの名曲はどれですか？ 🎸 ぜひYouTubeのコメント欄で思い出を語り合いましょう！`,
-                    youtubeId: "UdaNYm1TN-Y"
-                },
-                {
-                    id: 5,
-                    date: "Coming Soon",
-                    category: 'シングル売上ランキング',
-                    title: "1980年代THE ALFEEシングル売上TOP5！1位は売上50万枚超えのあの名曲",
-                    duration: "Coming Soon",
-                    views: "Wait",
-                    thumbnail: "https://img.youtube.com/vi/ZwwvzmglJjw/maxresdefault.jpg",
-                    desc: `1980年代THE ALFEEシングル売上...`,
-                    rankingDetails: null,
-                    youtubeId: null
-                },
-                {
-                    id: 6,
-                    date: "Coming Soon",
-                    category: '名曲フラッシュバック',
-                    title: "マクロス名曲！飯島真理『愛・おぼえていますか』1984年年間38位の実績",
-                    duration: "Coming Soon",
-                    views: "Wait",
-                    thumbnail: "https://img.youtube.com/vi/IISKjvUoLEw/maxresdefault.jpg",
-                    desc: `マクロス名曲！飯島真理『愛・おぼえて...`,
-                    rankingDetails: null,
-                    youtubeId: null 
-                }
-            ];
+                youtubeId: "UdaNYm1TN-Y"
+            },
+            {
+                id: 5,
+                date: "Coming Soon",
+                category: 'シングル売上ランキング',
+                title: "1980年代THE ALFEEシングル売上TOP5！1位は売上50万枚超えのあの名曲",
+                duration: "Coming Soon",
+                views: "Wait",
+                thumbnail: "https://img.youtube.com/vi/ZwwvzmglJjw/maxresdefault.jpg",
+                desc: `日本を代表するロックバンドであり、美しい三声のハーモニーで知られるTHE ALFEE。
+彼らが黄金時代を築き上げた1980年代のシングル売上TOP5をランキング形式でご紹介します。
+売上50万枚を超えた伝説のヒット曲や、初のオリコン1位に輝いた名曲が登場します。
 
-            // ログ用に最新5件を取得
+当時の熱狂を伝える貴重な歌唱映像とともに、色褪せない珠玉のサウンドをお楽しみください。
+
+▼チャンネル登録で応援よろしくお願いします！https://www.youtube.com/@次世代への手紙`,
+                rankingDetails: `【ランキング詳細】
+※本ランキングは1980年代に発売されたシングル楽曲のみに限定して集計・構成しています。
+
+第1位：星空のディスタンス（1984/01/21発売）最高位2位 / 売上52.4万枚
+第2位：メリーアン（1983/06/21発売）最高位7位 / 売上37.3万枚
+第3位：恋人達のペイヴメント（1984/10/17発売）最高位1位 / 売上33.6万枚
+第4位：STARSHIP-光を求めて-（1984/05/21発売）最高位5位 / 売上31.1万枚
+第5位：シンデレラは眠れない（1985/02/21発売）最高位1位 / 売上29.8万枚
+第6位：サファイアの瞳（1987/03/11発売）最高位1位 / 売上18.7万枚
+第7位：霧のソフィア（1985/10/16発売）最高位2位 / 売上17.7万枚
+第8位：SWEAT&TEARS（1986/07/05発売）最高位3位 / 売上15.5万枚
+第9位：君が通り過ぎたあとに（1987/03/11発売）最高位5位 / 売上14.8万枚
+第10位：風曜日、君をつれて（1986/03/05発売）最高位2位 / 売上14.3万枚
+第11位：ROCKDOM-風に吹かれて-（1986/09/05発売）最高位4位 / 売上12.4万枚
+第11位：白夜-byaku-ya-（1987/07/01発売）最高位3位 / 売上12.4万枚
+第13位：My Truth（1987/10/28発売）最高位1位 / 売上11.2万枚
+
+---
+
+⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。
+皆さんの心に残るTHE ALFEEの80年代の名曲は何ですか？ 🎸 ぜひコメント欄で思い出を語り合いましょう！`,
+                youtubeId: null
+            },
+            {
+                id: 6,
+                date: "Coming Soon",
+                category: '名曲フラッシュバック',
+                title: "マクロス名曲！飯島真理『愛・おぼえていますか』1984年年間38位の実績",
+                duration: "Coming Soon",
+                views: "Wait",
+                thumbnail: "https://img.youtube.com/vi/IISKjvUoLEw/maxresdefault.jpg",
+                desc: `1984年, アニメ映画『超時空要塞マクロス 愛・おぼえていますか』の主題歌として誕生し, アニソンの歴史を塗り替えた不朽の名作。
+
+劇中のアイドル, リン・ミンメイの声優を務めた飯島真理さんの透明感あふれる歌声は, 当時の音楽チャートを席巻しました。オリコン週間ランキングで2度の最高7位を記録し、6週連続トップ10入りを果たすという, アニメソングとしては異例のロングセラーを記録。
+
+当時の熱狂を伝える貴重な歌唱映像とともに, 時代を超えて愛される珠玉のメロディをお楽しみください。
+
+▼チャンネル登録で応援よろしくお願いします！ https://www.youtube.com/@次世代への手紙
+
+🆕 公式ウェブサイトがオープンしました！ 
+https://zz-labo-site.github.io/next_generation/`,
+                rankingDetails: `【楽曲詳細・記録】
+リリース： 1984/06/05（飯島真理 3枚目のシングル）
+チャート最高位： 週間7位（1984年8月27日付・9月17日付の2回記録）
+トップ10入り： 6週連続という驚異のロングヒット
+1984年年間ランキング： 第38位
+累計売上枚数： 約27.0万枚
+
+---
+
+⚠️ 本動画内の売上データ及び順位は, 当時のオリコンチャートの記録を基に構成しています。
+皆さんの心に残る『マクロス』の思い出や, 初めてこの曲を聴いた時の衝撃はどこですか？ 🎸 文化を救ったあの歌声について, ぜひコメント欄で語り合いましょう！`,
+                youtubeId: null 
+            }
+        ];
+
+        // --- Component ---
+        const App = () => {
+            const [activeVideo, setActiveVideo] = useState(null);
+            const [showDetails, setShowDetails] = useState(false);
+            const [isScrolled, setIsScrolled] = useState(false);
+            const [loaded, setLoaded] = useState(false);
+            const [showAbout, setShowAbout] = useState(false);
+            const [selectedCategory, setSelectedCategory] = useState('すべて');
+            const [isLogoFlipped, setIsLogoFlipped] = useState(false);
+
+            // 最新5件のログ取得
             const transmissionLogs = useMemo(() => {
                 return [...videos]
                     .filter(v => v.date && v.date !== "Coming Soon" && v.date !== "-")
                     .sort((a, b) => b.date.localeCompare(a.date))
                     .slice(0, 5);
-            }, [videos]);
+            }, []);
 
-            const filteredVideos = selectedCategory === 'すべて' 
-                ? videos 
-                : videos.filter(v => v.category === selectedCategory);
+            const filteredVideos = useMemo(() => {
+                return selectedCategory === 'すべて' ? videos : videos.filter(v => v.category === selectedCategory);
+            }, [selectedCategory]);
+
+            // URL変換ロジック
+            const renderDescription = (text) => {
+                if (!text) return null;
+                const urlRegex = /(https?:\/\/[^\s]+)/g;
+                return text.split(urlRegex).map((part, index) => {
+                    if (part.match(urlRegex)) {
+                        if (part.includes('embed.music.apple.com')) {
+                            const cleanedUrl = part.replace(/&amp;/g, '&');
+                            return (
+                                <div key={index} className="my-6">
+                                    <iframe 
+                                        height="175" width="100%" title={`media-player-${index}`} src={cleanedUrl} 
+                                        sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" 
+                                        allow="autoplay *; encrypted-media *; clipboard-write" 
+                                        style={{border: '0px', borderRadius: '12px', width: '100%', height: '175px', maxWidth: '660px'}}
+                                    ></iframe>
+                                </div>
+                            );
+                        }
+                        const isYoutube = part.includes('youtube.com');
+                        if (isYoutube) {
+                            return (
+                                <div key={index} className="my-4 block text-center md:text-left">
+                                    <a href={part} target="_blank" rel="noopener noreferrer" 
+                                       className="inline-flex items-center gap-3 px-6 py-3 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-widest rounded-sm transition-all shadow-[0_0_15px_rgba(204,0,0,0.2)] transform hover:-translate-y-0.5">
+                                        <YoutubeIcon className="w-5 h-5" /> チャンネル登録
+                                    </a>
+                                </div>
+                            );
+                        }
+                        return <a key={index} href={part} target="_blank" rel="noopener noreferrer" className="text-[#cfb991] underline hover:text-white transition-colors break-all">{part}</a>;
+                    }
+                    return part;
+                });
+            };
 
             useEffect(() => {
                 setLoaded(true);
                 const handleScroll = () => setIsScrolled(window.scrollY > 50);
                 window.addEventListener('scroll', handleScroll);
-
-                // --- Visitor Counter Logic ---
-                let retryInterval;
-                const initCounter = async () => {
-                    const fb = window._firebase;
-                    if (!fb) return;
-
-                    const { auth, db, appId, signInAnonymously, signInWithCustomToken, doc, setDoc, getDoc, increment } = fb;
-                    
-                    try {
-                        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                            await signInWithCustomToken(auth, __initial_auth_token);
-                        } else {
-                            await signInAnonymously(auth);
-                        }
-
-                        const unsubscribe = auth.onAuthStateChanged(async (user) => {
-                            if (user) {
-                                unsubscribe();
-                                const counterRef = doc(db, 'artifacts', appId, 'public', 'data', 'visitor_stats', 'global');
-                                await setDoc(counterRef, { count: increment(1) }, { merge: true });
-                                const snap = await getDoc(counterRef);
-                                if (snap.exists()) {
-                                    setVisitorCount(snap.data().count);
-                                }
-                            }
-                        });
-                    } catch (e) { console.error("Counter internal error", e); }
-                };
-
-                retryInterval = setInterval(() => {
-                    if (window._firebase) {
-                        clearInterval(retryInterval);
-                        initCounter();
-                    }
-                }, 500);
-
-                return () => {
-                    window.removeEventListener('scroll', handleScroll);
-                    if (retryInterval) clearInterval(retryInterval);
-                };
+                return () => window.removeEventListener('scroll', handleScroll);
             }, []);
 
             useEffect(() => {
-                if (activeVideo || showAbout) {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = 'auto';
-                }
+                document.body.style.overflow = (activeVideo || showAbout) ? 'hidden' : 'auto';
             }, [activeVideo, showAbout]);
+
+            const scrollToSection = (id) => {
+                const element = document.getElementById(id);
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+            };
 
             return (
                 <div className="min-h-screen font-sans selection:bg-white/20 selection:text-white overflow-x-hidden text-left bg-[#050505]">
                     {/* Navigation */}
                     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'bg-black/95 backdrop-blur-md py-4 border-b border-white/5 shadow-lg' : 'bg-transparent py-6'}`}>
-                        <div className="container mx-auto px-6 flex justify-between items-center">
+                        <div className="container mx-auto px-6 flex justify-between items-center text-left">
                             <div className="flex items-center gap-4 cursor-pointer" onClick={() => window.scrollTo({top:0, behavior:'smooth'})}>
                                 <img src="./公式ロゴ.png" alt="logo" className="h-10 opacity-90" />
                                 <span className="hidden md:block text-sm font-zen font-bold tracking-widest text-white uppercase text-glow">次世代への手紙</span>
                             </div>
                             <div className="flex space-x-8 font-lato text-[10px] tracking-widest uppercase text-gray-400">
-                                <button onClick={() => document.getElementById('archives').scrollIntoView({behavior:'smooth'})} className="hover:text-white transition-colors">Archives</button>
+                                <button onClick={() => scrollToSection('archives')} className="hover:text-white transition-colors">Archives</button>
                                 <button onClick={() => setShowAbout(true)} className="hover:text-white transition-colors">About</button>
+                                <button className="hover:text-white transition-colors">Admin</button>
                             </div>
                         </div>
                     </nav>
 
                     {/* Hero Section */}
-                    <header className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden py-32">
+                    <header className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden py-32" role="banner">
                         <div className="absolute inset-0 bg-[#050505]">
-                             <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070')] bg-cover bg-center"></div>
-                             <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]"></div>
+                             <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070')] bg-cover bg-center" aria-hidden="true"></div>
+                             <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]" aria-hidden="true"></div>
                         </div>
-                        
                         <div className={`relative z-10 text-center transition-all duration-1000 transform ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                            {/* Logo Wrapper */}
                             <div className="mb-10 relative perspective-1000 cursor-pointer group mx-auto" onClick={() => setIsLogoFlipped(!isLogoFlipped)}>
                                 <div className={`relative w-72 md:w-[480px] h-48 md:h-64 transition-transform duration-700 transform-style-3d ${isLogoFlipped ? 'rotate-y-180' : ''}`}>
-                                    <div className="absolute inset-0 backface-hidden flex items-center justify-center">
-                                        <img src="./公式ロゴ.png" alt="New Logo" className="w-full h-auto drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]" />
-                                    </div>
-                                    <div className="absolute inset-0 backface-hidden rotate-y-180 flex items-center justify-center">
-                                        <img src="./oldlogo.png" alt="Old Logo" className="w-full h-auto drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]" />
-                                    </div>
+                                    <div className="absolute inset-0 backface-hidden flex items-center justify-center"><img src="./公式ロゴ.png" alt="Logo" className="w-full h-auto drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]" /></div>
+                                    <div className="absolute inset-0 backface-hidden rotate-y-180 flex items-center justify-center"><img src="./oldlogo.png" alt="Old Logo" className="w-full h-auto drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]" /></div>
                                 </div>
-                                <div className="absolute -inset-10 bg-gradient-to-r from-transparent via-white/5 to-transparent blur-3xl opacity-30 pointer-events-none"></div>
+                                <div className="absolute -inset-10 bg-gradient-to-r from-transparent via-white/5 to-transparent blur-3xl opacity-30 pointer-events-none" aria-hidden="true"></div>
                             </div>
-                            
                             <h1 className="font-zen text-4xl md:text-6xl font-bold text-white mb-4 tracking-wider text-glow uppercase">次世代への手紙</h1>
-                            <p className="font-mincho text-xl md:text-2xl text-[#cfb991] tracking-[0.5em] mb-12 text-center text-center">ー 不滅の魂 ー</p>
-                            
+                            <p className="font-mincho text-xl md:text-2xl text-[#cfb991] tracking-[0.5em] mb-12 text-center">ー 不滅の魂 ー</p>
                             <div className="flex flex-col items-center">
-                                <button 
-                                    onClick={() => document.getElementById('archives').scrollIntoView({behavior:'smooth'})} 
-                                    className="px-16 py-4 border border-[#cfb991]/30 hover:border-[#cfb991] text-[10px] tracking-[0.6em] uppercase text-gray-300 transition-all hover:bg-[#cfb991]/5 shadow-[0_0_20px_rgba(204,0,0,0.05)]"
-                                >
-                                    Enter Archives
-                                </button>
-
-                                {/* Transmission Logs */}
-                                <div className="mt-20 w-full max-w-xl mx-auto px-6 animate-in" style={{animationDelay: '0.4s'}}>
-                                    <div className="flex items-center gap-4 mb-8">
+                                <button onClick={() => scrollToSection('archives')} className="px-16 py-4 border border-[#cfb991]/30 hover:border-[#cfb991] text-[10px] tracking-[0.6em] uppercase text-gray-300 transition-all hover:bg-[#cfb991]/5 shadow-[0_0_20px_rgba(204,0,0,0.05)]">Enter Archives</button>
+                                <section className="mt-20 w-full max-w-xl mx-auto px-6 animate-in" style={{animationDelay: '0.4s'}}>
+                                    <div className="flex items-center gap-4 mb-8 text-center justify-center">
                                         <div className="h-[1px] flex-grow bg-gradient-to-r from-transparent to-[#cfb991]/30"></div>
-                                        <span className="font-cinzel text-[9px] tracking-[0.5em] text-[#cfb991]/70 uppercase text-center">Records of Transmission</span>
+                                        <h2 className="font-cinzel text-[9px] tracking-[0.5em] text-[#cfb991]/70 uppercase">Records of Transmission</h2>
                                         <div className="h-[1px] flex-grow bg-gradient-to-l from-transparent to-[#cfb991]/30"></div>
                                     </div>
-                                    
                                     <div className="space-y-0 text-left">
                                         {transmissionLogs.map((log) => (
-                                            <div 
-                                                key={log.id} 
-                                                className="log-line group py-4 flex items-center justify-between cursor-pointer"
-                                                onClick={() => setActiveVideo(log)}
-                                            >
-                                                <div className="flex flex-col gap-1">
-                                                    <span className="font-lato text-[8px] tracking-widest text-[#cfb991]/50 uppercase">{log.date}</span>
+                                            <div key={log.id} className="log-line group py-4 flex items-center justify-between cursor-pointer" onClick={() => setActiveVideo(log)} role="button">
+                                                <div className="flex flex-col gap-1 text-left">
+                                                    <time className="font-lato text-[8px] tracking-widest text-[#cfb991]/50">{log.date}</time>
                                                     <span className="font-zen text-[13px] text-gray-300 group-hover:text-white transition-colors line-clamp-1">{log.title}</span>
                                                 </div>
-                                                <div className="flex items-center gap-4">
-                                                    <span className="hidden md:block font-zen text-[9px] tracking-widest text-gray-600 uppercase italic">Ranked Analysis</span>
-                                                    <div className="w-8 h-8 rounded-full border border-white/5 flex items-center justify-center group-hover:border-[#cfb991]/40 transition-colors">
-                                                        <Play className="w-3 h-3 text-gray-600 group-hover:text-[#cfb991]" />
-                                                    </div>
-                                                </div>
+                                                <Play className="w-3 h-3 text-gray-600 group-hover:text-[#cfb991]" />
                                             </div>
                                         ))}
                                     </div>
-                                    
-                                    <div className="mt-8 flex justify-center">
-                                        <div className="h-8 w-[1px] bg-gradient-to-b from-[#cfb991]/40 to-transparent"></div>
-                                    </div>
-                                </div>
+                                    <div className="mt-8 flex justify-center"><div className="h-8 w-[1px] bg-gradient-to-b from-[#cfb991]/40 to-transparent"></div></div>
+                                </section>
                             </div>
                         </div>
-                        <div className="absolute bottom-10 animate-bounce opacity-30 w-full flex justify-center"><ChevronDown className="w-6 h-6" /></div>
+                        <div className="absolute bottom-10 animate-bounce opacity-30 w-full flex justify-center" aria-hidden="true"><ChevronDown className="w-6 h-6" /></div>
                     </header>
 
                     {/* Archives Section */}
                     <main id="archives" className="container mx-auto px-4 py-32 min-h-[600px]">
                         <div className="flex flex-col items-center mb-20 text-center">
                             <h2 className="font-cinzel text-3xl tracking-widest text-gray-200 uppercase text-center">Archives</h2>
-                            <div className="flex flex-wrap justify-center gap-4 mt-12">
+                            <nav className="flex flex-wrap justify-center gap-4 mt-12">
                                 {categories.map(cat => (
                                     <button key={cat} onClick={() => setSelectedCategory(cat)} className={`px-6 py-2 text-[10px] tracking-widest uppercase border rounded-full transition-all ${selectedCategory === cat ? 'bg-[#cfb991] text-black border-[#cfb991]' : 'border-white/10 text-gray-500 hover:text-white'}`}>{cat}</button>
                                 ))}
-                            </div>
+                            </nav>
                         </div>
-
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-24 transition-all">
                             {filteredVideos.map((v) => (
                                 <article key={v.id} className={`group relative animate-in ${v.youtubeId ? 'cursor-pointer' : 'cursor-default'}`} onClick={() => v.youtubeId && setActiveVideo(v)}>
                                     <div className={`rounded-sm overflow-hidden bg-[#080808] border border-white/5 transition-all duration-500 ${v.youtubeId ? 'group-hover:-translate-y-2 group-hover:border-[#cfb991]/30' : ''}`}>
                                         <div className="relative aspect-video overflow-hidden">
-                                            <img src={v.thumbnail} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105" />
+                                            <img src={v.thumbnail} alt={v.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105" loading="lazy" />
                                             {v.youtubeId && (
-                                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
                                                     <div className="w-14 h-14 rounded-full border border-[#cfb991] bg-black/40 backdrop-blur-sm flex items-center justify-center shadow-lg"><Play className="w-5 h-5 text-[#cfb991] fill-[#cfb991]" /></div>
                                                 </div>
                                             )}
                                             <div className="absolute top-3 left-3 px-2 py-0.5 bg-[#cfb991]/20 backdrop-blur-md text-[8px] text-[#cfb991] tracking-widest rounded-sm uppercase">{v.category}</div>
                                             <div className="absolute bottom-3 right-3 px-2 py-0.5 bg-black/80 text-[10px] text-gray-400 font-lato">{v.duration}</div>
                                         </div>
-                                        <div className="p-6 piano-black-gloss">
-                                            <h3 className="font-zen text-base text-gray-200 mb-6 line-clamp-1 group-hover:text-white leading-relaxed text-left">{v.title}</h3>
+                                        <div className="p-6 piano-black-gloss text-left">
+                                            <h3 className="font-zen text-base text-gray-200 mb-6 line-clamp-1 group-hover:text-white leading-relaxed">{v.title}</h3>
                                             <div className="flex justify-between items-center text-[10px] font-lato uppercase">
-                                                <span className="text-gray-500 flex items-center gap-1 font-bold"><Monitor className="w-3 h-3"/> {v.views}</span>
+                                                <span className="text-gray-500 flex items-center gap-1 font-bold"><Monitor className="w-3 h-3 text-left"/> {v.views}</span>
                                                 <span className={v.youtubeId ? 'text-[#cfb991] font-bold' : 'text-gray-700'}>{v.youtubeId ? 'PLAYBACK' : 'COMING SOON'}</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="absolute -bottom-10 left-0 right-0 reflection opacity-0 group-hover:opacity-15 transition-opacity pointer-events-none"><img src={v.thumbnail} className="grayscale" /></div>
+                                    <div className="absolute -bottom-10 left-0 right-0 reflection opacity-0 group-hover:opacity-15 transition-opacity pointer-events-none" aria-hidden="true"><img src={v.thumbnail} alt="" className="grayscale" /></div>
                                 </article>
                             ))}
                         </div>
@@ -621,68 +589,65 @@ https://embed.music.apple.com/jp/album/%E3%81%A4%E3%81%B0%E3%81%95/1445116012?i=
 
                     {/* About Modal */}
                     {showAbout && (
-                        <div className="fixed inset-0 z-[100] bg-[#050505]/98 backdrop-blur-md overflow-y-auto animate-in text-left text-center">
-                            <button onClick={() => setShowAbout(false)} className="fixed top-6 right-6 text-gray-500 hover:text-white transition-colors z-[110] p-2 focus:outline-none"><XIcon className="w-8 h-8"/></button>
+                        <div className="fixed inset-0 z-[100] bg-[#050505]/98 backdrop-blur-md overflow-y-auto animate-in text-left text-center" role="dialog">
+                            <button onClick={() => setShowAbout(false)} className="fixed top-6 right-6 text-gray-500 hover:text-white transition-colors z-[110] p-2 focus:outline-none" aria-label="閉じる"><XIcon className="w-8 h-8"/></button>
                             <div className="container mx-auto px-4 py-24 text-center max-w-4xl relative">
-                                <div className="absolute inset-0 opacity-5 pointer-events-none" style={{backgroundImage: 'radial-gradient(circle at center, #cfb991 1px, transparent 1px)', backgroundSize: '40px 40px'}}></div>
-                                <img src="./公式ロゴ.png" className="w-32 mx-auto mb-12 opacity-90 drop-shadow-[0_0_15px_rgba(207,185,145,0.2)]" />
-                                <h2 className="font-zen text-3xl md:text-5xl font-bold mb-4 tracking-[0.2em] uppercase text-white text-glow text-center text-center">次世代への手紙<span className="text-xl md:text-2xl ml-4 font-normal text-gray-400 align-middle text-left">・リターンズ・</span></h2>
-                                <p className="font-mincho text-xl md:text-2xl text-[#cfb991] italic mb-16 tracking-widest leading-relaxed text-center text-center text-center">「不滅の音楽を、もう一度、新しい形で。」</p>
-                                <div className="font-mincho text-gray-300 leading-[2.2] space-y-12 text-justify text-base md:text-lg max-w-3xl mx-auto tracking-wide text-justify text-justify">
-                                    <p className="border-l-2 border-[#cfb991]/30 pl-6 italic text-left text-left">当番組は、昭和・平成の邦楽シーンを彩った名曲たちを、オリコンの公式記録に基づいたランキング形式で紐解く音楽アーカイブチャンネルです。</p>
-                                    <section className="bg-white/5 p-8 md:p-12 rounded-sm border border-white/10 shadow-inner text-left text-left">
-                                        <h3 className="font-zen text-xl md:text-2xl text-center mb-8 text-white font-bold tracking-widest flex items-center justify-center gap-3 text-center text-center text-center">📜 再始動にあたって</h3>
-                                        <p className="mb-8 leading-relaxed text-justify">かつて私はYouTubeで5万人以上のチャンネル登録者さんと共に、音楽を語り合う時間を過ごしていました。 ある日, 自らの不器用な手違いにより, その大切なチャンネルを一瞬にして消し去ってしまいました。実質1年間という短い運営期間になってしまいました。</p>
-                                        <p className="leading-relaxed text-left text-left">応援してくださっていた皆様への申し訳なさと、あまりのショックから、しばらくYouTube活動をお休みしていましたが、今, ようやく前を向く決心がつきました。 かつてお届けした動画も、今の視点で丁寧にリメイクし、新しい息吹を吹き込みながら少しずつ公開していきます。</p>
+                                <div className="absolute inset-0 opacity-5 pointer-events-none" style={{backgroundImage: 'radial-gradient(circle at center, #cfb991 1px, transparent 1px)', backgroundSize: '40px 40px'}} aria-hidden="true"></div>
+                                <img src="./公式ロゴ.png" className="w-32 mx-auto mb-12 opacity-90 drop-shadow-[0_0_15px_rgba(207,185,145,0.2)]" alt="ロゴ" />
+                                <h2 className="font-zen text-3xl md:text-5xl font-bold mb-4 tracking-[0.2em] uppercase text-white text-glow text-center">次世代への手紙<span className="text-xl md:text-2xl ml-4 font-normal text-gray-400 align-middle text-left">・リターンズ・</span></h2>
+                                <p className="font-mincho text-xl md:text-2xl text-[#cfb991] italic mb-16 tracking-widest leading-relaxed text-center text-center">「不滅の音楽を、もう一度、新しい形で。」</p>
+                                <div className="font-mincho text-gray-300 leading-[2.2] space-y-12 text-justify text-base md:text-lg max-w-3xl mx-auto tracking-wide">
+                                    <p className="border-l-2 border-[#cfb991]/30 pl-6 italic text-left">当番組は、昭和・平成の邦楽シーンを彩った名曲たちを、オリコンの公式記録に基づいたランキング形式で紐解く音楽アーカイブチャンネルです。</p>
+                                    <section className="bg-white/5 p-8 md:p-12 rounded-sm border border-white/10 shadow-inner text-left">
+                                        <h3 className="font-zen text-xl md:text-2xl text-center mb-8 text-white font-bold tracking-widest flex items-center justify-center gap-3">📜 再始動にあたって</h3>
+                                        <p className="mb-8 leading-relaxed">かつて私はYouTubeで5万人以上のチャンネル登録者さんと共に、音楽を語り合う時間を過ごしていました。 ある日, 自らの不器用な手違いにより, その大切なチャンネルを一瞬にして消し去ってしまいました。実質1年間という短い運営期間になってしまいました。</p>
+                                        <p className="leading-relaxed text-left">応援してくださっていた皆様への申し訳なさと、あまりのショックから、しばらくYouTube活動をお休みしていましたが、今, ようやく前を向く決心がつきました。 かつてお届けした動画も、今の視点で丁寧にリメイクし、新しい息吹を吹き込みながら少しずつ公開していきます。</p>
                                     </section>
-                                    <section className="py-8 text-left text-left">
-                                        <h3 className="font-zen text-xl md:text-2xl text-center mb-8 text-white font-bold tracking-widest flex items-center justify-center gap-3 text-center text-center">🎤 番組のスタンス</h3>
-                                        <p className="mb-8 leading-relaxed text-justify text-left text-left text-left">私たちは、売上枚数という数字だけで音楽の良し悪しを決めたいわけではありません。 ランキングはあくまで, あの時代にどれだけ多くの人の手にその歌が渡ったかを示す「時代の地図」だと考えています。</p>
-                                        <p className="leading-relaxed text-left">順位そのものを楽しむエンターテインメントとして。 そして, その数字の向こう側にある「当時の空気感」や「作り手の執念」を次世代へ語り継ぐ場として、この番組を再構築していきます。</p>
+                                    <section className="py-8 text-left">
+                                        <h3 className="font-zen text-xl md:text-2xl text-center mb-8 text-white font-bold tracking-widest flex items-center justify-center gap-3 text-center">🎤 番組のスタンス</h3>
+                                        <p className="mb-8 leading-relaxed text-justify">私たちは、売上枚数という数字だけで音楽の良し悪しを決めたいわけではありません。 ランキングはあくまで, あの時代にどれだけ多くの人の手にその歌が渡ったかを示す「時代の地図」だと考えています。 順位そのものを楽しむエンターテインメントとして。 そして, その数字の向こう側にある「当時の空気感」や「作り手の執念」を次世代へ語り継ぐ場として、この番組を再構築していきます。</p>
                                     </section>
-                                    <div className="grid md:grid-cols-2 gap-8 pt-4 text-left text-left text-left text-left">
-                                        <div className="bg-gradient-to-br from-white/10 to-transparent p-8 rounded-sm border border-white/5 text-center text-center text-center text-center"><h4 className="font-zen text-[#cfb991] mb-4 text-lg font-bold text-center">50代以上の皆様へ</h4><p className="text-sm opacity-90 text-center">イントロ一つで当時の記憶が鮮明に蘇る、良質な時間を。</p></div>
-                                        <div className="bg-gradient-to-br from-white/10 to-transparent p-8 rounded-sm border border-white/5 text-center text-center text-center"><h4 className="font-zen text-[#cfb991] mb-4 text-lg font-bold text-center">20〜30代の皆様へ</h4><p className="text-sm opacity-90 text-center text-center">今のJ-POPの源流にある、本物の音楽の発見を。</p></div>
+                                    <div className="grid md:grid-cols-2 gap-8 pt-4 text-left">
+                                        <div className="bg-gradient-to-br from-white/10 to-transparent p-8 rounded-sm border border-white/5 text-center"><h4 className="font-zen text-[#cfb991] mb-4 text-lg font-bold">50代以上の皆様へ</h4><p className="text-sm opacity-90">イントロ一つで当時の記憶が鮮明に蘇る、良質な時間を。</p></div>
+                                        <div className="bg-gradient-to-br from-white/10 to-transparent p-8 rounded-sm border border-white/5 text-center"><h4 className="font-zen text-[#cfb991] mb-4 text-lg font-bold">20〜30代の皆様へ</h4><p className="text-sm opacity-90 text-center">今のJ-POPの源流にある、本物の音楽の発見を。</p></div>
                                     </div>
-                                    <div className="text-center space-y-4 pt-8 text-center text-center">
+                                    <div className="text-center space-y-4 pt-8 text-center">
                                         <p className="text-lg md:text-xl font-medium text-white tracking-widest text-center">止まっていた時計を、再び動かします。</p>
                                         <p className="text-lg md:text-xl font-medium text-white tracking-widest text-center text-center">また皆様と、不滅の名曲について語り合える場所を育てていければ幸いです。</p>
                                         <p className="text-sm md:text-base font-lato opacity-60 pt-4 text-center">2026年2月10日</p>
                                     </div>
                                 </div>
-                                <div className="mt-24 border-t border-white/10 pt-16 text-center text-center">
-                                    <h3 className="font-zen text-xl md:text-2xl text-white mb-8 font-bold tracking-widest text-center">🔴 チャンネル登録で応援をお願いします</h3>
-                                    <p className="font-mincho text-gray-400 mb-10 text-base leading-loose max-w-2xl mx-auto text-center text-center">再始動したばかりのこのチャンネルを、ぜひ一緒に育ててください。<br/>以下のリンクから簡単に登録いただけます。</p>
-                                    <div className="flex flex-col items-center gap-6 text-left">
-                                        <a href="https://www.youtube.com/@次世代への手紙?sub_confirmation=1" target="_blank" className="inline-flex items-center gap-4 px-12 py-5 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-[0.3em] rounded-sm transition-all shadow-[0_0_20px_rgba(204,0,0,0.4)] transform hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(204,0,0,0.6)] uppercase text-sm text-left"><YoutubeIcon className="w-6 h-6 text-left" />【チャンネル登録はこちら】</a>
-                                        <p className="font-lato text-xs text-gray-500 tracking-widest opacity-50 uppercase font-bold text-center text-center">https://www.youtube.com/@次世代への手紙</p>
+                                <div className="mt-24 border-t border-white/10 pt-16 text-center">
+                                    <h3 className="font-zen text-xl md:text-2xl text-white mb-8 font-bold tracking-widest">🔴 チャンネル登録で応援をお願いします</h3>
+                                    <div className="flex flex-col items-center gap-6 text-center">
+                                        <a href="https://www.youtube.com/@次世代への手紙?sub_confirmation=1" target="_blank" className="inline-flex items-center gap-4 px-12 py-5 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-[0.3em] rounded-sm transition-all shadow-[0_0_20px_rgba(204,0,0,0.4)] transform hover:-translate-y-1 uppercase text-sm">【チャンネル登録はこちら】</a>
+                                        <p className="font-lato text-xs text-gray-500 tracking-widest opacity-50 uppercase font-bold text-center">https://www.youtube.com/@次世代への手紙</p>
                                     </div>
-                                    <div className="mt-20 text-right font-zen text-sm text-[#cfb991] tracking-[0.3em] font-medium italic opacity-80 border-r-2 border-[#cfb991] pr-4 inline-block float-right text-left text-left">【不滅の魂 制作委員会】</div>
-                                    <div className="clear-both"></div>
+                                    <div className="mt-20 text-right font-zen text-sm text-[#cfb991] tracking-[0.3em] font-medium italic opacity-80 border-r-2 border-[#cfb991] pr-4 inline-block float-right text-left text-right">【不滅の魂 制作委員会】</div>
                                 </div>
                             </div>
                         </div>
                     )}
 
-                    {/* Video Player Modal with Functional Rank Expand/Collapse */}
+                    {/* Video Player Modal */}
                     {activeVideo && (
-                        <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl overflow-y-auto animate-in text-left">
-                            <div className="min-h-full flex items-center justify-center p-4 md:p-8 text-left">
-                                <button onClick={() => { setActiveVideo(null); setShowDetails(false); }} className="fixed top-6 right-6 text-gray-400 hover:text-white z-[110] transition-colors p-2 focus:outline-none"><XIcon className="w-8 h-8"/></button>
-                                <div className="w-full max-w-5xl text-left">
+                        <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl overflow-y-auto animate-in text-left text-left">
+                            <div className="min-h-full flex items-center justify-center p-4 md:p-8">
+                                <button onClick={() => { setActiveVideo(null); setShowDetails(false); }} className="fixed top-6 right-6 text-gray-400 hover:text-white z-[110] transition-colors p-2 focus:outline-none" aria-label="閉じる"><XIcon className="w-8 h-8"/></button>
+                                <div className="w-full max-w-5xl text-left text-left">
                                     <div className="aspect-video bg-black border border-white/10 rounded-sm overflow-hidden mb-10 shadow-[0_0_50px_rgba(207,185,145,0.15)] text-left">
-                                        <iframe className="w-full h-full text-left" src={`https://www.youtube.com/embed/${activeVideo.youtubeId}?autoplay=1&rel=0`} frameBorder="0" allowFullScreen></iframe>
+                                        <iframe className="w-full h-full text-left" src={`https://www.youtube.com/embed/${activeVideo.youtubeId}?autoplay=1&rel=0`} frameBorder="0" allowFullScreen title={activeVideo.title}></iframe>
                                     </div>
-                                    <div className="border-l-2 border-[#cfb991] pl-8 pb-20 text-left">
+                                    <div className="border-l-2 border-[#cfb991] pl-8 pb-20">
                                         <h2 className="font-zen text-2xl md:text-3xl text-white mb-8 leading-tight tracking-wide text-left">{activeVideo.title}</h2>
                                         <div className="font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap tracking-wide text-left">{renderDescription(activeVideo.desc)}</div>
                                         {activeVideo.rankingDetails && (
                                             <div className="mt-12 text-left">
                                                 {!showDetails ? (
-                                                    <button onClick={() => setShowDetails(true)} className="text-[#cfb991] text-sm font-lato tracking-widest border-b border-[#cfb991] pb-1 hover:text-white transition-colors text-left text-left">▼ ランキングの詳細はこちら！</button>
+                                                    <button onClick={() => setShowDetails(true)} className="text-[#cfb991] text-sm font-lato tracking-widest border-b border-[#cfb991] pb-1 hover:text-white transition-colors text-left" aria-expanded="false">▼ ランキングの詳細はこちら！</button>
                                                 ) : (
-                                                    <div className="animate-in pt-8 border-t border-white/10 mt-8 font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap tracking-wide text-left text-left">
-                                                        <div className="mb-10 text-left whitespace-pre-wrap text-left text-left">{renderDescription(activeVideo.rankingDetails)}</div>
+                                                    <div className="animate-in pt-8 border-t border-white/10 mt-8 font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap" aria-expanded="true">
+                                                        <div className="mb-10 text-left">{renderDescription(activeVideo.rankingDetails)}</div>
                                                         <button onClick={() => setShowDetails(false)} className="block mt-8 text-gray-500 text-[10px] tracking-widest hover:text-white uppercase transition-colors font-bold tracking-[0.2em] text-left">▲ CLOSE DETAILS</button>
                                                     </div>
                                                 )}
@@ -694,27 +659,17 @@ https://embed.music.apple.com/jp/album/%E3%81%A4%E3%81%B0%E3%81%95/1445116012?i=
                         </div>
                     )}
 
-                    <footer className="py-24 border-t border-white/5 flex flex-col items-center bg-[#020202] text-left text-center">
-                        <img src="./公式ロゴ.png" className="h-10 opacity-20 mb-10 grayscale hover:grayscale-0 transition-all text-left" />
-                        <div className="mb-12 text-center group">
-                            <span className="block font-cinzel text-[10px] tracking-[0.4em] text-[#cfb991]/60 uppercase mb-3 transition-colors group-hover:text-[#cfb991]">Total Memories Recalled</span>
-                            <div className="inline-flex gap-1.5 p-1 bg-white/5 rounded-sm border border-white/5 shadow-2xl">
-                                {visitorCount !== null ? (
-                                    String(visitorCount).padStart(6, '0').split('').map((num, i) => (
-                                        <span key={i} className="w-7 h-9 flex items-center justify-center bg-[#0a0a0a] border border-white/10 text-[#cfb991] font-cinzel text-xl rounded-sm shadow-inner text-glow">{num}</span>
-                                    ))
-                                ) : (
-                                    <div className="h-9 w-40 bg-white/5 animate-pulse rounded-sm"></div>
-                                )}
-                            </div>
-                            <span className="block font-cinzel text-[8px] tracking-[0.6em] text-gray-600 uppercase mt-4">Records Started: 2026.02.18</span>
+                    <footer className="py-24 border-t border-white/5 flex flex-col items-center bg-[#020202] text-center" role="contentinfo">
+                        <img src="./公式ロゴ.png" alt="logo" className="h-10 opacity-20 mb-10 grayscale hover:grayscale-0 transition-all text-center" />
+                        
+                        {/* Hit Counter Block Removed as per request */}
+                        
+                        <div className="flex space-x-10 mb-12 text-gray-600 text-center">
+                             <a href="https://www.youtube.com/@次世代への手紙" target="_blank" className="hover:text-[#cfb991] transition-colors" aria-label="YouTube"><YoutubeIcon className="w-6 h-6" /></a>
+                             <a href="https://x.com/ZZLAB48210" target="_blank" className="hover:text-[#cfb991] transition-colors group" aria-label="Twitter X"><TwitterX className="w-5 h-5 text-center"/></a>
+                             <a href="https://www.instagram.com/immortalsoul_2026/" target="_blank" className="hover:text-[#cfb991] transition-colors" aria-label="Instagram"><Instagram className="w-6 h-6 text-center" /></a>
                         </div>
-                        <div className="flex space-x-10 mb-12 text-gray-600">
-                             <a href="https://www.youtube.com/@次世代への手紙" target="_blank" className="hover:text-[#cfb991] transition-colors"><YoutubeIcon className="w-6 h-6" /></a>
-                             <a href="https://x.com/ZZLAB48210" target="_blank" className="hover:text-[#cfb991] transition-colors group"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
-                             <a href="https://www.instagram.com/immortalsoul_2026/" target="_blank" className="hover:text-[#cfb991] transition-colors"><Instagram className="w-6 h-6" /></a>
-                        </div>
-                        <p className="text-[10px] text-gray-700 tracking-[0.3em] uppercase font-lato">&copy; 2026 次世代への手紙 / 不滅の魂 制作委員会</p>
+                        <p className="text-[10px] text-gray-700 tracking-[0.3em] uppercase font-lato text-center">&copy; 2026 次世代への手紙 / 不滅の魂 制作委員会</p>
                     </footer>
                 </div>
             );
