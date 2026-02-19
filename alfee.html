@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE ALFEE: 不滅の音楽アーカイブ</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom Palette & Utilities */
+        :root {
+            --color-bg: #0f172a;
+            --color-card: #1e293b;
+            --color-text-main: #f8fafc;
+            --color-text-muted: #94a3b8;
+            --color-gold: #fbbf24;
+            --color-gold-dim: #b45309;
+            --color-accent: #3b82f6;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Zen Old Mincho', serif;
+        }
+
+        .gold-text {
+            color: var(--color-gold);
+        }
+
+        .chart-container {
+            position: relative; 
+            width: 100%; 
+            max-width: 600px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 300px;
+            max-height: 400px;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-active {
+            border-bottom: 2px solid var(--color-gold);
+            color: var(--color-gold);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* Member Card Hover Effect */
+        .member-card {
+            transition: all 0.3s ease;
+        }
+        .member-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-gold);
+        }
+    </style>
+    
+    <!-- Chosen Palette: Slate (Dark) + Amber (Gold) -->
+    <!-- Application Structure Plan: Dashboard style SPA. Header for context, Sticky Nav for Units. 
+         Content sections reveal progressively. Focus on "Legendary Status" through visualization of numbers. -->
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="w-full py-8 px-4 border-b border-slate-800 bg-slate-900/90 sticky top-0 z-50 backdrop-blur">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <h1 class="text-3xl md:text-4xl font-bold tracking-wider text-white">
+                    <span class="gold-text">THE ALFEE</span>
+                    <span class="text-lg md:text-xl block md:inline md:ml-4 text-slate-400 font-light">基礎から応用まで</span>
+                </h1>
+                <p class="text-sm text-slate-400 mt-2">次世代に語り継ぐべき「不滅の音楽」アーカイブ</p>
+            </div>
+            <div class="flex gap-4">
+                <div class="text-center px-4 py-2 glass-panel rounded-lg">
+                    <div class="text-xs text-slate-400 uppercase">Debut</div>
+                    <div class="text-xl font-bold gold-text">1974</div>
+                </div>
+                <div class="text-center px-4 py-2 glass-panel rounded-lg">
+                    <div class="text-xs text-slate-400 uppercase">Anniversary</div>
+                    <div class="text-xl font-bold gold-text">50th</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="w-full bg-slate-800 border-b border-slate-700">
+        <div class="max-w-6xl mx-auto px-4 overflow-x-auto">
+            <ul class="flex space-x-8 min-w-max" id="nav-list">
+                <!-- Nav items injected by JS -->
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content Area -->
+    <main class="flex-grow container mx-auto max-w-6xl px-4 py-8 space-y-16">
+
+        <!-- UNIT 1: Members -->
+        <section id="unit1" class="scroll-mt-32">
+            <div class="mb-6 border-l-4 border-amber-400 pl-4">
+                <h2 class="text-2xl font-bold text-white mb-2">UNIT 1: 基礎データとメンバー</h2>
+                <p class="text-slate-400">活動休止なし、メンバーチェンジなし。「奇跡のバンド」を構成する3人の巨人。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="member-grid">
+                <!-- Member cards injected via JS -->
+            </div>
+            
+            <div class="mt-6 p-6 glass-panel rounded-xl">
+                <h3 class="text-lg font-bold text-white mb-4">📜 基本情報メモ</h3>
+                <ul class="list-disc list-inside space-y-2 text-slate-300">
+                    <li><strong class="text-amber-400">結成:</strong> 1973年、明治学院大学キャンパスにて。</li>
+                    <li><strong class="text-amber-400">デビュー:</strong> 1974年8月25日『夏しぐれ』。</li>
+                    <li><strong class="text-amber-400">特徴:</strong> 活動休止・メンバーチェンジ一切なし。</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- UNIT 2: Live Legend (Charts) -->
+        <!-- Visualization & Content Choices: 
+             1. Line Chart to show the accumulation of 2900 concerts. Goal: Visualize consistency.
+             2. Bar Chart comparing "Tokyo Bay Area" attendance to Budokan capacity. Goal: Visualize scale.
+             Confirming NO SVG graphics used directly, using Chart.js Canvas. -->
+        <section id="unit2" class="scroll-mt-32">
+            <div class="mb-6 border-l-4 border-blue-500 pl-4">
+                <h2 class="text-2xl font-bold text-white mb-2">UNIT 2: 伝説の「ライブ活動」</h2>
+                <p class="text-slate-400">圧倒的な回数のコンサート活動。数字で見るTHE ALFEEの凄み。</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Chart 1: Concert Count -->
+                <div class="glass-panel p-6 rounded-xl">
+                    <h3 class="text-lg font-bold text-white mb-4 text-center">通算ライブ本数の推移</h3>
+                    <div class="chart-container">
+                        <canvas id="liveCountChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-center text-slate-400">
+                        2024年5月時点で<span class="text-amber-400 font-bold">2900本</span>達成。<br>前人未到の3000本へ向けて更新中。
+                    </p>
+                </div>
+
+                <!-- Chart 2: Scale Comparison -->
+                <div class="glass-panel p-6 rounded-xl">
+                    <h3 class="text-lg font-bold text-white mb-4 text-center">伝説の1986年「東京ベイエリア」</h3>
+                    <div class="chart-container">
+                        <canvas id="bayAreaChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-center text-slate-400">
+                        日本初の単独<span class="text-amber-400 font-bold">約10万人</span>コンサート。<br>
+                        「東京ベイエリア」という言葉の由来となった歴史的イベント。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-6 p-4 bg-slate-800 rounded-lg flex items-center justify-between border border-slate-700">
+                <div>
+                    <span class="block text-xs text-slate-400 uppercase">日本武道館公演数</span>
+                    <span class="text-2xl font-bold text-white">100回</span>
+                    <span class="text-xs text-slate-500 ml-2">(2023年12月23日達成・グループ最多)</span>
+                </div>
+                <div class="text-4xl">🏟️</div>
+            </div>
+        </section>
+
+        <!-- UNIT 3: Music Style -->
+        <section id="unit3" class="scroll-mt-32">
+            <div class="mb-6 border-l-4 border-emerald-500 pl-4">
+                <h2 class="text-2xl font-bold text-white mb-2">UNIT 3: 独自の音楽スタイル</h2>
+                <p class="text-slate-400">長く愛される理由：変幻自在のサウンドと「スイッチボーカル」。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Style Fusion Diagram (CSS based) -->
+                <div class="glass-panel p-8 rounded-xl flex flex-col items-center justify-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-transparent"></div>
+                    <h3 class="relative z-10 text-lg font-bold text-white mb-6">ジャンルの融合</h3>
+                    <div class="relative w-64 h-64">
+                        <div class="absolute top-0 left-0 w-40 h-40 bg-blue-600/40 rounded-full flex items-center justify-center text-white font-bold backdrop-blur-sm border border-blue-400/30 animate-pulse">Folk</div>
+                        <div class="absolute bottom-0 right-0 w-40 h-40 bg-red-600/40 rounded-full flex items-center justify-center text-white font-bold backdrop-blur-sm border border-red-400/30 animate-pulse" style="animation-delay: 1s;">Hard Rock</div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-amber-500/80 rounded-full flex items-center justify-center text-black font-black shadow-[0_0_30px_rgba(251,191,36,0.6)] z-20">THE ALFEE</div>
+                    </div>
+                    <p class="relative z-10 mt-6 text-sm text-slate-300 text-center">
+                        美しいフォークの旋律 × 激しいプログレ・ハードロック<br>
+                        <span class="text-xs text-slate-500">※プログレッシブ・ロック：複雑な構成と高い演奏技術を要するロック</span>
+                    </p>
+                </div>
+
+                <!-- Switch Vocal Interactive -->
+                <div class="glass-panel p-6 rounded-xl">
+                    <h3 class="text-lg font-bold text-white mb-4">スイッチボーカル体験</h3>
+                    <p class="text-sm text-slate-400 mb-4">ボタンをクリックして、リードボーカルが変わる独自のスタイルをイメージしよう。</p>
+                    
+                    <div class="flex flex-col space-y-3">
+                        <button onclick="highlightVocal('sakurai')" class="vocal-btn w-full py-4 px-6 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left transition-all flex items-center justify-between group">
+                            <span>🕶️ 桜井 賢</span>
+                            <span class="text-xs bg-slate-900 px-2 py-1 rounded text-slate-400 group-hover:text-white">美声ベース</span>
+                        </button>
+                        <button onclick="highlightVocal('sakazaki')" class="vocal-btn w-full py-4 px-6 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left transition-all flex items-center justify-between group">
+                            <span>🎸 坂崎 幸之助</span>
+                            <span class="text-xs bg-slate-900 px-2 py-1 rounded text-slate-400 group-hover:text-white">器用貧乏(褒め言葉)</span>
+                        </button>
+                        <button onclick="highlightVocal('takamizawa')" class="vocal-btn w-full py-4 px-6 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left transition-all flex items-center justify-between group">
+                            <span>🏰 高見沢 俊彦</span>
+                            <span class="text-xs bg-slate-900 px-2 py-1 rounded text-slate-400 group-hover:text-white">シャウト＆王子</span>
+                        </button>
+                    </div>
+                    <div id="vocal-desc" class="mt-4 p-4 bg-slate-900/50 rounded border border-slate-800 text-sm text-amber-400 h-20 flex items-center justify-center">
+                        メンバーをクリックしてください。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNIT 4: Records -->
+        <section id="unit4" class="scroll-mt-32">
+            <div class="mb-6 border-l-4 border-purple-500 pl-4">
+                <h2 class="text-2xl font-bold text-white mb-2">UNIT 4: 主な記録（レコード）</h2>
+                <p class="text-slate-400">「継続は力なり」を証明する金字塔。</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Guinness -->
+                <div class="glass-panel p-6 rounded-xl flex flex-col md:flex-row items-center gap-6">
+                    <div class="text-5xl">🏆</div>
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold text-white">ギネス世界記録認定</h3>
+                        <p class="text-slate-300 mt-2">
+                            「大阪国際女子マラソン」イメージソングを<span class="text-amber-400 font-bold">31年間</span>（1987-2018）担当。<br>
+                            「同一国際スポーツ大会のテレビ放送における同一アーティストによる最多テーマソング数」
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Oricon -->
+                <div class="glass-panel p-6 rounded-xl flex flex-col md:flex-row items-center gap-6">
+                    <div class="text-5xl">💿</div>
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold text-white">オリコンランキング記録</h3>
+                        <p class="text-slate-300 mt-2">
+                            1983年『メリーアン』から最新作まで、シングルCDが<br>
+                            <span class="text-amber-400 font-bold text-xl">57作連続 TOP10入り</span>（2024年現在）。
+                        </p>
+                        <!-- Simple visual bar for streak -->
+                        <div class="w-full bg-slate-700 h-4 rounded-full mt-4 overflow-hidden relative">
+                            <div class="bg-gradient-to-r from-blue-500 to-purple-500 h-full w-full animate-pulse"></div>
+                            <span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-white tracking-widest">57 CONSECUTIVE HITS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Honorary Degree -->
+                <div class="glass-panel p-6 rounded-xl flex flex-col md:flex-row items-center gap-6">
+                    <div class="text-5xl">🎓</div>
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold text-white">名誉学士 (2014)</h3>
+                        <p class="text-slate-300 mt-2">
+                            母校・明治学院大学より、長年の功績を称えられメンバー3人に授与。<br>
+                            キャンパスでの出会いが、日本の音楽史を変えた。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary / Test Prep -->
+        <section id="summary" class="mt-16 mb-20">
+            <div class="glass-panel border-amber-500/30 p-8 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800">
+                <div class="flex items-center justify-center mb-6">
+                    <span class="text-3xl mr-3">📝</span>
+                    <h2 class="text-2xl font-bold text-white">まとめ：ここが出る！テスト対策</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="p-4 bg-slate-900 rounded-lg border border-slate-700">
+                        <div class="text-amber-400 font-bold text-lg mb-2">Point 1</div>
+                        <p class="text-sm text-slate-300">活動休止なし・メンバーチェンジなしで50年以上！</p>
+                    </div>
+                    <div class="p-4 bg-slate-900 rounded-lg border border-slate-700">
+                        <div class="text-amber-400 font-bold text-lg mb-2">Point 2</div>
+                        <p class="text-sm text-slate-300">全員がメインを張れる「スイッチボーカル」スタイル！</p>
+                    </div>
+                    <div class="p-4 bg-slate-900 rounded-lg border border-slate-700">
+                        <div class="text-amber-400 font-bold text-lg mb-2">Point 3</div>
+                        <p class="text-sm text-slate-300">ライブ本数(2900+)・武道館(100+)の圧倒的記録！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-8 bg-slate-950 border-t border-slate-800 text-center text-slate-500 text-sm">
+        <p>&copy; 2024 Immortal Music Archive. Based on Source Report.</p>
+    </footer>
+
+    <script>
+        // Data derived from Source Report
+        const memberData = [
+            {
+                name: "桜井 賢",
+                reading: "Masaru Sakurai",
+                role: "Vocal / Bass",
+                icon: "🕶️",
+                color: "border-blue-500",
+                desc: "サングラスと髭がトレードマーク。美声の持ち主。"
+            },
+            {
+                name: "坂崎 幸之助",
+                reading: "Konosuke Sakazaki",
+                role: "Vocal / Acoustic Guitar / Percussion",
+                icon: "🎸",
+                color: "border-green-500",
+                desc: "初代リーダー。アコースティックギターの名手。"
+            },
+            {
+                name: "高見沢 俊彦",
+                reading: "Toshihiko Takamizawa",
+                role: "Vocal / Electric Guitar",
+                icon: "🏰",
+                color: "border-red-500",
+                desc: "現在のリーダー。ほとんどの曲を作詞・作曲。"
+            }
+        ];
+
+        // Init Members
+        const memberGrid = document.getElementById('member-grid');
+        memberData.forEach(m => {
+            const card = document.createElement('div');
+            card.className = `glass-panel p-6 rounded-xl member-card border-t-4 ${m.color}`;
+            card.innerHTML = `
+                <div class="text-4xl mb-4 text-center">${m.icon}</div>
+                <h3 class="text-xl font-bold text-white text-center mb-1">${m.name}</h3>
+                <p class="text-xs text-slate-500 text-center mb-4 uppercase tracking-wider">${m.reading}</p>
+                <div class="bg-slate-800/50 rounded p-2 text-sm text-center text-amber-400 font-medium mb-3">${m.role}</div>
+                <p class="text-sm text-slate-300 leading-relaxed text-center">${m.desc}</p>
+            `;
+            memberGrid.appendChild(card);
+        });
+
+        // Init Navigation
+        const navList = document.getElementById('nav-list');
+        const sections = [
+            { id: 'unit1', label: 'Unit 1: メンバー' },
+            { id: 'unit2', label: 'Unit 2: ライブ伝説' },
+            { id: 'unit3', label: 'Unit 3: 音楽性' },
+            { id: 'unit4', label: 'Unit 4: 記録' },
+            { id: 'summary', label: 'まとめ' }
+        ];
+
+        sections.forEach(sec => {
+            const li = document.createElement('li');
+            li.innerHTML = `<button onclick="document.getElementById('${sec.id}').scrollIntoView({behavior: 'smooth'})" class="text-sm font-bold text-slate-400 hover:text-white transition-colors whitespace-nowrap">${sec.label}</button>`;
+            navList.appendChild(li);
+        });
+
+        // Interactive: Switch Vocal Logic
+        function highlightVocal(member) {
+            const display = document.getElementById('vocal-desc');
+            const messages = {
+                'sakurai': "桜井賢：艶のある低音から力強い高音まで。バラードでの説得力は随一。",
+                'sakazaki': "坂崎幸之助：温かみのある中音域と、絶妙なコーラスワークの要。",
+                'takamizawa': "高見沢俊彦：激しいシャウトから繊細なハイトーンまで、ロックな楽曲を牽引。",
+            };
+            display.textContent = messages[member];
+            display.classList.remove('animate-pulse');
+            void display.offsetWidth; // trigger reflow
+            display.classList.add('animate-pulse');
+        }
+
+        // Charts Init
+        document.addEventListener('DOMContentLoaded', () => {
+            // Chart 1: Live Count Growth (Simulated trend based on milestones)
+            // 1974(0) -> 2024(2900)
+            const ctxLive = document.getElementById('liveCountChart').getContext('2d');
+            new Chart(ctxLive, {
+                type: 'line',
+                data: {
+                    labels: ['1974', '1984', '1994', '2004', '2014', '2024'],
+                    datasets: [{
+                        label: '通算ライブ本数 (累計)',
+                        data: [0, 500, 1000, 1500, 2200, 2900], // Rough estimates for visualization curve
+                        borderColor: '#fbbf24',
+                        backgroundColor: 'rgba(251, 191, 36, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#334155' },
+                            ticks: { color: '#94a3b8' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#94a3b8' }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#f8fafc' } }
+                    }
+                }
+            });
+
+            // Chart 2: Bay Area vs Budokan
+            const ctxBay = document.getElementById('bayAreaChart').getContext('2d');
+            new Chart(ctxBay, {
+                type: 'bar',
+                data: {
+                    labels: ['日本武道館 (収容)', '1986 東京ベイエリア (動員)'],
+                    datasets: [{
+                        label: '人数 (人)',
+                        data: [14000, 100000],
+                        backgroundColor: ['#3b82f6', '#ef4444'],
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            grid: { color: '#334155' },
+                            ticks: { color: '#94a3b8' }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { color: '#f8fafc', font: { weight: 'bold' } }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.x.toLocaleString() + ' 人';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
