@@ -14,11 +14,11 @@
     <meta name="theme-color" content="#050505">
 
     <!-- OGP -->
-    <meta property="og:title" content="【公式】次世代への手紙 - 不滅の魂 | 昭和・平成の名曲アーカイブ">
+    <meta property="og:title" content="【公式】次世代への手紙 - 不滅 of 魂 | 昭和・平成の名曲アーカイブ">
     <meta property="og:type" website>
     <meta property="og:url" content="https://zz-labo-site.github.io/next_generation/">
     <meta property="og:image" content="https://zz-labo-site.github.io/next_generation/公式ロゴ.png">
-    <meta property="og:description" content="不滅 of 音楽を、もう一度、新しい形で。当時の熱狂と時代の地図を次世代へ語り継ぐ音楽アーカイブ。">
+    <meta property="og:description" content="不滅の音楽を、もう一度、新しい形で。当時の熱狂と時代の地図を次世代へ語り継ぐ音楽アーカイブ。">
     <meta property="og:site_name" content="次世代への手紙 - 不滅の魂">
     <meta property="og:locale" content="ja_JP">
 
@@ -31,6 +31,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Lato:wght@300;400;700&family=Shippori+Mincho:wght@400;500;700&family=Zen+Old+Mincho:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --brand-gold: #b48a32;
+            --bg-light: #fdfbf7;
+        }
         .font-cinzel { font-family: 'Cinzel', serif; }
         .font-lato { font-family: 'Lato', sans-serif; }
         .font-mincho { font-family: 'Shippori Mincho', serif; }
@@ -59,8 +63,8 @@
         .animate-in { animation: fade-in 0.8s ease-out forwards; }
         
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-track { background: #f0f0f0; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
 
         .perspective-1000 { perspective: 1000px; }
         .transform-style-3d { transform-style: preserve-3d; }
@@ -71,23 +75,32 @@
             position: relative;
             overflow: hidden;
             transition: all 0.4s ease;
-        }
-        .log-line::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(207,185,145,0.2), transparent);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         .log-line:hover {
-            background: rgba(207,185,145,0.03);
+            background: rgba(180, 138, 50, 0.05);
             padding-left: 10px;
+        }
+
+        .video-card {
+            background: white;
+            border: 1px solid rgba(180, 138, 50, 0.1);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(180, 138, 50, 0.12);
+            border-color: var(--brand-gold);
+        }
+
+        .glass-nav {
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(180, 138, 50, 0.1);
         }
     </style>
 </head>
-<body class="bg-[#050505] text-white overflow-x-hidden text-left font-mincho">
+<body class="bg-[#fdfbf7] text-[#1a1a1a] overflow-x-hidden text-left font-mincho">
     <div id="root"></div>
 
     <script type="module">
@@ -106,8 +119,8 @@
     <script type="text/babel">
         const { useState, useEffect, useMemo } = React;
 
-        // --- Global UI Icons ---
-        const Play = ({ className }) => (
+        // --- Icons ---
+        const PlayIcon = ({ className }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
         );
         const XIcon = ({ className }) => (
@@ -155,7 +168,7 @@
                 views: "3.2万回",
                 thumbnail: "https://img.youtube.com/vi/dz-Bugi8q5I/maxresdefault.jpg",
                 desc: `1970年代後半から80年代にかけて、日本の音楽シーンを席巻した伝説の多国籍バンド, ゴダイゴ。\n\nキャッチーなメロディと圧倒的な演奏力で時代を彩った彼らの、シングル売上TOP5をランキング形式でご紹介します。\n\n売上88万枚を超え、社会現象を巻き起こしたあの不朽の名作も登場。\n当時の熱狂を伝える貴重な歌唱映像とともに, 珠玉のメロディをお楽しみください。\n\n▼チャンネル登録して応援お願いします\n${COMMON_SUB_LINK}`,
-                rankingDetails: `【ランキング詳細】\n・第1位：ガンダーラ（1978/10/01発売）売上88.8万枚\nhttps://embed.music.apple.com/jp/album/%E3%82%AC%E3%83%B3%E3%83%80%E3%83%BC%E3%83%A9/477643015?i=477643021&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=477643021&theme=auto\n・第2位：銀河鉄道999（1979/07/01発売）売上66.6万枚\n・第3位：モンキー・マジック（1978/12/25発売）売上56.5万枚\n・第4位：ビューティフル・ネーム（1979/04/01発売）売上53.8万枚\n・第5位：ホーリー＆ブライト（1979/10/01発売）売上25.8万枚\n・第6位：はるかな旅へ（1979/6/1 発売）最高位15位 / 売上12.9万枚\n・第7位：リターン・トゥ・アフリカ（1980/2/10 発売）最高位17位 / 売上9.5万枚\n・第8位：僕のサラダガール（1976/4/1 発売）最高位37位 / 売上8.0万枚\n・第9位：ポートピア（1980/5/1 発売）最高位18位 / 売上7.8万枚\n・第10位：カトマンズ（1980/9/1 発売）最高位29位 / 売上5.5万枚\n\nTVドラマ「西遊記」挿入歌：Thank You, Baby\nhttps://embed.music.apple.com/jp/album/%E3%82%B5%E3%83%B3%E3%82%AD%E3%83%A5%E3%83%BC-%E3%83%99%E3%82%A4%E3%83%93%E3%83%BC/477649520?i=477649526&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=477649526&theme=auto\n\n---\n\n⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。\n西遊記や銀河鉄道999の思い出など、ぜひYouTubeのコメント欄で語り合いましょう！`,
+                rankingDetails: `【ランキング詳細】\n・第1位：ガンダーラ（1978/10/01発売）売上88.8万枚\nhttps://embed.music.apple.com/jp/album/%E3%82%AC%E3%83%B3%E3%83%80%E3%83%BC%E3%83%A9/477643015?i=477643021&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=477643021&theme=auto\n・第2位：銀河鉄道999（1979/07/01発売）売上66.6万枚\n・第3位：モンキー・マジック（1978/12/25発売）売上56.5万枚\n・第4位：ビューティフル・ネーム（1979/04/01発売）売上53.8万枚\n・第5位：ホーリー＆ブライト（1979/10/01発売）売上25.8万枚\n・第6位：はるかな旅へ（1979/6/1 発売）最高位15位 / 売上12.9万枚\n・第7位：リターン・トゥ・アフリカ（1980/2/10 発売）最高位17位 / 売上9.5万枚\n・第8位：僕のサラダガール（1976/4/1 発売）最高位37位 / 売上8.0万枚\n・第9位：ポートピア（1980/5/1 発売）最高位18位 / 売上7.8万枚\n・第10位：カトマンズ（1980/9/1 発売）最高位29位 / 売上5.5万枚\n\nTVドラマ「西遊記」挿入歌：Thank You, Baby\nhttps://embed.music.apple.com/jp/album/%E3%82%B5%E3%83%B3%E3%82%AD%E3%83%A5%E3%83%BC-%E3%83%99%E3%82%A4%E3%83%93%E3%83%BC/477649520?i=477649526&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=477643021&theme=auto\n\n---\n\n⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。\n西遊記や銀河鉄道999の思い出など、ぜひYouTubeのコメント欄で語り合いましょう！`,
                 youtubeId: "dz-Bugi8q5I"
             },
             {
@@ -178,7 +191,7 @@
                 duration: "01:00",
                 views: "6万回",
                 thumbnail: "https://img.youtube.com/vi/-ey1E-ijzNQ/maxresdefault.jpg",
-                desc: `圧倒的な歌唱力と都会的なサウンドで、80年代後半から90年代の音楽シーンを鮮烈に彩った小比類巻かほる（Kohhy）。\n\n彼女の代名詞とも言えるアニメ『シティーハンター』や、ドラマ主題歌として大ヒットを記録したシングル売上TOP5をランキング形式でご紹介します。\n\n▼チャンネル登録して応援お願いします\n${COMMON_SUB_LINK}`,
+                desc: `圧倒的な歌唱力と都会的なサウンドで、80年代後半から90年代の音楽シーンを鮮烈に彩った小比類巻かほる（Kohhy）。\n彼女の代名詞とも言えるアニメ『シティーハンター』や、ドラマ主題歌として大ヒットを記録したシングル売上TOP5をランキング形式でご紹介します。\nドラマ『結婚物語』の主題歌としてチャートを賑わせた、あの珠玉の名曲も登場します。\n\n当時のパワフルなステージ映像とともに、色褪せないKohhyの歌声をお楽しみください。\n\n▼チャンネル登録して応援お願いします\n${COMMON_SUB_LINK}`,
                 rankingDetails: `【ランキング詳細】\n・第1位：Hold On Me（1987/02/26発売）最高位9位 / 売上12.9万枚\n・第2位：SUMMER FACTOR（1994/04/01発売）最高位14位 / 売上11.3万枚\n・第3位：City Hunter（1987/05/10発売）最高位8位 / 売上8.0万枚\n・第4位：TOGETHER（1988/11/21発売）最高位18位 / 売上7.5万枚\n・第5位：Never Say Good-Bye（1985/10/21発売）最高位32位 / 売上7.3万枚\n・第6位：DREAMER（1989/09/25発売）最高位9位 / 売上6.6万枚\n・第7位：TONIGHT（1988/10/21発売）最高位16位 / 売上6.1万枚\n・第8位：TIME GOES BY（1991/03/25発売）最高位29位 / 売上4.1万枚\n・第9位 : On The Loose（1988/01/01発売）最高位15位 / 売上3.8万枚\n・第10位：トワイライト･アヴェニュー（1990/05/10発売）最高位24位 / 売上3.4万枚\n\n「あぶない刑事」挿入歌：Cops And Robbers\nhttps://embed.music.apple.com/jp/album/cops-and-robbers/1745087988?i=1745088008&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=1745088008&theme=auto\n\n---\n\n⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。\n皆さんの心に残る名曲について、ぜひYouTubeのコメント欄で語り合いましょう！`,
                 youtubeId: "-ey1E-ijzNQ"
             },
@@ -190,7 +203,7 @@
                 duration: "01:00",
                 views: "1.2万回",
                 thumbnail: "https://img.youtube.com/vi/UdaNYm1TN-Y/maxresdefault.jpg",
-                desc: `「天使の歌声」と称され、アイドルからミュージカルへと唯一無二の軌跡を辿った不世出の歌姫, 本田美奈子。\n\nその圧倒的な歌唱力と表現力で時代を彩ったシングル売上TOP5をランキング形式でご紹介します。\n\n▼チャンネル登録して応援お願いします\n${COMMON_SUB_LINK}`,
+                desc: `「天使の歌声」と称され、アイドルからミュージカルへと唯一無二の軌跡を辿った不世出の歌姫、本田美奈子。\nその圧倒的な歌唱力と表現力で時代を彩ったシングル売上TOP5をランキング形式でご紹介します。\n当時、社会現象を巻き起こしたあの伝説 of ヒット曲も登場します。\n\n当時の熱狂を伝える貴重な歌唱映像とともに、珠玉のメロディをお楽しみください。\n\n▼チャンネル登録して応援お願いします\n${COMMON_SUB_LINK}`,
                 rankingDetails: `【ランキング詳細】\n・第1位：1986年のマリリン（1986/02/05発売）最高位3位 / 売上24.9万枚\nhttps://embed.music.apple.com/jp/album/1986%E5%B9%B4%E3%81%AE%E3%83%9E%E3%83%AA%E3%83%AA%E3%83%B3/720488994?i=720489462&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=720489462&theme=auto\n・第2位：Oneway Generation（1987/02/04発売）最高位2位 / 売上20.4万枚\n・第3位：Temptation（誘惑）（1985/09/28発売）最高位10位 / 売上18.4万枚\n・第4位：Sosotte（1986/05/01発売）最高位3位 / 売上17.4万枚\n・第5位：Help（1986/07/23発売）最高位2位 / 売上11.4万枚\n・第6位：ら･ら･ば･い～優しく抱かせて（1995/05/10発売）最高位19位 / 売上11.1万枚\n・第7位：the Cross-愛の十字架-（1986/09/03発売）最高位5位 / 売上11.0万枚\n・第8位：孤独なハリケーン（1987/09/09発売）最高位2位 / 売上7.9万枚\n・第9位：HEART BREAK（1987/06/22発売）最高位3位 / 売上7.8万枚\n・第10位：殺意のバカンス（1985/04/20発売）最高位21位 / 売上7.3万枚\n・第11位：好きと言いなさい（1985/07/20発売）最高位21位 / 売上6.2万枚\n・第12位：悲しみSWING（1987/11/25発売）最高位3位 / 売上6.2万枚\n・第13位：つばさ（1994/05/25発売）最高位62位 / 売上4.7万枚\nhttps://embed.music.apple.com/jp/album/%E3%81%A4%E3%81%B0%E3%81%95/1445116012?i=1445116017&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=1445116017&theme=auto\n・第14位 : CRAZY NIGHTS（1987/04/22発売）最高位10位 / 売上4.0万枚\n\n---\n\n⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。\n皆さんの心に残る本田美奈子さんの名曲はどれですか？ 🎸 ぜひYouTubeのコメント欄で思い出を語り合いましょう！`,
                 youtubeId: "UdaNYm1TN-Y"
             },
@@ -202,7 +215,7 @@
                 duration: "01:00",
                 views: "New",
                 thumbnail: "https://img.youtube.com/vi/ZwwvzmglJjw/maxresdefault.jpg",
-                desc: `日本を代表するロックバンドであり、美しい三声のハーモニーで知られるTHE ALFEE。黄金時代を築き上げた1980年代のシングル売上TOP5をランキング形式でご紹介します。\n\n▼チャンネル登録して応援お願いします\n${COMMON_SUB_LINK}`,
+                desc: `日本を代表するロックバンドであり、美しい三声のハーモニーで知られるTHE ALFEE。\n彼らが黄金時代を築き上げた1980年代のシングル売上TOP5をランキング形式でご紹介します。\n売上50万枚を超えた伝説のヒット曲や、初のオリコン1位に輝いた名曲が登場します。\n\n当時の熱狂を伝える貴重な歌唱映像とともに、色褪せない珠玉のサウンドをお楽しみください。\n\n▼チャンネル登録して応援お願いします\n${COMMON_SUB_LINK}`,
                 rankingDetails: `【ランキング詳細】\n※本ランキングは1980年代に発売されたシングル楽曲のみに限定して集計・構成しています。\n\n第1位：星空のディスタンス（1984/01/21発売）最高位2位 / 売上52.4万枚\nhttps://embed.music.apple.com/jp/album/%E6%98%9F%E7%A9%BA%E3%81%AE%E3%83%87%E3%82%A3%E3%82%B9%E3%82%BF%E3%83%B3%E3%82%B9/307224651?i=307224652&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=307224652&theme=auto\n第2位：メリーアン（1983/06/21発売）最高位7位 / 売上37.3万枚\n第3位：恋人達のペイヴメント（1984/10/17発売）最高位1位 / 売上33.6万枚\n第4位：STARSHIP-光を求めて-（1984/05/21発売）最高位5位 / 売上31.1万枚\n第5位：シンデレラは眠れない（1985/02/21発売）最高位1位 / 売上29.8万枚\n第6位：サファイアの瞳（1987/03/11発売）最高位1位 / 売上18.7万枚\n第7位：霧のソフィア（1985/10/16発売）最高位2位 / 売上17.7万枚\n第8位：SWEAT&TEARS（1986/07/05発売）最高位3位 / 売_上15.5万枚\n第9位：君が通り過ぎたあとに（1987/03/11発売）最高位5位 / 売上14.8万枚\n第10位：風曜日、君をつれて（1986/03/05発売）最高位2位 / 売上14.3万枚\n第11位：ROCKDOM-風に吹かれて-（1986/09/05発売）最高位4位 / 売上12.4万枚\n第11位：白夜-byaku-ya-（1987/07/01発売）最高位3位 / 売上12.4万枚\n第13位：My Truth（1987/10/28発売）最高位1位 / 売上11.2万枚\n\n---\n\n⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。\n皆さんの心に残るTHE ALFEEの80年代の名曲は何ですか？ 🎸 ぜひコメント欄で思い出を語り合いましょう！`,
                 youtubeId: "ZwwvzmglJjw"
             },
@@ -214,21 +227,21 @@
                 duration: "01:00",
                 views: "New",
                 thumbnail: "https://img.youtube.com/vi/kUb_4HAeTK8/maxresdefault.jpg",
-                desc: `「ガールズロックの女王」と称され、日本のロックシーンに不滅の足跡を刻んだ伝説のバンド, SHOW-YA。\n\n▼チャンネル登録して応援お願いします\n${COMMON_SUB_LINK}`,
+                desc: `「ガールズロックの女王」と称され、日本のロックシーンに不滅の足跡を刻んだ伝説のバンド、SHOW-YA。\nその圧倒的な演奏力と寺田恵子のパワフルなハイトーンボイスで時代を席巻したシングル売上TOP5をランキング形式でご紹介します。\n今なお歌い継がれる、魂のロックアンセムも登場します。\n\n当時の熱狂を伝える貴重な歌唱映像とともに、珠玉のメロディをお楽しみください。\n\n▼チャンネル登録して応援お願いします\n${COMMON_SUB_LINK}`,
                 rankingDetails: `【ランキング詳細】\n・第1位：限界LOVERS（1989/02/01発売）最高位13位 / 売上15.1万枚\nhttps://embed.music.apple.com/jp/album/%E9%99%90%E7%95%8Clovers/720410885?i=720411434&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=720411434&theme=auto\n・第2位：私は嵐（1989/06/07発売）最高位12位 / 売上8.7万枚\n・第3位：叫び（1990/03/07発売）最高位12位 / 売上6.3万枚\n・第4位：ギャンブリング（1990/09/05発売）最高位15位 / 売上4.2万枚\n・第5位：水の中の逃亡者（1987/05/25発売）最高位39位 / 売上3.3万枚\n\n⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。\n\n皆さんの心に残る SHOW-YAの名曲はどれですか？ 🎸\nぜひYouTubeのコメント欄で思い出を語り合いましょう！`,
                 youtubeId: "kUb_4HAeTK8"
             },
             {
                 id: 10,
-                date: "Coming Soon", // ログから消すため
+                date: "Coming Soon", 
                 category: 'シングル売上ランキング',
                 title: "徳永英明ヒット曲TOP5！1位はドラクエ主題歌のあの名曲？「壊れかけのRadio」を超える売上枚数に驚愕【歴代シングルランキング】",
                 duration: "01:00",
                 views: "New",
                 thumbnail: "https://img.youtube.com/vi/6r14ESjRRlE/maxresdefault.jpg",
                 desc: `「クリスタルボイス」と称され、その繊細かつエモーショナルな歌声で時代を包み込んだ稀代のシンガーソングライター、徳永英明。\n1980年代後半から90年代にかけて、音楽チャートの常連として数々の名曲を世に送り出した彼の、歴代シングル売上TOP5をランキング形式でご紹介します。\n\n今なお色褪せることのない、魂を揺さぶる至極のメロディと貴重な歌唱映像をどうぞお楽しみください。\n\n▼チャンネル登録して応援お願いします\n${COMMON_SUB_LINK}`,
-                rankingDetails: `【ランキング詳細】\n・第1位：夢を信じて（1990/01/16発売）最高位3位 / 売上39.7万枚\n・第2位：壊れかけのRadio（1990/07/07発売）最高位5位 / 売上36.6万枚\n・第3位：LOVE IS ALL（1991/09/05発売）最高位3位 / 売上35.4万枚\n・第4位：僕のそばに（1993/11/01発売）最高位4位 / 売上31.3万枚\n・第5位：I Love You（1992/11/02発売）最高位7位 / 売上31.0万枚\n\n⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。\n\n皆さんの心に残る徳永英明さんの名曲はどれですか？ 🎸\n初めて聴いた時の思い出や、今だからこそ心に響く一曲について、ぜひYouTubeコメント欄で語り合いましょう！`,
-                youtubeId: null // 未公開状態
+                rankingDetails: `【ランキング詳細】\n・第1位：夢を信じて（1990/01/16発売）最高位3位 / 売上39.7万枚\n・第2位：壊れかけのRadio（1990/07/07発売）最高位5位 / 売上36.6万枚\n・第3位：LOVE IS ALL（1991/09/05発売）最高位3位 / 売上35.4万枚\n・第4位：僕のそばに（1993/11/01発売）最高位4位 / 売上31.3万枚\n・第5位：I Love You（1992/11/02発売）最高位7位 / 売上31.0万枚\n・第6位：輝きながら…（1987/07/05発売）最高位4位 / 売上28.6万枚\n・第7位：永遠の果てに（1994/11/09発売）最高位4位 / 売上27.4万枚\n・第8位：最後の言い訳（1988/10/25発売）最高位4位 / 売上23.3万枚\n・第9位：Wednesday Moon（1991/04/10発売）最高位1位 / 売上22.6万枚\n・第10位：もう一度あの日のように（1993/05/10発売）最高位6位 / 売上21.5万枚\n\n⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。\n\n皆さんの心に残る徳永英明さんの名曲はどれですか？ 🎸\n初めて聴いた時の思い出や, 今だからこそ心に響く一曲について、ぜひYouTubeコメント欄で語り合いましょう！`,
+                youtubeId: null 
             },
             {
                 id: 9,
@@ -238,7 +251,7 @@
                 duration: "01:00",
                 views: "New",
                 thumbnail: "https://img.youtube.com/vi/3qvGpqZ0PMw/maxresdefault.jpg",
-                desc: `「コスプレの先駆者」でありながら、自らドラムを叩き、唯一無二の言葉を紡ぐマルチな才能を発揮した森高千里。\n\n1992年、森高さん自身が作詞を手掛け、全世代の女性の心の叫びを代弁し社会現象を巻き起こした名曲『私がオバさんになっても』をご紹介します。\n\n▼チャンネル登録して応援お願いします\n${COMMON_SUB_LINK}`,
+                desc: `「コスプレの先駆者」でありながら、自らドラムを叩き、唯一無二の言葉を紡ぐマルチな才能を発揮した森高千里。\n\n1992年、森高さん自身が作詞を手掛け、全世代の女性の心の叫びを代弁し社会現象を巻き起こした名曲『私がオバさんになっても』をご紹介します。\n\n日本テレビ系ドラマ『まったナシ!』の主題歌としても親しまれ、彼女の圧倒的なビジュアルとともに時代を象徴する一曲となりました。当時の瑞々しさと圧倒的なパフォーマンスとともに、珠玉のメロディをお楽しみください。\n\n▼チャンネル登録して応援お願いします\n${COMMON_SUB_LINK}`,
                 rankingDetails: `【楽曲詳細・記録】\nhttps://embed.music.apple.com/jp/album/%E7%A7%81%E3%81%8C%E3%82%AA%E3%83%90%E3%81%95%E3%82%93%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%82%82/528982379?i=528982385&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=528982385&theme=auto\n・リリース：1992/06/25（森高千里 16枚目のシングル）\n・チャート最高位：週間15位（オリコン）\n・タイアップ：日本テレビ系ドラマ『まったナシ!』主題歌\n・作詞：森高千里 ／ 作曲・編曲：斉藤英夫\n\n⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。\n\n皆さんの心に残る「森高千里さんのベスト・衣装」や、この曲をカラオケで歌った時の思い出はありますか？ 👗\n\n「女ざかりは19」という歌詞に衝撃を受けたあの頃について、ぜひYouTubeのコメント欄で熱く語り合いましょう！`,
                 youtubeId: "3qvGpqZ0PMw"
             },
@@ -250,7 +263,7 @@
                 duration: "Coming Soon",
                 views: "Wait",
                 thumbnail: "https://img.youtube.com/vi/IISKjvUoLEw/maxresdefault.jpg",
-                desc: `1984年, アニメ映画『超時空要塞マクロス 愛・おぼえていますか』の主題歌として誕生し, アニソンの歴史を塗り替えた不朽の名作。\n\n劇中のアイドル, リン・ミンメイの声優を務めた飯島真理さんの透明感あふれる歌声は, 当時の音楽チャートを席巻しました。\n\n▼チャンネル登録して応援お願いします\n${COMMON_SUB_LINK}`,
+                desc: `1984年、アニメ映画『超時空要塞マクロス 愛・おぼえていますか』の主題歌として誕生し、アニソンの歴史を塗り替えた不朽の名作。\n\n劇中のアイドル、リン・ミンメイの声優を務めた飯島真理さんの透明感あふれる歌声は、当時の音楽チャートを席巻しました。オリコン週間ランキングで2度の最高7位を記録し、6週連続トップ10入りを果たすという、アニメソングとしては異例のロングセラーを記録。\n\n当時の熱狂を伝える貴重な歌唱映像とともに、時代を超えて愛される珠玉のメロディをお楽しみください。\n\n▼チャンネル登録して応援お願いします\n${COMMON_SUB_LINK}`,
                 rankingDetails: `【楽曲詳細・記録】\nリリース： 1984/06/05（飯島真理 3枚目のシングル）\nチャート最高位： 週間7位（1984年8月27日付・9月17日付の2回記録）\nトップ10入り： 6週連続という驚異のロングヒット\n1984年年間ランキング： 第38位\n累計売上枚数： 約27.0%万枚\n\n---\n\n⚠️ 本動画内の売上データ及び順位は, 当時のオリコンチャートの記録を基に構成しています。\n皆さんの心に残る『マクロス』の思い出や, 初めてこの曲を聴いた時の衝撃はどこですか？ 🎸 文化を救ったあの歌声について, ぜひコメント欄で語り合いましょう！`,
                 youtubeId: null 
             }
@@ -325,7 +338,7 @@
 
             return (
                 <div className="min-h-screen font-sans selection:bg-white/20 selection:text-white overflow-x-hidden text-left bg-[#050505]">
-                    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'bg-black/95 backdrop-blur-md py-4 border-b border-white/5 shadow-lg' : 'bg-transparent py-6'}`}>
+                    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'glass-nav py-3' : 'bg-transparent py-6'}`}>
                         <div className="container mx-auto px-6 flex justify-between items-center text-left">
                             <div className="flex items-center gap-4 cursor-pointer" onClick={() => window.scrollTo({top:0, behavior:'smooth'})}>
                                 <img src="./公式ロゴ.png" alt="logo" className="h-10 opacity-90 text-left" />
@@ -364,11 +377,11 @@
                                 <div className="space-y-0 text-left">
                                     {transmissionLogs.map((log) => (
                                         <div key={log.id} className="log-line group py-4 flex items-center justify-between cursor-pointer" onClick={() => setActiveVideo(log)}>
-                                            <div className="flex flex-col gap-1">
+                                            <div className="flex flex-col gap-1 text-left">
                                                 <time className="font-lato text-[8px] tracking-widest text-[#cfb991]/50">{log.date.substring(0, 10)}</time>
                                                 <span className="font-zen text-[13px] text-gray-300 group-hover:text-white transition-colors line-clamp-1">{log.title}</span>
                                             </div>
-                                            <Play className="w-3 h-3 text-gray-600 group-hover:text-[#cfb991]" />
+                                            <PlayIcon className="w-3 h-3 text-gray-600 group-hover:text-[#cfb991]" />
                                         </div>
                                     ))}
                                 </div>
@@ -379,7 +392,7 @@
                     </header>
 
                     <main id="archives" className="container mx-auto px-4 py-32 min-h-[600px]">
-                        <div className="flex flex-col items-center mb-20 text-center">
+                        <div className="flex flex-col items-center mb-20 text-center text-center">
                             <h2 className="font-cinzel text-3xl tracking-widest text-gray-200 uppercase">Archives</h2>
                             <nav className="flex flex-wrap justify-center gap-4 mt-12">
                                 {categories.map(cat => (
@@ -395,7 +408,7 @@
                                             <img src={v.thumbnail} alt={v.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105" loading="lazy" />
                                             {v.youtubeId && (
                                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                                    <div className="w-14 h-14 rounded-full border border-[#cfb991] bg-black/40 backdrop-blur-sm flex items-center justify-center shadow-lg"><Play className="w-5 h-5 text-[#cfb991] fill-[#cfb991]" /></div>
+                                                    <div className="w-14 h-14 rounded-full border border-[#cfb991] bg-black/40 backdrop-blur-sm flex items-center justify-center shadow-lg"><PlayIcon className="w-5 h-5 text-[#cfb991] fill-[#cfb991]" /></div>
                                                 </div>
                                             )}
                                             <div className="absolute top-3 left-3 px-2 py-0.5 bg-[#cfb991]/20 backdrop-blur-md text-[8px] text-[#cfb991] tracking-widest rounded-sm uppercase">{v.category}</div>
@@ -404,7 +417,7 @@
                                         <div className="p-6 piano-black-gloss">
                                             <h3 className="font-zen text-base text-gray-200 mb-6 line-clamp-1 group-hover:text-white leading-relaxed">{v.title}</h3>
                                             <div className="flex justify-between items-center text-[10px] font-lato uppercase">
-                                                <span className="text-gray-500 flex items-center gap-1 font-bold text-left"><Monitor className="w-3 h-3" /> {v.views}</span>
+                                                <span className="text-gray-500 flex items-center gap-1 font-bold text-left"><Monitor className="w-3 h-3 text-left" /> {v.views}</span>
                                                 <span className={v.youtubeId ? 'text-[#cfb991] font-bold' : 'text-gray-700'}>{v.youtubeId ? 'PLAYBACK' : 'COMING SOON'}</span>
                                             </div>
                                         </div>
@@ -418,34 +431,37 @@
                     {showAbout && (
                         <div className="fixed inset-0 z-[100] bg-[#050505]/98 backdrop-blur-md overflow-y-auto animate-in text-center p-6" role="dialog">
                             <button onClick={() => setShowAbout(false)} className="fixed top-6 right-6 text-gray-500 hover:text-white transition-colors p-2 focus:outline-none"><XIcon className="w-8 h-8" /></button>
-                            <div className="container mx-auto px-4 py-24 max-w-4xl">
+                            <div className="container mx-auto px-4 py-24 max-w-4xl relative">
+                                <div className="absolute inset-0 opacity-5 pointer-events-none" style={{backgroundImage: 'radial-gradient(circle at center, #cfb991 1px, transparent 1px)', backgroundSize: '40px 40px'}}></div>
+                                <img src="./公式ロゴ.png" className="w-32 mx-auto mb-12 opacity-90 drop-shadow-[0_0_15px_rgba(207,185,145,0.2)]" alt="ロゴ" />
                                 <h2 className="font-zen text-3xl md:text-5xl font-bold mb-4 uppercase text-white">次世代への手紙<br/><span className="text-xl md:text-2xl mt-4 block font-normal text-gray-400">・リターンズ・</span></h2>
                                 <p className="font-mincho text-xl md:text-2xl text-[#cfb991] italic mb-16 tracking-widest leading-relaxed text-center">「不滅の音楽を、もう一度, 新しい形で。」</p>
                                 <div className="font-mincho text-gray-300 leading-[2.2] space-y-12 text-justify">
                                     <p className="border-l-2 border-[#cfb991]/30 pl-6 italic">当番組は、昭和・平成の邦楽シーンを彩った名曲たちを、オリコンの公式記録に基づいたランキング形式で紐解く音楽アーカイブチャンネルです。</p>
-                                    <div className="mt-24 border-t border-white/10 pt-16 text-center">
+                                    <div className="mt-24 border-t border-white/10 pt-16 text-center text-center">
                                         <h3 className="font-zen text-xl md:text-2xl text-white mb-8 font-bold tracking-widest text-center">🔴 チャンネル登録して応援お願いします</h3>
                                         <div className="flex flex-col items-center gap-6">
-                                            <a href={COMMON_SUB_LINK} target="_blank" className="inline-flex items-center gap-4 px-12 py-5 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-[0.3em] rounded-sm transition-all shadow-2xl transform hover:-translate-y-1 uppercase text-sm">チャンネル登録して応援お願いします</a>
+                                            <a href={COMMON_SUB_LINK} target="_blank" className="inline-flex items-center gap-4 px-12 py-5 bg-[#cc0000] hover:bg-[#ff0000] text-white font-bold tracking-[0.3em] rounded-sm transition-all shadow-2xl transform hover:-translate-y-1 uppercase text-sm text-center">チャンネル登録して応援お願いします</a>
                                             <p className="font-lato text-xs text-gray-500 tracking-widest opacity-50 font-bold text-center">https://www.youtube.com/@次世代への手紙</p>
                                         </div>
                                     </div>
+                                    <div className="mt-20 text-right font-zen text-sm text-[#cfb991] tracking-[0.3em] font-medium italic opacity-80 border-r-2 border-[#cfb991] pr-4 inline-block float-right">【不滅の魂 制作委員会】</div>
                                 </div>
                             </div>
                         </div>
                     )}
 
                     {activeVideo && (
-                        <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl overflow-y-auto animate-in">
+                        <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl overflow-y-auto animate-in text-left">
                             <div className="min-h-full flex items-center justify-center p-4 md:p-8">
                                 <button onClick={() => { setActiveVideo(null); setShowDetails(false); }} className="fixed top-6 right-6 text-gray-400 hover:text-white z-[110] transition-colors p-2 focus:outline-none"><XIcon className="w-8 h-8" /></button>
                                 <div className="w-full max-w-5xl">
                                     <div className="aspect-video bg-black border border-white/10 rounded-sm overflow-hidden mb-10 shadow-[0_0_50px_rgba(207,185,145,0.15)]">
                                         <iframe className="w-full h-full" src={`https://www.youtube.com/embed/${activeVideo.youtubeId}?autoplay=1&rel=0`} frameBorder="0" allowFullScreen title={activeVideo.title}></iframe>
                                     </div>
-                                    <div className="border-l-2 border-[#cfb991] pl-8 pb-20 text-left">
-                                        <h2 className="font-zen text-2xl md:text-3xl text-white mb-8 leading-tight tracking-wide">{activeVideo.title}</h2>
-                                        <div className="font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap">{renderDescription(activeVideo.desc)}</div>
+                                    <div className="border-l-2 border-[#cfb991] pl-8 pb-20 text-left text-left text-left">
+                                        <h2 className="font-zen text-2xl md:text-3xl text-white mb-8 leading-tight tracking-wide text-left">{activeVideo.title}</h2>
+                                        <div className="font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap text-left">{renderDescription(activeVideo.desc)}</div>
                                         {activeVideo.rankingDetails && (
                                             <div className="mt-12 text-left">
                                                 {!showDetails ? (
@@ -453,7 +469,7 @@
                                                         {activeVideo.category === '名曲フラッシュバック' ? '▼ もっと詳細を見る' : '▼ ランキングの詳細はこちら！'}
                                                     </button>
                                                 ) : (
-                                                    <div className="animate-in pt-8 border-t border-white/10 mt-8 font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap">
+                                                    <div className="animate-in pt-8 border-t border-white/10 mt-8 font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap text-left">
                                                         <div className="mb-10 text-left">{renderDescription(activeVideo.rankingDetails)}</div>
                                                         <button onClick={() => setShowDetails(false)} className="block mt-8 text-gray-500 text-[10px] tracking-widest hover:text-white uppercase transition-colors font-bold tracking-[0.2em]">▲ CLOSE DETAILS</button>
                                                     </div>
@@ -466,8 +482,8 @@
                         </div>
                     )}
 
-                    <footer className="py-24 border-t border-white/5 flex flex-col items-center bg-[#020202] text-center">
-                        <img src="./公式ロゴ.png" alt="logo" className="h-10 opacity-20 mb-10 grayscale hover:grayscale-0 transition-all text-center" />
+                    <footer className="py-24 border-t border-white/5 flex flex-col items-center bg-[#020202] text-center text-center">
+                        <img src="./公式ロゴ.png" alt="logo" className="h-10 opacity-20 mb-10 grayscale hover:grayscale-0 transition-all" />
                         <div className="flex space-x-10 mb-12 text-gray-600">
                              <a href={COMMON_SUB_LINK} target="_blank" className="hover:text-[#cfb991] transition-colors" aria-label="YouTube"><YoutubeIcon className="w-6 h-6" /></a>
                              <a href="https://x.com/ZZLAB48210" target="_blank" className="hover:text-[#cfb991] transition-colors group" aria-label="Twitter X"><TwitterXIcon className="w-5 h-5"/></a>
