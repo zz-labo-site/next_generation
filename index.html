@@ -298,6 +298,18 @@
                 desc: `ブラジルからやってきた「透明感あふれる歌声」の持ち主、カルロス・トシキ。彼をフロントマンに据え、真夏の都会を爽やかに駆け抜けた1986オメガトライブ。\n\n1986年、作詞家・売野雅勇氏らが手掛け、圧倒的な清涼感でチャートを席巻し、グループとして唯一の1位に輝いた名曲『Super Chance』をご紹介します。\n\n当時、人気絶頂だった南野陽子（ナンノ）さん出演の「スーパー・フジカラー」CMソングとしても爆発的な人気を博し、彼女の弾けるような笑顔とともに時代を象徴するサマー・アンセムとなりました。カルロスの伸びやかなボーカルが、あの真夏のきらめきを鮮明に蘇らせます。\n\n▼チャンネル登録で応援よろしくお願いします！\n${COMMON_SUB_LINK}`,
                 rankingDetails: `【楽曲詳細・記録】\nhttps://embed.music.apple.com/us/album/super-chance/1631257221?i=1631257226&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=1631257226&theme=auto\n\nリリース： 1986/08/07（昭和61年）\nチャート最高位： * 週間1位（ザ・ベストテン）\n週間1位（歌のトップテン）\n週間2位（オリコン）\n1986年度年間順位： 23位（ザ・ベストテン）／ 47位（オリコン）\n累計売上： 約20.0万枚\nタイアップ： スーパー・フジカラー CMソング\n作詞： 売野雅勇 ／ 作曲： 和泉常寛 ／ 編曲： 新川博\n\n---\n\n⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートおよび番組公式記録を基に構成しています。\n\n皆さんの心に残る「南野陽子さんの富士カラーCM」の思い出や、この曲を聴いて思い出す1986年の夏の出来事はありますか？ 📸\n「ナンノの笑顔とカルロスの歌声」が彩ったあの時代について、ぜひYouTubeコメント欄で熱く語り合いましょう！`,
                 youtubeId: "EJIvVlffdPA"
+            },
+            {
+                id: 15,
+                date: "2026.02.24",
+                category: 'シングル売上ランキング',
+                title: "【伝説のスタジアム女王】渡辺美里 シングル売上TOP5｜「My Revolution」から心震える名曲ランキング",
+                duration: "01:00",
+                views: "New",
+                thumbnail: "https://img.youtube.com/vi/BKx7HGoSDo4/maxresdefault.jpg",
+                desc: `パワフルな歌声と圧倒的なパフォーマンスで「スタジアムの女王」として君臨し、80年代・90年代の日本の音楽シーンを駆け抜けた渡辺美里。\n\n小室哲哉氏とのタッグで社会現象を巻き起こし、今なお色褪せない名曲『My Revolution』をはじめ、彼女が紡いできたシングル売上TOP5をランキング形式でご紹介します。\n\n明治生命のCMソングや人気ドラマの主題歌など、私たちの日常に寄り添い、勇気を与えてくれた珠玉のメロディをお楽しみください。当時の熱狂を伝える貴重なパフォーマンス映像とともに、あの頃の情熱が鮮やかに蘇ります。\n\n▼チャンネル登録で応援よろしくお願いします！\n${COMMON_SUB_LINK}`,
+                rankingDetails: `【ランキング詳細】\n\n第1位：My Revolution（1986/01/22発売）最高位1位 / 売上44.5万枚\nhttps://embed.music.apple.com/us/album/my-revolution/1536316808?i=1536316811&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=1536316811&theme=auto\n第2位：いつか きっと（1993/02/01発売）最高位7位 / 売上28.3万枚\n第3位：サマータイムブルース（1990/05/12発売）最高位2位 / 売上26.3万枚\n第4位：恋したっていいじゃない（1988/04/21発売）最高位2位 / 売上24.6万枚\n第5位：卒業（1991/04/18発売）最高位2位 / 売上23.2万枚\n・第6位：虹をみたかい（1989/10/21発売）最高位1位 / 売上21.8万枚\n・第7位：My Revolution－第2章－（1992/04/22発売）最高位2位 / 売上21.8万枚\n・第8位：BELIEVE（1986/10/22発売）最高位2位 / 売上20.6万枚\n・第9位：Teenage Walk（1986/05/02発売）最高位5位 / 売上19.8万枚\n・第10位：夏が来た！（1991/06/21発売）最高位8位 / 売上19.2万枚\n\n---\n\n⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。\n\n皆さんの心に残る渡辺美里さんの「最高の応援歌」はどれですか？ 📣\n西武スタジアムの思い出や、彼女の曲に励まされたエピソードを、ぜひコメント欄で熱く語り合いましょう！`,
+                youtubeId: null
             }
         ];
 
@@ -324,13 +336,13 @@
 
             const transmissionLogs = useMemo(() => {
                 return [...videos]
-                    .filter(v => v.date && !v.date.includes("Coming Soon"))
+                    .filter(v => v.date && !v.date.includes("Coming Soon") && v.id !== 15)
                     .sort((a, b) => b.date.localeCompare(a.date))
                     .slice(0, 5);
             }, []);
 
             const filteredVideos = useMemo(() => {
-                const order = [1, 2, 3, 4, 7, 5, 8, 10, 11, 14, 9, 6, 13, 12];
+                const order = [1, 2, 3, 4, 7, 5, 8, 10, 11, 14, 15, 9, 6, 13, 12];
                 let sorted = [...videos].sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
                 return selectedCategory === 'すべて' ? sorted : sorted.filter(v => v.category === selectedCategory);
             }, [selectedCategory]);
