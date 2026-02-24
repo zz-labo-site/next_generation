@@ -321,7 +321,7 @@
                 thumbnail: "https://img.youtube.com/vi/4qdymCeDADQ/maxresdefault.jpg",
                 desc: `1978年、日本中に冒険の夢を届け、空前のブームを巻き起こしたドラマ『西遊記』。\n\n孫悟空と三蔵法師の固い絆、そして旅の途中で見せる繊細な感情。その感動的なシーンで多くの視聴者の涙を誘ったゴダイゴの名曲『THANK YOU, BABY』をご紹介します。\n\n夏目雅子さんの圧倒的な美しさと、堺正章さん、西田敏行さん、岸部シローさんらが織りなす唯一無二の世界観。ゴダイゴによる珠玉のハーフ英語バラードが、あの頃の切なくも温かい記憶を鮮明に呼び起こします。\n\n▼チャンネル登録で応援よろしくお願いします！\n${COMMON_SUB_LINK}`,
                 rankingDetails: `【楽曲詳細・記録】\nhttps://embed.music.apple.com/us/album/thank-you-baby/477649520?i=477649526&itscg=30200&itsct=music_box_player&ls=1&app=music&mttnsubad=477649526&theme=auto\n\nリリース： 1978/10/25（アルバム『西遊記（Magic Monkey）』収録）\nタイアップ： 日本テレビ系ドラマ『西遊記』挿入歌\n作詞： 奈良橋陽子 ／ 作曲： タケカワヒデユキ \n\n備考： 堺正章氏による日本語歌詞Ver『今では遅すぎる』も同ドラマ内で使用\n\n---\n\n⚠️ 本動画内の映像・画像は、最新のAI技術により修復・高画質化を施したアーカイブです。\n\n皆さんの心に残る『西遊記』の一番好きなシーンはどこですか？ 🐵\n夏目雅子さんの三蔵法師に心を奪われたあの頃の思い出を、ぜひコメント欄で熱く語り合いましょう！`,
-                youtubeId: null
+                youtubeId: "4qdymCeDADQ"
             }
         ];
 
@@ -348,7 +348,7 @@
 
             const transmissionLogs = useMemo(() => {
                 return [...videos]
-                    .filter(v => v.date && !v.date.includes("Coming Soon") && v.id !== 16)
+                    .filter(v => v.date && !v.date.includes("Coming Soon"))
                     .sort((a, b) => b.date.localeCompare(a.date))
                     .slice(0, 5);
             }, []);
