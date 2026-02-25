@@ -333,7 +333,7 @@
                 thumbnail: "https://img.youtube.com/vi/JfprQsNvKgM/maxresdefault.jpg",
                 desc: `【1980年代】ハスキーボイスの至宝 5選｜魂を揺さぶる「名曲クロニクル」\n\n唯一無二、そして不世出。\n80年代の音楽シーンには、荒々しくも美しい「ハスキーボイス」で人々の心を掴んで離さなかった伝説の歌い手たちがいました。\n\n「名曲クロニクル」では、そのハスキーな声に魂を込めた人気ミュージシャン5名の軌跡を振り返ります。\n爆発的なヒットを記録した『ダンシング・オールナイト』から、都会の孤独を歌った『冬のリヴィエラ』まで。時代を超えて響き続ける「しゃがれ声」の魅力を、当時の貴重なアーカイブとともにご堪能ください。\n\n▼チャンネル登録で応援よろしくお願いします！\n${COMMON_SUB_LINK}`,
                 rankingDetails: `【楽曲詳細・記録】\n\n葛城ユキ / ボヘミアン\n作詞: 飛鳥涼　作曲: 井上大輔\n発売日: 1983/5/21　最高位:3位\n売上枚数: 41.4万枚\n\n森進一 / 冬のリヴィエラ\n作詞: 松本隆　作曲: 大瀧詠一\n発売日: 1982/11/21　最高位:10位\n売上枚数: 26.4万枚\n\n中村あゆみ / 翼の折れたエンジェル\n作詞・作曲: 高橋研\n発売日: 1985/4/21　最高位:4位\n売上枚数: 37.8万枚\n\n八代亜紀 / 雨の慕情\n作詞: 阿久悠　作曲: 浜圭介\n発売日: 1980/4/25　最高位:9位\n売上枚数: 56.9万枚\n\nもんた&ブラザーズ / ダンシング・オールナイト\n作詞: 水谷啓二　作曲: もんたよしのり\n発売日: 1980/4/21　最高位:1位\n売上枚数: 161.8万枚\n\n---\n\n⚠️ 本動画内の売上データ及び順位は、当時のオリコンチャートの記録を基に構成しています。\n\n皆さんが一番「この声に痺れた！」と思うアーティストや楽曲はどれですか？ 🎸\nぜひコメント欄で、あなたの熱い想いを聞かせてください！`,
-                youtubeId: null
+                youtubeId: "JfprQsNvKgM"
             }
         ];
 
@@ -360,7 +360,7 @@
 
             const transmissionLogs = useMemo(() => {
                 return [...videos]
-                    .filter(v => v.date && !v.date.includes("Coming Soon") && v.id !== 17)
+                    .filter(v => v.date && !v.date.includes("Coming Soon"))
                     .sort((a, b) => b.date.localeCompare(a.date))
                     .slice(0, 5);
             }, []);
@@ -570,7 +570,7 @@
                                             <div className="mt-12 text-left">
                                                 {!showDetails ? (
                                                     <button onClick={() => setShowDetails(true)} className="text-[#cfb991] text-sm font-lato tracking-widest border-b border-[#cfb991] pb-1 hover:text-white transition-colors">
-                                                        {activeVideo.category === '名曲フラッシュバック' ? '▼ もっと詳細を見る' : '▼ ランキングの詳細はこちら！'}
+                                                        {activeVideo.category === 'シングル売上ランキング' ? '▼ ランキングの詳細はこちら！' : activeVideo.category === '名曲フラッシュバック' ? '▼ もっと詳細を見る' : '▼ 詳細はこちら'}
                                                     </button>
                                                 ) : (
                                                     <div className="animate-in pt-8 border-t border-white/10 mt-8 font-mincho text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap text-left">
