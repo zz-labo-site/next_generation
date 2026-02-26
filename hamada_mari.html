@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARI HAMADA: 40年の軌跡と音楽的変遷</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-bg: #0f172a;
+            --color-card: rgba(30, 41, 59, 0.7);
+            --color-gold: #fbbf24;
+            --color-accent: #3b82f6;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Zen Old Mincho', serif;
+        }
+
+        .glass-panel {
+            background: var(--color-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .gold-text {
+            color: var(--color-gold);
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+        }
+
+        .member-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .member-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--color-gold);
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--color-bg); }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        /* Table Style for Discography */
+        .disco-table th, .disco-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .disco-table th {
+            font-weight: bold;
+            color: var(--color-gold);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+
+    <header class="w-full py-10 px-6 border-b border-slate-800 bg-slate-900/80 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter">
+                    <span class="gold-text">MARI HAMADA</span>
+                </h1>
+                <p class="text-slate-400 mt-2 font-light tracking-widest uppercase text-xs">Career Structuring Report: 40 Years of Trajectory</p>
+            </div>
+            <div class="flex gap-4">
+                <div class="text-center px-6 py-3 glass-panel rounded-xl border-t border-white/10">
+                    <div class="text-[10px] text-slate-500 uppercase font-bold mb-1">Debut</div>
+                    <div class="text-2xl font-black gold-text">1983</div>
+                </div>
+                <div class="text-center px-6 py-3 glass-panel rounded-xl border-t border-white/10">
+                    <div class="text-[10px] text-slate-500 uppercase font-bold mb-1">Anniversary</div>
+                    <div class="text-2xl font-black gold-text">40th</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="w-full bg-slate-900/50 border-b border-slate-800 sticky top-[116px] md:top-[128px] z-40 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto px-6">
+            <ul class="flex space-x-8 py-4 overflow-x-auto no-scrollbar">
+                <li><a href="#unit1" class="text-sm font-bold text-slate-400 hover:text-amber-400 transition-colors whitespace-nowrap">基礎データ</a></li>
+                <li><a href="#unit2" class="text-sm font-bold text-slate-400 hover:text-amber-400 transition-colors whitespace-nowrap">ライブ伝説</a></li>
+                <li><a href="#unit3" class="text-sm font-bold text-slate-400 hover:text-amber-400 transition-colors whitespace-nowrap">音楽スタイル</a></li>
+                <li><a href="#unit4" class="text-sm font-bold text-slate-400 hover:text-amber-400 transition-colors whitespace-nowrap">市場実績</a></li>
+                <li><a href="#summary" class="text-sm font-bold text-slate-400 hover:text-amber-400 transition-colors whitespace-nowrap">まとめ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 py-16 space-y-24">
+
+        <section id="unit1" class="scroll-mt-40">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="h-8 w-1 bg-amber-500"></div>
+                <h2 class="text-3xl font-bold serif">UNIT 1: 基礎データと制作体制</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12" id="profile-grid">
+                </div>
+
+            <div class="glass-panel p-8 rounded-3xl">
+                <h3 class="text-xl font-bold mb-6 gold-text">音楽的支柱と共同作業者</h3>
+                <p class="text-slate-300 mb-6 leading-relaxed">
+                    卓越した国内外のスペシャリストとの長期的かつ強固な協力体制が、そのサウンドを構築している。
+                </p>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-300">
+                    <li class="flex items-start gap-2"><span class="text-amber-400">●</span><span><strong>樋口宗孝（LOUDNESS）:</strong> デビュー当初のプロデューサー。「ヘヴィメタルの女王」としての基盤を構築。</span></li>
+                    <li class="flex items-start gap-2"><span class="text-amber-400">●</span><span><strong>Greg Edward:</strong> '87-'91年のプロデューサー。L.A.レコーディング路線と音楽性の拡大に貢献。</span></li>
+                    <li class="flex items-start gap-2"><span class="text-amber-400">●</span><span><strong>増崎孝司（DIMENSION）:</strong> '87年より現在までギターを担当。30年以上サウンドの核心を支える。</span></li>
+                    <li class="flex items-start gap-2"><span class="text-amber-400">●</span><span><strong>増田隆宣:</strong> キーボード担当。アレンジおよびライブ演奏の要として貢献。</span></li>
+                    <li class="flex items-start gap-2"><span class="text-amber-400">●</span><span><strong>浜田絵里（ERI）:</strong> 実妹。'85年よりコーラス参加。唯一無二のヴォーカル・アンサンブルに不可欠な存在。</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="unit2" class="scroll-mt-40">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="h-8 w-1 bg-blue-500"></div>
+                <h2 class="text-3xl font-bold serif">UNIT 2: ライブ伝説</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
+                <div class="glass-panel p-8 rounded-3xl">
+                    <h3 class="text-center mb-6 font-bold text-slate-300">伝説の日本武道館公演</h3>
+                    <div class="chart-container">
+                        <canvas id="budokanChart"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-slate-400 mt-4">絶頂期の1989年と、26年ぶりの帰還となった2019年35周年記念公演。</p>
+                </div>
+                
+                <div class="glass-panel p-10 rounded-3xl flex flex-col justify-center">
+                    <h3 class="text-xl font-bold mb-6 gold-text">海外進出とフェスティバル出演</h3>
+                    <ul class="space-y-6">
+                        <li>
+                            <h4 class="font-bold text-white mb-1">グローバル展開 (1990s)</h4>
+                            <p class="text-sm text-slate-300">1993年、MCA Internationalと世界契約。1994年にKIM WILDEとヨーロッパツアーを敢行。アジア圏では「Hold On」がロングヒット。</p>
+                        </li>
+                        <li>
+                            <h4 class="font-bold text-white mb-1">大型フェスでの衝撃 (2014-2015)</h4>
+                            <p class="text-sm text-slate-300">サマーソニック2014で初の大型野外フェス出演。LOUD PARK 2015では圧倒的な歌唱力がSNSで話題となり、入場規制がかかるほどの反響を呼んだ。</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl border-t-4 border-blue-500">
+                 <h3 class="text-lg font-bold mb-4 text-white">周年節目の主要公演記録</h3>
+                 <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center text-sm">
+                    <div class="p-3 bg-slate-800/50 rounded-lg"><div class="font-bold gold-text">20周年</div>中野サンプラザ</div>
+                    <div class="p-3 bg-slate-800/50 rounded-lg"><div class="font-bold gold-text">25周年</div>全国ツアー「On The Wing」</div>
+                    <div class="p-3 bg-slate-800/50 rounded-lg"><div class="font-bold gold-text">30周年</div>東京国際フォーラムA</div>
+                    <div class="p-3 bg-slate-800/50 rounded-lg"><div class="font-bold gold-text">35周年</div>日本武道館「Gracia」</div>
+                    <div class="p-3 bg-slate-800/50 rounded-lg"><div class="font-bold gold-text">40周年</div>ツアー「Soar」完売</div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="unit3" class="scroll-mt-40">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="h-8 w-1 bg-emerald-500"></div>
+                <h2 class="text-3xl font-bold serif">UNIT 3: 音楽スタイルと変遷</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div class="glass-panel p-10 rounded-3xl flex flex-col items-center justify-center relative overflow-hidden">
+                     <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/20 to-transparent pointer-events-none"></div>
+                    <h3 class="mb-10 font-bold text-slate-300 relative z-10">ジャンルと表現技法の進化</h3>
+                    <div class="relative w-72 h-72">
+                        <div class="absolute top-0 left-0 w-40 h-40 bg-red-600/30 rounded-full border border-red-500/50 flex items-center justify-center text-xs font-bold text-center p-2 backdrop-blur-sm">初期<br>HR/HMの女性旗手<br>('83-'86)</div>
+                        <div class="absolute top-0 right-0 w-40 h-40 bg-blue-600/30 rounded-full border border-blue-500/50 flex items-center justify-center text-xs font-bold text-center p-2 backdrop-blur-sm">深化期<br>ポップとハードの融合<br>L.A.路線 ('87-'90s初頭)</div>
+                        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-40 h-40 bg-purple-600/30 rounded-full border border-purple-500/50 flex items-center justify-center text-xs font-bold text-center p-2 backdrop-blur-sm">探求期<br>表現の深化<br>ウイスパー歌唱導入 ('90s後半)</div>
+                        
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-20">
+                            <div class="w-28 h-28 bg-amber-500 rounded-full flex items-center justify-center text-black font-black text-xs text-center shadow-[0_0_30px_rgba(251,191,36,0.6)] p-1">現在<br>テクニカルな重厚さと<br>繊細な表現の共存</div>
+                        </div>
+                    </div>
+                     <p class="relative z-10 mt-8 text-xs text-slate-400 text-center">知的探求と技術研鑽による、ハードロックを基軸とした進化。</p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-3xl">
+                    <h3 class="mb-6 font-bold text-slate-300">制作体制のこだわりとポリシー</h3>
+                    <div class="space-y-3" id="policy-controls">
+                        <button onclick="updatePolicy('self')" class="w-full py-4 px-6 rounded-2xl bg-slate-800/50 hover:bg-slate-700 border border-slate-700 text-left transition-all flex items-center justify-between group">
+                            <span class="font-bold text-slate-300 group-hover:text-amber-400">セルフ・プロデュースの確立</span>
+                            <span class="text-[10px] text-slate-500">Since 1985</span>
+                        </button>
+                        <button onclick="updatePolicy('overseas')" class="w-full py-4 px-6 rounded-2xl bg-slate-800/50 hover:bg-slate-700 border border-slate-700 text-left transition-all flex items-center justify-between group">
+                            <span class="font-bold text-slate-300 group-hover:text-amber-400">海外制作の継続性</span>
+                            <span class="text-[10px] text-slate-500">L.A. Session</span>
+                        </button>
+                         <button onclick="updatePolicy('artist')" class="w-full py-4 px-6 rounded-2xl bg-slate-800/50 hover:bg-slate-700 border border-slate-700 text-left transition-all flex items-center justify-between group">
+                            <span class="font-bold text-slate-300 group-hover:text-amber-400">アーティスト・ポリシー</span>
+                            <span class="text-[10px] text-slate-500">職人気質</span>
+                        </button>
+                    </div>
+                    <div id="policy-display" class="mt-6 p-6 bg-slate-900/80 rounded-2xl border border-slate-700 min-h-[100px] flex items-center justify-center text-center text-amber-200 text-sm leading-relaxed italic transition-opacity duration-500">
+                        ボタンを選択して詳細を表示
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="unit4" class="scroll-mt-40">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="h-8 w-1 bg-purple-500"></div>
+                <h2 class="text-3xl font-bold serif">UNIT 4: 市場実績とチャート・アクション</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
+                <div class="glass-panel p-8 rounded-3xl">
+                    <h3 class="text-center mb-6 font-bold text-slate-300">主なオリコンチャート記録</h3>
+                    <div class="chart-container">
+                        <canvas id="oriconChart"></canvas>
+                    </div>
+                     <p class="text-center text-xs text-slate-400 mt-4">1989年のシングル・アルバム同時首位をはじめ、多数のNo.1ヒットを記録。最新作も初登場4位。</p>
+                </div>
+
+                 <div class="glass-panel p-8 rounded-3xl overflow-hidden">
+                    <h3 class="text-lg font-bold mb-6 gold-text">主要タイアップ実績</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm disco-table">
+                            <thead>
+                                <tr><th>楽曲名</th><th>タイアップ先</th><th>備考</th></tr>
+                            </thead>
+                            <tbody class="text-slate-300">
+                                <tr><td>Return to Myself</td><td>'89 カネボウ化粧品 夏のイメージソング</td><td>最大のヒット曲</td></tr>
+                                <tr><td>Heart and Soul</td><td>ソウルオリンピック NHKテーマソング</td><td>初の五輪独自テーマ曲</td></tr>
+                                <tr><td>Heaven Knows</td><td>JT クラリス・ライト イメージソング</td><td>アルバム『COLORS』先行曲</td></tr>
+                                <tr><td>Paradox</td><td>日本ビクター BSテレビ『インテリアート』</td><td>L.A.制作路線の洗練楽曲</td></tr>
+                                <tr><td>Tele-Control</td><td>フジテレビ系ドラマ『葡萄が目にしみる』</td><td>ドラマ主題歌</td></tr>
+                                <tr><td>Precious Summer</td><td>朝日放送・テレビ朝日系『熱闘甲子園』</td><td>夏のスポーツ中継定番曲</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="glass-panel p-8 rounded-3xl border-t-4 border-purple-500 flex flex-col md:flex-row items-center gap-6">
+                <div class="text-5xl">🏆</div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">歴史的認知とメディア評価</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        1988年、NHK初の五輪独自テーマ曲「Heart and Soul」でナショナルアーティストへ飛躍。
+                        2024年には専門誌『BURRN!』読者人気投票で、日本人史上初の3部門制覇（ヴォーカル、シンガー、ソングライター）を達成。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="summary" class="scroll-mt-40 pb-20">
+            <div class="glass-panel p-12 rounded-[2rem] bg-gradient-to-br from-slate-800 to-slate-900 border-amber-500/30">
+                <h2 class="text-3xl font-bold text-center mb-12 serif">まとめ：40年の継続性とアーティスト像</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">🤝</div>
+                        <h4 class="font-bold gold-text mb-2">Mari-Family</h4>
+                        <p class="text-xs text-slate-400">1983年発足のファンクラブ。2026年には創設43年を迎え、極めて高い継続性を誇る。</p>
+                    </div>
+                    <div class="text-center border-x border-slate-700 px-4">
+                        <div class="text-4xl mb-4">🌏</div>
+                        <h4 class="font-bold gold-text mb-2">世界基準の音楽性</h4>
+                        <p class="text-xs text-slate-400">日本の女性ロックヴォーカリストの先駆者として、一切の妥協を排し確立。</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">👑</div>
+                        <h4 class="font-bold gold-text mb-2">孤高の地位</h4>
+                        <p class="text-xs text-slate-400">時代とともに表現を変化させながらも、根底にあるストイックな探求心と圧倒的歌唱力は不変。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 bg-slate-950 border-t border-slate-800 text-center">
+        <p class="text-slate-500 text-sm font-light tracking-widest">&copy; 2024 MARI HAMADA CAREER ARCHIVE. Based on Provided Report.</p>
+    </footer>
+
+    <script>
+        // --- 1. Profile Data ---
+        const profileData = [
+            { title: "基本情報", icon: "👤", color: "border-blue-500", content: "<strong>氏名:</strong> 浜田 麻里 (1962.7.18)<br><strong>出身:</strong> 東京都<br><strong>デビュー:</strong> 1983年4月『Lunatic Doll』<br><strong>キャッチコピー:</strong> 「麻里ちゃんは、ヘビーメタル。」" },
+            { title: "キャリア初期", icon: "🎤", color: "border-amber-500", content: "15歳よりスタジオヴォーカリストとして5年間活動。<br><strong>主要レーベル変遷:</strong> ビクター(Invitation) → MCAビクター → ポリドール → トライエム → 徳間ジャパン → ビクターエンタテインメント(現在)" },
+            { title: "サポート体制", icon: "🎸", color: "border-red-500", content: "国内外のトッププレイヤーによる高い演奏水準。<br><strong>現主要メンバー:</strong> 増崎孝司(Gt), BOH(Ba), 原澤秀樹(Dr), 増田隆宣(Key), 中尾昌文(Key), ERI(Cho)" }
+        ];
+
+        // Render Profile Cards
+        const profileGrid = document.getElementById('profile-grid');
+        profileData.forEach(item => {
+            profileGrid.innerHTML += `
+                <div class="glass-panel p-8 rounded-3xl member-card border-t-4 ${item.color}">
+                    <div class="text-4xl mb-6 text-center">${item.icon}</div>
+                    <h3 class="text-xl font-bold text-center mb-4">${item.title}</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">${item.content}</p>
+                </div>
+            `;
+        });
+
+        // --- 2. Policy Interactive ---
+        const policyDetails = {
+            "self": "<strong>セルフ・プロデュースの確立 (1985年頃〜):</strong><br>自らプロデュースを手掛け、自身の音楽的ビジョンを厳格に管理する体制を構築。",
+            "overseas": "<strong>海外制作の継続性:</strong><br>L.A.の著名ミュージシャンとのセッションを継続。2007年以降も海外録音を織り交ぜるなど、サウンドクオリティへ徹底的にこだわる。",
+            "artist": "<strong>アーティスト・ポリシー:</strong><br>本業である音楽制作とライブ活動を至上命題とし、メディア露出を極力控える職人気質な姿勢を一貫している。"
+        };
+        
+        function updatePolicy(key) {
+            const display = document.getElementById('policy-display');
+            display.innerHTML = policyDetails[key];
+            display.style.opacity = 0;
+            setTimeout(() => {
+                display.style.opacity = 1;
+                display.classList.add('animate-pulse');
+                setTimeout(() => display.classList.remove('animate-pulse'), 1000);
+            }, 50);
+        }
+
+        // --- 3. Charts Initialization ---
+        window.onload = () => {
+            Chart.defaults.color = '#94a3b8';
+            Chart.defaults.font.family = "'Inter', sans-serif";
+
+            const commonOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { weight: 'bold' } } },
+                    y: { grid: { color: 'rgba(255,255,255,0.1)' }, ticks: { color: '#94a3b8' }, beginAtZero: true }
+                }
+            };
+
+            // Budokan Chart (Bar)
+            new Chart(document.getElementById('budokanChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['1989年 (絶頂期)', '2019年 (35周年)'],
+                    datasets: [{
+                        label: '武道館公演',
+                        data: [100, 100], // Conceptual value for "Sold Out / Significant"
+                        backgroundColor: ['#fbbf24', '#fbbf24'],
+                        borderRadius: 8,
+                        barThickness: 60
+                    }]
+                },
+                options: {
+                    ...commonOptions,
+                    scales: {
+                         x: { grid: { display: false }, ticks: { color: '#f8fafc' } },
+                         y: { display: false, max: 120 } // Hide Y axis for concept chart
+                    },
+                    plugins: { legend: { display: false }, tooltip: { enabled: false } },
+                    animation: {
+                        onComplete: function() {
+                            const ctx = this.ctx;
+                            ctx.font = Chart.helpers.fontString(Chart.defaults.font.size, 'bold', Chart.defaults.font.family);
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+                            this.data.datasets.forEach(function(dataset) {
+                                for (let i = 0; i < dataset.data.length; i++) {
+                                    const model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
+                                    ctx.fillStyle = '#f8fafc';
+                                    ctx.fillText('SOLD OUT / 伝説の一夜', model.x, model.y - 5);
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+
+            // Oricon Chart (Line/Bar mix concept)
+            new Chart(document.getElementById('oriconChart'), {
+                 type: 'line',
+                 data: {
+                     labels: ["'89 Single", "'89 Album", "'93 Album", "'94 Best", "Recent Album"],
+                     datasets: [{
+                         label: 'オリコン最高位',
+                         data: [1, 1, 1, 1, 4], // Inverse rank for visual: 1 is top
+                         borderColor: '#8b5cf6',
+                         backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                         fill: true,
+                         tension: 0.3,
+                         pointRadius: 8,
+                         pointHoverRadius: 10,
+                         pointBackgroundColor: '#fbbf24'
+                     }]
+                 },
+                 options: {
+                     ...commonOptions,
+                     scales: {
+                         y: {
+                             reverse: true, // Rank 1 at top
+                             min: 1,
+                             max: 10,
+                             ticks: { stepSize: 1, callback: function(value) { return value + '位'; }, color: '#f8fafc' },
+                             grid: { color: 'rgba(255,255,255,0.1)' }
+                         },
+                         x: { grid: { display: false }, ticks: { color: '#94a3b8' } }
+                     },
+                     plugins: {
+                         legend: { display: false },
+                         tooltip: {
+                             callbacks: {
+                                 label: function(context) {
+                                     let label = context.dataset.label || '';
+                                     if (label) { label += ': '; }
+                                     label += context.parsed.y + '位';
+                                     return label;
+                                 },
+                                 afterLabel: function(context){
+                                     const titles = ["Return to Myself (単曲)", "Return to Myself (同時首位)", "Anti-Heroine", "INCLINATION", "Soar (2023年)"];
+                                     return titles[context.dataIndex];
+                                 }
+                             }
+                         }
+                     }
+                 }
+             });
+        };
+    </script>
+</body>
+</html>
