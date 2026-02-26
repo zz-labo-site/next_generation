@@ -13,6 +13,9 @@
     <meta name="author" content="不滅の魂 制作委員会">
     <meta name="theme-color" content="#050505">
 
+    <!-- クローラーへの明示的なインデックス指示 -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
     <!-- OGP -->
     <meta property="og:title" content="【公式】次世代への手紙 - 不滅 of 魂 | 昭和・平成の名曲アーカイブ">
     <meta property="og:type" content="website">
@@ -21,6 +24,31 @@
     <meta property="og:description" content="不滅の音楽を、もう一度、新しい形で。当時の熱狂と時代の地図を次世代へ語り継ぐ音楽アーカイブ。">
     <meta property="og:site_name" content="次世代への手紙 - 不滅の魂">
     <meta property="og:locale" content="ja_JP">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="【公式】次世代への手紙 - 不滅 of 魂 | 昭和・平成の名曲アーカイブ">
+    <meta name="twitter:description" content="不滅の音楽を、もう一度、新しい形で。当時の熱狂と時代の地図を次世代へ語り継ぐ音楽アーカイブ。">
+    <meta name="twitter:image" content="https://zz-labo-site.github.io/next_generation/公式ロゴ.png">
+
+    <!-- 構造化データ (JSON-LD) : Googleにサイト情報を正確に伝える -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "次世代への手紙 - 不滅の魂",
+      "url": "https://zz-labo-site.github.io/next_generation/",
+      "description": "昭和・平成の邦楽シーンを彩った不滅の名曲をオリコン記録に基づきランキング形式で紹介するYouTubeチャンネル「次世代への手紙」公式サイト。",
+      "publisher": {
+        "@type": "Organization",
+        "name": "不滅の魂 制作委員会",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://zz-labo-site.github.io/next_generation/公式ロゴ.png"
+        }
+      }
+    }
+    </script>
 
     <!-- React & Libraries -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
