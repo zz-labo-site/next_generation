@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REBECCA: レベッカ | 音楽性の変遷とキャリアの軌跡</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome (Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* 視認性の高いPalette & Utilities */
+        :root {
+            --color-bg: #0f172a; 
+            --color-card: rgba(30, 41, 59, 0.85);
+            --color-gold: #fbbf24;
+            --color-raspberry: #e11d48; /* レベッカを象徴するラズベリーカラー */
+            --color-text-main: #f8fafc;
+            --color-text-muted: #94a3b8;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            /* ダークブルーから深いラズベリー系への見やすいグラデーション */
+            background-image: linear-gradient(135deg, #0f172a 0%, #2e1026 100%);
+            color: var(--color-text-main);
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .serif { font-family: 'Zen Old Mincho', serif; }
+
+        .glass-panel {
+            background: var(--color-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .gold-text { color: var(--color-gold); }
+        .raspberry-text { color: var(--color-raspberry); }
+
+        .chart-container {
+            position: relative; 
+            width: 100%; 
+            max-width: 700px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 350px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--color-bg); }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        .vocal-btn { transition: all 0.3s ease; }
+        .vocal-btn:hover { border-color: var(--color-raspberry); }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="w-full py-10 px-6 border-b border-slate-700 bg-slate-900/80 sticky top-0 z-50 backdrop-blur-md shadow-lg">
+        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row justify-between items-end gap-6">
+            <div class="text-left">
+                <div class="text-xs font-bold tracking-[0.3em] text-slate-400 mb-2 uppercase">Music History Report</div>
+                <h1 class="text-5xl md:text-7xl font-black tracking-tighter leading-none text-white">
+                    REBECCA
+                </h1>
+                <p class="text-lg md:text-xl text-slate-300 mt-3 serif tracking-widest">レベッカ：音楽性の変遷とキャリアの軌跡</p>
+            </div>
+            <div class="grid grid-cols-2 gap-3 w-full lg:w-auto">
+                <div class="glass-panel px-6 py-3 rounded-xl text-center border-t-2 border-slate-500">
+                    <div class="text-[10px] text-slate-400 font-bold uppercase mb-1">Debut</div>
+                    <div class="text-xl font-black text-white">1984</div>
+                </div>
+                <div class="glass-panel px-6 py-3 rounded-xl text-center border-t-2 border-rose-500 bg-rose-900/10">
+                    <div class="text-[10px] text-rose-400 font-bold uppercase mb-1">Anniversary</div>
+                    <div class="text-xl font-black text-rose-400">40th+</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="w-full bg-slate-800 border-b border-slate-700">
+        <div class="max-w-6xl mx-auto px-4 overflow-x-auto">
+            <ul class="flex space-x-8 py-3 min-w-max" id="nav-list">
+                <!-- Nav items injected by JS -->
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content Area -->
+    <main class="flex-grow container mx-auto max-w-6xl px-4 py-12 space-y-20">
+
+        <!-- INTRO -->
+        <section class="glass-panel p-8 rounded-2xl border-l-4 border-rose-500 bg-slate-800/50">
+            <p class="text-slate-200 leading-relaxed text-lg font-serif">
+                日本のロック史を振り返る際、1980年代後半の「第二次バンドブーム」の導火線に火をつけた存在として、レベッカ（REBECCA）の名を欠かすことはできない。本レポートでは、音楽評論家および音楽史研究家の視点から、彼らがどのようにして独自のシンセポップ・スタイルを確立し、後のJ-POPシーンにおける「女性ボーカル＋男性楽器奏者」という標準モデルを築き上げたのか、その変遷と軌跡を詳述する。
+            </p>
+        </section>
+
+        <!-- UNIT 1: 概要・結成 -->
+        <section id="unit1" class="scroll-mt-32">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-8 w-2 bg-slate-400 rounded"></div>
+                <h2 class="text-3xl font-bold serif text-white">1. バンド概要と日本音楽史における意義 / 2. 結成からデビュー</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass-panel p-8 rounded-xl">
+                    <h3 class="text-xl font-bold text-white mb-4">1. バンド概要と日本音楽史における意義</h3>
+                    <p class="text-slate-200 leading-relaxed mb-6">
+                        レベッカは、NOKKOの圧倒的な歌唱力とパフォーマンス、そして土橋安騎夫による洗練されたサウンドプロデュースを武器に、80年代の音楽シーンを席巻した。
+                    </p>
+                    <div class="bg-slate-900/50 p-4 rounded-lg mb-6 border border-slate-700">
+                        <ul class="text-sm text-slate-300 space-y-2">
+                            <li><strong class="text-white">出身地：</strong> 日本（埼玉県）</li>
+                            <li><strong class="text-white">活動期間：</strong> 1984年 - 1991年（解散）、1995年・1999年 - 2000年（一時的な再結成）、2015年 -（本格活動再開）</li>
+                            <li><strong class="text-white">現在の主要構成：</strong> NOKKO、土橋安騎夫、高橋教之、小田原豊。2024年より是永巧一、中島オバヲが正規メンバーとして合流。</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <span class="text-xs font-bold text-gold-500 uppercase tracking-widest text-amber-400">日本音楽史における立ち位置と影響</span>
+                            <ul class="list-disc list-inside text-sm text-slate-200 mt-2 space-y-2">
+                                <li><strong>第二次バンドブームの先駆け：</strong> BOØWYと並び、それまでアンダーグラウンドだったロックをメジャーなお茶の間へと浸透させた立役者である。</li>
+                                <li><strong>「標準モデル」の確立：</strong> 1人の女性ボーカルと男性奏者という編成は、レベッカの成功によって「ガールズロック」の雛形となり、LINDBERG、PERSONZ、JITTERIN'JINN、そしてJUDY AND MARYといった90年代の成功者たちへ直接的な影響を与えた。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-8 rounded-xl border-t-4 border-slate-600">
+                    <h3 class="text-xl font-bold text-white mb-4">2. 結成からデビュー：木暮武彦リーダー時代（1982年 - 1985年初頭）</h3>
+                    <p class="text-slate-200 leading-relaxed mb-6">
+                        レベッカの歴史は、初代リーダーである木暮武彦（シャケ）の音楽的理想から始まった。
+                    </p>
+                    <ul class="space-y-4 text-slate-200 text-sm leading-relaxed">
+                        <li class="p-4 bg-slate-800 rounded-lg">
+                            <strong class="text-amber-400 block mb-1">結成とNOKKOの加入：</strong>
+                            1982年2月、木暮を中心に結成。当初は男性ボーカルだったが、前身バンド「DOLL」のボーカルだったNOKKOが加入したことで、唯一無二のフロントラインが誕生した。
+                        </li>
+                        <li class="p-4 bg-slate-800 rounded-lg">
+                            <strong class="text-amber-400 block mb-1">バンド名の由来：</strong>
+                            木暮がケイト・ダグラス・ウィギンの小説『黒い瞳の少女レベッカ』から引用。この「R」で始まる名称へのこだわりは、後の彼のキャリアにも反映されることとなる。
+                        </li>
+                        <li class="p-4 bg-slate-800 rounded-lg">
+                            <strong class="text-amber-400 block mb-1">初期の苦境：</strong>
+                            1984年4月21日、シングル「ウェラム・ボートクラブ」でメジャーデビューを果たすが、当時のサウンドは木暮主導の硬派なロック色が強く、ライブでの動員は増えるものの、レコードセールスという面では厚い壁に阻まれていた。
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNIT 2: 転機・黄金時代 -->
+        <section id="unit2" class="scroll-mt-32">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-8 w-2 bg-amber-500 rounded"></div>
+                <h2 class="text-3xl font-bold serif text-white">3. 音楽性の転機 / 4. 黄金時代</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <!-- 転機 -->
+                <div class="glass-panel p-8 rounded-xl border-l-4 border-amber-500">
+                    <h3 class="text-xl font-bold text-white mb-4">3. 音楽性の転機：シンセポップへのシフトと土橋安騎夫による改革</h3>
+                    <p class="text-slate-200 leading-relaxed mb-6">
+                        1985年1月、バンドは最大の存続危機を迎えると同時に、最大の飛躍へのチャンスを掴む。
+                    </p>
+                    <ul class="space-y-4 text-slate-200 text-sm leading-relaxed mb-6">
+                        <li><strong>「事実上の追放」と新体制：</strong> 音楽的方向性（ポップ路線の拒絶）を巡り、木暮武彦とディレクターが衝突。結果として木暮とドラムの小沼達也が脱退（事実上の追放）し、キーボードの土橋安騎夫が2代目リーダーに就任した。</li>
+                        <li><strong>都会的な洗練を纏った音楽改革：</strong> 土橋は、それまでの無骨なロック路線から、当時世界を席巻していたシンディ・ローパーやマドンナを彷彿とさせるシンセポップ路線へと舵を切った。綿密に構築されたデジタル・クオリティと、NOKKOの躍動的なダンス、そしてティーンエイジャーの少女心理を鋭く抉る歌詞の融合は、当時の日本に「メトロポリタンな洗練」という新たな価値観をもたらした。</li>
+                    </ul>
+                    <div class="p-4 bg-slate-900 border border-slate-600 rounded-lg">
+                        <div class="text-xs font-bold text-amber-500 mb-2">【評論家の眼：木暮の“R”への執念】</div>
+                        <p class="text-xs text-slate-300">脱退した木暮らは当初「レベッカ（レベッカ♂）」を名乗ろうとし、一時期2つのレベッカが並存する事態となった。最終的に「RED WARRIORS」へ改名したが、これも木暮の「どうしても“R”から始まるバンド名にしたかった」という強いこだわりによるものである。</p>
+                    </div>
+                </div>
+
+                <!-- 黄金時代 -->
+                <div class="glass-panel p-8 rounded-xl bg-gradient-to-br from-slate-800 to-slate-900">
+                    <h3 class="text-xl font-bold text-white mb-4">4. 黄金時代：80年代後半の圧倒的な実績とエピソード</h3>
+                    <p class="text-slate-200 leading-relaxed mb-6">
+                        土橋体制への移行後、レベッカは国民的バンドへと駆け上がる。
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-amber-400 mb-2 border-b border-slate-600 pb-1">ブレイクの過程</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-200 space-y-1">
+                                <li>1985年、シングル「フレンズ」がオリコン3位を記録。</li>
+                                <li>アルバム『REBECCA IV 〜Maybe Tomorrow〜』は、日本のロックアルバムとして<strong class="text-white">史上初のミリオンセラー（累計130万枚超）</strong>を達成する金字塔を打ち立てた。</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-amber-400 mb-2 border-b border-slate-600 pb-1">大規模ライブの実績</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-200 space-y-1">
+                                <li>1987年：日本武道館6日間連続公演を成功。</li>
+                                <li>1987年8月：横須賀港での5万人野外ライブ『REBECCA FROM THE FAR EAST』開催。</li>
+                                <li>1989年7月：東京ドーム公演『BLOND SAURUS』を成功。</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-amber-400 mb-2 border-b border-slate-600 pb-1">主要な受賞歴と活動休止</h4>
+                            <p class="text-sm text-slate-200 mb-2"><strong>受賞：</strong> 1988年、第2回日本ゴールドディスク大賞「アーティスト・オブ・ザ・イヤー（邦楽部門）」を受賞。名実ともに日本のトップに君臨した。</p>
+                            <p class="text-sm text-slate-200"><strong>活動休止と解散：</strong> 絶頂期の裏側で、超多忙なスケジュールが創作活動を圧迫。「一度区切りをつけるべき」という苦渋の決断により、1990年1月に活動休止。翌1991年2月14日、バレンタインデーに正式に解散を発表した。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNIT 3: 作品・タイアップ -->
+        <section id="unit3" class="scroll-mt-32">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-8 w-2 bg-rose-500 rounded"></div>
+                <h2 class="text-3xl font-bold serif text-white">5. 作品とタイアップ：代表曲のデータ分析</h2>
+            </div>
+
+            <p class="text-slate-200 leading-relaxed mb-6">
+                レベッカの楽曲は、その時代の空気感を象徴するメディアとの親和性が非常に高かった。
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <!-- タイアップ体験 (インタラクティブ) -->
+                <div class="glass-panel p-6 rounded-xl">
+                    <h3 class="text-lg font-bold text-white mb-4"><i class="fa-solid fa-tv text-rose-400 mr-2"></i>主要タイアップ情報体験</h3>
+                    <p class="text-sm text-slate-400 mb-6">曲名のボタンをクリックして、当時のタイアップ情報を確認してください。</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex flex-col space-y-2 h-64 overflow-y-auto pr-2 no-scrollbar">
+                            <button onclick="highlightTieup('girls')" class="vocal-btn w-full py-3 px-4 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left transition-all text-sm font-bold text-white">ガールズ ブラボー!</button>
+                            <button onclick="highlightTieup('friends')" class="vocal-btn w-full py-3 px-4 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left transition-all text-sm font-bold text-white">フレンズ (1985)</button>
+                            <button onclick="highlightTieup('maybe')" class="vocal-btn w-full py-3 px-4 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left transition-all text-sm font-bold text-white">Maybe Tomorrow (1985)</button>
+                            <button onclick="highlightTieup('raspberry')" class="vocal-btn w-full py-3 px-4 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left transition-all text-sm font-bold text-white">RASPBERRY DREAM</button>
+                            <button onclick="highlightTieup('monotone')" class="vocal-btn w-full py-3 px-4 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left transition-all text-sm font-bold text-white">MONOTONE BOY</button>
+                            <button onclick="highlightTieup('nervous')" class="vocal-btn w-full py-3 px-4 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left transition-all text-sm font-bold text-white">Nervous but Glamorous</button>
+                            <button onclick="highlightTieup('friends_remix')" class="vocal-btn w-full py-3 px-4 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left transition-all text-sm font-bold text-white">フレンズ 〜remixed edition〜</button>
+                            <button onclick="highlightTieup('maybe_99')" class="vocal-btn w-full py-3 px-4 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left transition-all text-sm font-bold text-white">Maybe Tomorrow (1999)</button>
+                            <button onclick="highlightTieup('kamisama')" class="vocal-btn w-full py-3 px-4 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left transition-all text-sm font-bold text-white">神様と仲なおり</button>
+                        </div>
+                        <div id="tieup-desc" class="p-6 bg-slate-900/80 rounded-xl border border-slate-700 text-base flex flex-col items-center justify-center text-center font-bold leading-relaxed min-h-[200px]">
+                            <span class="text-rose-400">左の曲名をクリックしてください。</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- チャート実績とグラフ -->
+                <div class="glass-panel p-6 rounded-xl flex flex-col">
+                    <h3 class="text-lg font-bold text-white mb-2">代表作品とチャート実績</h3>
+                    <div class="chart-container mb-4 flex-grow">
+                        <canvas id="rankingChart"></canvas>
+                    </div>
+                    <div class="bg-slate-900 p-4 rounded-lg border border-slate-700 overflow-y-auto max-h-48 text-sm text-slate-300 space-y-2">
+                        <p><strong class="text-white">ウェラム・ボートクラブ（1984年）：</strong>デビュー作（圏外）。木暮時代の象徴。</p>
+                        <p><strong class="text-white">フレンズ（1985年）：</strong>オリコン3位。時代を定義したアンセム。</p>
+                        <p><strong class="text-white">RASPBERRY DREAM（1986年）：</strong>オリコン4位。土橋サウンドの完成形。</p>
+                        <p><strong class="text-white">MONOTONE BOY（1987年）：</strong>オリコン3位。松本隆が作詞を担当。</p>
+                        <p><strong class="text-white">MOON（1988年）：</strong>オリコン20位。後期の傑作バラード。</p>
+                        <p><strong class="text-white">フレンズ 〜remixed edition〜（1999年）：</strong>オリコン6位。リバイバルヒットにより次世代のファンを獲得。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNIT 4: 再結成・総括 -->
+        <section id="unit4" class="scroll-mt-32">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-8 w-2 bg-blue-500 rounded"></div>
+                <h2 class="text-3xl font-bold serif text-white">6. 再結成の歩み / 7. 現メンバー / 8. 総括</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <!-- 再結成 -->
+                <div class="glass-panel p-8 rounded-xl border-t-4 border-blue-500">
+                    <h3 class="text-xl font-bold text-white mb-4">6. 再結成の歩みと21世紀の活動状況</h3>
+                    <p class="text-slate-200 leading-relaxed mb-6">解散後も、レベッカは節目ごとにその圧倒的な存在感を世に示してきた。</p>
+                    <ul class="space-y-4 text-slate-200 text-sm leading-relaxed">
+                        <li><strong class="text-blue-300">復興とリバイバル：</strong> 1995年には阪神・淡路大震災復興支援のため横浜アリーナで2日間限定のライブを実施。1999年にはドラマ『リップスティック』の主題歌として「フレンズ」が再燃し、新曲もリリースされた。</li>
+                        <li><strong class="text-blue-300">2015年 本格再始動：</strong> デビュー30周年を経て、NOKKOが「過去の楽曲を改めて聴き、その鮮烈さに心打たれた」ことを機に本格再始動。横浜アリーナ、さいたまスーパーアリーナ公演を即完売させ、『第66回NHK紅白歌合戦』への初出場も果たした。</li>
+                        <li><strong class="text-blue-300">近年の動向：</strong> 2017年には28年半ぶりの全国ツアーを完遂。そして2024年、結成40周年を前に全国ツアー『REBECCA NOSTALGIC NEW WORLD TOUR 2024』を開催。<br><strong class="text-amber-400">最新の挑戦：</strong> 2024年7月7日には、バンド初となるデジタル限定シングル「Daisy Chain/アシデケトバセ」をリリース。現代の配信市場へも適応しつつ、ツアーファイナルの東京ガーデンシアター追加公演を含め、衰えぬ現役感を見せつけている。</li>
+                    </ul>
+                </div>
+
+                <!-- メンバー -->
+                <div class="glass-panel p-8 rounded-xl">
+                    <h3 class="text-xl font-bold text-white mb-4">7. 現メンバーおよび主要構成</h3>
+                    <p class="text-slate-200 text-sm mb-4">2024年の活動において、特筆すべきは長年のサポートメンバーが正規メンバーへと昇格した点である。</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-800 text-slate-300 border-b border-slate-600">
+                                    <th class="p-3">氏名</th>
+                                    <th class="p-3">担当</th>
+                                    <th class="p-3">備考</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-slate-200 divide-y divide-slate-700/50">
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">NOKKO</td>
+                                    <td class="p-3">ボーカル</td>
+                                    <td class="p-3 text-xs">唯一無二の歌声とダンスを維持。日本の歌姫の元祖。</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">土橋安騎夫</td>
+                                    <td class="p-3">キーボード</td>
+                                    <td class="p-3 text-xs">2代目リーダー。緻密なサウンドデザインの核。</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">高橋教之</td>
+                                    <td class="p-3">ベース</td>
+                                    <td class="p-3 text-xs">再始動後は会社員としての休暇を利用して参加する異色のスタイル。</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">小田原豊</td>
+                                    <td class="p-3">ドラムス</td>
+                                    <td class="p-3 text-xs">1985年加入。タイトかつパワフルなリズムの要。</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50 bg-slate-900/30">
+                                    <td class="p-3 font-bold text-amber-400">是永巧一</td>
+                                    <td class="p-3">ギター</td>
+                                    <td class="p-3 text-xs">約40年にわたり支え続け、2024年に正規メンバー昇格。</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50 bg-slate-900/30">
+                                    <td class="p-3 font-bold text-amber-400">中島オバヲ</td>
+                                    <td class="p-3">パーカッション</td>
+                                    <td class="p-3 text-xs">是永同様、長年の貢献を経て2024年に正規メンバー昇格。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 総括 -->
+            <div class="glass-panel p-10 rounded-2xl bg-gradient-to-br from-slate-900 to-black border border-slate-700 text-center">
+                <h3 class="text-2xl font-bold text-white mb-6 serif tracking-widest">8. 総括：レベッカが遺したレガシー</h3>
+                <p class="text-slate-300 leading-relaxed max-w-4xl mx-auto mb-4">
+                    レベッカが日本の音楽シーンに刻んだ最大の功績は、NOKKOというアイコンを通じ、女性が自らの感情をロックのビートに乗せて叫ぶための「解放のフォーマット」を完成させたことにある。
+                </p>
+                <p class="text-slate-300 leading-relaxed max-w-4xl mx-auto mb-4">
+                    彼らが確立した「女性ボーカル＋男性奏者」というスタイルは、後のJ-POPにおける<strong class="text-gold-500 font-black">標準モデル（スタンダード）</strong>となり、渡瀬マキ（LINDBERG）や千秋といったアーティストたちが、かつてNOKKOに憧れ、シンガーを志したエピソードは有名である。
+                </p>
+                <p class="text-slate-300 leading-relaxed max-w-4xl mx-auto">
+                    「ノスタルジック（郷愁）」でありながら、常に「ニューワールド（新世界）」を提示し続ける彼らの音楽は、デビュー40年を経てもなお、色褪せることなく次世代のアーティストたちへと継承されている。
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-12 bg-slate-950 border-t border-slate-800 text-center">
+        <p class="text-slate-400 text-sm font-bold tracking-widest italic">© 2024 Fumetsu no tamashī Report.</p>
+    </footer>
+
+    <script>
+        // Init Navigation
+        const navList = document.getElementById('nav-list');
+        const sections = [
+            { id: 'unit1', label: '1. 概要・結成とデビュー' },
+            { id: 'unit2', label: '2. 転機と黄金時代' },
+            { id: 'unit3', label: '3. 作品・タイアップ' },
+            { id: 'unit4', label: '4. 再結成・現メンバー・総括' }
+        ];
+
+        sections.forEach(sec => {
+            const li = document.createElement('li');
+            li.innerHTML = `<button onclick="document.getElementById('${sec.id}').scrollIntoView({behavior: 'smooth'})" class="text-sm font-bold text-slate-400 hover:text-white hover:text-rose-400 transition-colors whitespace-nowrap">${sec.label}</button>`;
+            navList.appendChild(li);
+        });
+
+        // Interactive: タイアップ紹介ロジック
+        function highlightTieup(songKey) {
+            const display = document.getElementById('tieup-desc');
+            const messages = {
+                'girls': "<div class='text-xl mb-2 text-white font-black'>ガールズ ブラボー! (1985年)</div><div class='text-sm text-slate-300'>日本テレビ系ドラマ『ハーフポテトな俺たち』OPテーマ</div>",
+                'friends': "<div class='text-xl mb-2 text-white font-black'>フレンズ (1985年)</div><div class='text-sm text-slate-300'>日本テレビ系ドラマ『ハーフポテトな俺たち』EDテーマ</div>",
+                'maybe': "<div class='text-xl mb-2 text-white font-black'>Maybe Tomorrow (1985年)</div><div class='text-sm text-slate-300'>日本テレビ系ドラマ『ハーフポテトな俺たち』挿入歌</div>",
+                'raspberry': "<div class='text-xl mb-2 text-white font-black'>RASPBERRY DREAM (1986年)</div><div class='text-sm text-slate-300'>ライオン「PAGE ONE」CMソング</div>",
+                'monotone': "<div class='text-xl mb-2 text-white font-black'>MONOTONE BOY (1987年)</div><div class='text-sm text-slate-300'>東宝映画『微熱少年』主題歌</div>",
+                'nervous': "<div class='text-xl mb-2 text-white font-black'>Nervous but Glamorous (1987年)</div><div class='text-sm text-slate-300'>SONY ミニコンポ「LIBERTY」CMソング</div>",
+                'friends_remix': "<div class='text-xl mb-2 text-white font-black'>フレンズ 〜remixed edition〜 (1999年)</div><div class='text-sm text-slate-300'>フジテレビ系月9ドラマ『リップスティック』主題歌</div>",
+                'maybe_99': "<div class='text-xl mb-2 text-white font-black'>Maybe Tomorrow (1999年)</div><div class='text-sm text-slate-300'>フジテレビ系月9ドラマ『リップスティック』挿入歌</div>",
+                'kamisama': "<div class='text-xl mb-2 text-white font-black'>神様と仲なおり (2000年)</div><div class='text-sm text-slate-300'>アニメ映画『風を見た少年』主題歌</div>"
+            };
+            display.innerHTML = messages[songKey];
+            display.classList.remove('animate-pulse');
+            void display.offsetWidth; // trigger reflow
+            display.classList.add('animate-pulse');
+        }
+
+        // Charts Init
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctxChart = document.getElementById('rankingChart').getContext('2d');
+            new Chart(ctxChart, {
+                type: 'line',
+                data: {
+                    labels: ['フレンズ (85)', 'RASPBERRY DREAM (86)', 'MONOTONE BOY (87)', 'MOON (88)', 'フレンズ remix (99)'],
+                    datasets: [{
+                        label: 'オリコン最高順位',
+                        data: [3, 4, 3, 20, 6],
+                        borderColor: '#e11d48', // ラズベリー色
+                        backgroundColor: 'rgba(225, 29, 72, 0.2)',
+                        pointBackgroundColor: '#fbbf24',
+                        pointBorderColor: '#fff',
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        x: { 
+                            grid: { display: false },
+                            ticks: { color: '#94a3b8', font: { size: 10 } }
+                        },
+                        y: { 
+                            reverse: true, // 1位を上にするための設定
+                            min: 1,
+                            max: 30,
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            ticks: { 
+                                color: '#f8fafc', 
+                                font: { weight: 'bold' },
+                                callback: function(value) { return value + '位'; }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return '最高順位: ' + context.parsed.y + '位';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
