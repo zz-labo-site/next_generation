@@ -1669,6 +1669,517 @@
 </body>
 </html>`;
 
+        const BOOWY_HTML_CONTENT = `<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOØWY: 伝説のロックバンド | 構造的進化と音楽産業における軌跡レポート</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"><\/script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"><\/script>
+
+    <!-- Font Awesome (Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* 視認性の高いPalette & Utilities (BOØWY向けモノトーン＆ブルー基調) */
+        :root {
+            --color-bg: #0f172a; 
+            --color-card: rgba(15, 23, 42, 0.85);
+            --color-accent-blue: #38bdf8;
+            --color-accent-red: #f43f5e;
+            --color-text-main: #f8fafc;
+            --color-text-muted: #94a3b8;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            /* ダークブルーからブラックへのシャープなグラデーション */
+            background-image: linear-gradient(135deg, #0f172a 0%, #000000 100%);
+            color: var(--color-text-main);
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .serif { font-family: 'Zen Old Mincho', serif; }
+
+        .glass-panel {
+            background: var(--color-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .accent-blue-text { color: var(--color-accent-blue); }
+        .accent-red-text { color: var(--color-accent-red); }
+
+        .chart-container {
+            position: relative; 
+            width: 100%; 
+            max-width: 700px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 350px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--color-bg); }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+        .interactive-btn { transition: all 0.3s ease; }
+        .interactive-btn:hover { border-color: var(--color-accent-blue); background: rgba(56, 189, 248, 0.1); }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="w-full py-10 px-6 border-b border-slate-700 bg-black/80 sticky top-0 z-50 backdrop-blur-md shadow-lg">
+        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row justify-between items-end gap-6">
+            <div class="text-left">
+                <div class="text-xs font-bold tracking-[0.3em] text-slate-400 mb-2 uppercase">Music History Archive</div>
+                <h1 class="text-5xl md:text-7xl font-black tracking-tighter leading-none text-white">
+                    BOØWY
+                </h1>
+                <p class="text-lg md:text-xl text-slate-300 mt-3 serif tracking-widest">構造的進化と音楽産業における軌跡レポート</p>
+            </div>
+            <div class="grid grid-cols-2 gap-3 w-full lg:w-auto">
+                <div class="glass-panel px-6 py-3 rounded-xl text-center border-t-2 border-slate-500">
+                    <div class="text-[10px] text-slate-400 font-bold uppercase mb-1">Formation</div>
+                    <div class="text-xl font-black text-white">1981</div>
+                </div>
+                <div class="glass-panel px-6 py-3 rounded-xl text-center border-t-2 border-sky-500 bg-sky-900/10">
+                    <div class="text-[10px] text-sky-400 font-bold uppercase mb-1">Status</div>
+                    <div class="text-xl font-black text-sky-400">Legend</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="w-full bg-slate-900 border-b border-slate-700">
+        <div class="max-w-6xl mx-auto px-4 overflow-x-auto">
+            <ul class="flex space-x-8 py-3 min-w-max" id="nav-list">
+                <!-- Nav items injected by JS -->
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content Area -->
+    <main class="flex-grow container mx-auto max-w-6xl px-4 py-12 space-y-20">
+
+        <!-- INTRO -->
+        <section class="glass-panel p-8 rounded-2xl border-l-4 border-sky-500 bg-slate-800/50">
+            <p class="text-slate-200 leading-relaxed text-lg font-serif">
+                本レポートは、1980年代の日本ロックシーンにおいて独自の美学と音楽性を確立し、社会現象を巻き起こしたBOØWYの活動を、アーカイブ資料に基づき構造的に分析したものである。パンクから「ビート・ロック」への音楽的変遷、メディア戦略、そして解散に至る内的・外的要因を網羅的に整理する。
+            </p>
+        </section>
+
+        <!-- UNIT 1: アイデンティティと音楽性の変遷 -->
+        <section id="unit1" class="scroll-mt-32">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-8 w-2 bg-sky-500 rounded"></div>
+                <h2 class="text-3xl font-bold serif text-white">1. バンドのアイデンティティと構造的概要 / 2. 音楽性の変遷</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div class="glass-panel p-8 rounded-xl border-t-4 border-slate-500">
+                    <h3 class="text-xl font-bold text-white mb-4">1. バンドのアイデンティティと構造的概要</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-sky-400 mb-2 border-b border-slate-600 pb-1">バンド名の由来と「Ø」の思想</h4>
+                            <p class="text-sm text-slate-200 leading-relaxed">
+                                BOØWYという名称に含まれる記号「Ø（空集合）」は、<strong class="text-white">「何処にも属さない、誰にも似たくない」</strong>という自立の意志を象徴している。結成当初は、所属事務所「ビーイング」の長戸大幸社長により、イギリスのバンド「ガール」に対抗した「暴威」という漢字表記が提案された。また、デヴィッド・ボウイのために山本寛斎がデザインした衣装の文字「出火吐暴威」もその由来の一部とされる。1982年1月に現在の「BOØWY」へと改名され、音楽的・ビジュアル的なアイデンティティが確立された。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sky-400 mb-2 border-b border-slate-600 pb-1">主要な功績：第二次バンドブームの先駆者</h4>
+                            <p class="text-sm text-slate-200 leading-relaxed">
+                                活動期間（1981年-1988年）において、日本のロックを「ライブハウスからドーム」へと引き上げた。解散後10年を経てリリースされたベストアルバム『THIS BOØWY』（1998年）が220万枚以上を売り上げるなど、その影響力は活動終了後も衰えることなく、日本ロック界の「美的原型」を確立した。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-8 rounded-xl border-t-4 border-sky-500 bg-gradient-to-br from-slate-800 to-slate-900">
+                    <h3 class="text-xl font-bold text-white mb-4">2. 音楽性の変遷：プロフェッショナルとしての生存戦略</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-sky-400 mb-2 border-b border-slate-600 pb-1">初期（MORAL期）：パンクからニューウェイヴへの転換</h4>
+                            <p class="text-sm text-slate-200 leading-relaxed">
+                                デビュー当初はパンク・ロック的な荒々しさを特徴としていた。転機となったのは<strong class="text-white">1982年9月9日、渋谷PARCO PARTIIIでのライブ「CHANGE COSTUME」</strong>である。単なる衣装の変更に留まらず、パンクの枠組みを捨て、ニューウェイヴの影響を受けたメロディアスな楽曲へとシフト。これはプロの音楽集団として生存するための戦略的判断であった。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sky-400 mb-2 border-b border-slate-600 pb-1">中期（BOØWY～JUST A HERO期）：8ビートの構造的確立</h4>
+                            <p class="text-sm text-slate-200 leading-relaxed">
+                                プロデューサー佐久間正英との邂逅により、サウンドは劇的に洗練される。布袋の緻密なギターワークと松井・高橋によるタイトなリズム隊が融合し、日本独自の「8ビート・ロック」を完成させた。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sky-400 mb-2 border-b border-slate-600 pb-1">後期（BEAT EMOTION～PSYCHOPATH期）：ポップさとエッジの止揚</h4>
+                            <p class="text-sm text-slate-200 leading-relaxed">
+                                アルバム『BEAT EMOTION』と『PSYCHOPATH』は、ロックバンドとして異例のミリオンセラーを記録。サウンドの鋭利さを維持しつつ、広範な大衆性を獲得したこの時期、BOØWYは日本の音楽産業における頂点へと登り詰めた。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- メンバー構成表 -->
+            <div class="glass-panel p-8 rounded-xl">
+                <h3 class="text-xl font-bold text-white mb-4">メンバー構成の変遷</h3>
+                <p class="text-slate-200 text-sm mb-4">初期は6人編成であったが、1982年10月以降、解散時まで続く不動の4人編成となった。</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-800 text-slate-300 border-b border-slate-600">
+                                <th class="p-3">氏名</th>
+                                <th class="p-3">担当楽器</th>
+                                <th class="p-3">備考</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-200 divide-y divide-slate-700/50">
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-3 font-bold text-white">氷室京介</td>
+                                <td class="p-3">ボーカル</td>
+                                <td class="p-3 text-xs">リーダー。旧芸名：狂介。1984年12月に「京介」へ改名。</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-3 font-bold text-white">布袋寅泰</td>
+                                <td class="p-3">ギター</td>
+                                <td class="p-3 text-xs">コーラス。スタジオミュージシャンとしての経験を編曲に反映。</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-3 font-bold text-white">松井恒松</td>
+                                <td class="p-3">ベース</td>
+                                <td class="p-3 text-xs">現名義：常松。不動のダウンピッキングを特徴とする。</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-3 font-bold text-white">高橋まこと</td>
+                                <td class="p-3">ドラムス</td>
+                                <td class="p-3 text-xs">1981年5月、初ライブを観覧した後にセッションを経て加入。</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50 bg-slate-900/30">
+                                <td class="p-3 font-bold text-slate-400">木村マモル</td>
+                                <td class="p-3 text-slate-400">ドラムス</td>
+                                <td class="p-3 text-xs text-slate-400">1981年5月脱退。後に2ndアルバム『INSTANT LOVE』をプロデュース。</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50 bg-slate-900/30">
+                                <td class="p-3 font-bold text-slate-400">深沢和明</td>
+                                <td class="p-3 text-slate-400">サックス</td>
+                                <td class="p-3 text-xs text-slate-400">1982年10月脱退。俳優（アクター）への転向を志向。</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50 bg-slate-900/30">
+                                <td class="p-3 font-bold text-slate-400">諸星アツシ</td>
+                                <td class="p-3 text-slate-400">ギター</td>
+                                <td class="p-3 text-xs text-slate-400">1982年10月脱退。ブラックミュージックへの傾倒を理由に挙げる。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNIT 2: フェーズ別活動・実績・タイアップ -->
+        <section id="unit2" class="scroll-mt-32">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-8 w-2 bg-rose-500 rounded"></div>
+                <h2 class="text-3xl font-bold serif text-white">3. フェーズ別活動分析 / 4. 代表的作品と活動実績</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <!-- フェーズ別活動 -->
+                <div class="glass-panel p-8 rounded-xl">
+                    <h3 class="text-xl font-bold text-white mb-4">3. フェーズ別活動分析：ライブハウスから社会現象へ</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-rose-400 mb-2 border-b border-slate-600 pb-1">黎明期（1980年-1981年）</h4>
+                            <p class="text-sm text-slate-200 leading-relaxed">
+                                1980年7月5日、氷室が日比谷野音でのRCサクセションのライブに衝撃を受けたことが結成の契機となる。1981年5月11日、新宿ロフトでのデビューライブは観客わずか13人であった。当初はビーイングに所属したが、後にプライベートオフィス「Ø-con' nection」、ユイ音楽工房へと拠点を移し、組織基盤を固めた。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-rose-400 mb-2 border-b border-slate-600 pb-1">ブレイク期（1986年）</h4>
+                            <p class="text-sm text-slate-200 leading-relaxed">
+                                4thアルバム『JUST A HERO』、シングル「B・BLUE」の連続ヒットにより、人気は全国区へ。日本武道館公演（7月2日）での氷室の「ライブハウス武道館へようこそ！」というMCは、バンドのアイデンティティを象徴する伝説となった。
+                            </p>
+                        </div>
+                        <div class="p-4 bg-slate-800 rounded-lg border border-slate-700">
+                            <h4 class="font-bold text-rose-400 mb-2">絶頂期と社会現象（1987年-1988年）</h4>
+                            <ul class="list-disc list-inside text-sm text-slate-200 space-y-1">
+                                <li><strong>インフラへの影響:</strong> 文京区の電話回線がチケット予約の殺到によりパンク。</li>
+                                <li><strong>即完売の記録:</strong> 東京ドーム『LAST GIGS』のチケット9万枚がわずか10分で完売。</li>
+                                <li><strong>異例の報道:</strong> NHKがバンドの解散を臨時速報として取り上げた。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 実績とグラフ -->
+                <div class="glass-panel p-8 rounded-xl flex flex-col">
+                    <h3 class="text-xl font-bold text-white mb-4">4. 代表的作品と活動実績 / ディスコグラフィー</h3>
+                    <div class="space-y-4 mb-6">
+                        <p class="text-sm text-slate-200"><strong>オリジナルアルバム:</strong> 『MORAL』から『PSYCHOPATH』まで全6枚。</p>
+                        <p class="text-sm text-slate-200"><strong>主要シングル:</strong> 「MARIONETTE」（チャート1位）、「ONLY YOU」、「季節が君だけを変える」など。</p>
+                        <p class="text-sm text-slate-200"><strong>ライブ・アルバム:</strong> 解散後にリリースされた『“LAST GIGS”』は150万枚を記録。</p>
+                    </div>
+                    
+                    <div class="chart-container flex-grow mb-4">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 伝説的ライブ＆タイアップ体験 (インタラクティブ) -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- 伝説的ライブ -->
+                <div class="glass-panel p-6 rounded-xl border-l-4 border-sky-500">
+                    <h3 class="text-lg font-bold text-white mb-4"><i class="fa-solid fa-bolt text-sky-400 mr-2"></i>伝説的ライブの総括</h3>
+                    <p class="text-sm text-slate-400 mb-4">ライブ名をクリックして詳細を確認。</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                        <button onclick="highlightLive('case')" class="interactive-btn py-3 px-2 rounded bg-slate-800 border border-slate-600 text-center text-sm font-bold text-white">CASE OF BOØWY</button>
+                        <button onclick="highlightLive('1224')" class="interactive-btn py-3 px-2 rounded bg-slate-800 border border-slate-600 text-center text-sm font-bold text-white">1224</button>
+                        <button onclick="highlightLive('lastgigs')" class="interactive-btn py-3 px-2 rounded bg-slate-800 border border-slate-600 text-center text-sm font-bold text-white">LAST GIGS</button>
+                    </div>
+                    <div id="live-desc" class="p-4 bg-slate-900/80 rounded-xl border border-slate-700 text-sm flex items-center justify-center text-center font-bold min-h-[100px] text-slate-300">
+                        上のボタンをクリックしてください。
+                    </div>
+                </div>
+
+                <!-- 8. 付録：タイアップ一覧 -->
+                <div class="glass-panel p-6 rounded-xl border-l-4 border-rose-500">
+                    <h3 class="text-lg font-bold text-white mb-4"><i class="fa-solid fa-tv text-rose-400 mr-2"></i>8. 付録：タイアップ一覧</h3>
+                    <p class="text-sm text-slate-400 mb-4">楽曲ボタンをクリックして詳細を確認。</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                        <button onclick="highlightTieup('bebop')" class="interactive-btn py-3 px-2 rounded bg-slate-800 border border-slate-600 text-center text-xs font-bold text-white">B・BLUE /<br>ホンキー・トンキー...</button>
+                        <button onclick="highlightTieup('awa')" class="interactive-btn py-3 px-2 rounded bg-slate-800 border border-slate-600 text-center text-xs font-bold text-white">B・BLUE<br>(2016)</button>
+                        <button onclick="highlightTieup('banana')" class="interactive-btn py-3 px-2 rounded bg-slate-800 border border-slate-600 text-center text-xs font-bold text-white">B・BLUE<br>(2019)</button>
+                    </div>
+                    <div id="tieup-desc" class="p-4 bg-slate-900/80 rounded-xl border border-slate-700 text-sm flex items-center justify-center text-center font-bold min-h-[100px] text-slate-300">
+                        上のボタンをクリックしてください。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNIT 3: メディア戦略・エピソード・解散 -->
+        <section id="unit3" class="scroll-mt-32">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-8 w-2 bg-slate-300 rounded"></div>
+                <h2 class="text-3xl font-bold serif text-white">5. メディア戦略 / 6. 解散の真相</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <!-- メディア戦略 -->
+                <div class="glass-panel p-8 rounded-xl border-t-4 border-slate-500">
+                    <h3 class="text-xl font-bold text-white mb-4">徹底した「現場至上主義」とメディア不信</h3>
+                    <p class="text-slate-200 text-sm leading-relaxed">
+                        BOØWYはテレビ出演を極端に制限した。その決定的な理由は、1986年の『夜のヒットスタジオ』出演時にある。司会の古舘伊知郎から氷室の衣装を揶揄され、布袋には物真似を強要されるなどの扱いに不信感を抱き、1986年12月を最後にテレビ露出をほぼ断絶した。また、「メディアよりも真のファンを優先する」として招待席を設けない方針を貫いた。
+                    </p>
+                </div>
+
+                <!-- 解散の真相 -->
+                <div class="glass-panel p-8 rounded-xl border-t-4 border-slate-500 bg-slate-800/80">
+                    <h3 class="text-xl font-bold text-white mb-4">6. 解散の真相：完成形への到達と産業的摩擦</h3>
+                    <p class="text-slate-200 text-sm leading-relaxed mb-4">
+                        1987年12月24日、渋谷公会堂での解散宣言、および翌日の新聞全面広告によるメッセージは日本中に衝撃を与えた。
+                    </p>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-slate-900 rounded-lg">
+                            <h4 class="font-bold text-sky-400 text-xs mb-1">音楽的完成（氷室・布袋）</h4>
+                            <p class="text-xs text-slate-300">「4人でやれることをやり尽くした」「完成形に達した」という音楽的達成感。布袋は「バンドに一番大きな傷（解散）を自分たちで付けるべきだと思った」と述べている。</p>
+                        </div>
+                        <div class="p-4 bg-slate-900 rounded-lg">
+                            <h4 class="font-bold text-sky-400 text-xs mb-1">産業的摩擦とアイドル視への違和感</h4>
+                            <p class="text-xs text-slate-300">プロジェクトが巨大化し「ロックビジネスのシステム」に組み込まれたことへの疲弊。特に布袋は、ギターの音を聴かずに歓声を上げるファン層の変化に嫌悪感を抱き、髭を蓄えてアイドル視を拒絶した。</p>
+                        </div>
+                        <div class="p-4 bg-slate-900 rounded-lg">
+                            <h4 class="font-bold text-sky-400 text-xs mb-1">個人的志向（布袋・松井）</h4>
+                            <p class="text-xs text-slate-300">布袋の強い海外志向や、友人関係と音楽活動を分離する必要性。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- メンバーのパーソナリティ体験 -->
+            <div class="glass-panel p-6 rounded-xl">
+                <h3 class="text-lg font-bold text-white mb-4"><i class="fa-solid fa-users text-sky-400 mr-2"></i>メンバーのパーソナリティ (象徴的なエピソード)</h3>
+                <p class="text-sm text-slate-400 mb-4">名前をクリックしてエピソードを確認してください。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex flex-col space-y-3">
+                        <button onclick="highlightPersonality('himuro')" class="interactive-btn w-full py-4 px-6 rounded bg-slate-800 border border-slate-600 text-left transition-all flex items-center justify-between group">
+                            <span class="font-bold text-white">氷室京介</span>
+                            <span class="text-xs bg-slate-900 px-2 py-1 rounded text-sky-400">Click</span>
+                        </button>
+                        <button onclick="highlightPersonality('hotei')" class="interactive-btn w-full py-4 px-6 rounded bg-slate-800 border border-slate-600 text-left transition-all flex items-center justify-between group">
+                            <span class="font-bold text-white">布袋寅泰</span>
+                            <span class="text-xs bg-slate-900 px-2 py-1 rounded text-sky-400">Click</span>
+                        </button>
+                        <button onclick="highlightPersonality('matsui')" class="interactive-btn w-full py-4 px-6 rounded bg-slate-800 border border-slate-600 text-left transition-all flex items-center justify-between group">
+                            <span class="font-bold text-white">松井恒松</span>
+                            <span class="text-xs bg-slate-900 px-2 py-1 rounded text-sky-400">Click</span>
+                        </button>
+                        <button onclick="highlightPersonality('takahashi')" class="interactive-btn w-full py-4 px-6 rounded bg-slate-800 border border-slate-600 text-left transition-all flex items-center justify-between group">
+                            <span class="font-bold text-white">高橋まこと</span>
+                            <span class="text-xs bg-slate-900 px-2 py-1 rounded text-sky-400">Click</span>
+                        </button>
+                    </div>
+                    <div id="personality-desc" class="p-6 bg-slate-900/80 rounded-xl border border-slate-700 text-base flex flex-col items-center justify-center text-center font-bold leading-relaxed min-h-[150px] text-slate-300">
+                        <span class="text-sky-400">左の名前をクリックしてください。</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNIT 4: 解散後の歩み -->
+        <section id="unit4" class="scroll-mt-32">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-8 w-2 bg-slate-100 rounded"></div>
+                <h2 class="text-3xl font-bold serif text-white">7. 解散後の歩みと近年の交流</h2>
+            </div>
+
+            <div class="glass-panel p-8 rounded-xl">
+                <p class="text-slate-200 leading-relaxed mb-6">
+                    1988年の解散後、氷室・高橋（ユイ音楽工房）と布袋・松井（新事務所IRc2）の二陣営に分かれたものの、水面下では交流が続いた。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 bg-slate-800 rounded-lg border-t-2 border-slate-500">
+                        <h4 class="font-black text-white text-lg mb-2">1990年代</h4>
+                        <p class="text-sm text-slate-300">松井が布袋や氷室のソロアルバムに参加。1993年には氷室、松井、高橋の3名でバス釣りに興じるなど親交を深めた。</p>
+                    </div>
+                    <div class="p-6 bg-slate-800 rounded-lg border-t-2 border-slate-500">
+                        <h4 class="font-black text-white text-lg mb-2">2010年代</h4>
+                        <p class="text-sm text-slate-300">2012年、布袋の30周年記念ライブに高橋がゲスト参加。2016年、氷室の「LAST GIGS」を布袋、松井、高橋の3名がそれぞれ客席から見届けた。</p>
+                    </div>
+                    <div class="p-6 bg-slate-800 rounded-lg border-t-2 border-sky-500 bg-gradient-to-b from-sky-900/20 to-transparent">
+                        <h4 class="font-black text-sky-400 text-lg mb-2">2019年の邂逅</h4>
+                        <p class="text-sm text-slate-300">布袋のアルバム『GUITARHYTHM VI』に松井と高橋がレコーディング参加。同年のツアー最終公演（神戸）では、3名が同じステージに立つ歴史的瞬間が実現した。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-12 bg-black border-t border-slate-800 text-center">
+        <p class="text-slate-500 text-sm font-bold tracking-widest italic">© 2024 Fumetsu no tamashī Report.</p>
+    </footer>
+
+    <script>
+        // Init Navigation
+        const navList = document.getElementById('nav-list');
+        const sections = [
+            { id: 'unit1', label: '1. アイデンティティと音楽性' },
+            { id: 'unit2', label: '2. 活動フェーズと実績' },
+            { id: 'unit3', label: '3. メディア戦略と解散' },
+            { id: 'unit4', label: '4. 解散後の歩み' }
+        ];
+
+        sections.forEach(sec => {
+            const li = document.createElement('li');
+            li.innerHTML = \`<button onclick="document.getElementById('\${sec.id}').scrollIntoView({behavior: 'smooth'})" class="text-sm font-bold text-slate-400 hover:text-white hover:text-sky-400 transition-colors whitespace-nowrap">\${sec.label}</button>\`;
+            navList.appendChild(li);
+        });
+
+        // Interactive: 伝説的ライブ
+        function highlightLive(liveKey) {
+            const display = document.getElementById('live-desc');
+            const messages = {
+                'case': "<div class='text-lg text-white mb-2'>CASE OF BOØWY (1987年)</div><div class='font-normal text-slate-300'>神戸と横浜で開催。初期から後期までの全39曲を網羅した集大成。</div>",
+                '1224': "<div class='text-lg text-white mb-2'>1224 (1987年)</div><div class='font-normal text-slate-300'>渋谷公会堂。ツアー最終日のステージ上で突然の解散宣言。</div>",
+                'lastgigs': "<div class='text-lg text-white mb-2'>LAST GIGS (1988年)</div><div class='font-normal text-slate-300'>4月4日・5日、東京ドーム。事実上の「同窓会」と定義された最終公演。終了後の移動車内では、メンバー全員が涙を流したという。</div>"
+            };
+            display.innerHTML = messages[liveKey];
+            display.classList.remove('animate-pulse');
+            void display.offsetWidth;
+            display.classList.add('animate-pulse');
+        }
+
+        // Interactive: タイアップ
+        function highlightTieup(tieupKey) {
+            const display = document.getElementById('tieup-desc');
+            const messages = {
+                'bebop': "<div class='text-lg text-white mb-2'>B・BLUE / ホンキー・トンキー・クレイジー</div><div class='font-normal text-slate-300'>使用年：2004年<br>タイアップ：TBS系ドラマ『BE-BOP-HIGHSCHOOL』主題歌</div>",
+                'awa': "<div class='text-lg text-white mb-2'>B・BLUE</div><div class='font-normal text-slate-300'>使用年：2016年<br>タイアップ：AWA「AWA MUSIC」CMソング</div>",
+                'banana': "<div class='text-lg text-white mb-2'>B・BLUE</div><div class='font-normal text-slate-300'>使用年：2019年<br>タイアップ：TBS系列「バナナサンド」オープニングソング</div>"
+            };
+            display.innerHTML = messages[tieupKey];
+            display.classList.remove('animate-pulse');
+            void display.offsetWidth;
+            display.classList.add('animate-pulse');
+        }
+
+        // Interactive: メンバーパーソナリティ
+        function highlightPersonality(memberKey) {
+            const display = document.getElementById('personality-desc');
+            const messages = {
+                'himuro': "<div class='text-xl text-white mb-2'>氷室京介</div><div class='font-normal text-slate-300'>かつて英会話教材の優秀なセールスマンであった。</div>",
+                'hotei': "<div class='text-xl text-white mb-2'>布袋寅泰</div><div class='font-normal text-slate-300'>スタジオミュージシャンとして頭角を現す前は、居酒屋で他人の残り物を食べて空腹を凌ぐ苦労を経験。</div>",
+                'matsui': "<div class='text-xl text-white mb-2'>松井恒松</div><div class='font-normal text-slate-300'>ロンドン滞在時、英語を一切話さず日本語を貫き通したという頑固な逸話を持つ。</div>",
+                'takahashi': "<div class='text-xl text-white mb-2'>高橋まこと</div><div class='font-normal text-slate-300'>靴の中に「へそくり」を隠し持ち、ツアー中の金欠からメンバーを救っていた。</div>"
+            };
+            display.innerHTML = messages[memberKey];
+            display.classList.remove('animate-pulse');
+            void display.offsetWidth;
+            display.classList.add('animate-pulse');
+        }
+
+        // Charts Init
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctxChart = document.getElementById('salesChart').getContext('2d');
+            new Chart(ctxChart, {
+                type: 'bar',
+                data: {
+                    labels: ['THIS BOØWY (1998年)', '“LAST GIGS” (1988年)'],
+                    datasets: [{
+                        label: 'セールス実績 (万枚)',
+                        data: [220, 150],
+                        backgroundColor: ['#38bdf8', '#f43f5e'],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    indexAxis: 'y',
+                    scales: {
+                        x: { 
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            ticks: { color: '#94a3b8' },
+                            title: { display: true, text: '万枚', color: '#94a3b8' }
+                        },
+                        y: { 
+                            grid: { display: false },
+                            ticks: { color: '#f8fafc', font: { weight: 'bold' } }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.x + '万枚以上';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    <\/script>
+</body>
+</html>`;
+
         const videos = [
             {
                 id: 1,
@@ -2168,6 +2679,11 @@
                                                         {activeVideo.id === 18 && (
                                                             <div className="w-full my-8 border border-white/10 rounded-sm overflow-hidden" style={{height: '800px', backgroundColor: '#0f172a'}}>
                                                                 <iframe title="REBECCA Archive" width="100%" height="100%" frameBorder="0" srcDoc={REBECCA_HTML_CONTENT} sandbox="allow-scripts allow-same-origin"></iframe>
+                                                            </div>
+                                                        )}
+                                                        {activeVideo.id === 20 && (
+                                                            <div className="w-full my-8 border border-white/10 rounded-sm overflow-hidden" style={{height: '800px', backgroundColor: '#0f172a'}}>
+                                                                <iframe title="BOØWY Archive" width="100%" height="100%" frameBorder="0" srcDoc={BOOWY_HTML_CONTENT} sandbox="allow-scripts allow-same-origin"></iframe>
                                                             </div>
                                                         )}
                                                         <button onClick={() => setShowDetails(false)} className="block mt-8 text-gray-500 text-[10px] tracking-widest hover:text-white uppercase transition-colors font-bold tracking-[0.2em]">▲ CLOSE DETAILS</button>
